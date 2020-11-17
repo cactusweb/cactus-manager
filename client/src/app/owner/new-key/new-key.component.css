@@ -1,0 +1,107 @@
+form.new-key{
+    display: grid;
+    row-gap: 15px;
+
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    background-color: white;
+    border-radius: 15px;
+    border: 1px solid #78AFF8;
+    padding: 10px 20px;
+
+    z-index: 1;
+    min-width: 300px;
+}
+
+h3{
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 31px;
+    align-self: center;
+    justify-self: start;
+}
+
+h4{
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 28px;
+    justify-self: start;
+    align-self: center;
+}
+
+.head{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+}
+.head img{justify-self: end; width: 12px; transform: rotate(45deg);}
+
+.data{
+    display: grid;
+    row-gap: 10px;
+}
+.data>.type, .data>.activate-quantity{
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    column-gap: 15px;
+    align-items: center;
+    justify-items: start;
+}
+.data>div{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 10px !important;
+    align-items: center;
+    justify-items: start;
+}
+.activate-quantity>input{width: 50px;}
+.activate-quantity .input label{transform: rotate(90deg);}
+.input{display: grid; grid-template-columns: auto 1fr; column-gap: 5px; align-items: center;}
+
+.data button{
+    justify-self: start;
+    width: 138px;
+    height: 34px;
+    padding: 0;
+    border-radius: 10px;
+}
+
+div.key{
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    column-gap: 10px;
+    padding-top: 5px;
+}
+
+span.key{
+    display: grid;
+    place-items: center;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.key button{
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    padding: 0;
+    place-items: center;
+}
+
+input[type="text"], input[type="date"]{
+    border-bottom: 1px solid #3d3d3d;
+}
+button:active{
+    background-color: #78AFF8;
+}
+
+span.error{
+    position: absolute;
+    bottom: 0px;
+    transform: translate(0%, +100%);
+    color: #F65151;
+    font-size: 12px;
+}  

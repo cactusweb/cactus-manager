@@ -1,0 +1,16 @@
+.content{
+    display: grid;
+    justify-items: center;
+    align-items: start;
+}
+
+form{
+    margin-top: 100px;
+    width: 380px;
+    display: grid;
+    row-gap: 20px;
+}
+
+form button{
+    margin-top: 20px;
+}

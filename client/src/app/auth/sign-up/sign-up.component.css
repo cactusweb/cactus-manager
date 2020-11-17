@@ -1,0 +1,54 @@
+.content{
+    display: grid;
+    grid-template-columns: minmax(390px, 0.5fr) 1fr;
+    column-gap: 70px;
+    align-self: center;
+    height: auto;
+}
+
+.content> div{height: 100%;}
+
+.background-cover{
+    background-image: url('/assets/img/background/sign-up.svg');
+    background-size: contain;
+    align-self: stretch;
+    justify-self: stretch;
+}
+
+.or{
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    column-gap: 20px;
+    align-items: center;
+}
+
+.align-items-center{
+    display: grid;
+    align-items: center;
+}
+
+.align-items-center>div{
+    display: grid;
+    row-gap: 15px;
+}
+
+form{
+    display: grid;
+    row-gap: 15px;
+}
+
+.inputs{display: grid; row-gap: 20px;}
+form span:first-child{padding-bottom: 15px;}
+.input .input-error{left: 15px;}
+input.ng-invalid.ng-touched{border-color: #F65151;}
+/* input.ng-valid */
+button:disabled{cursor: not-allowed;}
+span.error{color: #F65151; font-size: 14px; position: absolute; top: -5px; left: 15px; line-height: 22px; transform: translate(0%, -50%); }
+
+.border-btn:hover{
+    border-color: #E4F0FF;
+}
+
+.linear-btn:hover{
+    filter: brightness(1.1);
+}

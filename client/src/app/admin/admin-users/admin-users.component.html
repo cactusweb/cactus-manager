@@ -1,0 +1,74 @@
+<div class="content-in">
+    <app-page-header pageName="Users" [isAdmin]='true'></app-page-header>
+    <div>
+
+        <div class="header">
+            <button class="adding-btn" (click)="onChangeNewKey(true)">
+                <span class="plus">
+                    <img src="/assets/img/icons/plus.svg">
+                </span>
+                Add new key
+            </button>
+
+            <div class="checkboxes">
+            </div>
+
+            <div class="search">
+                <input type="text" placeholder="Search" name="search" id="search" class="search-input" autocomplete="off" [(ngModel)]="searchParam">
+                <img src="/assets/img/icons/search.svg">
+            </div>
+        </div>
+
+        <span class="hr grey"></span>
+
+        <div class="users">
+
+            <table>
+                <thead>
+                    <tr>
+                        <td>User</td>
+                        <td>Registration</td>
+                        <td>Activity</td>
+                        <td>Renewal</td>
+                        <td>Edit</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <div>
+                        <tr *ngFor="let user of users
+                            | search : searchParam : searchKeys
+                        " [formGroup]="formEditUser">
+                            <td> {{ user.name }} </td>
+                            <td> {{ user.addedAt }} </td>
+                            <td> ---- </td>
+                            <td *ngIf=" editingUser._id != user._id "> {{ user.outputExpiresIn }} </td>
+                            <td *ngIf=" editingUser._id == user._id "> <input type="date" formControlName="expiresIn"> </td>
+    
+                            <td class="action" *ngIf=" editingUser._id != user._id ">
+                                <img src="/assets/img/icons/edit.svg" alt="edit" class="pointer" (click)="editUser(user._id)">
+                                <img src="/assets/img/icons/delete.svg" alt="delete" class="pointer" (click)="onDeleteUser(user._id)">
+                            </td>
+                            <td class="action" *ngIf=" editingUser._id == user._id ">
+                                <img src="/assets/img/icons/confirm.svg" alt="edit" class="pointer" (click)="onEditUser()">
+                                <img src="/assets/img/icons/cancel.svg" alt="delete" class="pointer" (click)="onCancelEdit()">
+                            </td>
+                        </tr>
+
+                    </div>
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <app-new-registr-key *ngIf="newKey" (onClose)="onChangeNewKey($event)"></app-new-registr-key>
+
+        <ngx-spinner
+            type="ball-clip-rotate"
+            size="large"
+            [fullScreen]="false"
+        ></ngx-spinner>
+
+    </div>
+</div>

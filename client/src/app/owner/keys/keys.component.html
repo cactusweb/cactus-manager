@@ -1,0 +1,103 @@
+<div class="content-in">
+    <app-page-header pageName="Keys"></app-page-header>
+    <div>
+        
+
+        <div class="header">
+            <button class="adding-btn" (click)="onChangeNewKey(true)">
+                <span class="plus">
+                    <img src="/assets/img/icons/plus.svg">
+                </span>
+                Add new key
+            </button>
+
+            <div class="checkboxes">
+                <div class="checkbox-1-2">
+                    <input type="checkbox" name="type" id="renewal" [(ngModel)]="filterParams[0].status" (ngModelChange)="onFilterChange()">
+                    <label for="renewal" class="pointer">Renewal</label>
+                </div>
+                <div class="checkbox-1-2">
+                    <input type="checkbox" name="type" id="lifetime" [(ngModel)]="filterParams[1].status" (ngModelChange)="onFilterChange()">
+                    <label for="lifetime" class="pointer">Lifetime</label>
+                </div>
+            </div>
+
+            <div class="search">
+                <input type="text" placeholder="Search" name="search" id="search" class="search-input" autocomplete="off" [(ngModel)]="searchParam">
+                <img src="/assets/img/icons/search.svg">
+            </div>
+        </div>
+
+        <span class="hr grey"></span>
+
+
+        <div class="keys">
+
+            <table>
+                <thead>
+                    <tr>
+                        <td>Nickname</td>
+                        <td>Key</td>
+                        <td>Type</td>
+                        <td>Purshase</td>
+                        <td>Renewal</td>
+                        <td>Used</td>
+                        <td>Edit</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <div>
+                        <tr [formGroup]="formEditLicense" *ngFor="let license of licenses
+                            | filter : filterParams : filterChange
+                            | search : searchParam : searchKeys
+                        ">
+    
+                            <td *ngIf="editingLicense._id != license._id"> {{ license.user }} </td>
+                            <td *ngIf="editingLicense._id == license._id"> <input type="text" formControlName="user"> </td>
+    
+                            <td> {{ license.key }} </td>
+                            
+                            <td *ngIf="editingLicense._id != license._id"> {{ license.status }} </td>
+                            <td *ngIf="editingLicense._id == license._id"> 
+                                <select type="text" formControlName="status">
+                                    <option value="renewal">Renewal</option>
+                                    <option value="lifetime">Lifetime</option>
+                                </select> 
+                            </td>
+    
+                            <td> {{ license.createdAt }} </td>
+    
+                            <td *ngIf="editingLicense._id != license._id"> {{ license.outputExpiresIn }} </td>
+                            <td *ngIf="editingLicense._id == license._id"> <input type="date" formControlName="expiresIn"> </td>
+    
+                            <td *ngIf="editingLicense._id != license._id && license.quantity != 0"> {{ license.quantity }} </td>
+                            <td *ngIf="editingLicense._id != license._id && license.quantity == 0" class="infinity"> <span>8</span> </td>
+                            <td *ngIf="editingLicense._id == license._id"> <input type="text" formControlName="quantity"> </td>
+    
+                            <td class="action" *ngIf="editingLicense._id != license._id">
+                                <img src="/assets/img/icons/edit.svg" alt="edit" class="pointer" (click)="editLicense(license._id)">
+                                <img src="/assets/img/icons/delete.svg" alt="delete" class="pointer" (click)="deleteLicense(license._id)">
+                            </td>
+    
+                            <td class="action" *ngIf="editingLicense._id == license._id">
+                                <img src="/assets/img/icons/confirm.svg" alt="edit" class="pointer" (click)="onEditLicense()">
+                                <img src="/assets/img/icons/cancel.svg" alt="delete" class="pointer" (click)="onCancelEdit()">
+                            </td>
+                        </tr>
+
+                    </div>
+                    
+                </tbody>
+            </table>
+
+        </div>
+        <app-new-key *ngIf="newKey" (onClose)="onChangeNewKey($event)" (onAdd)="getLicenses()"></app-new-key>
+
+        <ngx-spinner
+        type="ball-clip-rotate"
+        size="large"
+        zIndex='1'
+        [fullScreen]="false"
+        ></ngx-spinner>
+    </div>
+</div>
