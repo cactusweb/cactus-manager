@@ -6,11 +6,9 @@ import morgan from 'morgan'
 import path from 'path'
 import cors from 'cors'
 
-import regkeyRoutes from './routes/admin/regKey.js'
-import adminUsersRoutes from './routes/admin/users.js'
 import licensesRoutes from './routes/licenses.js'
 import devicesRoutes from './routes/devices.js'
-import authRoutes from './routes/auth/auth.js'
+import authRoutes from './routes/auth.js'
 import usersRoutes from './routes/users.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -24,8 +22,6 @@ server.use(express.json())
 server.use(helmet())
 server.use(cors())
 
-server.use('/api/v1/admin/regkey', regkeyRoutes)
-server.use('/api/v1/admin/users', adminUsersRoutes)
 server.use('/api/v1/licenses', licensesRoutes)
 server.use('/api/v1/devices', devicesRoutes)
 server.use('/api/v1/auth', authRoutes)

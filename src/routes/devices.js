@@ -1,23 +1,22 @@
-const router = require('express').Router()
+import express from 'express'
 
-const License = require('../models/License')
-const { hasError } = require('../middleware/validate.middleware')
-const {
-  addDeviceValidators,
-  deleteDeviceValidators
-} = require('../utils/validators/device.validator')
+import validate from '../middleware/validate.middleware.js'
+import License from '../models/manager/License.js'
+import {
+  postValidators,
+  deleteValidators
+} from '../validators/devices.validator.js'
+import { sendMessage } from '../utils/helper.functions.js'
 
-router.post('/', addDeviceValidators, hasError, async (req, res) => {
+const router = express.Router()
+
+router.post('/', postValidators, validate, async (req, res) => {
   try {
     const { key, device } = req.body
     const license = await License.findOne({ key })
 
-    if (!license) {
-      return res.status(400).json({ message: 'Некорректные данные' })
-    }
-
     if (license.devices.includes(device)) {
-      return res.status(200).json({ message: 'Добавлено' })
+      return sendMessage(res, 200, 'Added')
     }
 
     if (license.devices.length < license.quantity || !license.quantity) {
@@ -25,39 +24,30 @@ router.post('/', addDeviceValidators, hasError, async (req, res) => {
         license.devices.push(device)
       }
     } else {
-      return res
-        .status(400)
-        .json({ message: 'Привышено максимальное количество использований' })
+      return sendMessage(res, 400, 'Exceeded the maximum number of uses')
     }
 
     await license.save()
-    return res.status(200).json({ message: 'Добавлено' })
+    return sendMessage(res, 200, 'Added')
   } catch (e) {
-    console.log(e)
-    return res
-      .status(500)
-      .json({ message: 'Что-то пошло не так, попробуйте позже' })
+    return sendMessage(res, 500, 'Something went wrong, try again later', e)
   }
 })
 
-router.delete('/', deleteDeviceValidators, hasError, async (req, res) => {
+router.delete('/', deleteValidators, validate, async (req, res) => {
   try {
-    const { key } = req.body
     const license = await License.findOneAndUpdate(
-      { key },
+      { key: req.body.key },
       { devices: [] },
       { new: true }
     )
     if (!license) {
-      return res.status(400).json({ message: 'Не удалось сбросить активации' })
+      return sendMessage(res, 400, 'Failed to reset uses')
     }
-    return res.status(200).json(license)
+    return sendMessage(res, 200, 'Reset')
   } catch (e) {
-    console.log(e)
-    return res
-      .status(500)
-      .json({ message: 'Что-то пошло не так, попробуйте позже' })
+    return sendMessage(res, 500, 'Something went wrong, try again later', e)
   }
 })
 
-module.exports = router
+export default router

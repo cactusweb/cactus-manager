@@ -1,24 +1,17 @@
-const router = require('express').Router()
+import express from 'express'
+import User from '../models/manager/User.js'
+import auth from '../middleware/auth.middleware.js'
+import { sendMessage } from '../utils/helper.functions.js'
 
-const userAuth = require('../middleware/user.middleware')
+const router = express.Router()
 
-const User = require('../models/User')
-
-router.get('/@me', userAuth, async (req, res) => {
+router.get('/', auth, async (req, res) => {
   try {
-    const user = await User.findById(req.user.userId).select('-password')
-    if (!user) {
-      return res
-        .status(400)
-        .json({ message: 'Не удалось получить информацию о пользователе' })
-    }
+    const user = await User.findById(req.user.id).select('-password')
     return res.status(200).json(user)
   } catch (e) {
-    console.log(e)
-    return res
-      .status(500)
-      .json({ message: 'Что-то пошло не так, попробуйте позже' })
+    return sendMessage(res, 500, 'Something went wrong, try again later', e)
   }
 })
 
-module.exports = router
+export default router

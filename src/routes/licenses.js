@@ -1,103 +1,84 @@
-const router = require('express').Router()
+import express from 'express'
+import validate from '../middleware/validate.middleware.js'
+import auth from '../middleware/auth.middleware.js'
+import License from '../models/manager/License.js'
+import { sendMessage } from '../utils/helper.functions.js'
+import {
+  postValidators,
+  patchValidators,
+  deleteValidators
+} from '../validators/licenses.validator.js'
 
-const { hasError } = require('../middleware/validate.middleware')
-const userAuth = require('../middleware/user.middleware')
+const router = express.Router()
 
-const License = require('../models/License')
+// const {
+//   addLicenseValidators,
+//   deleteLicenseValidators,
+//   editLicenseValidators
+// } = require('../validators/license.validator')
 
-const {
-  addLicenseValidators,
-  deleteLicenseValidators,
-  editLicenseValidators
-} = require('../utils/validators/license.validator')
-
-router.post('/', userAuth, addLicenseValidators, hasError, async (req, res) => {
+router.post('/', auth, postValidators, validate, async (req, res) => {
   try {
-    const { user, key, status, expiresIn, quantity } = req.body
+    const { status, expiresIn } = req.body
+    const expires = status === 'lifetime' ? undefined : new Date(expiresIn)
     const license = await License.create({
-      user,
-      key,
-      status,
-      expiresIn: status === 'lifetime' ? undefined : expiresIn,
-      quantity,
-      owner: req.user.userId
+      ...req.body,
+      expiresIn: expires,
+      owner: req.user.id
     })
-    return res.json(license)
+    return res.status(200).json(license)
   } catch (e) {
-    console.log(e)
-    return res
-      .status(500)
-      .json({ message: 'Что-то пошло не так, попробуйте позже' })
+    return sendMessage(res, 500, 'Something went wrong, try again later', e)
   }
 })
 
-router.get('/', userAuth, async (req, res) => {
+router.get('/', auth, async (req, res) => {
   try {
-    const licenses = await License.find({ owner: req.user.userId })
+    const licenses = await License.find({ owner: req.user.id })
     return res.status(200).json(licenses)
   } catch (e) {
-    console.log(e)
-    return res
-      .status(500)
-      .json({ message: 'Что-то пошло не так, попробуйте позже' })
+    return sendMessage(res, 500, 'Something went wrong, try again later', e)
   }
 })
 
-router.patch(
-  '/',
-  userAuth,
-  editLicenseValidators,
-  hasError,
-  async (req, res) => {
-    try {
-      const { id, user, status, expiresIn, quantity } = req.body
-      const license = await License.findOneAndUpdate(
-        {
-          owner: req.user.userId,
-          _id: id
-        },
-        {
-          user,
-          status,
-          expiresIn: status === 'lifetime' ? undefined : expiresIn,
-          quantity
-        },
-        {
-          new: true
-        }
-      )
-      return res.status(200).json(license)
-    } catch (e) {
-      console.log(e)
-      return res
-        .status(500)
-        .json({ message: 'Что-то пошло не так, попробуйте позже' })
-    }
-  }
-)
-
-router.delete(
-  '/',
-  userAuth,
-  deleteLicenseValidators,
-  hasError,
-  async (req, res) => {
-    try {
-      const license = await License.findOneAndDelete({
-        owner: req.user.userId,
-        _id: req.body.id
-      })
-      if (!license) {
-        return res.status(400).json({ message: 'Не удалось удалить лицензию' })
+router.patch('/:id', auth, patchValidators, validate, async (req, res) => {
+  try {
+    const { user, status, expiresIn, quantity } = req.body
+    const expires = status === 'lifetime' ? undefined : new Date(expiresIn)
+    const license = await License.findOneAndUpdate(
+      {
+        _id: req.params.id,
+        owner: req.user.id
+      },
+      {
+        user,
+        status,
+        expiresIn: expires,
+        quantity
+      },
+      {
+        new: true
       }
-      return res.status(200).json(license)
-    } catch (e) {
-      console.log(e)
-      return res
-        .status(500)
-        .json({ message: 'Что-то пошло не так, попробуйте позже' })
-    }
+    )
+    return res.status(200).json(license)
+  } catch (e) {
+    return sendMessage(res, 500, 'Something went wrong, try again later', e)
   }
-)
+})
 
-module.exports = router
+router.delete('/', auth, deleteValidators, validate, async (req, res) => {
+  try {
+    const license = await License.findOneAndDelete({
+      _id: req.params.id,
+      owner: req.user.id
+    })
+    if (!license) {
+      return sendMessage(res, 400, 'Failed to delete key')
+    }
+    return res.status(200).json(license)
+  } catch (e) {
+    return sendMessage(res, 500, 'Something went wrong, try again later', e)
+  }
+})
+
+export default router
