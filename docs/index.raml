@@ -1,0 +1,205 @@
+#%RAML 1.0
+---
+title: Cactus Manager
+version: v1
+baseUri: https://manager.cactusweb.io/api/{version}
+mediaType: application/json
+protocols: [ HTTP, HTTPS ]
+
+types:
+  License:
+    type: object
+    properties:
+      _id: string
+      owner: string
+      user: string
+      key: string
+      status: string
+      expiresIn: datetime
+      quantity: number
+      devices: array
+      createdAt: datetime
+      updatedAt: datetime
+    example: !include License.sample
+  AccessToken:
+    type: object
+    properties:
+      accessToken: string
+    example: !include AccessToken.sample
+  Message:
+    type: object
+    properties:
+      message: string
+    example: !include Message.sample
+  User:
+    type: object
+    properties:
+      _id: string
+      name: string
+      email: string
+      expiresIn: string
+      createdAt: string
+      updatedAt: string
+    example: !include User.sample
+
+/licenses:
+  get:
+    headers:
+      authhorization:
+        type: string
+    responses:
+      200:
+        body:
+          type: License
+  post:
+    headers:
+      authhorization:
+        type: string
+    body:
+      type: object
+      properties:
+        user: string
+        key: string
+        status: string
+        expiresIn?: datetime
+        quantity: number
+      example: |
+        {
+          "user": "Maximus#3344",
+          "key": "1111-2222-3333-4444",
+          "status": "renewal",
+          "expiresIn": "2020-11-21T09:23:16.416Z",
+          "quantity": "10"
+        }
+    responses:
+      200:
+        body:
+          type: License
+      400:
+        body:
+          type: Message
+  /{id}:
+    patch:
+      headers:
+        authhorization:
+          type: string
+      body:
+        type: object
+        properties:
+          user: string
+          status: string
+          expiresIn: datetime
+          quantity: number
+        example: |
+          {
+            "user": "Maximus#3344",
+            "status": "renewal",
+            "expiresIn": "2020-11-21T09:23:16.416Z",
+            "quantity": "10"
+          }
+      responses:
+        200:
+          body:
+            type: License
+        400:
+          body:
+            type: Message
+    delete:
+      headers:
+        authhorization:
+          type: string
+      responses:
+        200:
+          body:
+            type: License
+        400:
+          body:
+            type: Message
+/devices:
+  post:
+    body:
+      type: object
+      properties:
+        key: string
+        device: string
+      example: |
+        {
+          "key": "1111-2222-3333-4444",
+          "device": "albokok44fc4kcfk4cfk4cf"
+        }
+    responses:
+      200:
+        body:
+          type: Message
+      400:
+        body:
+          type: Message
+  delete:
+    body:
+      type: object
+      properties:
+        key: string
+      example: |
+        {
+          "key": "1111-2222-3333-4444"
+        }
+    responses:
+      200:
+        body:
+          type: Message
+      400:
+        body:
+          type: Message
+/auth:
+  /signin:
+    post:
+      body:
+        type: object
+        properties:
+          email: string
+          password: string
+        example: |
+          {
+            "email": "info@cactusweb.io",
+            "password": "12345678"
+          }
+      responses:
+        200:
+          body:
+            type: AccessToken
+        400:
+          body:
+            type: Message
+  /signup:
+    post:
+      body:
+        type: object
+        properties:
+          name: string
+          email: string
+          password: string
+          key: string
+        example: |
+          {
+            "name": "V500",
+            "email": "v500cook@gmail.com",
+            "password": "12345678",
+            "key": "1111-2222-3333-4444"
+          }
+      responses:
+        200:
+          body:
+            type: AccessToken
+        400:
+          body:
+            type: Message
+/users:
+  /@me:
+    get:
+      headers:
+        authhorization:
+          type: string
+      responses:
+        200:
+          body:
+            type: User

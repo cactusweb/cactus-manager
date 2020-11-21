@@ -5,7 +5,7 @@ import { sendMessage } from '../utils/helper.functions.js'
 
 const router = express.Router()
 
-router.get('/', auth, async (req, res) => {
+router.get('/@me', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password')
     return res.status(200).json(user)

@@ -66,7 +66,7 @@ router.patch('/:id', auth, patchValidators, validate, async (req, res) => {
   }
 })
 
-router.delete('/', auth, deleteValidators, validate, async (req, res) => {
+router.delete('/:id', auth, deleteValidators, validate, async (req, res) => {
   try {
     const license = await License.findOneAndDelete({
       _id: req.params.id,
