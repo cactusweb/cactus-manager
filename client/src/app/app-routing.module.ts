@@ -1,42 +1,38 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AdminAuthComponent } from './auth/admin-auth/admin-auth.component';
-import { AdminComponent } from './admin/admin/admin.component';
-import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
-import { SignInComponent } from './auth/sign-in/sign-in.component';
-import { SignUpComponent } from './auth/sign-up/sign-up.component';
-import { KeysComponent } from './owner/keys/keys.component';
-import { OwnerApiComponent } from './owner/owner-api/owner-api.component';
-import { OwnerComponent } from './owner/owner/owner.component';
-import { OwnerGuard } from './shared/guards/owner/owner.guard'
-import { IsOwnerGuard } from './shared/guards/isOwner/is-owner.guard'
-import { AdminGuard } from './shared/guards/admin/admin.guard'
-import { IsAdminGuard } from './shared/guards/isAdmin/is-admin.guard'
+import { AuthLoginComponent } from './components/auth-login/auth-login.component';
+import { IsAuthGuard } from './guards/isAuth/is-auth.guard';
+import { AuthGuard } from './guards/auth/auth.guard';
+import { AuthSignupComponent } from './components/auth-signup/auth-signup.component';
+import { SideBarComponent } from './components/account-components/side-bar/side-bar.component';
+import { AccountComponent } from './components/account/account.component';
+import { LicensesComponent } from './components/account-components/licenses/licenses.component';
+import { ApiDocComponent } from './components/account-components/api-doc/api-doc.component';
 
 
 const routes: Routes = [
-
+  
   //auth
-  { path: 'login', component: SignInComponent, data: { title: 'Login - CactusManager' }, canActivate: [ OwnerGuard ] },
-  { path: 'sign-up', component: SignUpComponent, data: { title: 'SignUp - CactusManager' }, canActivate: [ OwnerGuard ] },
-  { path: 'admin-login', component: AdminAuthComponent, canActivate: [ AdminGuard ] },
+  { path: 'login', component: AuthLoginComponent, data: { title: 'Login - CactusManager' }, canActivate: [ IsAuthGuard ] },
+  { path: 'sign-up', component: AuthSignupComponent, data: { title: 'SignUp - CactusManager' }, canActivate: [ IsAuthGuard ] },
+
 
   //owner
-  { path: 'owner', component: OwnerComponent, canActivate: [ IsOwnerGuard ], children: [
+  { path: 'account', component: AccountComponent, canActivate: [ AuthGuard ], children: [
 
-    { path: 'keys', component: KeysComponent, data: { pageName:"Keys", title: 'Keys manage - CactusManager'}, },
-    { path: 'api', component: OwnerApiComponent, data: { pageName: 'API', title: 'API integration - CactusManager' } },
-    { path: '**', redirectTo: 'keys' }
+    { path: 'users', component: LicensesComponent, data: { pageName:"Keys", title: 'Keys manage - CactusManager'}, },
+    { path: 'api', component: ApiDocComponent, data: { pageName: 'API', title: 'API integration - CactusManager' } },
+    { path: '**', redirectTo: 'users' }
 
   ]},
 
-  { path: 'admin', component: AdminComponent, canActivate: [ IsAdminGuard ], children: [
+  // { path: 'admin', component: AdminComponent, canActivate: [ IsAdminGuard ], children: [
 
-    { path: 'users', component: AdminUsersComponent, data: { title: 'Users manage - admin CactusManager' } },
-    { path: '**', redirectTo: 'users' }
+  //   { path: 'users', component: AdminUsersComponent, data: { title: 'Users manage - admin CactusManager' } },
+  //   { path: '**', redirectTo: 'users' }
 
-  ] },
-  { path: '**', redirectTo: 'login' }
+  // ] },
+  { path: '**', redirectTo: '/login' }
 ];
 
 @NgModule({
