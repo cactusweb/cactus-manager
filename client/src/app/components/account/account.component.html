@@ -1,0 +1,28 @@
+<div class="account">
+    
+    <app-side-bar (changePageName)="pageName = $event"></app-side-bar>
+    
+    <div class="content-in">
+
+        <app-page-name [pageName]="pageName"></app-page-name>
+    
+        <router-outlet></router-outlet>
+    
+    </div>
+
+</div>
+
+
+<ngx-spinner
+*ngIf="firstLoad"
+type="ball-clip-rotate"
+size="small"
+zIndex='1000000'
+[fullScreen]="true"
+class="absolute"
+>
+<div class="loading">
+    <img src="/assets/img/logo/cactusweb_logo.svg" alt="CactusManager">
+    <p>Loading...</p>
+</div>
+</ngx-spinner>

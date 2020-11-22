@@ -1,0 +1,10 @@
+
+div.header{
+    
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    column-gap: 50px;
+    align-items: end;
+}
+div.header>*{display: grid; align-items: center;}
+.data{ font-weight: 500;}

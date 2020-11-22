@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'CactusManage'`, () => {
+  it(`should have as title 'CactusManager'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('CactusManage');
+    expect(app.title).toEqual('CactusManager');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('CactusManage app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('CactusManager app is running!');
   });
 });
