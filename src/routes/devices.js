@@ -2,6 +2,7 @@ import express from 'express'
 
 import validate from '../middleware/validate.middleware.js'
 import License from '../models/manager/License.js'
+import User from '../models/manager/User.js'
 import {
   postValidators,
   deleteValidators
@@ -12,7 +13,12 @@ const router = express.Router()
 
 router.post('/', postValidators, validate, async (req, res) => {
   try {
-    const { key, device } = req.body
+    const { key, device, id } = req.body
+    const user = await User.findById(id)
+    if (!user) {
+      return sendMessage(res, 400, 'Wrong ID')
+    }
+
     const license = await License.findOne({ key })
 
     if (license.devices.includes(device)) {
@@ -36,8 +42,13 @@ router.post('/', postValidators, validate, async (req, res) => {
 
 router.delete('/', deleteValidators, validate, async (req, res) => {
   try {
+    const { key, id } = req.body
+    const user = await User.findById(id)
+    if (!user) {
+      return sendMessage(res, 400, 'Wrong ID')
+    }
     const license = await License.findOneAndUpdate(
-      { key: req.body.key },
+      { key },
       { devices: [] },
       { new: true }
     )
