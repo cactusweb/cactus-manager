@@ -9,9 +9,11 @@
     "server": "nodemon index.js --prefix src",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "c:i": "npm install --prefix client",
-    "c:b": "npm run build --prefix client",
-    "lint": "eslint --fix --debug src/ "
+    "lint": "eslint --fix --debug src/ ",
+    "client:install": "npm install --prefix client --production=false",
+    "client:build": "npm run build --prefix client",
+    "setup": "pm2 deploy ecosystem.config.cjs production setup",
+    "deploy": "pm2 deploy ecosystem.config.cjs production update"
   },
   "husky": {
     "hooks": {
