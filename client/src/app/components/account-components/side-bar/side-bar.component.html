@@ -1,0 +1,27 @@
+<div class="side-bar">
+
+    <h2 class="cactus-name">Cactus Manager</h2>
+
+    <ul>
+        <li>
+            <button class="standart-btn border-btn" routerLink="users" routerLinkActive="blue-btn" (click)="changePageName.emit('Users')">
+                <img src="/assets/img/side-bar-icons/key.svg">
+                Keys
+            </button>
+        </li>
+
+        <li>
+            <button class="standart-btn border-btn" routerLink="api" routerLinkActive="blue-btn"  (click)="changePageName.emit('API')">
+                <img src="/assets/img/side-bar-icons/api.svg">
+                API
+            </button>
+        </li>
+        
+    </ul>
+    
+    <button class="standart-btn border-btn logout" (click)="logout()">
+        <img src="/assets/img/side-bar-icons/logout.svg">
+        Logout
+    </button>
+
+</div>
