@@ -27,6 +27,7 @@ export class AccountComponent implements OnInit {
         .then( (w: any = {}) =>{
           localStorage.setItem('name', w.name);
           localStorage.setItem('email', w.email);
+          localStorage.setItem( 'ownerId', w._id );
         })
         .catch( e => {
           if ( e.status == 401 ){

@@ -34,7 +34,7 @@ export class HttpService {
 
   async putLicense(data){
     this.setHeaders();
-    return await this.http.patch( `${this.url}/licenses/${data.id}`, data, { headers: this.headers } ).toPromise();
+    return await this.http.patch( `${this.url}/licenses/${data._id}`, data, { headers: this.headers } ).toPromise();
   }
 
   async getSelf(){

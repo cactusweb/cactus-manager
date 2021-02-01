@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Saira:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 html,body, app-root{
     min-height: 100vh;
@@ -7,7 +7,7 @@ html,body, app-root{
     margin: 0px;
     display: grid;
 }
-app-auth-login,app-auth-signup{display: grid;}
+app-login,app-signup{display: grid;}
 router-outlet{position: absolute;}
 *{font-family: 'Saira', sans-serif; color: #3D3D3D; outline: none;}
 .content{height: 100%;}
@@ -133,24 +133,24 @@ h2.page-name{font-size: 36px; font-weight: 600; line-height: 37px;}
 }
 .content-in>div:last-child>span.hr{height: 1px;}
 
-.tbody::-webkit-scrollbar, tbody::-webkit-scrollbar{
+.custom-scroll::-webkit-scrollbar, tbody::-webkit-scrollbar{
     width:5px;
     background-color: #EEEEEE;
     border-radius: 2px;
 }
   
-.tbody::-webkit-scrollbar-thumb, tbody::-webkit-scrollbar-thumb{
+.custom-scroll::-webkit-scrollbar-thumb, tbody::-webkit-scrollbar-thumb{
     border: none;
     border-radius: 2px;
     width: 3px;
     background: #78AFF8;
 }
   
-.tbody::-webkit-scrollbar-thumb:hover, tbody::-webkit-scrollbar-thumb:hover{
+.custom-scroll::-webkit-scrollbar-thumb:hover, tbody::-webkit-scrollbar-thumb:hover{
     background: #5da3ff;
 }
   
-.tbody::-webkit-scrollbar-track, tbody::-webkit-scrollbar-track{
+.custom-scroll::-webkit-scrollbar-track, tbody::-webkit-scrollbar-track{
     border-radius: 2px;
     border-width:0;
     background: #EEEEEE;
@@ -159,3 +159,6 @@ h2.page-name{font-size: 36px; font-weight: 600; line-height: 37px;}
 .json{
     margin-left: 15px;
 }
+
+
+

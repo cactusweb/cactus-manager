@@ -1,6 +1,7 @@
-<form [formGroup]="formDataKey" class="new-key">
+<form [formGroup]="formLicense" class="new-key">
     <span class="head">
-        <h3>New key</h3>
+        <h3 *ngIf="!license">New key</h3>
+        <h3 *ngIf="license">Edit key</h3>
         <img src="/assets/img/icons/plus.svg" alt="close" class="pointer" (click)="close()">
     </span>
     
@@ -18,7 +19,7 @@
             </div>
         </div>
 
-        <div class="renew-date" *ngIf="status.value == 'renewal'">
+        <div class="renew-date" *ngIf="formLicense.value.status == 'renewal'">
             <h4>Renewal date:</h4>
             <input type="date" name="date" id="date" formControlName="expiresIn">
         </div>
@@ -37,8 +38,10 @@
         </div>
 
         <div class="relative">
-            <button class="standart-btn border-btn" (click)="newKey()">Generate</button>
+            <button class="standart-btn border-btn" (click)="newLicense()" *ngIf="!license">Generate</button>
+            <button class="standart-btn border-btn" (click)="newLicense()" *ngIf="license">Edit</button>
             <span class="error" *ngIf="errorMessage"> {{ errorMessage }} </span>
+            <span class="success" *ngIf="successMessage"> {{ successMessage }} </span>
         </div>
 
     </div>
