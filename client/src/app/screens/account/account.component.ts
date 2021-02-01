@@ -10,7 +10,8 @@ import { HttpService } from 'src/app/services/http/http.service';
 })
 export class AccountComponent implements OnInit {
   firstLoad: boolean = true;
-  pageName: string = 'Users'
+  pageName: string = 'Users';
+  dataShow: boolean = false;
 
   constructor(
     private http: HttpService,

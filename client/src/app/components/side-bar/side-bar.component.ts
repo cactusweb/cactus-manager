@@ -7,7 +7,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./side-bar.component.css']
 })
 export class SideBarComponent {
-  @Output() changePageName = new EventEmitter<string>();
+  @Output() changePageName = new EventEmitter<{}>();
+  
 
   constructor(
     private auth: AuthService
