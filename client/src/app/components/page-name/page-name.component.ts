@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PageNameComponent implements OnInit {
   @Input() pageName: string = '';
-  @Input() isDataShow: string = '';
+  @Input() isDataShow: boolean = false;
   userName: string = '';
   id: string = '';
 
