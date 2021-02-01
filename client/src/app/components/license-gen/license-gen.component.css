@@ -83,6 +83,7 @@ span.key{
     place-items: center;
     font-size: 14px;
     line-height: 22px;
+    font-weight: 600;
 }
 
 .key button{
@@ -99,10 +100,14 @@ button:active{
     background-color: #78AFF8;
 }
 
-span.error{
+span.error, span.success{
     position: absolute;
     bottom: 0px;
     transform: translate(0%, +100%);
     color: #F65151;
     font-size: 12px;
 }  
+
+span.success{
+    color: green;
+}

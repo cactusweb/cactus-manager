@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthLoginComponent } from './components/auth-login/auth-login.component';
 import { IsAuthGuard } from './guards/isAuth/is-auth.guard';
 import { AuthGuard } from './guards/auth/auth.guard';
-import { AuthSignupComponent } from './components/auth-signup/auth-signup.component';
-import { SideBarComponent } from './components/account-components/side-bar/side-bar.component';
-import { AccountComponent } from './components/account/account.component';
-import { LicensesComponent } from './components/account-components/licenses/licenses.component';
-import { ApiDocComponent } from './components/account-components/api-doc/api-doc.component';
+import { AccountComponent } from './screens/account/account.component';
+import { LicensesComponent } from './screens/licenses/licenses.component';
+import { ApiDocComponent } from './components/api-doc/api-doc.component';
+import { SignupComponent } from './screens/signup/signup.component';
+import { LoginComponent } from './screens/login/login.component';
 
 
 const routes: Routes = [
   
   //auth
-  { path: 'login', component: AuthLoginComponent, data: { title: 'Login - CactusManager' }, canActivate: [ IsAuthGuard ] },
-  { path: 'sign-up', component: AuthSignupComponent, data: { title: 'SignUp - CactusManager' }, canActivate: [ IsAuthGuard ] },
+  { path: 'login', component: LoginComponent, data: { title: 'Login - CactusManager' }, canActivate: [ IsAuthGuard ] },
+  { path: 'sign-up', component: SignupComponent, data: { title: 'SignUp - CactusManager' }, canActivate: [ IsAuthGuard ] },
 
 
   //owner

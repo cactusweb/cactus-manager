@@ -6,11 +6,11 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { SeoService } from 'src/app/services/seo/seo.service';
 
 @Component({
-  selector: 'app-auth-signup',
-  templateUrl: './auth-signup.component.html',
-  styleUrls: ['./auth-signup.component.css']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css']
 })
-export class AuthSignupComponent implements OnInit {
+export class SignupComponent implements OnInit {
   signUpForm: FormGroup;
   errorMessage: string = '';
 

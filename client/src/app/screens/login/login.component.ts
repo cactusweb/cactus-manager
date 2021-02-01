@@ -6,11 +6,11 @@ import { AuthService } from '../../services/auth/auth.service';
 import { SeoService } from '../../services/seo/seo.service';
 
 @Component({
-  selector: 'app-auth-login',
-  templateUrl: './auth-login.component.html',
-  styleUrls: ['./auth-login.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class AuthLoginComponent implements OnInit {
+export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   errorMessage: string = '';
 

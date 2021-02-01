@@ -7,11 +7,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PageNameComponent implements OnInit {
   @Input() pageName: string = '';
-  @Input() data: string = '';
+  @Input() isDataShow: string = '';
   userName: string = '';
+  id: string = '';
 
   ngOnInit(): void {
     this.userName = localStorage.getItem('name');
+    this.id = localStorage.getItem('ownerId')
   }
 
 
