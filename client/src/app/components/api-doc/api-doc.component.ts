@@ -6,10 +6,10 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
   styleUrls: ['./api-doc.component.css']
 })
 export class ApiDocComponent implements AfterViewInit {
-
+  id: string = localStorage.getItem('ownerId');
   
   ngAfterViewInit(){
-    console.log('kk')
+    
   }
 
 }

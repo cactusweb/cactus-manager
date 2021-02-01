@@ -1,3 +1,16 @@
+svg path{
+    transition: .3s;
+}
+
+svg.edit:hover path{
+    fill: #78B0F8;
+}
+
+svg.delete:hover path{
+    fill: #F65151;
+}
+
+
 .content{
     display: grid;
     grid-template-rows: auto auto 1fr;
@@ -27,20 +40,26 @@ table{
     display: grid;
     max-height: 61vh;
 }
+
 table>*{display: grid;}
+
 table tr{display: grid; grid-template-columns: .8fr 1fr .5fr .7fr .7fr .5fr 48px; column-gap: 5px;}
+
 thead{padding: 0px 35px 0px 30px}
-tbody{padding: 0px 30px; overflow-y: scroll; max-height: 100%;}
-tbody{
-    display: grid;
-    grid-auto-rows: min-content;
-    row-gap: 5px;
-}
+
+
 table thead tr{border-bottom: 1px solid #898988;}
+
 table thead td{font-size: 18px; font-weight: 500;}
+
+cdk-virtual-scroll-viewport tr{
+    margin-bottom: 10px;
+}
+
 td{display: grid; align-items: center;}
 
 td:nth-child(6) input{width: 48px;}
+
 td select{max-width: 78px; border-radius: 5px; border: .5px solid #3d3d3d;}
 
 app-license-gen{

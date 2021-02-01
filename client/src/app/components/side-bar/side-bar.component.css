@@ -19,7 +19,7 @@ button{
     padding: 15px 15px;
     justify-content: start;
 }
-.standart-btn img{ margin-right: 10px; }
+.standart-btn svg{ margin-right: 10px; }
 
 .logout{
     width: 114px;
@@ -29,6 +29,6 @@ button{
     justify-content: center;
 }
 
-.blue-btn img{
-    filter: brightness(5);
+.blue-btn svg path{
+    fill: white;
 }

@@ -7,19 +7,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { NgxMaskModule } from "ngx-mask";
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { AuthLoginComponent } from './components/auth-login/auth-login.component';
-import { AuthSignupComponent } from './components/auth-signup/auth-signup.component';
+import { LoginComponent } from './screens/login/login.component';
+import { SignupComponent } from './screens/signup/signup.component';
 
-import { LicensesComponent } from './components/account-components/licenses/licenses.component';
-import { LicenseGenComponent } from './components/account-components/license-gen/license-gen.component';
-import { ApiDocComponent } from './components/account-components/api-doc/api-doc.component';
-import { SideBarComponent } from './components/account-components/side-bar/side-bar.component';
-import { PageNameComponent } from './components/account-components/page-name/page-name.component';
-import { AccountComponent } from './components/account/account.component';
+import { LicensesComponent } from './screens/licenses/licenses.component';
+import { LicenseGenComponent } from './components/license-gen/license-gen.component';
+import { ApiDocComponent } from './components/api-doc/api-doc.component';
+import { SideBarComponent } from './components/side-bar/side-bar.component';
+import { PageNameComponent } from './components/page-name/page-name.component';
+import { AccountComponent } from './screens/account/account.component';
 
 
 import { FilterPipe } from './pipes/filter/filter.pipe';
@@ -35,9 +36,9 @@ import { SearchPipe } from './pipes/search/search.pipe';
     SearchPipe,
     LicensesComponent,
     LicenseGenComponent,
-    AuthLoginComponent,
-    AuthSignupComponent,
     AccountComponent,
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +49,7 @@ import { SearchPipe } from './pipes/search/search.pipe';
     BrowserAnimationsModule,
     NgxSpinnerModule,
     NgxMaskModule.forRoot(/*options*/),
+    ScrollingModule
   ],
   providers: [],
   bootstrap: [AppComponent],
