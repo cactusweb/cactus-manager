@@ -1,10 +1,10 @@
 <div class="account">
     
-    <app-side-bar (changePageName)="pageName = $event"></app-side-bar>
+    <app-side-bar (changePageName)="pageName = $event.pageName; dataShow = $event.dataShow"></app-side-bar>
     
     <div class="content-in">
 
-        <app-page-name [pageName]="pageName"></app-page-name>
+        <app-page-name [pageName]="pageName" [isDataShow]="dataShow"></app-page-name>
     
         <router-outlet></router-outlet>
     

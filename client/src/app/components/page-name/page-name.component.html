@@ -1,6 +1,6 @@
 
 <div class="header">
     <h2 class="page-name">{{pageName}}</h2>
-    <span class="data">ID: {{id}}</span>
+    <span class="data"> <ng-template [ngIf]="isDataShow"> ID: {{id}} </ng-template></span>
     <h3 class="user-name">{{userName}}</h3> 
 </div>
