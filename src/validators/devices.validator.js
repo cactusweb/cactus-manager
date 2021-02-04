@@ -17,7 +17,9 @@ export const postValidators = [
                         new Error('The given key does not exist')
                     )
                 }
-                if (license.expiresIn && license.expiresIn < Date.now()) {
+                const exp = new Date(license.expiresIn)
+                exp.setDate(exp.getDate() + 3)
+                if (license.expiresIn && exp < Date.now()) {
                     console.log(license.expiresIn)
                     return Promise.reject(new Error('Key expired'))
                 }

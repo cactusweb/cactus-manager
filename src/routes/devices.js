@@ -19,11 +19,16 @@ router.post('/', postValidators, validate, async (req, res) => {
             .catch((e) => {
                 return null
             })
-        if (!user) {
+
+        if (user === null) {
             return sendMessage(res, 400, 'Wrong ID')
         }
 
         const license = await License.findOne({ key })
+
+        if (license.owner.toString() !== id) {
+            return sendMessage(res, 400, 'Wrong key')
+        }
 
         if (license.devices.includes(device)) {
             return sendMessage(res, 200, 'Added')
@@ -55,6 +60,13 @@ router.delete('/', deleteValidators, validate, async (req, res) => {
         if (!user) {
             return sendMessage(res, 400, 'Wrong ID')
         }
+
+        const test = await License.findOne({ key })
+
+        if (test.owner.toString() !== id) {
+            return sendMessage(res, 400, 'Wrong key')
+        }
+
         const license = await License.findOneAndUpdate(
             { key },
             { devices: [] },
