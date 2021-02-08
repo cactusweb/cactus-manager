@@ -15,7 +15,16 @@ export const discordUserSchema = new mongoose.Schema(
     accessToken: {
       type: String,
       required: true
-    }
+    },
+    expiresIn: {
+      type: Date,
+      required: true
+    },
+    keys: [
+      {
+        type: String
+      }
+    ]
   },
   {
     versionKey: false,

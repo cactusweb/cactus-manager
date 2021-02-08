@@ -6,7 +6,8 @@ import config from '../config/config.js'
 import {
   createDiscordJWT,
   discordUserIsExists,
-  getDiscordUserData
+  getDiscordUserData,
+  toNextWeek
 } from '../utils/helper.functions.js'
 import DiscordUser from '../models/manager/DiscordUser.js'
 
@@ -70,7 +71,8 @@ router.get('/auth', async (req, res) => {
       await DiscordUser.create({
         discordId: discordUserData.id,
         name: `${discordUserData.username}#${discordUserData.discriminator}`,
-        accessToken: discordAccessToken
+        accessToken: discordAccessToken,
+        expiresIn: toNextWeek()
       })
     }
 

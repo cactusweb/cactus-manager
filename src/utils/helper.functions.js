@@ -55,3 +55,9 @@ export const discordUserIsExists = async discordId => {
     return doc
   })
 }
+
+export const toNextWeek = () => {
+  const date = new Date()
+  date.setDate(date.getDate() + 7)
+  return date
+}
