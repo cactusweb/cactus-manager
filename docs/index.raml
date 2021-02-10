@@ -203,3 +203,41 @@ types:
         200:
           body:
             type: User
+/discord:
+  get:
+    responses:
+      200:
+        body:
+          type: object
+          properties:
+            accessToken: string
+      401:
+        body:
+          type: object
+          properties:
+            error: string
+/bind:
+  post:
+    headers:
+      authhorization:
+        type: string
+    body:
+      type: object
+      properties:
+        key: string
+    responses:
+      200:
+        body:
+          type: object
+          properties:
+            message: string
+      400:
+        body:
+          type: object
+          properties:
+            error: string
+      401:
+        body:
+          type: object
+          properties:
+            error: string
