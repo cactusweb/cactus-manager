@@ -14,4 +14,15 @@ router.get('/@me', auth, async (req, res) => {
   }
 })
 
+router.patch('', auth, async (req, res) => {
+  const updateData = req.body
+  const user = await User.findOneAndUpdate({ _id: req.user.id }, updateData, {
+    new: true
+  })
+  if (!user) {
+    res.status(500).json({ error: 'Unable to update user info' })
+  }
+  res.status(200).json(user)
+})
+
 export default router

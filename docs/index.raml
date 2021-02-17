@@ -36,11 +36,17 @@ types:
     properties:
       _id: string
       name: string
+      description: string
+      avatar: string
+      type: string
+      price: string
+      renewal: number[]
+      region: string
+      links: string[]
       email: string
       expiresIn: string
       createdAt: string
       updatedAt: string
-    example: !include User.sample
 
 /licenses:
   get:
@@ -203,6 +209,12 @@ types:
         200:
           body:
             type: User
+  patch:
+    headers:
+      authorization:
+        type: string
+      body:
+        type: User
 /discord:
   get:
     responses:
