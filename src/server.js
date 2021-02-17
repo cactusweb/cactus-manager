@@ -5,6 +5,7 @@ import helmet from 'helmet'
 import morgan from 'morgan'
 import path from 'path'
 import cors from 'cors'
+import multer from 'multer'
 
 import licensesRoutes from './routes/licenses.js'
 import devicesRoutes from './routes/devices.js'
