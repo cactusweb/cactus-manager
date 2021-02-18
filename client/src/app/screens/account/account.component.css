@@ -1,6 +1,6 @@
 div.account{
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 340px 1fr;
     min-height: 100%;
 }
 
@@ -26,8 +26,13 @@ ngx-spinner .loading p {
 
 app-page-name{
     position: absolute;
-    top: 3%;
+    top: 25px;
     width: 90%;
     left: 50%;
     transform: translate(-50%, 0%);
+}
+
+
+app-side-bar{
+    position: relative;
 }
