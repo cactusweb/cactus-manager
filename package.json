@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node src/index.js",
-    "server": "nodemon index.js --prefix src",
+
     "client": "npm run start --prefix client",
     "dev": "npm run server",
     "lint": "eslint --fix --debug src/ ",
@@ -17,17 +17,6 @@
     "client:build": "npm run build --prefix client",
     "setup": "pm2 deploy ecosystem.config.cjs production setup",
     "deploy": "pm2 deploy ecosystem.config.cjs production update"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "npm run lint",
-      "git add"
-    ]
   },
   "author": "Cactus Web <info@cactusweb.io>",
   "license": "ISC",
