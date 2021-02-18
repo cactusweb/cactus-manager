@@ -1,4 +1,14 @@
-.side-bar{width: 340px; height: 100%; padding: 50px 70px; display: grid; grid-template-rows: auto 1fr; row-gap: 50px;}
+.side-bar{
+    width: 340px; 
+    height: 100%; 
+    padding: 50px 70px; 
+    display: grid; 
+    grid-template-rows: auto 1fr; 
+    row-gap: 50px;
+    position: fixed;
+    z-index: 1;
+}
+
 h2{line-height: 31px; font-size: 36px; }
 ul{
     align-self: start;
