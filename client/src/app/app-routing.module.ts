@@ -19,9 +19,9 @@ const routes: Routes = [
   //owner
   { path: 'account', component: AccountComponent, canActivate: [ AuthGuard ], children: [
 
-    { path: 'users', component: LicensesComponent, data: { pageName:"Keys", title: 'Keys manage - CactusManager'}, },
+    { path: 'licenses', component: LicensesComponent, data: { pageName:"Licenses", title: 'Licenses manage - CactusManager'}, },
     { path: 'api', component: ApiDocComponent, data: { pageName: 'API', title: 'API integration - CactusManager' } },
-    { path: '**', redirectTo: 'users' }
+    { path: '**', redirectTo: 'licenses' }
 
   ]},
 

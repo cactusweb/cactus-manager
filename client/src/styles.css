@@ -118,11 +118,14 @@ h2.page-name{font-size: 36px; font-weight: 600; line-height: 37px;}
 
 .content-in{
     min-height: 100%;
-    padding: 7% 5%;
+    padding: 90px 5% ;
     background-color: #F4F4F4;
     position: relative;
     display: grid;
+
 }
+
+
 .content-in>:last-child{
     border-radius: 20px;
     padding: 20px 30px;
