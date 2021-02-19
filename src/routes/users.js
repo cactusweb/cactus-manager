@@ -29,26 +29,26 @@ router.patch('', auth, async (req, res) => {
   res.status(200).json(user)
 })
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads')
-  },
-  filename: (req, file, cb) => {
-    cb(null, `${file.fieldname}-${Date.now()}`)
-  }
-})
-const upload = multer({ storage })
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, 'uploads')
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, `${file.fieldname}-${Date.now()}`)
+//   }
+// })
+// const upload = multer({ storage })
 
-router.post('/avatar', auth, upload.single('image'), async (req, res) => {
-  await Image.create({
-    owner: req.user.id,
-    img: {
-      data: fs.readFileSync(
-        path.join(`${__dirname}/uploads/${req.file.filename}`)
-      ),
-      contentType: 'image/png'
-    }
-  })
-})
+// router.post('/avatar', auth, upload.single('image'), async (req, res) => {
+//   await Image.create({
+//     owner: req.user.id,
+//     img: {
+//       data: fs.readFileSync(
+//         path.join(`${__dirname}/uploads/${req.file.filename}`)
+//       ),
+//       contentType: 'image/png'
+//     }
+//   })
+// })
 
 export default router

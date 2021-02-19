@@ -46,6 +46,23 @@ types:
       expiresIn: string
       createdAt: string
       updatedAt: string
+  Drop:
+    type: object
+    properties:
+      quantity: number
+      password: string
+      price: number
+      roles: string[]
+      time: string
+  RDrop:
+    type: object
+    properties:
+      quantity: number
+      password: string
+      price: number
+      roles: string[]
+      time: string
+      status: string
 
 /licenses:
   get:
@@ -214,41 +231,24 @@ types:
         type: string
       body:
         type: User
-/discord:
-  get:
-    responses:
-      200:
-        body:
-          type: object
-          properties:
-            accessToken: string
-      401:
-        body:
-          type: object
-          properties:
-            error: string
-/bind:
+/drop:
   post:
     headers:
-      authhorization:
-        type: string
-    body:
-      type: object
-      properties:
-        key: string
-    responses:
-      200:
+        authhorization:
+          type: string
+    body: 
+      type: Drop
+    responses: 
+      201:
         body:
-          type: object
-          properties:
-            message: string
-      400:
-        body:
-          type: object
-          properties:
-            error: string
+          type: RDrop
       401:
         body:
-          type: object
           properties:
             error: string
+      500:
+        body:
+          properties:
+            error: string
+
+        

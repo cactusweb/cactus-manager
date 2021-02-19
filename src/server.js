@@ -5,7 +5,6 @@ import helmet from 'helmet'
 import morgan from 'morgan'
 import path from 'path'
 import cors from 'cors'
-import multer from 'multer'
 
 import licensesRoutes from './routes/licenses.js'
 import devicesRoutes from './routes/devices.js'
@@ -13,6 +12,7 @@ import authRoutes from './routes/auth.js'
 import usersRoutes from './routes/users.js'
 import discordRoutes from './routes/discord.js'
 import bindRoutes from './routes/bind.js'
+import dropRoutes from './routes/drop.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const server = express()
@@ -31,6 +31,7 @@ server.use('/api/v1/auth', authRoutes)
 server.use('/api/v1/users', usersRoutes)
 server.use('/api/v1/discord', discordRoutes)
 server.use('/api/v1/bind', bindRoutes)
+server.use('/api/v1/drop', dropRoutes)
 
 server.get('*', (req, res) => {
   res.setHeader(

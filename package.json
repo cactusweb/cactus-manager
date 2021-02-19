@@ -9,7 +9,6 @@
   },
   "scripts": {
     "start": "node src/index.js",
-
     "client": "npm run start --prefix client",
     "dev": "npm run server",
     "lint": "eslint --fix --debug src/ ",
