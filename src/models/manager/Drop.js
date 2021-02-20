@@ -30,6 +30,11 @@ export const DropSchema = new mongoose.Schema({
   time: {
     required: true,
     type: Date
+  },
+  owner: {
+    required: true,
+    type: mongoose.Types.ObjectId,
+    ref: 'Owner'
   }
 })
 

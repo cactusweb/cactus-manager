@@ -58,12 +58,14 @@ types:
   RDrop:
     type: object
     properties:
+      _id: string
       quantity: number
       password: string
       price: number
       roles: string[]
       time: string
       status: string
+      owner: string
 
 /licenses:
   get:
@@ -251,6 +253,65 @@ types:
         body:
           properties:
             error: string
+  get:
+    headers:
+        authhorization:
+          type: string
+    responses: 
+      200:
+        body:
+          type: RDrop[]
+      401:
+        body:
+          properties:
+            error: string
+      500:
+        body:
+          properties:
+            error: string
+  /{id}:
+    get:
+      headers:
+        authhorization:
+          type: string
+      responses: 
+        200:
+          body:
+            type: RDrop
+        400:
+          body:
+            properties:
+              error: string
+        401:
+          body:
+            properties:
+              error: string
+        500:
+          body:
+            properties:
+              error: string
+  /stop/{id}:
+    get:
+      headers:
+        authhorization:
+          type: string
+      responses: 
+        200:
+          body:
+            type: RDrop
+        400:
+          body:
+            properties:
+              error: string
+        401:
+          body:
+            properties:
+              error: string
+        500:
+          body:
+            properties:
+              error: string
+          
 /uploads:
   /{dirname}:
     post:
