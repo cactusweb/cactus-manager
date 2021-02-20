@@ -31,6 +31,10 @@ export const DropSchema = new mongoose.Schema({
     required: true,
     type: Date
   },
+  licenseQuantity: {
+    required: true,
+    type: Number
+  }
   owner: {
     required: true,
     type: mongoose.Types.ObjectId,
