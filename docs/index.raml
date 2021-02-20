@@ -36,6 +36,7 @@ types:
     properties:
       _id: string
       name: string
+      avatar: string
       description: string
       type: string
       price: string
@@ -250,5 +251,19 @@ types:
         body:
           properties:
             error: string
+/uploads:
+  /{dirname}:
+    post:
+      headers:
+        Authorization: string
+      body:
+        multipart/form-data:
+          properties:
+            file: file
+      responses:
+        201:
+          body:
+            properties:
+              filePath: string
 
         
