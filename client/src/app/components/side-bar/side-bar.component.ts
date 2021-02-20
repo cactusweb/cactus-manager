@@ -32,7 +32,9 @@ export class SideBarComponent implements OnInit {
 
     switch (lastPath){
       case 'api': dataHead = { pageName: 'API', dataShow: true }; break;
-      default: dataHead = { pageName: 'Licenses', dataShow: false }; break;
+      case 'drops': dataHead = { pageName: 'Drops' }; break;
+      case 'profile': dataHead = { pageName: 'Profile' }; break;
+      default: dataHead = { pageName: 'Licenses' }; break;
     }
 
     return dataHead;
