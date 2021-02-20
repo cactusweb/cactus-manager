@@ -25,6 +25,9 @@ import { AccountComponent } from './screens/account/account.component';
 
 import { FilterPipe } from './pipes/filter/filter.pipe';
 import { SearchPipe } from './pipes/search/search.pipe';
+import { DropGenComponent } from './components/drop-gen/drop-gen.component';
+import { ProfileComponent } from './screens/profile/profile.component';
+import { DropsComponent } from './screens/drops/drops.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,9 @@ import { SearchPipe } from './pipes/search/search.pipe';
     AccountComponent,
     LoginComponent,
     SignupComponent,
+    DropGenComponent,
+    ProfileComponent,
+    DropsComponent,
   ],
   imports: [
     BrowserModule,

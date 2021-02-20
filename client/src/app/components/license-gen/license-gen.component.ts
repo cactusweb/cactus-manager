@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpService } from 'src/app/services/http/http.service';
@@ -8,7 +8,7 @@ import { License } from 'src/app/interfaces/license'
 @Component({
   selector: 'app-license-gen',
   templateUrl: './license-gen.component.html',
-  styleUrls: ['./license-gen.component.css']
+  styleUrls: ['./license-gen.component.scss']
 })
 export class LicenseGenComponent implements OnInit {
 
@@ -32,8 +32,16 @@ export class LicenseGenComponent implements OnInit {
 
   ngOnInit() {
     this.generateForm()
+    // this.onEscape();
   }
 
+  onEscape(){
+    let listener = document.addEventListener( 'keyup', e => {
+      console.log(e)
+      document.removeEventListener( 'keyup', () => { } )
+      if ( e.key == 'Escape' ) this.close();
+    })
+  }
 
 
   copy(id){
@@ -43,6 +51,8 @@ export class LicenseGenComponent implements OnInit {
   close(){
     this.onClose.emit();
   }
+
+
 
 
 

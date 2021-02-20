@@ -11,7 +11,7 @@ import { License } from 'src/app/interfaces/license';
 @Component({
   selector: 'app-licenses',
   templateUrl: './licenses.component.html',
-  styleUrls: ['./licenses.component.css']
+  styleUrls: ['./licenses.component.scss']
 })
 export class LicensesComponent implements OnInit {
   newKey: boolean = false;

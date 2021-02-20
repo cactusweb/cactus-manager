@@ -1,15 +1,14 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SeoService } from 'src/app/services/seo/seo.service';
 
 @Component({
-  selector: 'app-api-doc',
-  templateUrl: './api-doc.component.html',
-  styleUrls: ['./api-doc.component.scss']
+  selector: 'app-drops',
+  templateUrl: './drops.component.html',
+  styleUrls: ['./drops.component.scss']
 })
-export class ApiDocComponent implements AfterViewInit {
-  id: string = localStorage.getItem('ownerId');
-  
+export class DropsComponent implements OnInit {
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private seo: SeoService
@@ -18,9 +17,8 @@ export class ApiDocComponent implements AfterViewInit {
     data = data._value;
     this.seo.changeTitle(data.title);
   }
-  
-  ngAfterViewInit(){
-    
+
+  ngOnInit(): void {
   }
 
 }

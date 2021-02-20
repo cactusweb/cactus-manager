@@ -7,6 +7,8 @@ import { LicensesComponent } from './screens/licenses/licenses.component';
 import { ApiDocComponent } from './components/api-doc/api-doc.component';
 import { SignupComponent } from './screens/signup/signup.component';
 import { LoginComponent } from './screens/login/login.component';
+import { ProfileComponent } from './screens/profile/profile.component';
+import { DropsComponent } from './screens/drops/drops.component';
 
 
 const routes: Routes = [
@@ -20,6 +22,8 @@ const routes: Routes = [
   { path: 'account', component: AccountComponent, canActivate: [ AuthGuard ], children: [
 
     { path: 'licenses', component: LicensesComponent, data: { pageName:"Licenses", title: 'Licenses manage - CactusManager'}, },
+    { path: 'profile', component: ProfileComponent, data: { pageName:"Licenses", title: 'Profile - CactusManager'}, },
+    { path: 'drops', component: DropsComponent, data: { pageName:"Licenses", title: 'Drops - CactusManager'}, },
     { path: 'api', component: ApiDocComponent, data: { pageName: 'API', title: 'API integration - CactusManager' } },
     { path: '**', redirectTo: 'licenses' }
 

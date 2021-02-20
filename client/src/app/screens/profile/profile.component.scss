@@ -1,0 +1,35 @@
+.content{
+    padding: 0px;
+
+    grid-template-columns: 30% auto;
+    display: grid;
+}
+
+.general{
+    border-radius: inherit;
+    background-color: #C1C1C1;
+    display: grid;
+    row-gap: 30px;
+    padding: 50px 50px;
+    grid-template-rows: auto auto auto 1fr;
+    justify-items: center;
+
+    .logo{
+        border-radius: 50%;
+        width: 100%;
+    }
+
+    .social{
+        align-self: end;
+        display: grid;
+        row-gap: 10px;
+    }
+
+
+}
+
+
+.additionally{
+    display: grid;
+    place-items: center;
+}

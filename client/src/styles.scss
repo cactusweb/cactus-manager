@@ -10,7 +10,7 @@ html,body, app-root{
 app-login,app-signup{display: grid;}
 router-outlet{position: absolute;}
 *{font-family: 'Saira', sans-serif; color: #3D3D3D; outline: none;}
-.content{height: 100%;}
+.content{height: 100%; border-radius: inherit;}
 ngx-spinner{border-radius: inherit; }
 /* ngx-spinner.absolute{position: absolute; width: 100%; height: 100%;} */
 ngx-spinner > div{ border-radius: inherit; backdrop-filter: blur(2px); background-color: rgba(120,176,248,0.5) !important;}
@@ -165,3 +165,47 @@ h2.page-name{font-size: 36px; font-weight: 600; line-height: 37px;}
 
 
 
+
+app-profile{
+    padding: 0px !important;
+}
+
+
+
+.input-area{
+    display: grid;
+    row-gap: 5px;
+    align-items: center;
+
+    *{
+        line-height: 22px;
+        font-size: 18px;
+    }
+
+    span{
+        font-weight: 500;
+    }
+
+    svg{
+        justify-self: end;
+
+        path{
+            transition: .3s;
+        }
+
+        &:hover path{
+            fill: #78AFF8
+        }
+    }
+
+    input{
+        grid-column: 1/3;
+        height: 50px;
+        width: 210px;
+        background-color: #EDEDED;
+        border-radius: 10px;
+
+        text-align: center;
+        font-weight: 400;
+    }
+}
