@@ -55,6 +55,7 @@ types:
       price: number
       roles: string[]
       time: string
+      licenseQuantity: number
   RDrop:
     type: object
     properties:
@@ -66,6 +67,7 @@ types:
       time: string
       status: string
       owner: string
+      licenseQuantity: number
 
 /licenses:
   get:
@@ -310,8 +312,7 @@ types:
         500:
           body:
             properties:
-              error: string
-          
+              error: string  
 /uploads:
   /{dirname}:
     post:
