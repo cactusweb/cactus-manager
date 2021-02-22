@@ -14,26 +14,23 @@ export const DropSchema = new mongoose.Schema({
     required: true,
     type: Number
   },
-  unbindable: {
-    type: Boolean
-  },
   status: {
     required: true,
-    type: String
+    type: String,
+    enum: ['not started', 'started', 'stoped']
   },
-  roles: [
-    {
-      required: true,
-      type: String
-    }
-  ],
   time: {
     required: true,
     type: Date
   },
-  licenseQuantity: {
+  plan: {
     required: true,
+<<<<<<< HEAD
     type: Number
+=======
+    ref: 'Plan',
+    type: mongoose.Types.ObjectId
+>>>>>>> 526e89001817da23209f7a17e8dcc69e92d4b6f1
   },
   owner: {
     required: true,

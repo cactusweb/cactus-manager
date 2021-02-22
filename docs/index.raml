@@ -53,9 +53,8 @@ types:
       quantity: number
       password: string
       price: number
-      roles: string[]
       time: string
-      licenseQuantity: number
+      plan: string
   RDrop:
     type: object
     properties:
@@ -63,11 +62,38 @@ types:
       quantity: number
       password: string
       price: number
-      roles: string[]
       time: string
       status: string
       owner: string
-      licenseQuantity: number
+      plan: string
+  Plan:
+    type: object
+    properties: 
+      name: string
+      quantity: number
+      unbindable: boolean
+      status: string
+      expiresIn:
+        required: false
+        type: datetime
+      renewPrice:
+        required: false
+        type: number
+      roles: string[]
+  RPlan:
+    type: object
+    properties: 
+      name: string
+      quantity: number
+      unbindable: boolean
+      status: string
+      expiresIn:
+        required: false
+        type: datetime
+      renewPrice:
+        required: false
+        type: number
+      roles: string[]
 
 /licenses:
   get:
@@ -312,7 +338,42 @@ types:
         500:
           body:
             properties:
-              error: string  
+              error: string
+/plan:
+  post:
+    headers:
+        authhorization:
+          type: string
+    body: 
+      type: Plan
+    responses: 
+      201:
+        body:
+          type: RPlan
+      401:
+        body:
+          properties:
+            error: string
+      500:
+        body:
+          properties:
+            error: string
+  get:
+      headers:
+        authhorization:
+          type: string
+      responses: 
+        200:
+          body:
+            type: RPlan[]
+        401:
+          body:
+            properties:
+              error: string
+        500:
+          body:
+            properties:
+              error: string
 /uploads:
   /{dirname}:
     post:
