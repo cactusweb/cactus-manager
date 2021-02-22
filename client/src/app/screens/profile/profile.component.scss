@@ -10,13 +10,38 @@
     background-color: #C1C1C1;
     display: grid;
     row-gap: 30px;
-    padding: 50px 50px;
+    padding: 10% 10%;
     grid-template-rows: auto auto auto 1fr;
     justify-items: center;
 
     .logo{
         border-radius: 50%;
         width: 100%;
+
+    }
+
+    img.logo{
+        height: 150px;
+        width: 150px;
+    }
+    
+    label.logo{
+        position: relative;
+        background-color: #EDEDED;
+        width: auto;
+        padding: 30px;
+        box-sizing: border-box;
+        width: 150px;
+        height: 150px;
+        img{
+            width: 100%;
+        }
+
+        input{
+            width: 0px;
+            height: 0px;
+            position: absolute;
+        }
     }
 
     .social{

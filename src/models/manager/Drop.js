@@ -34,7 +34,7 @@ export const DropSchema = new mongoose.Schema({
   licenseQuantity: {
     required: true,
     type: Number
-  }
+  },
   owner: {
     required: true,
     type: mongoose.Types.ObjectId,

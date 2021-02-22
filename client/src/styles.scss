@@ -191,6 +191,7 @@ app-profile{
 
         path{
             transition: .3s;
+            pointer-events: none;
         }
 
         &:hover path{
