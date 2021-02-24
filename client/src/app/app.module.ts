@@ -12,22 +12,24 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { FilterPipe } from './pipes/filter/filter.pipe';
+import { SearchPipe } from './pipes/search/search.pipe';
+
 import { LoginComponent } from './screens/login/login.component';
 import { SignupComponent } from './screens/signup/signup.component';
-
+import { AccountComponent } from './screens/account/account.component';
+import { DropsComponent } from './screens/drops/drops.component';
 import { LicensesComponent } from './screens/licenses/licenses.component';
+import { ProfileComponent } from './screens/profile/profile.component';
+
 import { LicenseGenComponent } from './components/license-gen/license-gen.component';
 import { ApiDocComponent } from './components/api-doc/api-doc.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { PageNameComponent } from './components/page-name/page-name.component';
-import { AccountComponent } from './screens/account/account.component';
-
-
-import { FilterPipe } from './pipes/filter/filter.pipe';
-import { SearchPipe } from './pipes/search/search.pipe';
+import { LicenseInfoComponent } from './components/license-info/license-info.component';
 import { DropGenComponent } from './components/drop-gen/drop-gen.component';
-import { ProfileComponent } from './screens/profile/profile.component';
-import { DropsComponent } from './screens/drops/drops.component';
+
+
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { DropsComponent } from './screens/drops/drops.component';
     DropGenComponent,
     ProfileComponent,
     DropsComponent,
+    LicenseInfoComponent,
   ],
   imports: [
     BrowserModule,

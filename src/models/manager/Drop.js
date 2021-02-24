@@ -25,12 +25,8 @@ export const DropSchema = new mongoose.Schema({
   },
   plan: {
     required: true,
-<<<<<<< HEAD
-    type: Number
-=======
     ref: 'Plan',
     type: mongoose.Types.ObjectId
->>>>>>> 526e89001817da23209f7a17e8dcc69e92d4b6f1
   },
   owner: {
     required: true,

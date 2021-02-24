@@ -1,6 +1,4 @@
-svg path{
-    transition: .3s;
-}
+
 
 svg.edit:hover path{
     fill: #78B0F8;
@@ -11,56 +9,64 @@ svg.delete:hover path{
 }
 
 
+svg.info{
+    margin-left: 6px;
+    &:hover path{
+        fill: #78D47B;
+    }
+}
+
+
 .content{
-    display: grid;
     grid-template-rows: auto auto 1fr;
-    row-gap: 15px;
-    border-radius: inherit;
 }
 
 .header{
-    display: grid;
     grid-template-columns: auto 1fr auto;
     justify-items: end;
-    column-gap: 50px;
-    padding: 0px 60px;
 }
 
 .checkboxes{display: grid; grid-template-columns: auto auto; column-gap: 25px;}
 
 .keys{
     padding: 0px 30px;
+    padding-right: 25px;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    row-gap: 15px;
 }
+
 
 table{
     width: 100%;
     height: 100%;
-    grid-template-rows: auto 1fr;
-    row-gap: 15px;
+    border-collapse: collapse;
+}
+
+thead tr{
+    padding-right: 15px;
+    margin: 0;
+    border-bottom: 1px solid #898988;
+
+    th{
+        text-align: start;
+        font-size: 18px; 
+        font-weight: 600;
+    }
+}
+
+
+tr{
     display: grid;
-    max-height: 61vh;
+    // grid-auto-flow: column;
+    grid-template-columns: auto 12% 12% 10% 12% 11% 48px;
+    column-gap: 5px;
+    margin-right: 10px;
 }
 
-table>*{display: grid;}
 
-table tr{display: grid; grid-template-columns: .8fr 1fr .5fr .7fr .7fr .5fr 48px; column-gap: 5px;}
+// td{display: grid; align-items: center;}
 
-thead{padding: 0px 35px 0px 30px}
-
-
-table thead tr{border-bottom: 1px solid #898988;}
-
-table thead td{font-size: 18px; font-weight: 500;}
-
-cdk-virtual-scroll-viewport tr{
-    margin-bottom: 10px;
-}
-
-td{display: grid; align-items: center;}
-
-td:nth-child(6) input{width: 48px;}
-
-td select{max-width: 78px; border-radius: 5px; border: .5px solid #3d3d3d;}
 
 app-license-gen{
     position: absolute;
@@ -68,6 +74,13 @@ app-license-gen{
     width: 100%;
     height: 100%;
     border-radius: inherit;
+}
+
+td{
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    grid-template-columns: max-content;
 }
 
 td.action{
@@ -78,8 +91,21 @@ td.action{
     width: 46px;
 }
 
-td input{
-    background-color: #EAEAEA;
+td.info{
+    padding-left: 6px;
+}
+
+td.key svg{
+    margin-left: 10px;
+
+    &:hover path{
+        fill: #78AFF8;
+    }
+}
+
+cdk-virtual-scroll-viewport tr{
+    margin-bottom: 5px;
+
 }
 
 .infinity{

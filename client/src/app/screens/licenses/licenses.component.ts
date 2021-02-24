@@ -45,7 +45,6 @@ export class LicensesComponent implements OnInit {
 
   async ngOnInit(){
     await this.getLicenses();
-    this.givePaddingScrollDiv();
   }
 
   onChangeNewKey(isOpen: boolean){
@@ -129,7 +128,13 @@ export class LicensesComponent implements OnInit {
     return item._id;
   }
 
-  givePaddingScrollDiv(){
-    document.querySelector('cdk-virtual-scroll-viewport > div')['style'].padding = '0px 30px'
+
+  copyData( text ){
+    navigator.clipboard.writeText(text)
+    // .then(function() {
+    //   console.log('Async: Copying to clipboard was successful!');
+    // }, function(err) {
+    //   console.error('Async: Could not copy text: ', err);
+    // });
   }
 }
