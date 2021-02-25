@@ -1,12 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { header } from 'express-validator';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
-  url = 'api/v1';
+  localUrl = environment.localApiUrl;
+  url = environment.apiUrl + '/owner';
   headers: HttpHeaders;
 
   constructor(
@@ -20,37 +22,37 @@ export class HttpService {
 
   async postNewLicense(data){
     this.setHeaders();
-    return await this.http.post(`${this.url}/licenses`, data, { headers: this.headers }).toPromise();
+    return await this.http.post(`${this.localUrl}/licenses`, data, { headers: this.headers }).toPromise();
   }
 
   async getLicenses(){
     this.setHeaders();
-    return await this.http.get(`${this.url}/licenses`, { headers: this.headers }).toPromise();
+    return await this.http.get(`${this.localUrl}/licenses`, { headers: this.headers }).toPromise();
   }
 
   async deleteLicense(id: string){
     this.setHeaders();
-    return await this.http.delete(`${this.url}/licenses/${id}`, {headers: this.headers}).toPromise();
+    return await this.http.delete(`${this.localUrl}/licenses/${id}`, {headers: this.headers}).toPromise();
   }
 
   async putLicense(data){
     this.setHeaders();
-    return await this.http.patch( `${this.url}/licenses/${data._id}`, data, { headers: this.headers } ).toPromise();
+    return await this.http.patch( `${this.localUrl}/licenses/${data._id}`, data, { headers: this.headers } ).toPromise();
   }
 
   async getSelf(){
     this.setHeaders();
-    return await this.http.get( `${this.url}/users/@me`, { headers: this.headers } ).toPromise();
+    return await this.http.get( `${this.localUrl}/users/@me`, { headers: this.headers } ).toPromise();
   }
 
   async putSelf( data ){
     this.setHeaders();
-    return await this.http.patch( `${this.url}/users`, data, { headers: this.headers } ).toPromise();
+    return await this.http.patch( `${this.localUrl}/users`, data, { headers: this.headers } ).toPromise();
   }
 
   async postFile( formData, dirname: string = 'client' ){
     this.setHeaders();
-    return await this.http.post( `${this.url}/uploads/${dirname}`, formData, { headers: this.headers } ).toPromise();
+    return await this.http.post( `${this.localUrl}/uploads/${dirname}`, formData, { headers: this.headers } ).toPromise();
   }
 
   async postDrop(data){
