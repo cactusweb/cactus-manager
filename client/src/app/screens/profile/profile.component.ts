@@ -4,7 +4,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpService } from 'src/app/services/http/http.service';
 import { SeoService } from 'src/app/services/seo/seo.service';
-import { AioService } from 'src/app/services/aio/aio.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,13 +11,12 @@ import { AioService } from 'src/app/services/aio/aio.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-    selfData: any;
+    selfData: any = {};
 
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private seo: SeoService,
-    private aio: AioService,
     private http: HttpService,
     private spinner: NgxSpinnerService,
     private auth: AuthService
@@ -32,35 +30,16 @@ export class ProfileComponent implements OnInit {
     await this.getSelf();
   }
 
-  async onAddFile(event){
-    let file = this.aio.getFormData( event );
-    if ( !file ) return;
-    this.spinner.show();
-    
-    await this.http.postFile( file, 'clients' )
-      .then( async ( w: any ) => {
-        this.selfData.avatar = w.filePath;
-        await this.putSelfData();
-      })
-      .catch( e => {
-        if ( e.status == 401 ){
-          this.auth.logout();
-          this.spinner.hide();
-        }
-      })
-  }
 
 
 
   async putSelfData(  ){
+    this.spinner.show();
     await this.http.putSelf( this.selfData )
       .then( () => this.spinner.hide() )
       .catch( console.log )
   }
 
-  onClick(e){
-    console.log( e )
-  }
 
   
 

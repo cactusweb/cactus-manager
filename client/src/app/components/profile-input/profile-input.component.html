@@ -1,0 +1,34 @@
+
+<div class="input-label">
+    <label for="{{label}}"> {{ label }} </label>
+
+
+    <ng-container *ngIf="type === 'input';else noInput">
+        <input id='{{label}}' [(ngModel)]="value" placeholder="{{placeholder}}" (ngModelChange)="onNewValue()">
+    </ng-container>
+
+
+    <ng-template #noInput>
+        <ng-container *ngIf="type === 'textarea'; else radio">
+            <textarea id='{{label}}' [(ngModel)]="value" (ngModelChange)="onNewValue()"> </textarea>
+        </ng-container>
+    </ng-template>
+
+
+
+    <ng-template #radio>
+        <div class="radios">
+
+            <ng-template ngFor let-radio [ngForOf]="radios">
+                <label>
+                    <input type="radio" name="{{ label }}"  value="{{radio.value}}" [(ngModel)]="value" (ngModelChange)="onNewValue()">
+                    {{ radio.label }}
+                </label>
+
+
+            </ng-template>
+
+        </div>
+    </ng-template>
+
+</div>

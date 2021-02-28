@@ -13,7 +13,7 @@ export class AioService {
     let target = event.target || event.srcElement;
     let file = target.files[0];
     let formData: FormData = new FormData();
-    formData.set('file', file, file?.name || '')
+    formData.set('image', file, file?.name || '')
 
     return file ? 
     formData : null;

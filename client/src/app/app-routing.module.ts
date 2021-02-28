@@ -9,11 +9,13 @@ import { SignupComponent } from './screens/signup/signup.component';
 import { LoginComponent } from './screens/login/login.component';
 import { ProfileComponent } from './screens/profile/profile.component';
 import { DropsComponent } from './screens/drops/drops.component';
+import { NotFoundComponent } from './screens/not-found/not-found.component';
 
 
 const routes: Routes = [
   
   //auth
+  { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent, data: { title: 'Login - CactusManager' }, canActivate: [ IsAuthGuard ] },
   { path: 'sign-up', component: SignupComponent, data: { title: 'SignUp - CactusManager' }, canActivate: [ IsAuthGuard ] },
 
@@ -21,11 +23,12 @@ const routes: Routes = [
   //owner
   { path: 'account', component: AccountComponent, canActivate: [ AuthGuard ], children: [
 
+    { path: '', redirectTo: 'licenses', pathMatch: 'full'},
     { path: 'licenses', component: LicensesComponent, data: { pageName:"Licenses", title: 'Licenses manage - CactusManager'}, },
     { path: 'profile', component: ProfileComponent, data: { pageName:"Licenses", title: 'Profile - CactusManager'}, },
     { path: 'drops', component: DropsComponent, data: { pageName:"Licenses", title: 'Drops - CactusManager'}, },
     { path: 'api', component: ApiDocComponent, data: { pageName: 'API', title: 'API integration - CactusManager' } },
-    { path: '**', redirectTo: 'licenses' }
+    { path: '**', component: NotFoundComponent }
 
   ]},
 
@@ -35,7 +38,9 @@ const routes: Routes = [
   //   { path: '**', redirectTo: 'users' }
 
   // ] },
-  { path: '**', redirectTo: '/login' }
+  
+  { path: '**', component: NotFoundComponent },
+  // { path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({

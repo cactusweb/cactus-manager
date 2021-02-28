@@ -28,6 +28,14 @@ import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { PageNameComponent } from './components/page-name/page-name.component';
 import { LicenseInfoComponent } from './components/license-info/license-info.component';
 import { DropGenComponent } from './components/drop-gen/drop-gen.component';
+import { DropTrComponent } from './components/drop-tr/drop-tr.component';
+import { PlanTrComponent } from './components/plan-tr/plan-tr.component';
+import { PlansComponent } from './components/plans/plans.component';
+import { PlanGenComponent } from './components/plan-gen/plan-gen.component';
+import { ProfileInputComponent } from './components/profile-input/profile-input.component';
+import { ProfileAvatarComponent } from './components/profile-avatar/profile-avatar.component';
+import { ProfileSocialComponent } from './components/profile-social/profile-social.component';
+import { NotFoundComponent } from './screens/not-found/not-found.component';
 
 
 
@@ -48,6 +56,14 @@ import { DropGenComponent } from './components/drop-gen/drop-gen.component';
     ProfileComponent,
     DropsComponent,
     LicenseInfoComponent,
+    DropTrComponent,
+    PlanTrComponent,
+    PlansComponent,
+    PlanGenComponent,
+    ProfileInputComponent,
+    ProfileAvatarComponent,
+    ProfileSocialComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

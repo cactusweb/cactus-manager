@@ -39,6 +39,13 @@ button{
     justify-content: center;
 }
 
-.blue-btn svg path{
-    fill: white;
+
+.blue-btn{
+    &:hover{
+        background-color: #78B0F8;
+    }
+
+    svg path{
+        fill: white;
+    }
 }

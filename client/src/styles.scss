@@ -6,6 +6,9 @@ html,body, app-root{
     padding: 0px;
     margin: 0px;
     display: grid;
+    @extend .custom-scroll;
+
+    &::-webkit-scrollbar{ width: 7px !important; }
 }
 app-login,app-signup{display: grid;}
 router-outlet{position: absolute;}
@@ -47,24 +50,34 @@ span.hr.grey{background-color: #898989; border-color: #898989;}
 .login-padding{padding: 30px 150px; }
 .align-items-center{display: grid; align-items: center;}
 
+
+.hidden{
+    opacity: 0;
+    width: 0px;
+    height: 0px;
+    position: absolute;
+}
+
+
+
 .background-cover{
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50%;
 }
 
-.standart-btn{
+.btn{
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0px 10px;
-    color: white;
+    color: #000000;
     font-weight: 500;
     font-size: 22px;
     line-height: 18px;
     border-radius: 15px;
     width: 100%;
-    height: 50px;
+    height: 48px;
     
     &.logout{
         font-size: 18px;
@@ -72,25 +85,30 @@ span.hr.grey{background-color: #898989; border-color: #898989;}
     }
 }
 
-.linear-btn{
-    background: linear-gradient(91.44deg, #9DC2F3 0%, #91DCF4 100%);
-}
-.border-btn{
+.standart-btn{
+    @extend .btn;
     border: 1px solid #92DCF5; 
     color: #3D3D3D;
-
     &:hover{
-        background-color: #E4F0FF;
+        background: rgba(120, 175, 248, 0.3);
     }
 }
 
+.linear-btn{
+    @extend .btn;
+    background: linear-gradient(91.44deg, #9DC2F3 0%, #91DCF4 100%);
+    color: #FFFFFF;
+}
+
+
+
 .blue-btn{
+    @extend .btn;
     background-color: #78B0F8;
     color: white; 
     border: 1px solid #78B0F8;
-
     &:hover{
-        background-color: #78B0F8;
+        background-color: #4083DA;
     }
 
 }
@@ -204,7 +222,7 @@ h2.page-name{font-size: 36px; font-weight: 600; line-height: 37px;}
 
 
 .content-in{
-    min-height: 100%;
+    // min-height: 100%;
     padding: 90px 5% ;
     background-color: #F4F4F4;
     position: relative;

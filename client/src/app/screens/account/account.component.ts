@@ -22,13 +22,18 @@ export class AccountComponent implements OnInit {
   }
 
   async ngOnInit() {
+    await this.getSetAccountData();
+    this.firstLoad = false;
+  }
+
+  async getSetAccountData(){
     this.spinner.show();
     if (localStorage.getItem('accessToken'))
       await this.http.getSelf()
         .then( (w: any = {}) =>{
           localStorage.setItem('name', w.name);
           localStorage.setItem('email', w.email);
-          localStorage.setItem( 'ownerId', w._id );
+          localStorage.setItem( 'ownerId', w.id );
         })
         .catch( e => {
           if ( e.status == 401 ){
@@ -37,8 +42,6 @@ export class AccountComponent implements OnInit {
           }
         })
     this.spinner.hide();
-    this.firstLoad = false;
-     
   }
 
 }

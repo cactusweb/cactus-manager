@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class HttpService {
   localUrl = environment.localApiUrl;
-  url = environment.apiUrl + '/owner';
+  url = environment.apiUrl;
   headers: HttpHeaders;
 
   constructor(
@@ -27,7 +27,7 @@ export class HttpService {
 
   async getLicenses(){
     this.setHeaders();
-    return await this.http.get(`${this.localUrl}/licenses`, { headers: this.headers }).toPromise();
+    return await this.http.get(`${this.url}/license`, { headers: this.headers }).toPromise();
   }
 
   async deleteLicense(id: string){
@@ -42,17 +42,17 @@ export class HttpService {
 
   async getSelf(){
     this.setHeaders();
-    return await this.http.get( `${this.localUrl}/users/@me`, { headers: this.headers } ).toPromise();
+    return await this.http.get( `${this.url}/@me`, { headers: this.headers } ).toPromise();
   }
 
   async putSelf( data ){
     this.setHeaders();
-    return await this.http.patch( `${this.localUrl}/users`, data, { headers: this.headers } ).toPromise();
+    return await this.http.put( `${this.url}`, data, { headers: this.headers } ).toPromise();
   }
 
-  async postFile( formData, dirname: string = 'client' ){
+  async postFile( formData, dirname: string = 'customer' ){
     this.setHeaders();
-    return await this.http.post( `${this.localUrl}/uploads/${dirname}`, formData, { headers: this.headers } ).toPromise();
+    return await this.http.post( `${this.url}/upload/${dirname}`, formData, { headers: this.headers } ).toPromise();
   }
 
   async postDrop(data){

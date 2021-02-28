@@ -34,7 +34,8 @@ export class SideBarComponent implements OnInit {
       case 'api': dataHead = { pageName: 'API', dataShow: true }; break;
       case 'drops': dataHead = { pageName: 'Drops' }; break;
       case 'profile': dataHead = { pageName: 'Profile' }; break;
-      default: dataHead = { pageName: 'Licenses' }; break;
+      case 'licenses': dataHead = { pageName: 'Licenses' }; break;
+      default: dataHead = {}
     }
 
     return dataHead;
