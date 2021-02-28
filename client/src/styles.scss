@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Saira:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
+
+$primary-color: #78AFF8;
+$danger-color: #F87878;
+
+
+
 html,body, app-root{
     min-height: 100vh;
     padding: 0px;
@@ -115,39 +121,79 @@ span.hr.grey{background-color: #898989; border-color: #898989;}
 
 
 .adding-btn{
-    display: grid; 
-    align-items: center; 
-    justify-items: center; 
-    padding-left: 36px;
-    position: relative; 
+    @extend .standart-btn;
     height: 36px; 
-    width: 142px; 
     font-weight: 400; 
     font-size: 14px; 
-    border-radius: 20px; 
-    border: 1px solid #78B0F8;
+    border-radius: 10px; 
+    width: auto;
+    justify-self: start;
+    padding: 0px;
 
-    span.plus{
+    .plus{
         display: grid; 
         place-items: center; 
-        position: absolute; 
-        left: -1px; 
-        top: -1px; 
-        border-radius: 50%; 
+        position: relative;
+        left: -1px;
+        border-radius: inherit; 
         height: inherit; 
-        width: 36px; 
         border: inherit; 
+        width: 36px; 
         box-sizing: border-box;
-    }
 
-    &:hover span.plus{
         background-color: #78AFF8;
+        img{
+            filter: brightness(10);
+        }
     }
 
-    &:hover span.plus img{
-        filter: brightness(10);
+    .text{
+        padding: 0px 10px;
     }
+
+    &:hover .plus{
+        background-color: #4083DA;
+    }
+
 }
+
+.rec-small-btn{
+    @extend .btn;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    padding: 0px;
+}
+
+.rec-big-btn{
+    @extend .btn;
+    width: 60px;
+    height: 60px;
+    border-radius: 20px;
+    padding: 0px;
+}
+
+
+
+.outline-primary{
+    border: 1px solid $primary-color;
+}
+
+.outline-danger{
+    border: 1px solid $danger-color;
+}
+
+.bg-primary{
+    background-color: $primary-color;
+}
+
+.bg-danger{
+    background-color: $danger-color;
+}
+
+
+
+
 
 
 .standart-input{
@@ -235,6 +281,10 @@ h2.page-name{font-size: 36px; font-weight: 600; line-height: 37px;}
         position: relative;
         display: grid;
         grid-template-rows: 1fr auto;
+
+        .artboard{
+            border-radius: 20px;
+        }
     }
 }
 
@@ -278,9 +328,10 @@ h2.page-name{font-size: 36px; font-weight: 600; line-height: 37px;}
 
 
 
-app-profile{
+app-profile, app-drops-plans{
     padding: 0px !important;
 }
+
 
 
 
