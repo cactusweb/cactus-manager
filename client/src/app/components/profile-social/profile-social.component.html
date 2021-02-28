@@ -3,11 +3,17 @@
 
     <div class="action">
 
-        <div class="network">
-            <input type="text" placeholder="name (ex. twitter)">
-            <input type="text" placeholder="link">
-            <button>Del</button>
+        <div *ngFor=" let social of socials; index as i " class="network">
+
+            
+            <input type="text" [(ngModel)]="social.name" placeholder="name (ex. twitter)" (ngModelChange)="emitData()">
+            <input type="text" [(ngModel)]="social.link" placeholder="link" (ngModelChange)="emitData()">
+            <button class="rec-big-btn bg-danger" (click)="delSocial(i)">D</button>
+
         </div>
+
+
+        <button class="rec-big-btn bg-primary" (click)="this.socials.push( { name: '', link: '' } )">A</button>
 
     </div>
 

@@ -1,0 +1,67 @@
+<div class="content">
+    <div class="header">
+        <h3>Drops</h3>
+        <button class="adding-btn"(click)="isNewDrop = true">
+            <span class="plus">
+                <img src="/assets/img/icons/plus.svg">
+            </span>
+            <span class="text">
+                Add new drop
+            </span>
+        </button>
+    
+
+    </div>
+        
+    <span class="hr grey"></span>
+
+    <div class="drops">
+
+
+            <div class="thead tr">
+
+                <div></div>
+                <div class="main">
+                    <div>Password</div>
+                    <div>Price</div>
+                    <div>Plan</div>
+                    <div>Stock</div>
+                    <div>Status</div>
+                    
+                </div>
+                <div></div>
+
+            </div>
+
+            <cdk-virtual-scroll-viewport class="custom-scroll" itemSize="65"> 
+                <div class="tr" *cdkVirtualFor="let drop of drops">
+                    <div class="time"> 
+                        <span>
+                            {{ drop.time | date:'hh:mmaa' }}
+                        </span>
+                        <span>
+                            {{ drop.time | date : 'dd.MM' }} 
+                        </span>
+                    </div>
+                    <div class="main">
+                        <div> {{ drop.password }} </div>
+                        <div> {{ drop.plan.price }} </div>
+                        <div> {{ drop.plan.name }} </div>
+                        <div> {{ drop.quantity }} </div>
+                        <div> {{ drop.status }} </div>
+                    </div>
+                    <div>
+                        <button class="rec-small-btn bg-danger">d</button>
+                    </div>
+
+                </div>
+            </cdk-virtual-scroll-viewport>
+
+
+
+    </div>
+
+
+</div>
+    <app-drop-gen *ngIf="isNewDrop" (close)="closeDropGen()"></app-drop-gen>
+

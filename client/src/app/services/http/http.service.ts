@@ -65,4 +65,9 @@ export class HttpService {
     return await this.http.get( `${this.url}/drop`, { headers: this.headers } ).toPromise();
   }
 
+  async getPlans(){
+    this.setHeaders();
+    return await this.http.get( `${this.url}/plan`, { headers: this.headers } ).toPromise();
+  }
+
 }

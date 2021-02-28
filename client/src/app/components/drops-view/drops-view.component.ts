@@ -6,14 +6,14 @@ import { HttpService } from 'src/app/services/http/http.service';
 import { SeoService } from 'src/app/services/seo/seo.service';
 
 @Component({
-  selector: 'app-drops',
-  templateUrl: './drops.component.html',
-  styleUrls: ['./drops.component.scss']
+  selector: 'app-drops-view',
+  templateUrl: './drops-view.component.html',
+  styleUrls: ['./drops-view.component.scss']
 })
-export class DropsComponent implements OnInit {
+export class DropsViewComponent implements OnInit {
   isNewDrop: boolean = false;
 
-  drops: [];
+  drops;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -50,5 +50,6 @@ export class DropsComponent implements OnInit {
         }
       })
   }
+
 
 }

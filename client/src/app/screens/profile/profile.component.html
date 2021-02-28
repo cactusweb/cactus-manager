@@ -13,7 +13,7 @@
     <app-profile-input 
 
         label="Type" type="radio" 
-        [radios]=" [ {value: 'cook-group', label: 'Cook-group'}, {value: 'bot', label: 'Bot'}, {value: 'tool', label: 'Tool'} ] "
+        [radios]=" [ {value: 'cook-group', label: 'Cook-group'}, {value: 'bot', label: 'Bot'}, {value: 'tools', label: 'Tools'} ] "
         value="{{selfData.type}}" (newValue)="selfData.type = $event"
     ></app-profile-input>
 
@@ -33,7 +33,7 @@
         label="Renewal" placeholder="1000, 2000"
     ></app-profile-input>
 
-    <app-profile-social ></app-profile-social>
+    <app-profile-social (newValue)="uuuuu($event)"></app-profile-social>
 
     <button class="standart-btn" (click)="putSelfData()">Save</button>
 

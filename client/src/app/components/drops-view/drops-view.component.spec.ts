@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DropsComponent } from './drops.component';
+import { DropsViewComponent } from './drops-view.component';
 
-describe('DropsComponent', () => {
-  let component: DropsComponent;
-  let fixture: ComponentFixture<DropsComponent>;
+describe('DropsViewComponent', () => {
+  let component: DropsViewComponent;
+  let fixture: ComponentFixture<DropsViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DropsComponent ]
+      declarations: [ DropsViewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DropsComponent);
+    fixture = TestBed.createComponent(DropsViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

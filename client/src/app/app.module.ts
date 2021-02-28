@@ -18,7 +18,6 @@ import { SearchPipe } from './pipes/search/search.pipe';
 import { LoginComponent } from './screens/login/login.component';
 import { SignupComponent } from './screens/signup/signup.component';
 import { AccountComponent } from './screens/account/account.component';
-import { DropsComponent } from './screens/drops/drops.component';
 import { LicensesComponent } from './screens/licenses/licenses.component';
 import { ProfileComponent } from './screens/profile/profile.component';
 
@@ -30,12 +29,14 @@ import { LicenseInfoComponent } from './components/license-info/license-info.com
 import { DropGenComponent } from './components/drop-gen/drop-gen.component';
 import { DropTrComponent } from './components/drop-tr/drop-tr.component';
 import { PlanTrComponent } from './components/plan-tr/plan-tr.component';
-import { PlansComponent } from './components/plans/plans.component';
 import { PlanGenComponent } from './components/plan-gen/plan-gen.component';
 import { ProfileInputComponent } from './components/profile-input/profile-input.component';
 import { ProfileAvatarComponent } from './components/profile-avatar/profile-avatar.component';
 import { ProfileSocialComponent } from './components/profile-social/profile-social.component';
 import { NotFoundComponent } from './screens/not-found/not-found.component';
+import { DropsPlansComponent } from './screens/drops-plans/drops-plans.component';
+import { DropsViewComponent } from './components/drops-view/drops-view.component';
+import { PlansViewComponent } from './components/plans-view/plans-view.component';
 
 
 
@@ -54,16 +55,17 @@ import { NotFoundComponent } from './screens/not-found/not-found.component';
     SignupComponent,
     DropGenComponent,
     ProfileComponent,
-    DropsComponent,
     LicenseInfoComponent,
     DropTrComponent,
     PlanTrComponent,
-    PlansComponent,
     PlanGenComponent,
     ProfileInputComponent,
     ProfileAvatarComponent,
     ProfileSocialComponent,
     NotFoundComponent,
+    DropsPlansComponent,
+    DropsViewComponent,
+    PlansViewComponent,
   ],
   imports: [
     BrowserModule,
