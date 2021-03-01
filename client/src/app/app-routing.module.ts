@@ -28,7 +28,7 @@ const routes: Routes = [
     { path: 'profile', component: ProfileComponent, data: { pageName:"Licenses", title: 'Profile - CactusManager'}, },
     { path: 'drops', component: DropsPlansComponent, data: { pageName:"Licenses", title: 'Drops - CactusManager'}, },
     { path: 'api', component: ApiDocComponent, data: { pageName: 'API', title: 'API integration - CactusManager' } },
-    { path: '**', component: NotFoundComponent }
+    { path: '**', component: NotFoundComponent, data: { showLogo: false, redirectTo: '/account/licenses', title: '404 - CactusManager' } }
 
   ]},
 
@@ -39,7 +39,7 @@ const routes: Routes = [
 
   // ] },
   
-  { path: '**', component: NotFoundComponent },
+  { path: '**', component: NotFoundComponent, data: { showLogo: true, redirectTo: '/login', title: '404 - CactusManager' } },
   // { path: '**', redirectTo: '/404' }
 ];
 

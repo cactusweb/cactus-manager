@@ -1,1 +1,25 @@
-<p>not-found works!</p>
+<div class="error">
+    
+    <div class="info">
+
+        <span class="error-num">
+            404
+        </span>
+
+        <span class="error-message">
+            page not found :(
+        </span>
+
+    </div>
+
+    <div class="action">
+        <button class="btn outline-primary" routerLink="{{redirectTo}}">Go to the main</button>
+    </div>
+
+</div>
+
+<div class="logo pointer" routerLink="{{redirectTo}}">
+    <h2 class="cactus-name" *ngIf="showLogo">Cactus <br> Manager</h2>
+    <img src="/assets/img/logo/cactusweb_logo.svg" alt="">
+</div>
+

@@ -19,7 +19,7 @@
                 <div class="data">
                     <div> {{ plan.name }} </div>
                 </div>
-                <button class="rec-small-btn outline-danger">d</button>
+                <button class="rec-small-btn outline-danger" (click)="deletePlan(plan.id)">d</button>
 
             </div>
         </cdk-virtual-scroll-viewport>

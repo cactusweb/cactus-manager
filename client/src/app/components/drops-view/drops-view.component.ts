@@ -51,5 +51,20 @@ export class DropsViewComponent implements OnInit {
       })
   }
 
+  async deleteDrop( id: string ){
+    this.spinner.show();
+    await this.http.deleteDrop( id )
+      .then( w => {
+        this.drops = this.drops.filter( ell => ell.id != id );
+        this.spinner.hide();
+      })
+      .catch( e => {
+        if ( e.status == 401 ){
+          this.auth.logout();
+          this.spinner.hide();
+        }
+      })
+  }
+
 
 }

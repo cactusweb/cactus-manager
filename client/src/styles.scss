@@ -332,6 +332,12 @@ app-profile, app-drops-plans{
     padding: 0px !important;
 }
 
+app-not-found{
+    display: grid;
+    background-color: rgba(120, 175, 248, 0.4) !important;
+    backdrop-filter: blur(10px)
+}
+
 
 
 

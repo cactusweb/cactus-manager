@@ -33,7 +33,23 @@ export class PlansViewComponent implements OnInit {
           this.auth.logout();
         }
       })
-    
+  }
+
+  async deletePlan( id: string ){
+
+    this.spinner.show();
+    await this.http.deletePlan( id )
+      .then( w => {
+        this.plans = this.plans.filter( ell => ell.id != id );
+        this.spinner.hide();
+      })
+      .catch( e => {
+        if ( e.status == 401 ){
+          this.spinner.hide();
+          this.auth.logout();
+        }
+      })
+
   }
 
 }

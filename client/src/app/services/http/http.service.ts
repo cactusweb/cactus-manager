@@ -65,9 +65,20 @@ export class HttpService {
     return await this.http.get( `${this.url}/drop`, { headers: this.headers } ).toPromise();
   }
 
+  async deleteDrop( id: string ){
+    this.setHeaders();
+    return await this.http.delete( `${this.url}/drop/${id}`, { headers: this.headers } ).toPromise();
+  }
+
+
   async getPlans(){
     this.setHeaders();
     return await this.http.get( `${this.url}/plan`, { headers: this.headers } ).toPromise();
+  }
+
+  async deletePlan( id: string ){
+    this.setHeaders();
+    return await this.http.delete( `${this.url}/plan/${id}`, { headers: this.headers } ).toPromise();
   }
 
 }
