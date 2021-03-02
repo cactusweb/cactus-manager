@@ -63,5 +63,5 @@
 
 
 </div>
-    <app-drop-gen *ngIf="isNewDrop" (close)="closeDropGen()"></app-drop-gen>
+    <app-drop-gen *ngIf="isNewDrop" (onClose)="closeDropGen()" [plans]="plans"></app-drop-gen>
 

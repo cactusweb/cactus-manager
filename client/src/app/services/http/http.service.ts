@@ -71,6 +71,8 @@ export class HttpService {
   }
 
 
+
+
   async getPlans(){
     this.setHeaders();
     return await this.http.get( `${this.url}/plan`, { headers: this.headers } ).toPromise();
@@ -79,6 +81,11 @@ export class HttpService {
   async deletePlan( id: string ){
     this.setHeaders();
     return await this.http.delete( `${this.url}/plan/${id}`, { headers: this.headers } ).toPromise();
+  }
+
+  async postPlan( data ){
+    this.setHeaders();
+    return await this.http.post( `${this.url}/plan`, data, { headers: this.headers } ).toPromise();
   }
 
 }

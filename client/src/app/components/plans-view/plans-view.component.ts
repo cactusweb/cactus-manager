@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpService } from 'src/app/services/http/http.service';
@@ -10,6 +10,9 @@ import { HttpService } from 'src/app/services/http/http.service';
 })
 export class PlansViewComponent implements OnInit {
   plans;
+  isPlanGen: boolean = false;
+
+  @Output() onChangeItems = new EventEmitter<any>();
 
   constructor(
     private http: HttpService,
@@ -25,7 +28,8 @@ export class PlansViewComponent implements OnInit {
     this.spinner.show();
     await this.http.getPlans()
       .then( w => {
-        this.plans = w 
+        this.plans = w;
+        this.onChangeItems.emit( this.plans );
       })
       .catch( e => {
         if ( e.status == 401 ){
@@ -51,5 +55,7 @@ export class PlansViewComponent implements OnInit {
       })
 
   }
+
+
 
 }

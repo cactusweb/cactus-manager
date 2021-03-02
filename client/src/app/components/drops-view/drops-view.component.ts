@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -10,8 +10,9 @@ import { SeoService } from 'src/app/services/seo/seo.service';
   templateUrl: './drops-view.component.html',
   styleUrls: ['./drops-view.component.scss']
 })
-export class DropsViewComponent implements OnInit {
+export class DropsViewComponent implements OnInit, OnChanges {
   isNewDrop: boolean = false;
+  @Input() plans: any;
 
   drops;
 
@@ -30,6 +31,8 @@ export class DropsViewComponent implements OnInit {
   async ngOnInit() {
     await this.getDrops();
   }
+
+  ngOnChanges(){}
 
   closeDropGen(){
     this.isNewDrop = false;

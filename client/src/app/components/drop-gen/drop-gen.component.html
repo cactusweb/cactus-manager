@@ -1,62 +1,48 @@
-<form  class="new-key" [formGroup]="dropForm" (ngSubmit)="onAddDrop()">
-    <span class="head">
-        <h3 >New drop</h3>
-        <img src="/assets/img/icons/plus.svg" alt="close" class="pointer" (click)="onClose()">
-    </span>
+<div class="artboard" (click)="onClose.emit()"></div>
+
+<div class="popup">
     
-    <div class="data">
-<!-- 
-        <div class="type">
-            <h4>Type:</h4>
-            <div class="checkbox-1-2">
-                <input type="checkbox" name="status" id="isUnbindable" value="renewal" >
-                <label for="isUnbindable" class="pointer">Unbindable</label>
-            </div>
-        </div> -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none" (click)="onClose.emit()" class="pointer" id="closePopup">
+        <path d="M1 13L13 1M1 1L13 13" stroke="#3D3D3D" stroke-width="2" stroke-linecap="round"/>
+    </svg>
 
-        <div class="nickname">
-            <h4>Password:</h4>
-            <input type="text" id="nickname" autocomplete="off" placeholder="cactus-restock" formControlName="password">
-        </div>
+    <h3>New drop</h3>
+    
+    <form>
 
-        <div class="renew-date">
-            <h4>Date and time:</h4>
-            <input type="datetime-local" name="date" id="date" formControlName="time">
-        </div>
+        <label>
+            Password:
+            <input type="text" placeholder="first-restock">
+        </label>
 
-
-        <div class="activate-quantity">
-            <h4>Activations quantity:</h4>
-            <input type="text" placeholder="Number" formControlName="quantity">
-            <div class="input">
-                <input type="checkbox" id="infinity"> <label for="infinity" class="pointer">8</label>
-            </div>
-        </div>
+        <label for="">
+            Date:
+            <input type="datetime-local" placeholder="DD.MM.YYYY HH:MM">
+        </label>
         
-
-        <div class="activate-quantity">
-            <h4>Number of slots:</h4>
-            <input type="text" placeholder="Number" formControlName="licenseQuantity">
-        </div>
-        <div class="activate-quantity">
-            <h4>Price:</h4>
-            <input type="text" placeholder="Number" formControlName="price">
-        </div>
-
-        <div class="">
-            <h4>Roles id:</h4>
-            <input type="text" placeholder="id1, id2, id3" [(ngModel)]="rolesString" [ngModelOptions]="{standalone: true}">
-        </div>
+        <label>
+            Stock:
+            <input type="text" placeholder="10">
+        </label>
         
+        <label>
+            Price:
+            <input type="text" placeholder="4000">
+        </label>
+        
+        <label class="select-label">
+            Plan:
+            <select>
+                <ng-template ngFor let-plan [ngForOf]="plans">
+                    <option value="{{plan.id}}"> {{ plan.name }} </option>
+                </ng-template>
+            </select>
+        </label>
 
+        <button>Create</button>
 
-        <div class="relative">
-            <button class="standart-btn border-btn">Generate</button>
-            <span class="error" *ngIf="errorMessage"> {{ errorMessage }} </span>
-            <span class="success" *ngIf="successMessage"> {{ successMessage }} </span>
-        </div>
+        <span class="error" *ngIf="errorMessage">{{errorMessage}}</span>
 
-    </div>
+    </form>
 
-</form>
-<div class="artboard blur dark"  (click)="onClose()"></div>
+</div>

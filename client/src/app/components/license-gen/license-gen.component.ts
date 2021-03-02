@@ -33,13 +33,14 @@ export class LicenseGenComponent implements OnInit {
   ngOnInit() {
     this.generateForm()
     // this.onEscape();
+    console.log( this.license )
   }
 
   onEscape(){
     let listener = document.addEventListener( 'keyup', e => {
       console.log(e)
       document.removeEventListener( 'keyup', () => { } )
-      if ( e.key == 'Escape' ) this.close();
+      if ( e.key == 'Escape' ) this.onClose.emit();
     })
   }
 
@@ -47,13 +48,6 @@ export class LicenseGenComponent implements OnInit {
   copy(id){
     this.aio.copy(id);
   }
-
-  close(){
-    this.onClose.emit();
-  }
-
-
-
 
 
   async newLicense(){

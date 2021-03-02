@@ -41,10 +41,12 @@ span.hr.grey{background-color: #898989; border-color: #898989;}
 .artboard{
     width: 100%;
     height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
     border-radius: inherit;
-}
-.artboard.blur{
-    backdrop-filter: blur(2px);
+    background: rgba(120, 175, 248, 0.4);
+    backdrop-filter: blur(10px);
 }
 .artboard.dark{background-color: rgba(0, 0, 0, 0.2);}
 
@@ -381,3 +383,117 @@ app-not-found{
 }
 
 
+
+.inp-btm-border{
+    border: none;
+    background: none;
+    border-bottom: 2px solid #B9B9B9;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    color: #3D3D3D;
+    height: 25px;
+
+    &::placeholder{
+        color: #B9B9B9;
+    }
+}
+
+
+
+.popup{
+    display: grid;
+    padding: 30px 40px;
+    row-gap: 15px;
+    z-index: 10;
+    width: 415px;
+    
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border: 1px solid $primary-color;
+    border-radius: 15px;
+    background-color: #FFFFFF;
+    
+    h3{
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    form{
+        display: grid;
+        row-gap: 10px;
+
+        button{
+            @extend .standart-btn;
+            margin-top: 30px;
+            height: 40px;
+            font-weight: 400px;
+            font-size: 18px;
+            line-height: 16px;
+            border-radius: 10px;
+        }
+
+        > label{
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 15px;
+            display: grid;
+            grid-auto-flow: column;
+            grid-template-columns: auto 1fr;
+            column-gap: 15px;
+            align-items: end;
+
+            &.select-label{
+                align-items: center;
+            }
+
+            input{
+                @extend .inp-btm-border;
+            }
+
+            select{
+                @extend .inp-btm-border;
+                border: 1px solid #3D3D3D;
+                border-radius: 5px;
+                text-align: center;
+                text-align-last: center;
+                -moz-text-align-last: center;
+                height: 30px;
+            }
+        }
+    }
+
+    .error, .success{
+        color: #C83A3A;
+        font-weight: 400px;
+        font-size: 12px;
+
+        display: grid;
+        grid-template-columns: auto 1fr;
+        column-gap: 5px;
+
+        position: absolute;
+        bottom: 5px;
+
+        left: 50%;
+        transform: translate(-50%, 0%);
+
+        svg{
+            height: 12px;
+            width: 12px;
+        }
+    }
+
+    .success{
+        color: #3AC83A;
+    }
+
+    #closePopup{
+        position: absolute;
+        top: 20px;
+        right: 25px;
+    }
+}

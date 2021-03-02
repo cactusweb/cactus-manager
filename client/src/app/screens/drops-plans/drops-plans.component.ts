@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./drops-plans.component.scss']
 })
 export class DropsPlansComponent implements OnInit {
+  plans: any = [];
 
   constructor() { }
 

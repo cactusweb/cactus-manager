@@ -1,1 +1,48 @@
-<p>plan-gen works!</p>
+<div class="artboard" (click)="onClose.emit()"></div>
+
+<div class="popup">
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none" (click)="onClose.emit()" class="pointer" id="closePopup">
+        <path d="M1 13L13 1M1 1L13 13" stroke="#3D3D3D" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+
+    <h3>New plan</h3>
+
+    <form [formGroup]="formPlan" (ngSubmit)="onAddPlan()">
+
+        <label>
+            Name: <input type="text" placeholder="monthly-1000" fromControlName="name">
+        </label>
+
+        <label class="select-label">
+            Type:
+            <select fromControlName="status">
+                <option value="renewal">Renewal</option>
+                <option value="lifetime">Lifetime</option>
+            </select>
+        </label>
+
+        <label>
+            Amount:
+            <input type="text" placeholder="1000" fromControlName="price">
+        </label>
+
+        <label>
+            Roles:
+            <input type="text" placeholder="ID1, ID2" [(ngModel)]="roles" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChangeRoles()">
+        </label>
+
+        <label class="select-label">
+            Unbind:
+            <select fromControlName="unbindable">
+                <option [value]="true">unbindable</option>
+                <option [value]="false">non-unbindable</option>
+            </select>
+        </label>
+
+        <button>Create</button>
+
+        <span [ngClass]="{ 'error': errorMessage, 'success': successMessage }" *ngIf="errorMessage || successMessage">{{errorMessage || successMessage}}</span>
+    </form>
+
+</div>

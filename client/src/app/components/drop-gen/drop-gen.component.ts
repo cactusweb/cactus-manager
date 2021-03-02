@@ -8,13 +8,18 @@ import { HttpService } from 'src/app/services/http/http.service';
   styleUrls: ['./drop-gen.component.scss']
 })
 export class DropGenComponent implements OnInit {
-  @Output() close = new EventEmitter();
+  // @Output() close = new EventEmitter();
   @Output() addDrop = new EventEmitter<any>();
+
+  @Output() onClose = new EventEmitter<boolean>();
+
+  @Input() plans: any = [];
+
+  errorMessage: string = '';
 
   dropForm: FormGroup;
 
   successMessage: string = '';
-  errorMessage: string = '';
   rolesString: string = '';
 
 
@@ -64,8 +69,5 @@ export class DropGenComponent implements OnInit {
     return rolesString.split( ' ' ).join( '' ).split(',');
   }
 
-  onClose(){
-    this.close.emit();
-  }
 
 }
