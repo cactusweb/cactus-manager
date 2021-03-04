@@ -17,7 +17,7 @@
         <cdk-virtual-scroll-viewport class="custom-scroll" itemSize="65"> 
             <div class="plan" *cdkVirtualFor="let plan of plans">
                 <div class="data">
-                    <div> {{ plan.name }} ({{plan.price}})</div>
+                    <div> {{ plan.name }} (Coast: {{plan.price}})</div>
                 </div>
                 <button class="rec-small-btn outline-danger" (click)="deletePlan(plan.id)">d</button>
 

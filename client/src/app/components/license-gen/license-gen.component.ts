@@ -35,7 +35,8 @@ export class LicenseGenComponent implements OnInit {
   ngOnInit() {
     this.generateForm()
     // this.onEscape();
-    console.log( this.license )
+    this.roles = this.license?.roles?.join( ', ' ) || '';
+    console.log( this.roles, this.license )
   }
 
   onEscape(){
