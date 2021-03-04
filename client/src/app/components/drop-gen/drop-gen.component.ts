@@ -9,19 +9,16 @@ import { HttpService } from 'src/app/services/http/http.service';
 })
 export class DropGenComponent implements OnInit {
   // @Output() close = new EventEmitter();
-  @Output() addDrop = new EventEmitter<any>();
+  @Output() onNewItem = new EventEmitter<any>();
 
   @Output() onClose = new EventEmitter<boolean>();
 
   @Input() plans: any = [];
 
-  errorMessage: string = '';
-
   dropForm: FormGroup;
 
-  successMessage: string = '';
-  rolesString: string = '';
-
+  isError: boolean = true;
+  message: string = '';
 
 
   constructor(
@@ -36,38 +33,35 @@ export class DropGenComponent implements OnInit {
   generateForm(){
     this.dropForm = new FormGroup({
       quantity: new FormControl( { value: '', disabled: false }, [Validators.required, Validators.pattern('[0-9]*')] ),
-      licenseQuantity: new FormControl( { value: '', disabled: false }, [Validators.required, Validators.pattern('[0-9]*')] ),
       price: new FormControl( { value: '', disabled: false }, [Validators.required, Validators.pattern('[0-9]*')] ),
       password: new FormControl( { value: '', disabled: false }, [Validators.required] ),
       time: new FormControl( { value: '', disabled: false }, [Validators.required] ),
-      roles: new FormControl( { value: [], disabled: false } )
+      plan: new FormControl( { value: this.plans[0].id, disabled: false } )
     })
   }
 
   async onAddDrop(){
-    this.successMessage = '';
-    this.errorMessage = '';
+    this.message = '';
 
-    if ( this.dropForm.invalid || this.rolesString == ''){
-      this.errorMessage = 'Заполните поля верно!';
+    if ( this.dropForm.invalid ){
+      this.message = 'Incorrect filling!';
+      this.isError = true;
       return;
     }
 
-    this.dropForm.value.roles = this.getRolesArr( this.rolesString )
 
     await this.http.postDrop( this.dropForm.value )
       .then( (w: any) => {
-        this.successMessage = 'Successfull added';
-        this.addDrop.emit( w._doc );
+        this.isError = false;
+        this.message = 'Successful added';
+        this.onNewItem.emit( w );
       })
       .catch( e => {
-        this.errorMessage = e.error;
+        this.isError = true;
+        this.message = e.error || e.error.error || e.error.message;
       })
   }
 
-  getRolesArr( rolesString: string ){
-    return rolesString.split( ' ' ).join( '' ).split(',');
-  }
 
 
 }

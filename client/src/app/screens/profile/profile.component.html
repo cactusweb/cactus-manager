@@ -1,5 +1,12 @@
 <div class="content" *ngIf="true">
 
+    <app-profile-input
+        label="Discord-Server ID" type="input" value="{{selfData.guildId}}"
+        (newValue)="selfData.guildId = $event" placeholder="ID"
+    >
+
+    </app-profile-input>
+
     <app-profile-avatar 
         avatar="{{selfData.avatar}}"
         (newValue)="selfData.avatar = $event"
@@ -33,7 +40,7 @@
         label="Renewal" placeholder="1000, 2000"
     ></app-profile-input>
 
-    <app-profile-social (newValue)="uuuuu($event)"></app-profile-social>
+    <app-profile-social [links]="selfData.links" (newValue)="selfData.links = $event"></app-profile-social>
 
     <button class="standart-btn" (click)="putSelfData()">Save</button>
 

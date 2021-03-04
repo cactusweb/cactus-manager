@@ -10,10 +10,12 @@ export class PageNameComponent implements OnChanges {
   @Input() isDataShow: boolean = false;
   userName: string = '';
   id: string = '';
+  avatar: string = '';
 
   ngOnChanges(){
     this.id = localStorage.getItem('ownerId');
     this.userName = localStorage.getItem('name');
+    this.avatar = localStorage.getItem( 'ownerAvatar' )
   }
 
   

@@ -22,7 +22,7 @@ export class HttpService {
 
   async postNewLicense(data){
     this.setHeaders();
-    return await this.http.post(`${this.localUrl}/licenses`, data, { headers: this.headers }).toPromise();
+    return await this.http.post(`${this.url}/license`, data, { headers: this.headers }).toPromise();
   }
 
   async getLicenses(){
@@ -32,7 +32,7 @@ export class HttpService {
 
   async deleteLicense(id: string){
     this.setHeaders();
-    return await this.http.delete(`${this.localUrl}/licenses/${id}`, {headers: this.headers}).toPromise();
+    return await this.http.delete(`${this.url}/license/${id}`, {headers: this.headers}).toPromise();
   }
 
   async putLicense(data){

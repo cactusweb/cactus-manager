@@ -4,7 +4,7 @@
 
 
     <ng-container *ngIf="type === 'input';else noInput">
-        <input id='{{label}}' [(ngModel)]="value" placeholder="{{placeholder}}" (ngModelChange)="onNewValue()">
+        <input id='{{label}}' [(ngModel)]="value" placeholder="{{placeholder}}" (ngModelChange)="onNewValue()" [disabled]="disabled">
     </ng-container>
 
 

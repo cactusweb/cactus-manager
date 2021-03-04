@@ -37,6 +37,7 @@ import { NotFoundComponent } from './screens/not-found/not-found.component';
 import { DropsPlansComponent } from './screens/drops-plans/drops-plans.component';
 import { DropsViewComponent } from './components/drops-view/drops-view.component';
 import { PlansViewComponent } from './components/plans-view/plans-view.component';
+import { PopupMessageComponent } from './components/popup-message/popup-message.component';
 
 
 
@@ -66,6 +67,7 @@ import { PlansViewComponent } from './components/plans-view/plans-view.component
     DropsPlansComponent,
     DropsViewComponent,
     PlansViewComponent,
+    PopupMessageComponent,
   ],
   imports: [
     BrowserModule,

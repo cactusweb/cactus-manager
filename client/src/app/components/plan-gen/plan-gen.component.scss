@@ -1,0 +1,14 @@
+.activations{
+    grid-template-columns: auto 175px auto;
+    grid-auto-flow: initial;
+    .input{
+        display: grid;
+        column-gap: 5px;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+
+        label{
+            transform: rotate(90deg);
+        }
+    }
+}

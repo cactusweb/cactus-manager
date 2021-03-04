@@ -10,6 +10,8 @@ export class ProfileInputComponent {
   @Input() placeholder = '';
   @Input() type: string = 'input';
   @Input() radios: [any];
+  
+  @Input() isDisabled: boolean = false;
 
   @Input() value: string = '';
 

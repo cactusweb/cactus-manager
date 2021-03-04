@@ -11,30 +11,39 @@
     <form [formGroup]="formPlan" (ngSubmit)="onAddPlan()">
 
         <label>
-            Name: <input type="text" placeholder="monthly-1000" fromControlName="name">
+            Name: 
+            <input type="text" placeholder="monthly-1000" formControlName="name">
         </label>
 
         <label class="select-label">
             Type:
-            <select fromControlName="status">
-                <option value="renewal">Renewal</option>
-                <option value="lifetime">Lifetime</option>
+            <select formControlName="status">
+                <option value="renewal">renewal</option>
+                <option value="lifetime">lifetime</option>
             </select>
         </label>
 
-        <label>
+        <label *ngIf="formPlan.value.status == 'renewal'">
             Amount:
-            <input type="text" placeholder="1000" fromControlName="price">
+            <input type="number" placeholder="1000" formControlName="price" >
         </label>
 
         <label>
             Roles:
-            <input type="text" placeholder="ID1, ID2" [(ngModel)]="roles" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChangeRoles()">
+            <input type="text" placeholder="ID1, ID2" [(ngModel)]="roles" [ngModelOptions]="{standalone: true}">
+        </label>
+        
+        <label class="activations">
+            Activations:
+            <input type="number" placeholder="Number" formControlName="quantity">
+            <div class="input">
+                <input type="checkbox" [(ngModel)]="infinityActivating" [ngModelOptions]="{standalone: true}" (ngModelChange)="onInfinity()" id="infinity"> <label for="infinity" class="pointer">8</label>
+            </div>
         </label>
 
         <label class="select-label">
             Unbind:
-            <select fromControlName="unbindable">
+            <select formControlName="unbindable">
                 <option [value]="true">unbindable</option>
                 <option [value]="false">non-unbindable</option>
             </select>
@@ -42,7 +51,9 @@
 
         <button>Create</button>
 
-        <span [ngClass]="{ 'error': errorMessage, 'success': successMessage }" *ngIf="errorMessage || successMessage">{{errorMessage || successMessage}}</span>
+
+        <app-popup-message [message]="message" [isError]="isError"></app-popup-message>
+
     </form>
 
 </div>

@@ -17,7 +17,7 @@ export class LicensesComponent implements OnInit {
   newKey: boolean = false;
   licenses: any = [];
   editingLicense: License;
-  formEditLicense: FormGroup;
+  infoLicense: License;
 
 
   filterParams = [
@@ -47,16 +47,17 @@ export class LicensesComponent implements OnInit {
     await this.getLicenses();
   }
 
-  onChangeNewKey(isOpen: boolean){
-    this.newKey = isOpen || false;
+  onClose(){
+    this.newKey = false;
     this.editingLicense = undefined;
+    this.infoLicense = undefined;
   }
 
   async getLicenses(){
     this.spinner.show()
     await this.http.getLicenses()
       .then( (w: any = [{}]) => {
-        this.makeValidLicensesArr(w);
+        this.licenses = w;
         this.spinner.hide()  
       })
       .catch( e => {
@@ -75,7 +76,7 @@ export class LicensesComponent implements OnInit {
     await this.http.deleteLicense(id)
       .then( async() => { 
           this.licenses = this.licenses.filter( ell => ell._id !== id )
-          this.makeValidLicensesArr(this.licenses);
+          
           this.spinner.hide()
        })
       .catch( e => { 
@@ -92,7 +93,7 @@ export class LicensesComponent implements OnInit {
         this.licenses[i] = license 
         break;
       }
-    this.makeValidLicensesArr(this.licenses);
+    
   }
 
 
@@ -106,18 +107,10 @@ export class LicensesComponent implements OnInit {
 
   onAddLicense(license){
     this.licenses.push(license); 
-    this.makeValidLicensesArr(this.licenses);
+    
   }
 
 
-  makeValidLicensesArr(arr){
-    this.licenses = arr.map(license => ({
-      ...license,
-      outputCreatedAt: this.tools.outputDate(new Date(license.createdAt)),
-      outputExpiresIn: this.tools.outputDate(new Date(license.expiresIn || '')) || '-' ,
-      expiresIn: license.expiresIn || ''
-    }))
-  }
 
   onFilterChange(){
     this.filterChange = !this.filterChange;

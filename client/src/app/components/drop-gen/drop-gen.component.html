@@ -8,31 +8,31 @@
 
     <h3>New drop</h3>
     
-    <form>
+    <form [formGroup]="dropForm" (ngSubmit)="onAddDrop()">
 
         <label>
             Password:
-            <input type="text" placeholder="first-restock">
+            <input type="text" placeholder="first-restock" formControlName="password">
         </label>
 
         <label for="">
             Date:
-            <input type="datetime-local" placeholder="DD.MM.YYYY HH:MM">
+            <input type="datetime-local" placeholder="DD.MM.YYYY HH:MM" formControlName="time">
         </label>
         
         <label>
             Stock:
-            <input type="text" placeholder="10">
+            <input type="text" placeholder="10" formControlName="quantity">
         </label>
         
         <label>
             Price:
-            <input type="text" placeholder="4000">
+            <input type="text" placeholder="4000" formControlName="price">
         </label>
         
         <label class="select-label">
             Plan:
-            <select>
+            <select formControlName="plan">
                 <ng-template ngFor let-plan [ngForOf]="plans">
                     <option value="{{plan.id}}"> {{ plan.name }} </option>
                 </ng-template>
@@ -41,7 +41,8 @@
 
         <button>Create</button>
 
-        <span class="error" *ngIf="errorMessage">{{errorMessage}}</span>
+        <app-popup-message [message]="message" [isError]="isError"></app-popup-message>
+        
 
     </form>
 

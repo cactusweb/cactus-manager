@@ -1,0 +1,25 @@
+span{
+    font-weight: 400px;
+    font-size: 12px;
+
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 5px;
+    align-items: center;
+    justify-items: center;
+
+    &.success{
+        color: #3AC83A;
+    }
+
+    &.error{
+        color: #C83A3A;
+    }
+}
+
+
+// svg{
+//     height: 12px;
+//     width: 12px;
+// }
+

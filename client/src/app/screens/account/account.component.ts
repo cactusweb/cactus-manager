@@ -34,6 +34,7 @@ export class AccountComponent implements OnInit {
           localStorage.setItem('name', w.name);
           localStorage.setItem('email', w.email);
           localStorage.setItem( 'ownerId', w.id );
+          localStorage.setItem( 'ownerAvatar', w.avatar )
         })
         .catch( e => {
           if ( e.status == 401 ){

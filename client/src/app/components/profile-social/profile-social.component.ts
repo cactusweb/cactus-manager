@@ -7,18 +7,18 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angu
 })
 export class ProfileSocialComponent implements OnChanges {
 
-  @Input() socials = [
-    { name: 'vk', link: 'https://vk.com/cactus_web' },
-    { name: 'twitter', link: 'https://twitter.com/cactusSoft_io' },
-    { name: '', link: '' }
-  ]
+  @Input() links = []
+  socials;
 
   @Output() newValue = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnChanges() {
-
+    if ( !this.socials ){
+      this.socials = this.links;
+      this.socials?.push({ name: '', link: '' });
+    }
   }
 
 

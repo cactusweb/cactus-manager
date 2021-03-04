@@ -56,9 +56,6 @@ export class ProfileComponent implements OnInit {
     this.spinner.hide();
   }
 
-  uuuuu(value){
-    console.log( value );
-  }
 
 
 }

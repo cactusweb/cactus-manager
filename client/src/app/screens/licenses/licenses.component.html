@@ -2,7 +2,7 @@
         
 
         <div class="header">
-            <button class="adding-btn" (click)="onChangeNewKey(true)">
+            <button class="adding-btn" (click)="newKey = true">
                 <span class="plus">
                     <img src="/assets/img/icons/plus.svg">
                 </span>
@@ -54,7 +54,7 @@
                         | filter : filterParams : filterChange 
                         | search : searchKeys : searchParam
                         , let i = index, trackBy: trackByFn">
-                        <td> {{ license.user }} </td>
+                        <td> {{ license.bindTo?.name }} </td>
                         <td class="key"> 
                             ...****
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="17" viewBox="0 0 14 17" fill="none" alt="copy" class="pointer" (click)="copyData(license.key)">
@@ -64,9 +64,17 @@
 
                         </td>
                         <td> {{ license.status }} </td>
-                        <td> {{ license.outputExpiresIn.slice(0,5) }} </td>
+                        <td> 
+                            <ng-template [ngIf]="license.expiresIn">
+                                {{ license.expiresIn | date:'dd.MM.yy' }} 
+                            </ng-template>
+
+                            <ng-template [ngIf]="!license.expiresIn">
+                                -
+                            </ng-template>
+                        </td>
                         <td class=""> 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none" alt="info" class="pointer info">
+                            <svg xmlns="http://www.w3.org/2000/svg" (click)="infoLicense = license" width="17" height="17" viewBox="0 0 17 17" fill="none" alt="info" class="pointer info">
                                 <path d="M8.5 0C3.8131 0 0 3.81315 0 8.50005C0 13.187 3.8131 17 8.5 17C13.1869 17 17 13.187 17 8.50005C17 3.81315 13.1869 0 8.5 0ZM8.5 15.4545C4.66521 15.4545 1.54545 12.3348 1.54545 8.50005C1.54545 4.66532 4.66521 1.54545 8.5 1.54545C12.3348 1.54545 15.4545 4.66532 15.4545 8.50005C15.4545 12.3348 12.3347 15.4545 8.5 15.4545Z" fill="#3D3D3D"/>
                                 <path d="M8.4999 3.60606C7.93189 3.60606 7.4698 4.06846 7.4698 4.63683C7.4698 5.20468 7.93189 5.66667 8.4999 5.66667C9.0679 5.66667 9.52999 5.20468 9.52999 4.63683C9.52999 4.06846 9.0679 3.60606 8.4999 3.60606Z" fill="#3D3D3D"/>
                                 <path d="M8.5 7.21212C8.07325 7.21212 7.72727 7.5581 7.72727 7.98485V12.6212C7.72727 13.048 8.07325 13.3939 8.5 13.3939C8.92675 13.3939 9.27273 13.048 9.27273 12.6212V7.98485C9.27273 7.5581 8.92675 7.21212 8.5 7.21212Z" fill="#3D3D3D"/>
@@ -94,7 +102,8 @@
         </div>
 
 
-        <app-license-gen *ngIf="newKey" (onClose)="onChangeNewKey($event)" (onAdd)="onAddLicense($event)" (onEdit)="onEditLicense($event)" [license]="editingLicense"></app-license-gen>
+        <app-license-gen *ngIf="newKey" (onClose)="onClose($event)" (onAdd)="onAddLicense($event)" (onEdit)="onEditLicense($event)" [license]="editingLicense"></app-license-gen>
+        <app-license-info *ngIf="infoLicense" (onClose)="onClose($event)" [license]="infoLicense"></app-license-info>
 
     </div>
     

@@ -14,9 +14,10 @@ export class PlanGenComponent implements OnInit {
   @Output() onNewItem = new EventEmitter<{}>();
   formPlan: FormGroup;
   roles: string = '';
+  infinityActivating: boolean = false;
 
-  errorMessage: string = '';
-  successMessage: string = '';
+  isError: boolean = true;
+  message: string = '';
 
   constructor(
     private http: HttpService,
@@ -32,36 +33,37 @@ export class PlanGenComponent implements OnInit {
     this.formPlan = new FormGroup({
       name: new FormControl( { value: '', disabled: disabled }, [ Validators.required ] ),
       quantity: new FormControl( { value: '', disabled: disabled }, [ Validators.required, Validators.pattern('[0-9]*') ] ),
-      unbindable: new FormControl( { value: '', disabled: disabled }, [ Validators.required ] ),
-      status: new FormControl( { value: '', disabled: disabled }, [ Validators.required ] ),
-      renewalPrice: new FormControl( { value: '', disabled: disabled }, [ Validators.required, Validators.pattern('[0-9]*') ] ),
+      unbindable: new FormControl( { value: true, disabled: disabled }, [ Validators.required ] ),
+      status: new FormControl( { value: 'renewal', disabled: disabled }, [ Validators.required ] ),
       price: new FormControl( { value: '', disabled: disabled }, [ Validators.required, Validators.pattern('[0-9]*') ] ),
-      roles: new FormControl( { value: '', disabled: disabled }, [ Validators.required ] )
-      // quantity: 0,
-      // unbindable: true,
-      // status: lifetime,
-      // expiresIn: 2021-03-01T22:20:58.808Z,
-      // renewalPrice: 0,
-      // price: 0,
+      roles: new FormControl( { value: [], disabled: disabled }, [ Validators.required ] )
     })
+  }
+  
+  onInfinity(){
+    this.infinityActivating ? this.formPlan.controls.quantity.disable() : this.formPlan.controls.quantity.enable()
   }
 
   async onAddPlan(){
-    this.successMessage = '';
-    this.errorMessage = '';
+    this.message = '';
+
+    this.formPlan.value.quantity = this.infinityActivating ? 0 : this.formPlan.value.quantity;
+    this.setRoles()
     this.spinner.show();
     await this.http.postPlan( this.formPlan.value )
       .then( w => {
-        this.successMessage = 'Successfull added';
+        this.isError = false;
+        this.message = 'Successful added';
         this.onNewItem.emit(w);
       })
       .catch( e => {
-        this.errorMessage = e.error.error || e.error.message || e.error;
+        this.isError = true;
+        this.message = e.error.error || e.error.message || e.error;
       })
     this.spinner.hide();
   }
 
-  onChangeRoles(){
+  setRoles(){
     this.formPlan.value.roles = this.roles.split(' ').join('').split(',');
   }
 

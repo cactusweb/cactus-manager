@@ -69,5 +69,17 @@ export class DropsViewComponent implements OnInit, OnChanges {
       })
   }
 
+  onNewItem( event ){
+    console.log( event );
+    // this.drops.push( event )
+    this.getDrops();
+    console.log(this.drops);
+  }
+
+  
+  trackByFn(index, item){
+    return item._id;
+  }
+
 
 }

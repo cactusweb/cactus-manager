@@ -34,7 +34,8 @@
             </div>
 
             <cdk-virtual-scroll-viewport class="custom-scroll" itemSize="65"> 
-                <div class="tr" *cdkVirtualFor="let drop of drops">
+                <div class="tr" *cdkVirtualFor="let drop of drops 
+                | filter : '' : true , let i = index, trackBy: trackByFn">
                     <div class="time"> 
                         <span>
                             {{ drop.time | date:'hh:mmaa' }}
@@ -63,5 +64,5 @@
 
 
 </div>
-    <app-drop-gen *ngIf="isNewDrop" (onClose)="closeDropGen()" [plans]="plans"></app-drop-gen>
+    <app-drop-gen *ngIf="isNewDrop" (onClose)="closeDropGen()" (onNewItem)="onNewItem($event)" [plans]="plans"></app-drop-gen>
 

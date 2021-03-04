@@ -12,3 +12,11 @@
         }
     }
 }
+
+.key{
+    display: grid;
+    grid-template-columns: auto 1fr 48px;
+    column-gap: 15px;
+    align-items: center;
+    text-align: center;
+}
