@@ -70,10 +70,10 @@ export class DropsViewComponent implements OnInit, OnChanges {
   }
 
   onNewItem( event ){
-    console.log( event );
-    // this.drops.push( event )
-    this.getDrops();
-    console.log(this.drops);
+    this.drops.push( event )
+    this.drops = this.drops.map(drop => ({
+      ...drop,
+    }))
   }
 
   

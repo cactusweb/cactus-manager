@@ -8,7 +8,9 @@
 
     <div class="dis-info">
         <div class="avatar">
-            <img src="{{license.bindTo?.avatar}}">
+            <ng-template [ngIf]="license.bindTo?.avatar">
+                <img src="{{license.bindTo?.avatar}}">
+            </ng-template>
         </div>
         <p>{{license.bindTo?.name}}</p>    
     </div>

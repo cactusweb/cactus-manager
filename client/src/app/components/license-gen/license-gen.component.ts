@@ -119,8 +119,8 @@ export class LicenseGenComponent implements OnInit {
 
     this.formLicense = new FormGroup({
       status: new FormControl({value: this.license?.status || 'renewal', disabled: false}, [Validators.required]),
-      price: new FormControl({value: this.license?.price || '', disabled: false}, [Validators.pattern('[0-9]*')]),
-      quantity: new FormControl({value: this.license?.quantity || '', disabled: false}, [ Validators.required ]),
+      price: new FormControl({value: this.license?.price || Number, disabled: false}),
+      quantity: new FormControl({value: this.license?.quantity || Number, disabled: false}, [ Validators.required ]),
       expiresIn: new FormControl({value: expiresIn || '', disabled: false}),
       unbindable: new FormControl({value: true, disabled: false}),
       roles: new FormControl({ value: [], disabled: false } ),

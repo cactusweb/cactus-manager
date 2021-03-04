@@ -107,7 +107,9 @@ export class LicensesComponent implements OnInit {
 
   onAddLicense(license){
     this.licenses.push(license); 
-    
+    this.licenses = this.licenses.map( license => ({
+      ... license,
+    }))
   }
 
 

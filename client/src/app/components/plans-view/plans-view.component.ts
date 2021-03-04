@@ -45,6 +45,7 @@ export class PlansViewComponent implements OnInit {
     await this.http.deletePlan( id )
       .then( w => {
         this.plans = this.plans.filter( ell => ell.id != id );
+        this.onChangeItems.emit( this.plans );
         this.spinner.hide();
       })
       .catch( e => {
@@ -57,5 +58,13 @@ export class PlansViewComponent implements OnInit {
   }
 
 
+  
+  onNewItem( event ){
+    this.plans.push( event )
+    this.plans = this.plans.map(plan => ({
+      ...plan,
+    }))
+    this.onChangeItems.emit( this.plans );
+  }
 
 }

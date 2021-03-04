@@ -28,5 +28,5 @@
 </div>
 
 <ng-template [ngIf]="isPlanGen">
-    <app-plan-gen (onClose)="isPlanGen = false" (onNewItem)="plans.push($event); this.onChangeItems.emit( this.plans );"></app-plan-gen>
+    <app-plan-gen (onClose)="isPlanGen = false" (onNewItem)="onNewItem($event)"></app-plan-gen>
 </ng-template>
