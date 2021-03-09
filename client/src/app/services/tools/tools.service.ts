@@ -15,13 +15,13 @@ export class ToolsService {
     return date ? date.getFullYear() + '-' + (date.getMonth() < 9 ? `0${date.getMonth()+1}` : date.getMonth() + 1) + '-' + (date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()) : '';
   }
 
-  copy(id){
+  copy( data ){
     const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
     selBox.style.left = '0';
     selBox.style.top = '0';
     selBox.style.opacity = '0';
-    selBox.value = document.getElementById(id).innerHTML;
+    selBox.value = data;
     document.body.appendChild(selBox);
     selBox.focus();
     selBox.select();

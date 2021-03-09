@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpService } from 'src/app/services/http/http.service';
+import { ToolsService } from 'src/app/services/tools/tools.service';
 
 @Component({
   selector: 'app-drop-tr',
@@ -15,7 +16,8 @@ export class DropTrComponent implements OnInit {
   constructor(
     private spinner: NgxSpinnerService,
     private http: HttpService,
-    private auth: AuthService
+    private auth: AuthService,
+    private aio: ToolsService
   ) { }
 
   ngOnInit(): void {
@@ -54,7 +56,7 @@ export class DropTrComponent implements OnInit {
 
   
   copyData( text ){
-    navigator.clipboard.writeText(text)
+    this.aio.copy( text )
   }
 
 }

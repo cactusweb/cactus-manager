@@ -45,8 +45,8 @@ export class LicenseGenComponent implements OnInit {
   }
 
 
-  copy(id){
-    this.aio.copy(id);
+  copy(key){
+    this.aio.copy(key);
   }
 
 

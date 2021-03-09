@@ -34,7 +34,7 @@ export class LicensesComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private seo: SeoService,
     private http: HttpService,
-    private tools: ToolsService,
+    private aio: ToolsService,
     private spinner: NgxSpinnerService,
     private auth: AuthService,
   ) { 
@@ -124,13 +124,8 @@ export class LicensesComponent implements OnInit {
   }
 
 
-  copyData( text ){
-    navigator.clipboard.writeText(text)
-    // .then(function() {
-    //   console.log('Async: Copying to clipboard was successful!');
-    // }, function(err) {
-    //   console.error('Async: Could not copy text: ', err);
-    // });
+  copyData( key ){
+      this.aio.copy(key);
   }
   
 
