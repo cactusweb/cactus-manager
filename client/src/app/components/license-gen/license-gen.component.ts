@@ -120,7 +120,7 @@ export class LicenseGenComponent implements OnInit {
       price: new FormControl({value: this.license?.price || Number, disabled: false}),
       quantity: new FormControl({value: this.license?.quantity || Number, disabled: false}, [ Validators.required ]),
       expiresIn: new FormControl({value: expiresIn || '', disabled: false}),
-      unbindable: new FormControl({value: true, disabled: false}),
+      unbindable: new FormControl({value: this.license?.unbindable || false, disabled: false}),
       roles: new FormControl({ value: [], disabled: false } ),
     })
 
@@ -136,6 +136,9 @@ export class LicenseGenComponent implements OnInit {
   }
 
 
+  setBoolType(){
+    this.formLicense.value.unbindable = this.formLicense.value.unbindable == 'true';
+  }
 
 
 

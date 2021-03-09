@@ -138,6 +138,11 @@ export class LicensesComponent implements OnInit {
     let expiresIn = new Date(license.expiresIn); 
     expiresIn.setMonth( expiresIn.getMonth()+1 );
     license.expiresIn = expiresIn;
+
+    license = {
+      expiresIn: license.expiresIn,
+      _id: license._id
+    }
     this.spinner.show();
     await this.http.putLicense( license )
       .then()

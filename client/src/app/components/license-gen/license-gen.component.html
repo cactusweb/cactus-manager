@@ -52,9 +52,9 @@
         
         <label class="select-label">
             Unbind:
-            <select formControlName="unbindable">
-                <option [value]="true">unbindable</option>
-                <option [value]="false">non-unbindable</option>
+            <select formControlName="unbindable" (ngModelChange)="setBoolType()">
+                <option value="true">unbindable</option>
+                <option value="false">non-unbindable</option>
             </select>
         </label>
 
