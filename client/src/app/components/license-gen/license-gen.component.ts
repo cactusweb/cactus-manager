@@ -34,9 +34,6 @@ export class LicenseGenComponent implements OnInit {
 
   ngOnInit() {
     this.generateForm()
-    // this.onEscape();
-    this.roles = this.license?.roles?.join( ', ' ) || '';
-    console.log( this.roles, this.license )
   }
 
   onEscape(){
@@ -77,7 +74,7 @@ export class LicenseGenComponent implements OnInit {
     this.setRoles()
     await this.http.postNewLicense(this.formLicense.value)
       .then( (w: any) => {
-        this.key = this.formLicense.value.key;
+        this.key = w.key;
         this.isError = false;
         this.message = 'Successful added';
         this.onAdd.emit(w);

@@ -44,7 +44,7 @@ export class PlansViewComponent implements OnInit {
     this.spinner.show();
     await this.http.deletePlan( id )
       .then( w => {
-        this.plans = this.plans.filter( ell => ell.id != id );
+        this.plans = this.plans.filter( ell => ell._id != id );
         this.onChangeItems.emit( this.plans );
         this.spinner.hide();
       })

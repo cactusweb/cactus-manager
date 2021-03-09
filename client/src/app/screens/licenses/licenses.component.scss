@@ -3,6 +3,9 @@
 svg.edit:hover path{
     fill: #78B0F8;
 }
+svg.renew:hover path{
+    stroke: #78B0F8;
+}
 
 svg.delete:hover path{
     fill: #F65151;
@@ -59,7 +62,7 @@ thead tr{
 tr{
     display: grid;
     // grid-auto-flow: column;
-    grid-template-columns: auto 12% 12% 10% 12% 11% 48px;
+    grid-template-columns: auto 12% 12% 10% 12% 11% 78px;
     column-gap: 5px;
     margin-right: 10px;
 }
@@ -85,7 +88,7 @@ td{
 
 td.action{
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 17px 17px 14px;
     column-gap: 15px;
     place-items: center;
     width: 46px;

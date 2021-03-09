@@ -38,6 +38,7 @@ import { DropsPlansComponent } from './screens/drops-plans/drops-plans.component
 import { DropsViewComponent } from './components/drops-view/drops-view.component';
 import { PlansViewComponent } from './components/plans-view/plans-view.component';
 import { PopupMessageComponent } from './components/popup-message/popup-message.component';
+import { LicenseTrComponent } from './components/license-tr/license-tr.component';
 
 
 
@@ -68,6 +69,7 @@ import { PopupMessageComponent } from './components/popup-message/popup-message.
     DropsViewComponent,
     PlansViewComponent,
     PopupMessageComponent,
+    LicenseTrComponent,
   ],
   imports: [
     BrowserModule,

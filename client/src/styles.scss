@@ -28,7 +28,7 @@ app-root > ngx-spinner > div{  backdrop-filter: blur(8px); }
 
 a{text-decoration: none;}
 a:focus{outline: auto;}
-button, select, a, input[type="checkbox"], input[type="radio"]{cursor: pointer; box-sizing: border-box; padding: 0;margin: 0;}
+button:not(:disabled), select, a, input[type="checkbox"], input[type="radio"]{cursor: pointer; box-sizing: border-box; padding: 0;margin: 0;}
 button, input{background: none; border: none; padding: 0px; box-sizing: border-box;}
 input[type="date"]{cursor: text; text-align: center;}
 input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calendar-picker-indicator{display: none; -webkit-appearance: none;}
@@ -193,18 +193,36 @@ input[type=number] {
 
 .outline-primary{
     border: 1px solid $primary-color;
+    &.rec-small-btn:hover:not(:disabled), &.rec-big-btn:hover:not(:disabled){
+        background-color: $primary-color;
+        svg path{
+            fill: white;
+        }
+    }
 }
 
 .outline-danger{
     border: 1px solid $danger-color;
+    &.rec-small-btn:hover:not(:disabled), &.rec-big-btn:hover:not(:disabled){
+        background-color: $danger-color;
+        svg path{
+            fill: white;
+        }
+    }
 }
 
 .bg-primary{
     background-color: $primary-color;
+    &.rec-small-btn:hover:not(:disabled), &.rec-big-btn:hover:not(:disabled){
+        background-color: #6999D9;
+    }
 }
 
 .bg-danger{
     background-color: $danger-color;
+    &.rec-small-btn:hover:not(:disabled), &.rec-big-btn:hover:not(:disabled){
+        background-color: #D96969;
+    }
 }
 
 

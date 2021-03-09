@@ -3,7 +3,9 @@
         <h3>Drops</h3>
         <button class="adding-btn"(click)="isNewDrop = true">
             <span class="plus">
-                <img src="/assets/img/icons/plus.svg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <path d="M0 5H10M5 0V10" stroke="#fff"/>
+                </svg>
             </span>
             <span class="text">
                 Add new drop
@@ -36,30 +38,12 @@
             <cdk-virtual-scroll-viewport class="custom-scroll" itemSize="65"> 
                 <div class="tr" *cdkVirtualFor="let drop of drops 
                 | filter : '' : true , let i = index, trackBy: trackByFn">
-                    <div class="time"> 
-                        <span>
-                            {{ drop.time | date:'hh:mmaa' }}
-                        </span>
-                        <span>
-                            {{ drop.time | date : 'dd.MM' }} 
-                        </span>
-                    </div>
-                    <div class="main">
-                        <div> {{ drop.password }} </div>
-                        <div> {{ drop.plan.price }} </div>
-                        <div> {{ drop.plan.name }} </div>
-                        <div> {{ drop.quantity }} </div>
-                        <div> {{ drop.status }} </div>
-                    </div>
-                    <div>
-                        <button class="rec-small-btn bg-danger" (click)="deleteDrop(drop.id)">d</button>
-                    </div>
-
+                    <app-drop-tr [drop]="drop" (onDeleteDrop)="onDeleteDrop($event)"></app-drop-tr>
                 </div>
             </cdk-virtual-scroll-viewport>
 
 
-
+ 
     </div>
 
 

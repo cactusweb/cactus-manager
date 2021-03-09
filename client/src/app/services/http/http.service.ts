@@ -7,7 +7,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class HttpService {
-  localUrl = environment.localApiUrl;
   url = environment.apiUrl;
   headers: HttpHeaders;
 
@@ -37,7 +36,7 @@ export class HttpService {
 
   async putLicense(data){
     this.setHeaders();
-    return await this.http.patch( `${this.localUrl}/licenses/${data._id}`, data, { headers: this.headers } ).toPromise();
+    return await this.http.put( `${this.url}/license/${data._id}`, data, { headers: this.headers } ).toPromise();
   }
 
   async getSelf(){
@@ -68,6 +67,11 @@ export class HttpService {
   async deleteDrop( id: string ){
     this.setHeaders();
     return await this.http.delete( `${this.url}/drop/${id}`, { headers: this.headers } ).toPromise();
+  }
+
+  async stopDrop( id: string ){
+    this.setHeaders();
+    return await this.http.get( `${this.url}/drop/${id}/stop`, { headers: this.headers } ).toPromise();
   }
 
 

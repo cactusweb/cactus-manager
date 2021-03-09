@@ -71,11 +71,11 @@ export class LicensesComponent implements OnInit {
       })
   }
 
-  async deleteLicense(id: string){
+  async deleteLicense(key: string){
     this.spinner.show()
-    await this.http.deleteLicense(id)
+    await this.http.deleteLicense(key)
       .then( async() => { 
-          this.licenses = this.licenses.filter( ell => ell._id !== id )
+          this.licenses = this.licenses.filter( ell => ell.key !== key )
           
           this.spinner.hide()
        })
@@ -120,7 +120,7 @@ export class LicensesComponent implements OnInit {
 
   
   trackByFn(index, item){
-    return item._id;
+    return item.key;
   }
 
 
@@ -131,5 +131,17 @@ export class LicensesComponent implements OnInit {
     // }, function(err) {
     //   console.error('Async: Could not copy text: ', err);
     // });
+  }
+  
+
+  async renewalNow( license ){
+    let expiresIn = new Date(license.expiresIn); 
+    expiresIn.setMonth( expiresIn.getMonth()+1 );
+    license.expiresIn = expiresIn;
+    this.spinner.show();
+    await this.http.putLicense( license )
+      .then()
+      .catch()
+    this.spinner.hide();
   }
 }

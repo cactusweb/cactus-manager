@@ -33,7 +33,7 @@ export class AccountComponent implements OnInit {
         .then( (w: any = {}) =>{
           localStorage.setItem('name', w.name);
           localStorage.setItem('email', w.email);
-          localStorage.setItem( 'ownerId', w.id );
+          localStorage.setItem( 'ownerId', w._id );
           localStorage.setItem( 'ownerAvatar', w.avatar )
         })
         .catch( e => {

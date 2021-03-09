@@ -38,27 +38,16 @@ export class DropsViewComponent implements OnInit, OnChanges {
     this.isNewDrop = false;
   }
 
+  onDeleteDrop(id){
+    this.drops = this.drops.filter( ell => ell._id != id );
+  }
+
 
   async getDrops(){
     this.spinner.show();
     await this.http.getDrops()
       .then( ( w: any ) => {
         this.drops = w;
-        this.spinner.hide();
-      })
-      .catch( e => {
-        if ( e.status == 401 ){
-          this.auth.logout();
-          this.spinner.hide();
-        }
-      })
-  }
-
-  async deleteDrop( id: string ){
-    this.spinner.show();
-    await this.http.deleteDrop( id )
-      .then( w => {
-        this.drops = this.drops.filter( ell => ell.id != id );
         this.spinner.hide();
       })
       .catch( e => {

@@ -22,19 +22,19 @@
         
         <label>
             Stock:
-            <input type="text" placeholder="10" formControlName="quantity">
+            <input type="number" placeholder="10" formControlName="quantity">
         </label>
         
         <label>
             Price:
-            <input type="text" placeholder="4000" formControlName="price">
+            <input type="number" placeholder="4000" formControlName="price">
         </label>
         
         <label class="select-label">
             Plan:
             <select formControlName="plan">
                 <ng-template ngFor let-plan [ngForOf]="plans">
-                    <option value="{{plan.id}}"> {{ plan.name }} </option>
+                    <option value="{{plan._id}}"> {{ plan.name }} </option>
                 </ng-template>
             </select>
         </label>
