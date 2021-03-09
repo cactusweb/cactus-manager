@@ -51,7 +51,7 @@ export class LicenseGenComponent implements OnInit {
 
 
   async newLicense(){
-    this.formLicense.value.expiresIn = this.formLicense.value.status == 'lifetime' ? new Date('2222-02-22') : this.formLicense.value.expiresIn;  
+    this.formLicense.value.expiresIn = this.formLicense.value.status == 'lifetime' ? null : this.formLicense.value.expiresIn;  
 
     this.formLicense.value.quantity = this.infinityActivating ? 0 : this.formLicense.value.quantity;
 
