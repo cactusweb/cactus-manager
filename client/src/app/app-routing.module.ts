@@ -7,11 +7,15 @@ import { LicensesComponent } from './screens/licenses/licenses.component';
 import { ApiDocComponent } from './components/api-doc/api-doc.component';
 import { SignupComponent } from './screens/signup/signup.component';
 import { LoginComponent } from './screens/login/login.component';
+import { ProfileComponent } from './screens/profile/profile.component';
+import { NotFoundComponent } from './screens/not-found/not-found.component';
+import { DropsPlansComponent } from './screens/drops-plans/drops-plans.component';
 
 
 const routes: Routes = [
   
   //auth
+  { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent, data: { title: 'Login - CactusManager' }, canActivate: [ IsAuthGuard ] },
   { path: 'sign-up', component: SignupComponent, data: { title: 'SignUp - CactusManager' }, canActivate: [ IsAuthGuard ] },
 
@@ -19,9 +23,12 @@ const routes: Routes = [
   //owner
   { path: 'account', component: AccountComponent, canActivate: [ AuthGuard ], children: [
 
-    { path: 'users', component: LicensesComponent, data: { pageName:"Keys", title: 'Keys manage - CactusManager'}, },
+    { path: '', redirectTo: 'licenses', pathMatch: 'full'},
+    { path: 'licenses', component: LicensesComponent, data: { pageName:"Licenses", title: 'Licenses manage - CactusManager'}, },
+    { path: 'profile', component: ProfileComponent, data: { pageName:"Licenses", title: 'Profile - CactusManager'}, },
+    { path: 'drops', component: DropsPlansComponent, data: { pageName:"Licenses", title: 'Drops - CactusManager'}, },
     { path: 'api', component: ApiDocComponent, data: { pageName: 'API', title: 'API integration - CactusManager' } },
-    { path: '**', redirectTo: 'users' }
+    { path: '**', component: NotFoundComponent, data: { showLogo: false, redirectTo: '/account/licenses', title: '404 - CactusManager' } }
 
   ]},
 
@@ -31,7 +38,9 @@ const routes: Routes = [
   //   { path: '**', redirectTo: 'users' }
 
   // ] },
-  { path: '**', redirectTo: '/login' }
+  
+  { path: '**', component: NotFoundComponent, data: { showLogo: true, redirectTo: '/login', title: '404 - CactusManager' } },
+  // { path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({

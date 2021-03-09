@@ -8,7 +8,7 @@ import { SeoService } from '../../services/seo/seo.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.spinner.hide();
     this.loginForm = new FormGroup({
       email: new FormControl({ value: '', disabled: false }, [Validators.required, Validators.email]),
       password: new FormControl({ value: '', disabled: false }, [Validators.required])
@@ -44,7 +45,7 @@ export class LoginComponent implements OnInit {
         })
         .catch(e => {
           console.log(e)
-          this.errorMessage = e.error.message;
+          this.errorMessage = e.error.message || e.error.error;
           this.spinner.hide();
         })
   }

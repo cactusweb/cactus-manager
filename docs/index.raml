@@ -36,11 +36,64 @@ types:
     properties:
       _id: string
       name: string
+      avatar: string
+      description: string
+      type: string
+      price: string
+      renewal: number[]
+      region: string
+      links: string[]
       email: string
       expiresIn: string
       createdAt: string
       updatedAt: string
-    example: !include User.sample
+  Drop:
+    type: object
+    properties:
+      quantity: number
+      password: string
+      price: number
+      time: string
+      plan: string
+  RDrop:
+    type: object
+    properties:
+      _id: string
+      quantity: number
+      password: string
+      price: number
+      time: string
+      status: string
+      owner: string
+      plan: string
+  Plan:
+    type: object
+    properties: 
+      name: string
+      quantity: number
+      unbindable: boolean
+      status: string
+      expiresIn:
+        required: false
+        type: datetime
+      renewPrice:
+        required: false
+        type: number
+      roles: string[]
+  RPlan:
+    type: object
+    properties: 
+      name: string
+      quantity: number
+      unbindable: boolean
+      status: string
+      expiresIn:
+        required: false
+        type: datetime
+      renewPrice:
+        required: false
+        type: number
+      roles: string[]
 
 /licenses:
   get:
@@ -203,3 +256,137 @@ types:
         200:
           body:
             type: User
+  patch:
+    headers:
+      authorization:
+        type: string
+      body:
+        type: User
+/drop:
+  post:
+    headers:
+        authhorization:
+          type: string
+    body: 
+      type: Drop
+    responses: 
+      201:
+        body:
+          type: RDrop
+      401:
+        body:
+          properties:
+            error: string
+      500:
+        body:
+          properties:
+            error: string
+  get:
+    headers:
+        authhorization:
+          type: string
+    responses: 
+      200:
+        body:
+          type: RDrop[]
+      401:
+        body:
+          properties:
+            error: string
+      500:
+        body:
+          properties:
+            error: string
+  /{id}:
+    get:
+      headers:
+        authhorization:
+          type: string
+      responses: 
+        200:
+          body:
+            type: RDrop
+        400:
+          body:
+            properties:
+              error: string
+        401:
+          body:
+            properties:
+              error: string
+        500:
+          body:
+            properties:
+              error: string
+  /stop/{id}:
+    get:
+      headers:
+        authhorization:
+          type: string
+      responses: 
+        200:
+          body:
+            type: RDrop
+        400:
+          body:
+            properties:
+              error: string
+        401:
+          body:
+            properties:
+              error: string
+        500:
+          body:
+            properties:
+              error: string
+/plan:
+  post:
+    headers:
+        authhorization:
+          type: string
+    body: 
+      type: Plan
+    responses: 
+      201:
+        body:
+          type: RPlan
+      401:
+        body:
+          properties:
+            error: string
+      500:
+        body:
+          properties:
+            error: string
+  get:
+      headers:
+        authhorization:
+          type: string
+      responses: 
+        200:
+          body:
+            type: RPlan[]
+        401:
+          body:
+            properties:
+              error: string
+        500:
+          body:
+            properties:
+              error: string
+/uploads:
+  /{dirname}:
+    post:
+      headers:
+        Authorization: string
+      body:
+        multipart/form-data:
+          properties:
+            file: file
+      responses:
+        201:
+          body:
+            properties:
+              filePath: string
+
+        

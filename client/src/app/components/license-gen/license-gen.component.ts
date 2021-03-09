@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpService } from 'src/app/services/http/http.service';
@@ -8,7 +8,7 @@ import { License } from 'src/app/interfaces/license'
 @Component({
   selector: 'app-license-gen',
   templateUrl: './license-gen.component.html',
-  styleUrls: ['./license-gen.component.css']
+  styleUrls: ['./license-gen.component.scss']
 })
 export class LicenseGenComponent implements OnInit {
 
@@ -16,13 +16,15 @@ export class LicenseGenComponent implements OnInit {
   @Output() onAdd = new EventEmitter<{}>();
   @Output() onEdit = new EventEmitter<{}>();
 
-  @Input() license: License;
+  @Input() license: any;
   
   infinityActivating: boolean = false;
+  roles: string = '';
+
   key: string = '';
   formLicense: FormGroup; 
-  errorMessage: string = '';
-  successMessage: string = '';
+  isError: boolean = true;
+  message: string = '';
 
   constructor(
     private aio: ToolsService,
@@ -34,65 +36,68 @@ export class LicenseGenComponent implements OnInit {
     this.generateForm()
   }
 
+  onEscape(){
+    let listener = document.addEventListener( 'keyup', e => {
+      console.log(e)
+      document.removeEventListener( 'keyup', () => { } )
+      if ( e.key == 'Escape' ) this.onClose.emit();
+    })
+  }
 
 
   copy(id){
     this.aio.copy(id);
   }
 
-  close(){
-    this.onClose.emit();
-  }
-
-
 
   async newLicense(){
     this.formLicense.value.expiresIn = this.formLicense.value.status == 'lifetime' ? new Date('2222-02-22') : this.formLicense.value.expiresIn;  
-    
-    if ( !this.license )
-      this.formLicense.value.key = this.aio.generateKey();
 
     this.formLicense.value.quantity = this.infinityActivating ? 0 : this.formLicense.value.quantity;
 
+    console.log(this.formLicense);
     if ( this.formLicense.valid && !this.license ){
       await this.postLicense();
     }else 
     if ( this.formLicense.valid && this.license ){
       await this.putLicense();
     }
-    else this.errorMessage = 'Fill in all fields';
+    else{
+      this.isError = true;
+      this.message = 'Incorrect filling';
+    } 
 
   }
 
   async postLicense(){
-    this.errorMessage = '';
-    this.successMessage = '';
+    this.message = '';
+    this.setRoles()
     await this.http.postNewLicense(this.formLicense.value)
       .then( (w: any) => {
-        this.key = this.formLicense.value.key;
-        this.showMessage( 'License added', false )
+        this.key = w.key;
+        this.isError = false;
+        this.message = 'Successful added';
         this.onAdd.emit(w);
       })
       .catch( e => {
-        if (e.status == 401)
-          this.auth.logout()
-        this.showMessage(e.error.message, true);
+        this.isError = true;
+        this.message = e.error.error || e.error.message || e.error;
       })
   }
 
   async putLicense(){
-    this.errorMessage = '';
-    this.successMessage = '';
+    this.message = '';
+    this.setRoles()
     
     await this.http.putLicense(this.formLicense.value)
       .then( async(w) => { 
-        this.showMessage( 'License edit', false )
+        this.isError = false;
+        this.message = 'Successful edit';
         this.onEdit.emit(w);
       })
       .catch( e => {
-        if (e.status == 401)
-          this.auth.logout()
-        this.showMessage(e.error.message, true);
+        this.isError = true;
+        this.message = e.error.error || e.error.message || e.error;
       })
 
   }
@@ -111,11 +116,12 @@ export class LicenseGenComponent implements OnInit {
     }
 
     this.formLicense = new FormGroup({
-      status: new FormControl({value: this.license?.status || 'lifetime', disabled: false}, [Validators.required]),
-      user: new FormControl({value: this.license?.user || '', disabled: false}, [Validators.required]),
-      quantity: new FormControl({value: this.license?.quantity || '', disabled: false}, [ Validators.required ]),
+      status: new FormControl({value: this.license?.status || 'renewal', disabled: false}, [Validators.required]),
+      price: new FormControl({value: this.license?.price || Number, disabled: false}),
+      quantity: new FormControl({value: this.license?.quantity || Number, disabled: false}, [ Validators.required ]),
       expiresIn: new FormControl({value: expiresIn || '', disabled: false}),
-      key: new FormControl({ value: this.license?.key || '', disabled: false }),
+      unbindable: new FormControl({value: this.license?.unbindable || false, disabled: false}),
+      roles: new FormControl({ value: [], disabled: false } ),
     })
 
     if ( this.license ){
@@ -124,23 +130,16 @@ export class LicenseGenComponent implements OnInit {
     }
   }
 
-
-
-  showMessage( message: string, error: boolean ){
-    if (!error){
-      this.successMessage = message;
-      setTimeout(() => {
-        this.successMessage = '';
-      }, 3000);
-      return;
-    }
-
-    this.errorMessage = message;
-    setTimeout(() => {
-      this.successMessage = '';
-    }, 3000);
-
+  
+  setRoles(){
+    this.formLicense.value.roles = this.roles.split(' ').join('').split(',');
   }
+
+
+  setBoolType(){
+    this.formLicense.value.unbindable = this.formLicense.value.unbindable == 'true';
+  }
+
 
 
 }

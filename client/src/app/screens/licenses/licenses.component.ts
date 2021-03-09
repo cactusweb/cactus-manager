@@ -11,13 +11,13 @@ import { License } from 'src/app/interfaces/license';
 @Component({
   selector: 'app-licenses',
   templateUrl: './licenses.component.html',
-  styleUrls: ['./licenses.component.css']
+  styleUrls: ['./licenses.component.scss']
 })
 export class LicensesComponent implements OnInit {
   newKey: boolean = false;
   licenses: any = [];
   editingLicense: License;
-  formEditLicense: FormGroup;
+  infoLicense: License;
 
 
   filterParams = [
@@ -45,19 +45,19 @@ export class LicensesComponent implements OnInit {
 
   async ngOnInit(){
     await this.getLicenses();
-    this.givePaddingScrollDiv();
   }
 
-  onChangeNewKey(isOpen: boolean){
-    this.newKey = isOpen || false;
+  onClose(){
+    this.newKey = false;
     this.editingLicense = undefined;
+    this.infoLicense = undefined;
   }
 
   async getLicenses(){
     this.spinner.show()
     await this.http.getLicenses()
       .then( (w: any = [{}]) => {
-        this.makeValidLicensesArr(w);
+        this.licenses = w;
         this.spinner.hide()  
       })
       .catch( e => {
@@ -71,12 +71,12 @@ export class LicensesComponent implements OnInit {
       })
   }
 
-  async deleteLicense(id: string){
+  async deleteLicense(key: string){
     this.spinner.show()
-    await this.http.deleteLicense(id)
+    await this.http.deleteLicense(key)
       .then( async() => { 
-          this.licenses = this.licenses.filter( ell => ell._id !== id )
-          this.makeValidLicensesArr(this.licenses);
+          this.licenses = this.licenses.filter( ell => ell.key !== key )
+          
           this.spinner.hide()
        })
       .catch( e => { 
@@ -93,7 +93,7 @@ export class LicensesComponent implements OnInit {
         this.licenses[i] = license 
         break;
       }
-    this.makeValidLicensesArr(this.licenses);
+    
   }
 
 
@@ -107,18 +107,12 @@ export class LicensesComponent implements OnInit {
 
   onAddLicense(license){
     this.licenses.push(license); 
-    this.makeValidLicensesArr(this.licenses);
-  }
-
-
-  makeValidLicensesArr(arr){
-    this.licenses = arr.map(license => ({
-      ...license,
-      outputCreatedAt: this.tools.outputDate(new Date(license.createdAt)),
-      outputExpiresIn: this.tools.outputDate(new Date(license.expiresIn || '')) || '-' ,
-      expiresIn: license.expiresIn || ''
+    this.licenses = this.licenses.map( license => ({
+      ... license,
     }))
   }
+
+
 
   onFilterChange(){
     this.filterChange = !this.filterChange;
@@ -126,10 +120,33 @@ export class LicensesComponent implements OnInit {
 
   
   trackByFn(index, item){
-    return item._id;
+    return item.key;
   }
 
-  givePaddingScrollDiv(){
-    document.querySelector('cdk-virtual-scroll-viewport > div')['style'].padding = '0px 30px'
+
+  copyData( text ){
+    navigator.clipboard.writeText(text)
+    // .then(function() {
+    //   console.log('Async: Copying to clipboard was successful!');
+    // }, function(err) {
+    //   console.error('Async: Could not copy text: ', err);
+    // });
+  }
+  
+
+  async renewalNow( license ){
+    let expiresIn = new Date(license.expiresIn); 
+    expiresIn.setMonth( expiresIn.getMonth()+1 );
+    license.expiresIn = expiresIn;
+
+    license = {
+      expiresIn: license.expiresIn,
+      _id: license._id
+    }
+    this.spinner.show();
+    await this.http.putLicense( license )
+      .then()
+      .catch()
+    this.spinner.hide();
   }
 }

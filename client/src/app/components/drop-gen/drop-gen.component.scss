@@ -10,7 +10,7 @@ form.new-key{
     background-color: white;
     border-radius: 15px;
     border: 1px solid #78AFF8;
-    padding: 10px 20px;
+    padding: 30px 40px;
 
     z-index: 1;
     min-width: 300px;
@@ -56,6 +56,11 @@ h4{
     column-gap: 10px !important;
     align-items: center;
     justify-items: start;
+
+    &:last-child{
+        grid-template-columns: auto;
+        justify-items: stretch;
+    }
 }
 .activate-quantity>input{width: 50px;}
 .activate-quantity .input label{transform: rotate(90deg);}
@@ -63,8 +68,7 @@ h4{
 
 .data button{
     justify-self: start;
-    width: 138px;
-    height: 34px;
+    height: 40px;
     border-radius: 10px;
     font-size: 14px;
     line-height: 16px;
@@ -93,9 +97,6 @@ span.key{
     place-items: center;
 }
 
-input[type="text"], input[type="date"]{
-    border-bottom: 1px solid #3d3d3d;
-}
 button:active{
     background-color: #78AFF8;
 }
@@ -110,4 +111,18 @@ span.error, span.success{
 
 span.success{
     color: green;
+}
+
+
+input{
+    text-align: center;
+    width: 100%;
+    &[type="radio"], &[type="checkbox"]{
+        width: auto;
+    }
+
+    
+    &[type="text"], &[type="date"], &[type="datetime-local"]{
+        border-bottom: 1px solid #3d3d3d;
+    }
 }

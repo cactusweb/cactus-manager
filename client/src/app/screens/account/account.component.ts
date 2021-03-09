@@ -6,7 +6,7 @@ import { HttpService } from 'src/app/services/http/http.service';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
-  styleUrls: ['./account.component.css']
+  styleUrls: ['./account.component.scss']
 })
 export class AccountComponent implements OnInit {
   firstLoad: boolean = true;
@@ -22,6 +22,11 @@ export class AccountComponent implements OnInit {
   }
 
   async ngOnInit() {
+    await this.getSetAccountData();
+    this.firstLoad = false;
+  }
+
+  async getSetAccountData(){
     this.spinner.show();
     if (localStorage.getItem('accessToken'))
       await this.http.getSelf()
@@ -29,6 +34,7 @@ export class AccountComponent implements OnInit {
           localStorage.setItem('name', w.name);
           localStorage.setItem('email', w.email);
           localStorage.setItem( 'ownerId', w._id );
+          localStorage.setItem( 'ownerAvatar', w.avatar )
         })
         .catch( e => {
           if ( e.status == 401 ){
@@ -37,8 +43,6 @@ export class AccountComponent implements OnInit {
           }
         })
     this.spinner.hide();
-    this.firstLoad = false;
-     
   }
 
 }

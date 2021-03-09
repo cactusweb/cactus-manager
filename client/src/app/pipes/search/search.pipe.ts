@@ -12,7 +12,7 @@ export class SearchPipe implements PipeTransform {
       let filter = arr.filter( ell => {
         let isInclude = false;
         searchKeys.forEach(param => {
-          if ( ell && ell[param].toLowerCase().toString().indexOf(searchParam.toLowerCase()) === 0){
+          if ( ell && ell[param]?.toLowerCase().toString().indexOf(searchParam?.toLowerCase()) === 0){
             isInclude = true;
             return false;
           }

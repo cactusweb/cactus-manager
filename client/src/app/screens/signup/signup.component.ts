@@ -8,7 +8,7 @@ import { SeoService } from 'src/app/services/seo/seo.service';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
   signUpForm: FormGroup;
@@ -46,7 +46,7 @@ export class SignupComponent implements OnInit {
       })
       .catch(e => {
         console.log(e)
-        this.errorMessage = e.error.message;
+        this.errorMessage = e.error.message || e.error.error;
         this.spinner.hide();
       })
   }

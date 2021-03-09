@@ -1,0 +1,16 @@
+<div class="content">
+    <app-drops-view [plans]="plans"></app-drops-view>
+    <app-plans-view (onChangeItems)="plans = $event"></app-plans-view>
+</div>
+
+
+
+
+
+
+<ngx-spinner
+type="ball-clip-rotate"
+size="large"
+zIndex='1'
+[fullScreen]="false"
+></ngx-spinner>

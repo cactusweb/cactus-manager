@@ -1,58 +1,81 @@
-<form [formGroup]="formLicense" class="new-key">
-    <span class="head">
-        <h3 *ngIf="!license">New key</h3>
-        <h3 *ngIf="license">Edit key</h3>
-        <img src="/assets/img/icons/plus.svg" alt="close" class="pointer" (click)="close()">
-    </span>
+<div class="artboard" (click)="onClose.emit();"></div>
+<div class="popup">
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none" (click)="onClose.emit()" class="pointer" id="closePopup">
+        <path d="M1 13L13 1M1 1L13 13" stroke="#3D3D3D" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <div *ngIf="license; then edit else new"></div>
+    <ng-template #new>
+        <h3> New key </h3>
+    </ng-template>
+
+    <ng-template #edit>
+        <h3> Edit key </h3>
+    </ng-template>
     
-    <div class="data">
+    <form class="data"  [formGroup]="formLicense">
 
-        <div class="type">
-            <h4>Type:</h4>
-            <div class="checkbox-1-2">
-                <input type="radio" name="status" id="newRenewal" value="renewal" formControlName="status">
-                <label for="newRenewal" class="pointer">Renewal</label>
-            </div>
-            <div class="checkbox-1-2">
-                <input type="radio" name="status" id="newLifetime" value="lifetime" formControlName="status">
-                <label for="newLifetime" class="pointer">Lifetime</label>
-            </div>
-        </div>
+        <label class="select-label">
+            Type:
+            <select formControlName="status">
+                <option value="renewal">renewal</option>
+                <option value="lifetime">lifetime</option>
+            </select>
+        </label>
 
-        <div class="renew-date" *ngIf="formLicense.value.status == 'renewal'">
-            <h4>Renewal date:</h4>
-            <input type="date" name="date" id="date" formControlName="expiresIn">
-        </div>
+        <ng-template [ngIf]="formLicense.value.status == 'renewal'">
+            <label>
+                Amount: 
+                <input type="number" placeholder="1000" formControlName="price">
+            </label>
+    
+            <label class="renew-date" *ngIf="formLicense.value.status == 'renewal'">
+                Renewal:
+                <input type="date" name="date" id="date" formControlName="expiresIn">
+            </label>
 
-        <div class="nickname">
-            <h4>Nickname:</h4>
-            <input type="text" id="nickname" autocomplete="off" placeholder="Nickname#8888" formControlName="user">
-        </div>
+        </ng-template>
 
-        <div class="activate-quantity">
-            <h4>Activations quantity:</h4>
-            <input type="text" placeholder="Number" formControlName="quantity">
+
+        <label class="activations">
+            Activations:
+            <input type="number" placeholder="Number" formControlName="quantity">
             <div class="input">
                 <input type="checkbox" [(ngModel)]="infinityActivating" [ngModelOptions]="{standalone: true}" (ngModelChange)="onInfinity()" id="infinity"> <label for="infinity" class="pointer">8</label>
             </div>
-        </div>
+        </label>
 
-        <div class="relative">
-            <button class="standart-btn border-btn" (click)="newLicense()" *ngIf="!license">Generate</button>
-            <button class="standart-btn border-btn" (click)="newLicense()" *ngIf="license">Edit</button>
-            <span class="error" *ngIf="errorMessage"> {{ errorMessage }} </span>
-            <span class="success" *ngIf="successMessage"> {{ successMessage }} </span>
-        </div>
+        <label *ngIf="!license">
+            Roles: 
+            <input type="text" placeholder="id1, id2" [(ngModel)]="roles" [ngModelOptions]="{standalone: true}">
+        </label>
+        
+        <label class="select-label">
+            Unbind:
+            <select formControlName="unbindable" (ngModelChange)="setBoolType()">
+                <option value="true">unbindable</option>
+                <option value="false">non-unbindable</option>
+            </select>
+        </label>
 
-    </div>
+        <div *ngIf="license; then editBtn else newBtn"></div>
+        <ng-template #newBtn>
+            <button (click)="newLicense()">Generate</button>
+        </ng-template>
+        <ng-template #editBtn>
+            <button (click)="newLicense()">Edit</button>
+        </ng-template>
+
+    </form>
 
     <div class="key">
         <h4>Key:</h4>
-        <span class="key" id="key">{{key}}</span>
+        <span id="key">{{key}}</span>
         <button class="standart-btn border-btn" (click)="copy('key')">
             <img src="/assets/img/icons/copy.svg" alt="copy">
         </button>
     </div>
 
-</form>
-<div class="artboard blur dark" (click)="close()"></div>
+    <app-popup-message [message]="message" [isError]="isError"></app-popup-message>
+
+</div>
