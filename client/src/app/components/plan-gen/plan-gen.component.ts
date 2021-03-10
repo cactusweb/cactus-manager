@@ -33,7 +33,7 @@ export class PlanGenComponent implements OnInit {
     this.formPlan = new FormGroup({
       name: new FormControl( { value: '', disabled: disabled }, [ Validators.required ] ),
       quantity: new FormControl( { value: '', disabled: disabled }, [ Validators.required, Validators.pattern('[0-9]*') ] ),
-      unbindable: new FormControl( { value: true, disabled: disabled }, [ Validators.required ] ),
+      unbindable: new FormControl( { value: false, disabled: disabled }, [ Validators.required ] ),
       status: new FormControl( { value: 'renewal', disabled: disabled }, [ Validators.required ] ),
       price: new FormControl( { value: '', disabled: disabled }, [ Validators.required, Validators.pattern('[0-9]*') ] ),
       roles: new FormControl( { value: [], disabled: disabled }, [ Validators.required ] )
@@ -65,6 +65,10 @@ export class PlanGenComponent implements OnInit {
 
   setRoles(){
     this.formPlan.value.roles = this.roles.split(' ').join('').split(',');
+  }
+  
+  setBoolType(){
+    this.formPlan.value.unbindable = this.formPlan.value.unbindable == 'true';
   }
 
 }
