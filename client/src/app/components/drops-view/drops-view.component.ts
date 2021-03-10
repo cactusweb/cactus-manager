@@ -47,7 +47,7 @@ export class DropsViewComponent implements OnInit, OnChanges {
     this.spinner.show();
     await this.http.getDrops()
       .then( ( w: any ) => {
-        this.drops = w;
+        this.drops = w?.reverse();
         this.spinner.hide();
       })
       .catch( e => {
@@ -59,7 +59,7 @@ export class DropsViewComponent implements OnInit, OnChanges {
   }
 
   onNewItem( event ){
-    this.drops.push( event )
+    this.drops.unshift( event )
     this.drops = this.drops.map(drop => ({
       ...drop,
     }))
