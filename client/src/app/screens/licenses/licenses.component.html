@@ -24,6 +24,14 @@
                 </div>
             </div>
 
+            <select class="sort" [(ngModel)]="sortParam" (ngModelChange)="onSortChange()">
+                <option value="" selected>Sort</option>
+                <option value="expiresIn-false-date">Renewal up</option>
+                <option value="expiresIn-true-date">Renewal down</option>
+                <option value="bindTo-false-string-name">Nickname up</option>
+                <option value="bindTo-true-string-name">Nickname down</option>
+            </select>
+            
             <div class="search">
                 <input type="text" placeholder="Search" name="search" id="search" class="search-input" autocomplete="off" [(ngModel)]="searchParam" >
                 <img src="/assets/img/icons/search.svg">
@@ -55,6 +63,7 @@
                     <tr *cdkVirtualFor="let license of licenses
                         | filter : filterParams : filterChange 
                         | search : searchKeys : searchParam
+                        | sort : sortParam
                         , let i = index, trackBy: trackByFn">
                         <td> {{ license.bindTo?.name }} </td>
                         <td class="key"> 

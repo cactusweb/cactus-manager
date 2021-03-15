@@ -26,6 +26,8 @@ export class LicensesComponent implements OnInit {
   ]
   filterChange: boolean = false;
 
+  sortParam: string = '';
+
   searchParam: string = '';
   searchKeys = ['key', 'user', 'outputExpiresIn', 'createdAt']
 
@@ -58,6 +60,9 @@ export class LicensesComponent implements OnInit {
     await this.http.getLicenses()
       .then( (w: any = [{}]) => {
         this.licenses = w;
+        this.licenses = this.licenses.map( license => ({
+          ... license,
+        }))
         this.spinner.hide()  
       })
       .catch( e => {
@@ -116,6 +121,14 @@ export class LicensesComponent implements OnInit {
 
   onFilterChange(){
     this.filterChange = !this.filterChange;
+  }
+
+  onSortChange(){
+    setTimeout(() => {
+      this.licenses = this.licenses.map( license => ({
+        ... license,
+      }))
+    }, 200);
   }
 
   

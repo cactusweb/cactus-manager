@@ -252,25 +252,6 @@ span.input-error{
 
 div.checkbox-1-2{display: grid; grid-template-columns: auto 1fr; column-gap: 5px; align-items: center;}
 
-.search{
-    position: relative; 
-    display: grid; 
-    align-items: center;
-
-    >input{
-        border: 1px solid #3D3D3D; 
-        border-radius: 12px; 
-        padding: 0px 25px 0px 10px; 
-        height: 30px; width: 160px; 
-        box-sizing: border-box;
-    }
-
-    >img{
-        position: absolute;
-        right: 10px;
-    }
-
-}
 
 h1{font-size: 48px; font-weight: 600; line-height: 76px;}
 span.h1-underline{display: grid; text-align: center;}
@@ -295,7 +276,7 @@ h2.page-name{font-size: 36px; font-weight: 600; line-height: 37px;}
         display: grid;
         padding: 0px 30px;
         grid-auto-flow: column;
-        column-gap: 50px;
+        column-gap: 20px;
     }
 }
 

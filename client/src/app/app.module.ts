@@ -39,6 +39,7 @@ import { DropsViewComponent } from './components/drops-view/drops-view.component
 import { PlansViewComponent } from './components/plans-view/plans-view.component';
 import { PopupMessageComponent } from './components/popup-message/popup-message.component';
 import { LicenseTrComponent } from './components/license-tr/license-tr.component';
+import { SortPipe } from './pipes/sort/sort.pipe';
 
 
 
@@ -70,6 +71,7 @@ import { LicenseTrComponent } from './components/license-tr/license-tr.component
     PlansViewComponent,
     PopupMessageComponent,
     LicenseTrComponent,
+    SortPipe,
   ],
   imports: [
     BrowserModule,
