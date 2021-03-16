@@ -64,7 +64,7 @@ export class PlanGenComponent implements OnInit {
   }
 
   setRoles(){
-    this.formPlan.value.roles = this.roles.split(' ').join('').split(',');
+    this.formPlan.value.roles = this.roles.trim() ? this.roles.split(' ').join('').split(',') : [];
   }
   
   setBoolType(){
