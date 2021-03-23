@@ -6,7 +6,15 @@
         <path d="M1 13L13 1M1 1L13 13" stroke="#3D3D3D" stroke-width="2" stroke-linecap="round"/>
     </svg>
 
-    <h3>New plan</h3>
+    <h3>
+        <div *ngIf="viewingPlan; then planName else newPlan"></div>
+        <ng-template #planName>
+            {{ viewingPlan.name }}
+        </ng-template>
+        <ng-template #newPlan>
+            New plan
+        </ng-template>
+    </h3>
 
     <form [formGroup]="formPlan" (ngSubmit)="onAddPlan()">
 
@@ -24,7 +32,7 @@
         </label>
 
         <label *ngIf="formPlan.value.status == 'renewal'">
-            Amount:
+            Price:
             <input type="number" placeholder="1000" formControlName="price" >
         </label>
 
@@ -49,7 +57,7 @@
             </select>
         </label>
 
-        <button>Create</button>
+        <button *ngIf="!viewingPlan">Create</button>
 
 
         <app-popup-message [message]="message" [isError]="isError"></app-popup-message>

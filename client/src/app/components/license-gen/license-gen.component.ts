@@ -132,7 +132,7 @@ export class LicenseGenComponent implements OnInit {
 
   
   setRoles(){
-    this.formLicense.value.roles = this.roles.split(' ').join('').split(',');
+    this.formLicense.value.roles = this.roles.trim() ? this.roles.split(' ').join('').split(',') : [];
   }
 
 

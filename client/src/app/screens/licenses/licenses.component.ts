@@ -29,7 +29,7 @@ export class LicensesComponent implements OnInit {
   sortParam: string = '';
 
   searchParam: string = '';
-  searchKeys = ['key', 'user', 'outputExpiresIn', 'createdAt']
+  searchKeys = ['key', { par1: 'bindTo', par2: 'name' }, 'expiresIn', 'createdAt']
 
 
   constructor(

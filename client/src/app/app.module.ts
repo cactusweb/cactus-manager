@@ -40,6 +40,7 @@ import { PlansViewComponent } from './components/plans-view/plans-view.component
 import { PopupMessageComponent } from './components/popup-message/popup-message.component';
 import { LicenseTrComponent } from './components/license-tr/license-tr.component';
 import { SortPipe } from './pipes/sort/sort.pipe';
+import { SettingsComponent } from './screens/settings/settings.component';
 
 
 
@@ -72,6 +73,7 @@ import { SortPipe } from './pipes/sort/sort.pipe';
     PopupMessageComponent,
     LicenseTrComponent,
     SortPipe,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,

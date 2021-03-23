@@ -11,6 +11,7 @@ import { HttpService } from 'src/app/services/http/http.service';
 export class PlansViewComponent implements OnInit {
   plans;
   isPlanGen: boolean = false;
+  viewingPlan;
 
   @Output() onChangeItems = new EventEmitter<any>();
 
@@ -66,5 +67,6 @@ export class PlansViewComponent implements OnInit {
     }))
     this.onChangeItems.emit( this.plans );
   }
+
 
 }

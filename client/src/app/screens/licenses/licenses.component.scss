@@ -64,7 +64,7 @@ tr{
     // grid-auto-flow: column;
     grid-template-columns: auto 12% 12% 10% 12% 11% 78px;
     column-gap: 5px;
-    margin-right: 10px;
+    padding-right: 10px;
 }
 
 
@@ -139,7 +139,10 @@ td.key svg{
 
 cdk-virtual-scroll-viewport tr{
     margin-bottom: 5px;
-
+    transition: .3s;
+    &:hover{
+        background-color: #EEEEEE;
+    }
 }
 
 .infinity{

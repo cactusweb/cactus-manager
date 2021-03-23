@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from 'src/app/services/http/http.service';
@@ -12,6 +12,7 @@ export class PlanGenComponent implements OnInit {
 
   @Output() onClose = new EventEmitter<boolean>();
   @Output() onNewItem = new EventEmitter<{}>();
+  @Input() viewingPlan; 
   formPlan: FormGroup;
   roles: string = '';
   infinityActivating: boolean = false;
@@ -29,15 +30,16 @@ export class PlanGenComponent implements OnInit {
   }
 
   generateForm(  ){
-    let disabled = false;
+    let disabled = this.viewingPlan ? true : false;
     this.formPlan = new FormGroup({
-      name: new FormControl( { value: '', disabled: disabled }, [ Validators.required ] ),
-      quantity: new FormControl( { value: '', disabled: disabled }, [ Validators.required, Validators.pattern('[0-9]*') ] ),
-      unbindable: new FormControl( { value: false, disabled: disabled }, [ Validators.required ] ),
-      status: new FormControl( { value: 'renewal', disabled: disabled }, [ Validators.required ] ),
-      price: new FormControl( { value: '', disabled: disabled }, [ Validators.required, Validators.pattern('[0-9]*') ] ),
+      name: new FormControl( { value: this.viewingPlan?.name || '', disabled: disabled }, [ Validators.required ] ),
+      quantity: new FormControl( { value: this.viewingPlan?.quantity || '', disabled: disabled }, [ Validators.required, Validators.pattern('[0-9]*') ] ),
+      unbindable: new FormControl( { value: this.viewingPlan?.unbindable || false, disabled: disabled }, [ Validators.required ] ),
+      status: new FormControl( { value: this.viewingPlan?.status || 'renewal', disabled: disabled }, [ Validators.required ] ),
+      price: new FormControl( { value: this.viewingPlan?.price || '', disabled: disabled }, [ Validators.required, Validators.pattern('[0-9]*') ] ),
       roles: new FormControl( { value: [], disabled: disabled }, [ Validators.required ] )
     })
+    this.roles = this.viewingPlan?.roles?.join(', ') || '';
   }
   
   onInfinity(){
