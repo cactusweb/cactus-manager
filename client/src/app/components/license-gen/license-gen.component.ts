@@ -71,7 +71,8 @@ export class LicenseGenComponent implements OnInit {
 
   async postLicense(){
     this.message = '';
-    this.setRoles()
+    this.setRoles();
+    this.setBoolType();
     await this.http.postNewLicense(this.formLicense.value)
       .then( (w: any) => {
         this.key = w.key;
@@ -87,7 +88,8 @@ export class LicenseGenComponent implements OnInit {
 
   async putLicense(){
     this.message = '';
-    this.setRoles()
+    this.setRoles();
+    this.setBoolType();
     
     await this.http.putLicense(this.formLicense.value)
       .then( async(w) => { 

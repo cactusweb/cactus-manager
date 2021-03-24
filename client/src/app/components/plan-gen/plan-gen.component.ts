@@ -51,6 +51,7 @@ export class PlanGenComponent implements OnInit {
 
     this.formPlan.value.quantity = this.infinityActivating ? 0 : this.formPlan.value.quantity;
     this.setRoles()
+    this.setBoolType();
     this.spinner.show();
     await this.http.postPlan( this.formPlan.value )
       .then( w => {
