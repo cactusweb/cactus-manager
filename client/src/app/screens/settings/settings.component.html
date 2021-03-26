@@ -1,1 +1,14 @@
-<p>settings works!</p>
+<div class="content">
+
+    
+    <app-profile-input
+        label="Discord-Server ID" type="input" value="{{settings.guildId}}"
+        (newValue)="settings.guildId = $event" placeholder="ID"
+    ></app-profile-input>
+
+
+    <!-- <a class="blue-btn" id="invite-bot" href="https://discord.com/api/oauth2/authorize?client_id=809535097157451807&permissions=268435459&redirect_uri=http%3A%2F%2Fapi.cactusweb.io%2Fapi%2Fv1%2Fuser%2Fauth%2Ftoken&scope=bot">Invite bot</a> -->
+
+
+
+</div>

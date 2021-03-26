@@ -18,6 +18,7 @@ export class AuthService {
   async login(data){
     return await this.http.post(`${this.url}/signin`, data).toPromise();
   }
+  
 
   async signUp(data){
     return await this.http.post(`${this.url}/signup`, data).toPromise();
