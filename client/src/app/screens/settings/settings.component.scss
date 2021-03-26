@@ -1,10 +1,19 @@
 .content{
     
-    padding: 40px;
-
-    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(5, auto) 1fr;
     display: grid;
     align-items: center;
     row-gap: 20px;
     column-gap: 20px;
+}
+
+
+#support{
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    font-size: 24px;
+    text-decoration: underline;
+    font-weight: 500;
 }

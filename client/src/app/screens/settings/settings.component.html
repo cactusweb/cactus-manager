@@ -2,9 +2,57 @@
 
     
     <app-profile-input
-        label="Discord-Server ID" type="input" value="{{settings.guildId}}"
-        (newValue)="settings.guildId = $event" placeholder="ID"
+        label="Yandex Shop ID" type="input" value="{{settings?.shopId}}"
+        (newValue)="settings.shopId = $event" placeholder="ID"
     ></app-profile-input>
+
+    <app-profile-input
+        label="Yandex Secret Key" type="input" value="{{settings?.secretKey}}"
+        (newValue)="settings.secretKey = $event" placeholder="ID"
+    ></app-profile-input>
+
+    
+    <app-profile-input 
+        label="Currency" type="radio" 
+        [radios]=" [ {value: 'RUB', label: 'RUB'}, {value: 'EUR', label: 'EUR'}, {value: 'USD', label: 'USD'} ] "
+        value="{{settings?.currency}}" (newValue)="settings.currency = $event"
+    ></app-profile-input>
+
+    
+    <app-profile-input
+        label="Website Link" type="input" value="site"
+        placeholder="ID"
+    ></app-profile-input>
+
+    <div>
+        <label>Discord bot</label>
+        <a 
+            class="standart-btn"
+            href="https://discord.com/api/oauth2/authorize?client_id=809535097157451807&permissions=268435459&redirect_uri=http%3A%2F%2Fapi.cactusweb.io%2Fapi%2Fv1%2Fuser%2Fauth%2Ftoken&scope=bot" target="_blank">
+            Invite the bot
+        </a>
+
+    </div>
+
+    <button class="standart-btn" (click)="putSettings()">
+        Save
+    </button>
+    <a href="https://discord.gg/GkFzqtMxfW" id="support" target="_blank">
+        Support
+    </a>
+    
+
+    <!-- currency: "EUR"
+description: "The best tool-group"
+email: "sergei@mail.ru"
+guildId: "819287985173692436"
+links: [{name: "www.youtube.com", link: "https://www.youtube.com/watch?v=4W2Ulbis_SE"}]
+name: "123"
+price: 1000
+region: "EU"
+renewal: []
+secretKey: "test_ntT6Iftn41twOXy5VeTLE0KtGdfDVzOaxUcgWz_e0gI"
+shopId: "793729" -->
 
 
     <!-- <a class="blue-btn" id="invite-bot" href="https://discord.com/api/oauth2/authorize?client_id=809535097157451807&permissions=268435459&redirect_uri=http%3A%2F%2Fapi.cactusweb.io%2Fapi%2Fv1%2Fuser%2Fauth%2Ftoken&scope=bot">Invite bot</a> -->
@@ -12,3 +60,11 @@
 
 
 </div>
+
+
+<ngx-spinner
+type="ball-clip-rotate"
+size="large"
+zIndex='1'
+[fullScreen]="false"
+></ngx-spinner>

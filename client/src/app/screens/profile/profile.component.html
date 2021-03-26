@@ -9,7 +9,7 @@
     ></app-profile-avatar>
 
     <app-profile-input 
-        label="Description" type="textarea" value="{{selfData.description}}"
+        label="Description" type="textarea" value="{{selfData?.description}}"
         (newValue)="selfData.description = $event"
     ></app-profile-input>
     
@@ -17,18 +17,18 @@
 
         label="Type" type="radio" 
         [radios]=" [ {value: 'cook-group', label: 'Cook-group'}, {value: 'bot', label: 'Bot'}, {value: 'tools', label: 'Tools'} ] "
-        value="{{selfData.type}}" (newValue)="selfData.type = $event"
+        value="{{selfData?.type}}" (newValue)="selfData.type = $event"
     ></app-profile-input>
 
 
     <app-profile-input 
         label="Region" type="radio" 
         [radios]=" [ {value: 'RU', label: 'RU'}, {value: 'EU', label: 'EU'}, {value: 'US', label: 'US'} ] "
-        value="{{selfData.region}}" (newValue)="selfData.region = $event"
+        value="{{selfData?.region}}" (newValue)="selfData.region = $event"
     ></app-profile-input>
 
     <app-profile-input 
-        label="Price" value="{{selfData.price}}" placeholder="1000"
+        label="Price" value="{{selfData?.price}}" placeholder="1000"
         (newValue)="selfData.price = $event"
     ></app-profile-input>
 
@@ -36,7 +36,7 @@
         label="Renewal" placeholder="1000, 2000"
     ></app-profile-input>
 
-    <!-- <app-profile-social [links]="selfData.links" (newValue)="selfData.links = $event"></app-profile-social> -->
+    <!-- <app-profile-social [links]="selfData?.links" (newValue)="selfData?.links = $event"></app-profile-social> -->
 
     <button class="standart-btn" (click)="putSelfData()">Save</button>
 

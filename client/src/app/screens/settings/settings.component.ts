@@ -26,14 +26,14 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getSelf();
+    this.getSettings();
   }
 
   
 
-  async putSelfData(  ){
+  async putSettings(  ){
     this.spinner.show();
-    // if ( this.selfData.links.name )
+    this.settings.links = null;
     await this.http.putSelf( this.settings )
       .then( () => this.spinner.hide() )
       .catch( console.log )
@@ -42,7 +42,7 @@ export class SettingsComponent implements OnInit {
 
   
 
-  async getSelf(){
+  async getSettings(){
     this.spinner.show();
     await this.http.getSelf()
       .then( w => {

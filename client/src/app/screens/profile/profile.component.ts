@@ -35,7 +35,7 @@ export class ProfileComponent implements OnInit {
 
   async putSelfData(  ){
     this.spinner.show();
-    // if ( this.selfData.links.name )
+    this.selfData.links = null;
     await this.http.putSelf( this.selfData )
       .then( () => this.spinner.hide() )
       .catch( console.log )

@@ -99,6 +99,10 @@ export class LicensesComponent implements OnInit {
         break;
       }
     
+    this.licenses = this.licenses.map( license => ({
+      ... license,
+    }))
+    
   }
 
 
