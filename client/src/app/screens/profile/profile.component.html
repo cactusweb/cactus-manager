@@ -36,6 +36,19 @@
         label="Renewal" placeholder="1000, 2000"
     ></app-profile-input>
 
+    <app-profile-input
+        label="Primary color" type="color"
+        value="{{selfData?.primaryColor}}" (newValue)="selfData.primaryColor = $event"
+    >
+        <p inside>press to change</p>
+    </app-profile-input>
+
+    <app-profile-input
+        label="Backgroung image" type="file"
+        (newVale)="selfData?.primaryColor"
+    >
+    </app-profile-input>
+
     <!-- <app-profile-social [links]="selfData?.links" (newValue)="selfData?.links = $event"></app-profile-social> -->
 
     <button class="standart-btn" (click)="putSelfData()">Save</button>

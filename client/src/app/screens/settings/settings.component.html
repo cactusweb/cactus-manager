@@ -20,9 +20,15 @@
 
     
     <app-profile-input
-        label="Website Link" type="input" value="site"
-        placeholder="ID"
+        label="Website link" type="input" placeholder="https://cactussoft.io" 
+        value="{{settings?.siteUrl}}" (newValue)="settings.siteUrl = $event"
     ></app-profile-input>
+
+    <app-profile-input
+        label="Kick member upon expiration (after 3 days)" type="checkbox"
+        [value]="settings?.kick" (newValue)="settings.kick = $event; onEvent($event)"
+    >
+    </app-profile-input>
 
     <div>
         <label>Discord bot</label>
@@ -37,6 +43,7 @@
     <button class="standart-btn" (click)="putSettings()">
         Save
     </button>
+
     <a href="https://discord.gg/GkFzqtMxfW" id="support" target="_blank">
         Support
     </a>

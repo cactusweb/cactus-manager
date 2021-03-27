@@ -1,6 +1,7 @@
 
 .input-label{
     display: grid;
+    position: relative;
 
      > :first-child:not(input):not(textarea){
         font-size: 24px;
@@ -9,7 +10,7 @@
         justify-self: start;
     }
 
-    > :last-child{
+    > :last-child:not(.switcher){
         box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
         height: 60px;
@@ -23,7 +24,7 @@
         height: 150px !important;
         width: 100% !important;
         border: none;
-        padding: 10px 15px;
+        padding: 10px 15px !important;
     }
 
     > input:last-child{
@@ -53,4 +54,81 @@ input::placeholder{
         font-weight: 400;
     }
     // justify-items: center;
+}
+
+
+input[type=color]{
+    
+    box-shadow: none !important;
+    padding: 0 !important;
+    overflow: hidden;
+    width: 100%;
+
+    &::-webkit-color-swatch-wrapper {
+        padding: 0;    
+    }
+
+    &::-webkit-color-swatch {
+        border: none;  
+    }
+    &::-moz-focus-inner {
+        border: none;
+        padding: 0;
+    }
+
+    &::-moz-color-swatch {
+        border: none;
+    }
+
+}
+
+
+input[type=checkbox], input[type=file]{
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+}
+
+
+.upload{
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+    place-items: center;
+    display: grid;
+}
+
+.switcher{
+    width: 55px;
+    height: 30px;
+    border-radius: 30px;
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+    position: relative;
+    cursor: pointer;
+    transition: .4s;
+
+    > .slider{
+        display: block;
+        width: 22px;
+        height: 22px;
+        box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.25);
+        background: #78AFF8;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 4px;
+        transform: translate(0px, -50%);
+        transition: .4s;
+    }
+}
+
+input[type=checkbox]:checked + .switcher{
+    background: #78AFF8;
+
+    .slider{
+        background-color: #fff;
+        transform: translate(25px, -50%);
+    }
 }

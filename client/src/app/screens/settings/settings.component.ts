@@ -55,4 +55,8 @@ export class SettingsComponent implements OnInit {
     this.spinner.hide();
   }
 
+  onEvent(ev){
+    console.log( ev, this.settings.kick )
+  }
+
 }

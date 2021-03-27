@@ -15,7 +15,7 @@
         margin-bottom: 40px;
     }
 
-    > :first-child, > :nth-child(2), > :nth-child(7), > button:last-child{
+    > :first-child, > :nth-child(2), > button:last-child{
         grid-column: 1/3;
     }
 
@@ -37,4 +37,15 @@
 }
 
 
+app-profile-input p{
+    color: #fff;
+    bottom: 30px;
+    left: 50%;
+    transform: translate(-50%, 50%);
 
+    font-size: 18px;
+    font-weight: 500;
+
+    position: absolute;
+    pointer-events: none;
+}

@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-profile-input',
   templateUrl: './profile-input.component.html',
   styleUrls: ['./profile-input.component.scss']
 })
-export class ProfileInputComponent {
+export class ProfileInputComponent implements OnChanges {
   @Input() label: string = '';
   @Input() placeholder = '';
   @Input() type: string = 'input';
@@ -13,11 +13,18 @@ export class ProfileInputComponent {
   
   @Input() isDisabled: boolean = false;
 
-  @Input() value: string = '';
+  @Input() value: any;
+  @Input() checked: boolean;
 
-  @Output() newValue = new EventEmitter<string>();
+  @Output() newValue = new EventEmitter<any>();
 
-  constructor() { }
+  constructor() { 
+  }
+
+  
+  ngOnChanges(){
+    console.log(typeof this.value)
+  }
 
 
   onNewValue(){

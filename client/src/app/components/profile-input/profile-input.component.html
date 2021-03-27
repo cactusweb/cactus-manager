@@ -2,33 +2,47 @@
 <div class="input-label">
     <label for="{{label}}"> {{ label }} </label>
 
+    <ng-content select=[inside]></ng-content>
 
-    <ng-container *ngIf="type === 'input';else noInput">
+    <ng-template [ngIf]="type === 'input'">
         <input id='{{label}}' [(ngModel)]="value" placeholder="{{placeholder}}" (ngModelChange)="onNewValue()" [disabled]="disabled">
-    </ng-container>
+    </ng-template>
 
 
-    <ng-template #noInput>
-        <ng-container *ngIf="type === 'textarea'; else radio">
-            <textarea id='{{label}}' [(ngModel)]="value" (ngModelChange)="onNewValue()"> </textarea>
-        </ng-container>
+    <ng-template [ngIf]="type === 'textarea'">
+        <textarea id='{{label}}' [(ngModel)]="value" (ngModelChange)="onNewValue()"> </textarea>
     </ng-template>
 
 
 
-    <ng-template #radio>
-        <div class="radios">
+    <div class="radios" *ngIf="type == 'radio'">
 
-            <ng-template ngFor let-radio [ngForOf]="radios">
-                <label>
-                    <input type="radio" name="{{ label }}"  value="{{radio.value}}" [(ngModel)]="value" (ngModelChange)="onNewValue()">
-                    {{ radio.label }}
-                </label>
+        <ng-template ngFor let-radio [ngForOf]="radios">
+            <label>
+                <input type="radio" name="{{ label }}"  value="{{radio.value}}" [(ngModel)]="value" (ngModelChange)="onNewValue()">
+                {{ radio.label }}
+            </label>
 
 
-            </ng-template>
+        </ng-template>
 
-        </div>
+    </div>
+
+    <ng-template [ngIf]="type == 'color'">
+        <input type="color" name="" id="{{label}}" [(ngModel)]="value" (ngModelChange)="onNewValue()">
+    </ng-template>
+
+    <ng-template [ngIf]="type == 'checkbox'">
+        <input type="checkbox" id="{{label}}" [(ngModel)]="value" (ngModelChange)="onNewValue()">
+        <label class="switcher" for="{{label}}">
+            <span class="slider"></span>
+        </label>
+    </ng-template>
+
+
+    <ng-template [ngIf]="type == 'file'">
+        <input type="file" id="{{label}}" accept="image/jpeg,image/png">
+        <label class="upload pointer" for="{{label}}"> <span>upload</span> </label>
     </ng-template>
 
 </div>
