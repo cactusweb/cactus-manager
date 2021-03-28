@@ -25,6 +25,7 @@ export class ProfileAvatarComponent implements OnInit {
   
   async onAddFile(event){
     let file = this.aio.getFormData( event );
+    console.log( event )
     if ( !file ) return;
 
     file.forEach( console.log )

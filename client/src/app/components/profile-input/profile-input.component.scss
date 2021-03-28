@@ -62,6 +62,7 @@ input[type=color]{
     box-shadow: none !important;
     padding: 0 !important;
     overflow: hidden;
+    cursor: pointer;
     width: 100%;
 
     &::-webkit-color-swatch-wrapper {
@@ -85,6 +86,7 @@ input[type=color]{
 
 input[type=checkbox], input[type=file]{
     position: absolute;
+    cursor: pointer;
     width: 0px;
     height: 0px;
     opacity: 0;
@@ -97,6 +99,10 @@ input[type=checkbox], input[type=file]{
     text-align: center;
     place-items: center;
     display: grid;
+    transition: .4s;
+    &:hover{
+        box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.45) !important;
+    }
 }
 
 .switcher{

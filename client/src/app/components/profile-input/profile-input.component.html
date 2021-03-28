@@ -41,7 +41,7 @@
 
 
     <ng-template [ngIf]="type == 'file'">
-        <input type="file" id="{{label}}" accept="image/jpeg,image/png">
+        <input type="file" id="{{label}}" accept="image/jpeg,image/png,image/jpg" (change)="onAddFile($event)">
         <label class="upload pointer" for="{{label}}"> <span>upload</span> </label>
     </ng-template>
 

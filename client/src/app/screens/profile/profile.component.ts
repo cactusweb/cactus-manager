@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AioService } from 'src/app/services/aio/aio.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpService } from 'src/app/services/http/http.service';
 import { SeoService } from 'src/app/services/seo/seo.service';
@@ -17,6 +18,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private seo: SeoService,
+    private aio: AioService,
     private http: HttpService,
     private spinner: NgxSpinnerService,
     private auth: AuthService
@@ -57,6 +59,27 @@ export class ProfileComponent implements OnInit {
     this.spinner.hide();
   }
 
+  async onAddBG(file){
+    file = this.aio.getFormData( file );
+    if ( !file ) return;
+
+    file.forEach( console.log )
+
+    this.spinner.show();
+    
+    await this.http.postFile( file, 'backgound' )
+      .then( async ( w: any ) => {
+        // this.avatar = w.filePath;
+        // this.newValue.emit( this.avatar );
+        this.spinner.hide();
+      })
+      .catch( e => {
+        if ( e.status == 401 ){
+          this.auth.logout();
+          this.spinner.hide();
+        }
+      })
+  }
 
 
 }

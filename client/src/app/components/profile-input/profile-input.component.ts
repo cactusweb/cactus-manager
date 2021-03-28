@@ -5,7 +5,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angu
   templateUrl: './profile-input.component.html',
   styleUrls: ['./profile-input.component.scss']
 })
-export class ProfileInputComponent implements OnChanges {
+export class ProfileInputComponent {
   @Input() label: string = '';
   @Input() placeholder = '';
   @Input() type: string = 'input';
@@ -22,13 +22,13 @@ export class ProfileInputComponent implements OnChanges {
   }
 
   
-  ngOnChanges(){
-    console.log(typeof this.value)
-  }
 
 
   onNewValue(){
     this.newValue.emit( this.value );
   }
 
+  onAddFile(event){
+    this.newValue.emit(event)
+  }
 }
