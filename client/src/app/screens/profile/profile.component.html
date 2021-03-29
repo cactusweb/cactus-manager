@@ -47,6 +47,7 @@
         label="Backgroung image" type="file"
         (newValue)="onAddBG($event)"
     >
+     <a href="https://api.cactusweb.io/{{selfData.backgound}}" *ngIf="selfData?.backgound">backgound</a>
     </app-profile-input>
 
     <!-- <app-profile-social [links]="selfData?.links" (newValue)="selfData?.links = $event"></app-profile-social> -->

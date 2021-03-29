@@ -67,7 +67,7 @@ export class ProfileComponent implements OnInit {
 
     this.spinner.show();
     
-    await this.http.postFile( file, 'backgound' )
+    await this.http.postFile( file, 'background/background' )
       .then( async ( w: any ) => {
         // this.avatar = w.filePath;
         // this.newValue.emit( this.avatar );

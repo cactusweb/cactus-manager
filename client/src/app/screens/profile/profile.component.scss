@@ -37,15 +37,24 @@
 }
 
 
-app-profile-input p{
-    color: #fff;
-    bottom: 30px;
-    left: 50%;
-    transform: translate(-50%, 50%);
+app-profile-input{
+    a, p{
 
-    font-size: 18px;
-    font-weight: 500;
+        bottom: 30px;
+        left: 50%;
+        transform: translate(-50%, 50%);
+    
+        font-size: 18px;
+        font-weight: 500;
+    
+        position: absolute;
+        pointer-events: none;
+    }
 
-    position: absolute;
-    pointer-events: none;
+    p{
+        color: #fff;
+    }
+    a{
+        color: black;
+    }
 }
