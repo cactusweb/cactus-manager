@@ -3,12 +3,12 @@
     
     <app-profile-input
         label="Yandex Shop ID" type="input" value="{{settings?.shopId}}"
-        (newValue)="settings.shopId = $event" placeholder="ID"
+        (newValue)="settings.shopId = $event" placeholder="ID" [isDisabled]="true"
     ></app-profile-input>
 
     <app-profile-input
         label="Yandex Secret Key" type="input" value="{{settings?.secretKey}}"
-        (newValue)="settings.secretKey = $event" placeholder="ID"
+        (newValue)="settings.secretKey = $event" placeholder="ID" [isDisabled]="true"
     ></app-profile-input>
 
     

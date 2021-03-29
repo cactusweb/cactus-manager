@@ -41,20 +41,30 @@ app-profile-input{
     a, p{
 
         bottom: 30px;
-        left: 50%;
+        left: calc(50% - 35px);
         transform: translate(-50%, 50%);
     
         font-size: 18px;
         font-weight: 500;
     
         position: absolute;
-        pointer-events: none;
     }
 
     p{
         color: #fff;
+        pointer-events: none;
     }
     a{
-        color: black;
+        color: #0000EE;
+        display: inline-block;
+        background-color: #fff;
+        text-decoration: underline;
     }
+}
+
+.customization{
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    grid-column: 1/3;
+    column-gap: 20px;
 }

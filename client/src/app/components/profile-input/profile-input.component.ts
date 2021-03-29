@@ -17,6 +17,7 @@ export class ProfileInputComponent {
   @Input() checked: boolean;
 
   @Output() newValue = new EventEmitter<any>();
+  @Output() reset = new EventEmitter();
 
   constructor() { 
   }
@@ -30,5 +31,9 @@ export class ProfileInputComponent {
 
   onAddFile(event){
     this.newValue.emit(event)
+  }
+
+  onReset(){
+    this.reset.emit();
   }
 }

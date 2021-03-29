@@ -111,6 +111,9 @@ app-license-gen, app-license-info{
 }
 
 td{
+    &:first-child{
+        overflow: hidden;
+    }
     display: grid;
     grid-auto-flow: column;
     align-items: center;

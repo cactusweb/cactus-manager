@@ -38,18 +38,20 @@
 
     <app-profile-input
         label="Primary color" type="color"
-        value="{{selfData?.primaryColor}}" (newValue)="selfData.primaryColor = $event"
+        value="{{selfData?.primaryColor || '#5D9BF3'}}" (newValue)="selfData.primaryColor = $event"
+        (reset)="selfData.primaryColor = '#5D9BF3'"
     >
         <p inside>press to change</p>
     </app-profile-input>
 
+
     <app-profile-input
         label="Backgroung image" type="file"
         (newValue)="onAddBG($event)"
+        (reset)="selfData.background = null"
     >
-     <a href="https://api.cactusweb.io/{{selfData.backgound}}" *ngIf="selfData?.backgound">backgound</a>
+        <a href="https://api.cactusweb.io/{{selfData.background}}" target="_blank" *ngIf="selfData?.background" inside>View current</a>
     </app-profile-input>
-
     <!-- <app-profile-social [links]="selfData?.links" (newValue)="selfData?.links = $event"></app-profile-social> -->
 
     <button class="standart-btn" (click)="putSelfData()">Save</button>
