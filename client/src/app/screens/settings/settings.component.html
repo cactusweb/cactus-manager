@@ -7,26 +7,26 @@
     ></app-profile-input>
     
     <app-profile-input
-        label="Yandex Shop ID" type="input" value="{{settings?.yooKassa?.shopId}}"
-        (newValue)="settings.yooKassa.shopId = $event" placeholder="ID" [isDisabled]="true"
+        label="Yandex Shop ID" type="input" value="{{settings?.yoo_kassa?.shop_id}}"
+        (newValue)="settings.yoo_kassa.shop_id = $event" placeholder="ID" [isDisabled]="true"
     ></app-profile-input>
 
     <app-profile-input
-        label="Yandex Secret Key" type="input" value="{{settings?.yooKassa?.secretKey}}"
-        (newValue)="settings.yooKassa.secretKey = $event" placeholder="Key" [isDisabled]="true"
+        label="Yandex Secret Key" type="input" value="{{settings?.yoo_kassa?.secret_key}}"
+        (newValue)="settings.yoo_kassa.secret_key = $event" placeholder="Key" [isDisabled]="true"
     ></app-profile-input>
 
     
     <app-profile-input 
         label="Currency" type="radio" 
         [radios]=" [ {value: 'RUB', label: 'RUB'}, {value: 'EUR', label: 'EUR'}, {value: 'USD', label: 'USD'} ] "
-        value="{{settings?.yooKassa?.currency}}" (newValue)="settings.yooKassa.currency = $event"
+        value="{{settings?.yoo_kassa?.currency}}" (newValue)="settings.yoo_kassa.currency = $event"
     ></app-profile-input>
 
     
     <app-profile-input
         label="Website link" type="input" placeholder="https://cactussoft.io" 
-        value="{{settings?.siteUrl}}" (newValue)="settings.siteUrl = $event"
+        value="{{settings?.site_url}}" (newValue)="settings.site_url = $event"
     ></app-profile-input>
 
     <app-profile-input
@@ -63,8 +63,8 @@ name: "123"
 price: 1000
 region: "EU"
 renewal: []
-secretKey: "test_ntT6Iftn41twOXy5VeTLE0KtGdfDVzOaxUcgWz_e0gI"
-shopId: "793729" -->
+secret_key: "test_ntT6Iftn41twOXy5VeTLE0KtGdfDVzOaxUcgWz_e0gI"
+shop_id: "793729" -->
 
 
     <!-- <a class="blue-btn" id="invite-bot" href="https://discord.com/api/oauth2/authorize?client_id=809535097157451807&permissions=268435459&redirect_uri=http%3A%2F%2Fapi.cactusweb.io%2Fapi%2Fv1%2Fuser%2Fauth%2Ftoken&scope=bot">Invite bot</a> -->

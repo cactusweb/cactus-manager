@@ -13,8 +13,8 @@ export interface Owner {
     name: string,
     region: string,
     kick: true,
-    primaryColor: string,
-    siteUrl: string,
+    primary_color: string,
+    site_url: string,
 
     settings: {
       discord: {
@@ -27,10 +27,10 @@ export interface Owner {
         ]
       },
 
-    yooKassa: {
+    yoo_kassa: {
         currency: string,
-        secretKey: string,
-        shopId: string
+        secret_key: string,
+        shop_id: string
       }
     },
 

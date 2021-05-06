@@ -7,9 +7,9 @@ export interface License {
         ],
         quantity: number
     },
-    boughtAt: Date,
-    createdAt: Date,
-    expiresIn?: Date,
+    bought_at: Date,
+    created_at: Date,
+    expires_in?: Date,
     discord: {
         id: string,
         roles: [
@@ -23,8 +23,8 @@ export interface License {
     payment: {
         currency: string,
         last4: string,
-        paymentId: string,
-        paymentMethodId: string,
+        payment_id: string,
+        payment_method_id: string,
         price: number
     },
     type: string,

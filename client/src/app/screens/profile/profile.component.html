@@ -37,8 +37,8 @@
 
     <app-profile-input
         label="Primary color" type="color"
-        value="{{selfData?.settings?.primaryColor || '#5D9BF3'}}" (newValue)="selfData.settings.primaryColor = $event"
-        (reset)="selfData.settings.primaryColor = '#5D9BF3'"
+        value="{{selfData?.settings?.primary_color || '#5D9BF3'}}" (newValue)="selfData.settings.primary_color = $event"
+        (reset)="selfData.settings.primary_color = '#5D9BF3'"
     >
         <p inside>press to change</p>
     </app-profile-input>
