@@ -12,12 +12,12 @@
 
         <label>
             Password:
-            <input type="text" placeholder="first-restock" formControlName="password">
+            <input type="text" placeholder="best-restock" formControlName="password">
         </label>
 
         <label for="">
             Date:
-            <input type="datetime-local" placeholder="DD.MM.YYYY HH:MM" formControlName="time">
+            <input type="datetime-local" placeholder="DD.MM.YYYY HH:MM" formControlName="start_at">
         </label>
         
         <label>
@@ -34,7 +34,7 @@
             Plan:
             <select formControlName="plan">
                 <ng-template ngFor let-plan [ngForOf]="plans">
-                    <option value="{{plan._id}}"> {{ plan.name }} </option>
+                    <option value="{{plan.id}}"> {{ plan.name }} </option>
                 </ng-template>
             </select>
         </label>

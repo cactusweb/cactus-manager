@@ -29,7 +29,12 @@ export class LicensesComponent implements OnInit {
   sortParam: string = '';
 
   searchParam: string = '';
-  searchKeys = ['key', { par1: 'bindTo', par2: 'name' }, 'expiresIn', 'createdAt']
+  searchKeys = [
+    'key', 
+    // { par1: 'bindTo', par2: 'name' },
+    'user',
+   'expires_in', 'create_aAt'
+  ]
 
 
   constructor(
@@ -94,7 +99,7 @@ export class LicensesComponent implements OnInit {
 
   async onEditLicense( license: License ){
     for ( let i = 0; i < this.licenses.length; i++ )
-      if ( this.licenses[i]._id == license._id ){
+      if ( this.licenses[i].id == license.id ){
         this.licenses[i] = license 
         break;
       }
@@ -147,13 +152,13 @@ export class LicensesComponent implements OnInit {
   
 
   async renewalNow( license ){
-    let expiresIn = new Date(license.expiresIn); 
-    expiresIn.setMonth( expiresIn.getMonth()+1 );
-    license.expiresIn = expiresIn;
+    let expires_in = new Date(license.expires_in); 
+    expires_in.setMonth( expires_in.getMonth()+1 );
+    license.expires_in = expires_in;
 
     license = {
-      expiresIn: license.expiresIn,
-      _id: license._id
+      expires_in: license.expires_in,
+      id: license.id
     }
     this.spinner.show();
     await this.http.putLicense( license )

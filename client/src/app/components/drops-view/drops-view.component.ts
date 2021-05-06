@@ -39,7 +39,7 @@ export class DropsViewComponent implements OnInit, OnChanges {
   }
 
   onDeleteDrop(id){
-    this.drops = this.drops.filter( ell => ell._id != id );
+    this.drops = this.drops.filter( ell => ell.id != id );
   }
 
 
@@ -67,7 +67,7 @@ export class DropsViewComponent implements OnInit, OnChanges {
 
   
   trackByFn(index, item){
-    return item._id;
+    return item.id;
   }
 
 

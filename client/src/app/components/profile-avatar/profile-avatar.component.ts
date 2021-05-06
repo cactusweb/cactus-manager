@@ -32,10 +32,10 @@ export class ProfileAvatarComponent implements OnInit {
 
     this.spinner.show();
     
-    await this.http.postFile( file, 'customers' )
+    await this.http.postFile( file, 'avatar' )
       .then( async ( w: any ) => {
-        this.avatar = w.filePath;
-        this.newValue.emit( this.avatar );
+        this.avatar = w.avatar;
+        // this.newValue.emit( this.avatar );
         this.spinner.hide();
       })
       .catch( e => {

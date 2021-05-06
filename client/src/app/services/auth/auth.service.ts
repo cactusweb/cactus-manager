@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  url = environment.apiUrl + '/auth';
+  url = environment.apiUrl;
   headers: HttpHeaders;
 
   constructor(
@@ -16,12 +16,12 @@ export class AuthService {
   ) { }
 
   async login(data){
-    return await this.http.post(`${this.url}/signin`, data).toPromise();
+    return await this.http.post(`${this.url}/sign-in`, data).toPromise();
   }
   
 
   async signUp(data){
-    return await this.http.post(`${this.url}/signup`, data).toPromise();
+    return await this.http.post(`${this.url}/sign-up`, data).toPromise();
   }
 
   logout(){

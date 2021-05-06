@@ -33,9 +33,9 @@ export class PlanGenComponent implements OnInit {
     let disabled = this.viewingPlan ? true : false;
     this.formPlan = new FormGroup({
       name: new FormControl( { value: this.viewingPlan?.name || '', disabled: disabled }, [ Validators.required ] ),
-      quantity: new FormControl( { value: this.viewingPlan?.quantity || '', disabled: disabled }, [ Validators.required, Validators.pattern('[0-9]*') ] ),
+      activations: new FormControl( { value: this.viewingPlan?.activations || '', disabled: disabled }, [ Validators.required, Validators.pattern('[0-9]*') ] ),
       unbindable: new FormControl( { value: this.viewingPlan?.unbindable || false, disabled: disabled }, [ Validators.required ] ),
-      status: new FormControl( { value: this.viewingPlan?.status || 'renewal', disabled: disabled }, [ Validators.required ] ),
+      license_status: new FormControl( { value: this.viewingPlan?.license_status || 'renewal', disabled: disabled }, [ Validators.required ] ),
       price: new FormControl( { value: this.viewingPlan?.price || '', disabled: disabled }, [ Validators.required, Validators.pattern('[0-9]*') ] ),
       roles: new FormControl( { value: [], disabled: disabled }, [ Validators.required ] )
     })

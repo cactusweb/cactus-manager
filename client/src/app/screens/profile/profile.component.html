@@ -4,8 +4,7 @@
 
 
     <app-profile-avatar 
-        avatar="{{selfData.avatar}}"
-        (newValue)="selfData.avatar = $event"
+        avatar="{{selfData.uploads.avatar}}"
     ></app-profile-avatar>
 
     <app-profile-input 
@@ -38,8 +37,8 @@
 
     <app-profile-input
         label="Primary color" type="color"
-        value="{{selfData?.primaryColor || '#5D9BF3'}}" (newValue)="selfData.primaryColor = $event"
-        (reset)="selfData.primaryColor = '#5D9BF3'"
+        value="{{selfData?.settings?.primaryColor || '#5D9BF3'}}" (newValue)="selfData.settings.primaryColor = $event"
+        (reset)="selfData.settings.primaryColor = '#5D9BF3'"
     >
         <p inside>press to change</p>
     </app-profile-input>
@@ -47,10 +46,10 @@
 
     <app-profile-input
         label="Backgroung image" type="file"
-        (newValue)="onAddBG($event)"
-        (reset)="selfData.background = null"
+        (reset)="selfData.uploads.background = null"
+        (newValue)="selfData.uploads.background = $event.background"
     >
-        <a href="https://api.cactusweb.io/{{selfData.background}}" target="_blank" *ngIf="selfData?.background" inside>View current</a>
+        <a href="https://api.cactusweb.io/{{selfData.uploads.background}}" target="_blank" *ngIf="selfData?.uploads?.background" inside>View current</a>
     </app-profile-input>
     <!-- <app-profile-social [links]="selfData?.links" (newValue)="selfData?.links = $event"></app-profile-social> -->
 

@@ -13,9 +13,9 @@ export class PageNameComponent implements OnChanges {
   avatar: string = '';
 
   ngOnChanges(){
-    this.id = localStorage.getItem('ownerId');
+    this.id = localStorage.getItem('id');
     this.userName = localStorage.getItem('name');
-    this.avatar = localStorage.getItem( 'ownerAvatar' )
+    this.avatar = localStorage.getItem( 'avatar' )
   }
 
   

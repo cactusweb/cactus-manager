@@ -3,6 +3,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpService } from 'src/app/services/http/http.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
+import { Drop } from 'src/app/interfaces/drop';
 
 @Component({
   selector: 'app-drop-tr',
@@ -10,7 +11,7 @@ import { ToolsService } from 'src/app/services/tools/tools.service';
   styleUrls: ['./drop-tr.component.scss']
 })
 export class DropTrComponent implements OnInit {
-  @Input() drop: any;
+  @Input() drop: Drop;
   @Output() onDeleteDrop = new EventEmitter<string>();
 
   constructor(

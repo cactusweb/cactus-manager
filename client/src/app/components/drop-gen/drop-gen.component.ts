@@ -36,7 +36,7 @@ export class DropGenComponent implements OnInit {
       quantity: new FormControl( { value: '', disabled: false }, [Validators.required, Validators.pattern('[0-9]*')] ),
       price: new FormControl( { value: '', disabled: false }, [Validators.required, Validators.pattern('[0-9]*')] ),
       password: new FormControl( { value: '', disabled: false }, [Validators.required] ),
-      time: new FormControl( { value: '', disabled: false }, [Validators.required] ),
+      start_at: new FormControl( { value: '', disabled: false }, [Validators.required] ),
       plan: new FormControl( { value: this.plans[0]._id, disabled: false }, Validators.required )
     })
   }

@@ -1,0 +1,39 @@
+
+.content{
+    grid-template-rows: auto auto 1fr;
+}
+
+.header{
+    grid-template-columns: auto 1fr auto;
+    justify-items: end;
+}
+
+.checkboxes{display: grid; grid-template-columns: auto auto; column-gap: 25px;}
+
+
+.sort{
+
+    border: 1px solid #3D3D3D; 
+    border-radius: 12px; 
+    padding: 0px 25px 0px 10px; 
+    height: 30px; width: 160px; 
+    box-sizing: border-box;
+    align-self: center;
+}
+
+
+.search{
+    position: relative; 
+    display: grid; 
+    align-items: center;
+
+    >input{
+        @extend .sort;
+    }
+
+    >img{
+        position: absolute;
+        right: 10px;
+    }
+
+}

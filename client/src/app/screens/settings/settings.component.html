@@ -2,20 +2,25 @@
 
     
     <app-profile-input
-        label="Yandex Shop ID" type="input" value="{{settings?.shopId}}"
-        (newValue)="settings.shopId = $event" placeholder="ID" [isDisabled]="true"
+        label="Server ID" type="input" value="{{settings?.discord?.id}}"
+        (newValue)="settings.discord.id = $event" placeholder="ID"
+    ></app-profile-input>
+    
+    <app-profile-input
+        label="Yandex Shop ID" type="input" value="{{settings?.yooKassa?.shopId}}"
+        (newValue)="settings.yooKassa.shopId = $event" placeholder="ID" [isDisabled]="true"
     ></app-profile-input>
 
     <app-profile-input
-        label="Yandex Secret Key" type="input" value="{{settings?.secretKey}}"
-        (newValue)="settings.secretKey = $event" placeholder="ID" [isDisabled]="true"
+        label="Yandex Secret Key" type="input" value="{{settings?.yooKassa?.secretKey}}"
+        (newValue)="settings.yooKassa.secretKey = $event" placeholder="Key" [isDisabled]="true"
     ></app-profile-input>
 
     
     <app-profile-input 
         label="Currency" type="radio" 
         [radios]=" [ {value: 'RUB', label: 'RUB'}, {value: 'EUR', label: 'EUR'}, {value: 'USD', label: 'USD'} ] "
-        value="{{settings?.currency}}" (newValue)="settings.currency = $event"
+        value="{{settings?.yooKassa?.currency}}" (newValue)="settings.yooKassa.currency = $event"
     ></app-profile-input>
 
     
@@ -26,7 +31,7 @@
 
     <app-profile-input
         label="Kick member upon expiration (after 3 days)" type="checkbox"
-        [value]="settings?.kick" (newValue)="settings.kick = $event; onEvent($event)"
+        [value]="settings?.kick" (newValue)="settings.kick = $event"
     >
     </app-profile-input>
 

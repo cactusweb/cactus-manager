@@ -1,0 +1,26 @@
+<div class="row log" >
+    <div class="date">
+        <span>{{ log.date | date:'dd.MM' }}</span>
+        <br>
+        {{ log.date | date:'hh:mmaa' }}
+
+
+    </div>
+    <div class="row inner-block">
+        <div class="user">
+            <div class="circle"></div>
+            {{ log?.user?.fullName }}
+        </div>
+        <div class="action">
+            <span class="indicator">
+                
+            </span>
+            {{ log.type }}
+        </div>
+
+        <div class="license">
+            {{ log.license }}
+        </div>
+    </div>
+
+</div>

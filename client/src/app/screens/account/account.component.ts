@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpService } from 'src/app/services/http/http.service';
+import { Owner } from 'src/app/interfaces/owner'
 
 @Component({
   selector: 'app-account',
@@ -30,11 +31,11 @@ export class AccountComponent implements OnInit {
     this.spinner.show();
     if (localStorage.getItem('accessToken'))
       await this.http.getSelf()
-        .then( (w: any = {}) =>{
-          localStorage.setItem('name', w.name);
-          localStorage.setItem('email', w.email);
-          localStorage.setItem( 'ownerId', w._id );
-          localStorage.setItem( 'ownerAvatar', w.avatar )
+        .then( (w: Owner) =>{
+          localStorage.setItem( 'name', w.name);
+          localStorage.setItem( 'email', w.email);
+          localStorage.setItem( 'id', w.id );
+          localStorage.setItem( 'avatar', w.uploads.avatar )
         })
         .catch( e => {
           if ( e.status == 401 ){

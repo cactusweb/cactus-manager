@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpService } from 'src/app/services/http/http.service';
+import { Plan } from 'src/app/interfaces/plan';
 
 @Component({
   selector: 'app-plans-view',
@@ -28,7 +29,7 @@ export class PlansViewComponent implements OnInit {
   async getPlans(){
     this.spinner.show();
     await this.http.getPlans()
-      .then( w => {
+      .then( ( w ) => {
         this.plans = w;
         this.onChangeItems.emit( this.plans );
       })
@@ -44,8 +45,8 @@ export class PlansViewComponent implements OnInit {
 
     this.spinner.show();
     await this.http.deletePlan( id )
-      .then( w => {
-        this.plans = this.plans.filter( ell => ell._id != id );
+      .then( () => {
+        this.plans = this.plans.filter( ell => ell.id != id );
         this.onChangeItems.emit( this.plans );
         this.spinner.hide();
       })

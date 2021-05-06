@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Owner } from 'src/app/interfaces/owner';
 import { AioService } from 'src/app/services/aio/aio.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpService } from 'src/app/services/http/http.service';
@@ -12,7 +13,7 @@ import { SeoService } from 'src/app/services/seo/seo.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-    selfData: any = {};
+    selfData: Owner;
 
 
   constructor(
@@ -49,7 +50,7 @@ export class ProfileComponent implements OnInit {
   async getSelf(){
     this.spinner.show();
     await this.http.getSelf()
-      .then( w => {
+      .then( (w: Owner) => {
         this.selfData = w;
       })
       .catch( e => {

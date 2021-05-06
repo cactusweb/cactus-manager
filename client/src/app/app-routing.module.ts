@@ -11,6 +11,7 @@ import { ProfileComponent } from './screens/profile/profile.component';
 import { NotFoundComponent } from './screens/not-found/not-found.component';
 import { DropsPlansComponent } from './screens/drops-plans/drops-plans.component';
 import { SettingsComponent } from './screens/settings/settings.component';
+import { AuditLogComponent } from './screens/audit-log/audit-log.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
     { path: 'profile', component: ProfileComponent, data: { pageName:"Profile", title: 'Profile - CactusManager'}, },
     { path: 'drops', component: DropsPlansComponent, data: { pageName:"Drops", title: 'Drops - CactusManager'}, },
     { path: 'settings', component: SettingsComponent, data: { pageName: 'Settings', title: 'Settings - CactusManager' } },
+    { path: 'audit', component: AuditLogComponent, data: { pageName: 'Audit log', title: 'Audit log - CactusManager' } },
     { path: 'api', component: ApiDocComponent, data: { pageName: 'API', title: 'API integration - CactusManager' } },
     { path: '**', component: NotFoundComponent, data: { showLogo: false, redirectTo: '/account/licenses', title: '404 - CactusManager' } }
 

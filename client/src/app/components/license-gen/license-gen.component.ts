@@ -51,7 +51,7 @@ export class LicenseGenComponent implements OnInit {
 
 
   async newLicense(){
-    this.formLicense.value.expiresIn = this.formLicense.value.status == 'lifetime' ? null : this.formLicense.value.expiresIn;  
+    this.formLicense.value.expires_in = this.formLicense.value.type == 'lifetime' ? null : this.formLicense.value.expires_in;  
 
     this.formLicense.value.quantity = this.infinityActivating ? 0 : this.formLicense.value.quantity;
 
@@ -110,18 +110,18 @@ export class LicenseGenComponent implements OnInit {
 
   generateForm(){
     this.key = this.license?.key || '';
-    let expiresIn = '';
+    let expires_in = '';
 
-    if ( this.license?.expiresIn ){
-      let date = new Date(this.license.expiresIn);
-      expiresIn = `${date.getFullYear()}-${date.getMonth() < 9 ? `0${date.getMonth()+1}` : date.getMonth()+1}-${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()}`
+    if ( this.license?.expires_in ){
+      let date = new Date(this.license.expires_in);
+      expires_in = `${date.getFullYear()}-${date.getMonth() < 9 ? `0${date.getMonth()+1}` : date.getMonth()+1}-${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()}`
     }
 
     this.formLicense = new FormGroup({
-      status: new FormControl({value: this.license?.status || 'renewal', disabled: false}, [Validators.required]),
+      type: new FormControl({value: this.license?.type || 'renewal', disabled: false}, [Validators.required]),
       price: new FormControl({value: this.license?.price || Number, disabled: false}),
-      quantity: new FormControl({value: this.license?.quantity || Number, disabled: false}, [ Validators.required ]),
-      expiresIn: new FormControl({value: expiresIn || '', disabled: false}),
+      activations: new FormControl({value: this.license?.activations || Number, disabled: false}, [ Validators.required ]),
+      expires_in: new FormControl({value: expires_in || '', disabled: false}),
       unbindable: new FormControl({value: this.license?.unbindable || false, disabled: false}),
       roles: new FormControl({ value: [], disabled: false } ),
     })

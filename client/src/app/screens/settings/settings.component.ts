@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Owner } from 'src/app/interfaces/owner';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpService } from 'src/app/services/http/http.service';
 import { SeoService } from 'src/app/services/seo/seo.service';
@@ -11,6 +12,7 @@ import { SeoService } from 'src/app/services/seo/seo.service';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
+  me: Owner;
   settings;
 
   constructor(
@@ -33,8 +35,8 @@ export class SettingsComponent implements OnInit {
 
   async putSettings(  ){
     this.spinner.show();
-    this.settings.links = null;
-    await this.http.putSelf( this.settings )
+    this.me.settings = this.settings;
+    await this.http.putSelf( this.me )
       .then( () => this.spinner.hide() )
       .catch( console.log )
   }
@@ -45,8 +47,9 @@ export class SettingsComponent implements OnInit {
   async getSettings(){
     this.spinner.show();
     await this.http.getSelf()
-      .then( w => {
-        this.settings = w;
+      .then( (w: Owner) => {
+        this.me = w;
+        this.settings = this.me.settings;
       })
       .catch( e => {
         if (e.status == 401)
@@ -55,8 +58,5 @@ export class SettingsComponent implements OnInit {
     this.spinner.hide();
   }
 
-  onEvent(ev){
-    console.log( ev, this.settings.kick )
-  }
 
 }

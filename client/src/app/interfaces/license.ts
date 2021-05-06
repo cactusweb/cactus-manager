@@ -1,12 +1,33 @@
 export interface License {
-    _id: string,
-    owner: string,
-    user: string,
+    id: string,
     key: string,
-    status: string,
+    activations: {
+        devices: [
+          string
+        ],
+        quantity: number
+    },
+    boughtAt: Date,
+    createdAt: Date,
     expiresIn?: Date,
-    quantity: number,
-    devices?: any,
-    createdAt?: Date,
-    updatedAt?: Date,
+    discord: {
+        id: string,
+        roles: [
+          {
+            id: string,
+            name: string
+          }
+        ]
+    },
+    owner: string,
+    payment: {
+        currency: string,
+        last4: string,
+        paymentId: string,
+        paymentMethodId: string,
+        price: number
+    },
+    type: string,
+    unbindable: true,
+    user: string
 }

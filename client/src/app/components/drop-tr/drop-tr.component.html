@@ -1,10 +1,10 @@
 <div class="tr">
     <div class="time"> 
         <span>
-            {{ drop.time | date:'hh:mmaa' }}
+            {{ drop.start_at | date:'hh:mmaa' }}
         </span>
         <span>
-            {{ drop.time | date : 'dd.MM' }} 
+            {{ drop.start_at | date : 'dd.MM' }} 
         </span>
         </div>
             <div class="main">
@@ -21,19 +21,19 @@
                     </span>
 
                 </div>
-                <div> {{ drop.price || ' ' }} </div>
-                <div> {{ drop.plan?.name || ' ' }} </div>
+                <div> {{ drop.price || '-' }} </div>
+                <div> {{ drop.plan || '-' }} </div>
                 <div> {{ drop.bought }} / {{ drop.quantity }} </div>
                 <div> {{ drop.status }} </div>
             </div>
         <div>
-        <button class="rec-small-btn bg-danger" (click)="stopDrop(drop._id)" *ngIf="drop.status == 'started'">
+        <button class="rec-small-btn bg-danger" (click)="stopDrop(drop.id)" *ngIf="drop.status == 'started'">
             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
                 <rect width="10" height="10" fill="white"/>
             </svg>
         </button>
 
-        <button class="rec-small-btn outline-danger" (click)="deleteDrop(drop._id)" *ngIf="drop.status == 'stopped' || drop.status == 'not started'">
+        <button class="rec-small-btn outline-danger" (click)="deleteDrop(drop.id)" *ngIf="drop.status == 'stopped' || drop.status == 'not started'">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="17" viewBox="0 0 14 17" fill="none">
                 <path d="M9.38176 6.15917C9.15878 6.15917 8.97807 6.3374 8.97807 6.5573V14.0819C8.97807 14.3016 9.15878 14.48 9.38176 14.48C9.60473 14.48 9.78545 14.3016 9.78545 14.0819V6.5573C9.78545 6.3374 9.60473 6.15917 9.38176 6.15917Z" fill="#F87878"/>
                 <path d="M4.61825 6.15917C4.39527 6.15917 4.21456 6.3374 4.21456 6.5573V14.0819C4.21456 14.3016 4.39527 14.48 4.61825 14.48C4.84122 14.48 5.02194 14.3016 5.02194 14.0819V6.5573C5.02194 6.3374 4.84122 6.15917 4.61825 6.15917Z" fill="#F87878"/>

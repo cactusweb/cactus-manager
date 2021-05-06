@@ -8,11 +8,11 @@
 
     <div class="dis-info">
         <div class="avatar">
-            <ng-template [ngIf]="license.bindTo?.avatar">
-                <img src="{{license.bindTo?.avatar}}">
+            <ng-template [ngIf]="license.user?.avatar">
+                <img src="{{license.user?.avatar}}">
             </ng-template>
         </div>
-        <p>{{license.bindTo?.name}}</p>    
+        <p>{{license.user?.full_name}}</p>    
     </div>
     <label id="license-key">
         <input type="text" class="standart-input" value="{{license.key}}" disabled>
@@ -26,28 +26,28 @@
 
     <label>
         Plan type:
-        <input type="text"  value="{{license.status}}" class="standart-input">
+        <input type="text"  value="{{license.type}}" class="standart-input" disabled>
     </label>
 
     <label >
         Price:
-        <input type="text"  value="{{license.price}}" class="standart-input">
+        <input type="text"  value="{{license.payment?.price}}" class="standart-input" disabled>
     </label>
 
     <label >
         Joining date:
-        <input type="text"  value="{{license.createdAt | date:'dd.MM.yy'}}" class="standart-input">
+        <input type="text"  value="{{license.created_at | date:'dd.MM.yy'}}" class="standart-input" disabled>
     </label>
 
     <label >
         Next renewal date:
         
-        <ng-template [ngIf]="license.expiresIn">
-            <input type="text"  value="{{license.expiresIn | date:'dd.MM.yy'}}" class="standart-input">
+        <ng-template [ngIf]="license.expires_in">
+            <input type="text"  value="{{license.expires_in | date:'dd.MM.yy'}}" class="standart-input" disabled>
         </ng-template>
 
-        <ng-template [ngIf]="!license.expiresIn">
-            <input type="text"  value="-" class="standart-input">
+        <ng-template [ngIf]="!license.expires_in">
+            <input type="text"  value="-" class="standart-input" disabled>
         </ng-template>
     </label>
 

@@ -1,5 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Drop } from 'src/app/interfaces/drop';
+import { License } from 'src/app/interfaces/license';
+import { Owner } from 'src/app/interfaces/owner';
+import { Plan } from 'src/app/interfaces/plan';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -18,7 +22,11 @@ export class HttpService {
     this.headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
 
-  async postNewLicense(data){
+
+
+  
+  //license fetching
+  async postNewLicense( data: License ){
     this.setHeaders();
     return await this.http.post(`${this.url}/license`, data, { headers: this.headers }).toPromise();
   }
@@ -33,27 +41,46 @@ export class HttpService {
     return await this.http.delete(`${this.url}/license/${id}`, {headers: this.headers}).toPromise();
   }
 
-  async putLicense(data){
+  async putLicense( data: License ){
     this.setHeaders();
-    return await this.http.put( `${this.url}/license/${data._id}`, data, { headers: this.headers } ).toPromise();
+    return await this.http.put( `${this.url}/license/${data.id}`, data, { headers: this.headers } ).toPromise();
   }
 
+
+
+
+
+  // owner profile
   async getSelf(){
     this.setHeaders();
     return await this.http.get( `${this.url}/@me`, { headers: this.headers } ).toPromise();
   }
 
-  async putSelf( data ){
+  async putSelf( data: Owner ){
     this.setHeaders();
     return await this.http.put( `${this.url}`, data, { headers: this.headers } ).toPromise();
   }
 
-  async postFile( formData, dirname: string = 'customer' ){
+
+
+
+
+
+  //files
+  async postFile( formData: FormData, dirname: String ){
     this.setHeaders();
     return await this.http.post( `${this.url}/upload/${dirname}`, formData, { headers: this.headers } ).toPromise();
   }
 
-  async postDrop(data){
+
+
+
+
+
+
+
+  // drops fetching
+  async postDrop( data: Drop ){
     this.setHeaders();
     return await this.http.post( `${this.url}/drop`, data, { headers: this.headers } ).toPromise();
   }
@@ -76,6 +103,8 @@ export class HttpService {
 
 
 
+
+  // plans fetching
   async getPlans(){
     this.setHeaders();
     return await this.http.get( `${this.url}/plan`, { headers: this.headers } ).toPromise();
@@ -86,9 +115,16 @@ export class HttpService {
     return await this.http.delete( `${this.url}/plan/${id}`, { headers: this.headers } ).toPromise();
   }
 
-  async postPlan( data ){
+  async postPlan( data: Plan ){
     this.setHeaders();
     return await this.http.post( `${this.url}/plan`, data, { headers: this.headers } ).toPromise();
+  }
+
+
+
+  async getLogs(){
+    this.setHeaders();
+    return await this.http.get( `${this.url}/logs`, { headers: this.headers } ).toPromise();
   }
 
 }

@@ -41,6 +41,9 @@ import { PopupMessageComponent } from './components/popup-message/popup-message.
 import { LicenseTrComponent } from './components/license-tr/license-tr.component';
 import { SortPipe } from './pipes/sort/sort.pipe';
 import { SettingsComponent } from './screens/settings/settings.component';
+import { AuditLogComponent } from './screens/audit-log/audit-log.component';
+import { AuditLogViewComponent } from './components/audit-log-view/audit-log-view.component';
+import { AuditLogRowComponent } from './components/audit-log-row/audit-log-row.component';
 
 
 
@@ -74,6 +77,9 @@ import { SettingsComponent } from './screens/settings/settings.component';
     LicenseTrComponent,
     SortPipe,
     SettingsComponent,
+    AuditLogComponent,
+    AuditLogViewComponent,
+    AuditLogRowComponent,
   ],
   imports: [
     BrowserModule,

@@ -36,10 +36,10 @@
             </div>
 
             <cdk-virtual-scroll-viewport class="custom-scroll" itemSize="65"> 
-                <div class="tr" *cdkVirtualFor="let drop of drops 
-                | filter : '' : true , let i = index, trackBy: trackByFn">
-                    <app-drop-tr [drop]="drop" (onDeleteDrop)="onDeleteDrop($event)"></app-drop-tr>
-                </div>
+                    <app-drop-tr *cdkVirtualFor="let drop of drops 
+                    | filter : '' : true , let i = index, trackBy: trackByFn"
+                    [drop]="drop" (onDeleteDrop)="onDeleteDrop($event)"
+                    ></app-drop-tr>
             </cdk-virtual-scroll-viewport>
 
 

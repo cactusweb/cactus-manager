@@ -17,21 +17,21 @@
 
         <label class="select-label">
             Type:
-            <select formControlName="status">
+            <select formControlName="type">
                 <option value="renewal">renewal</option>
                 <option value="lifetime">lifetime</option>
             </select>
         </label>
 
-        <ng-template [ngIf]="formLicense.value.status == 'renewal'">
+        <ng-template [ngIf]="formLicense.value.type == 'renewal'">
             <label>
                 Amount: 
                 <input type="number" placeholder="1000" formControlName="price">
             </label>
     
-            <label class="renew-date" *ngIf="formLicense.value.status == 'renewal'">
+            <label class="renew-date" *ngIf="formLicense.value.type == 'renewal'">
                 Renewal:
-                <input type="date" name="date" id="date" formControlName="expiresIn">
+                <input type="date" name="date" id="date" formControlName="expires_in">
             </label>
 
         </ng-template>
