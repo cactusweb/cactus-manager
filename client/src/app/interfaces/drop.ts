@@ -10,5 +10,6 @@ export interface Drop {
     price: 0,
     start_at: 0,
     status: string,
-    url: string
+    url: string,
+    quantity: number
 }

@@ -12,9 +12,7 @@ export interface Owner {
 
     name: string,
     region: string,
-    kick: true,
-    primary_color: string,
-    site_url: string,
+    price: string,
 
     settings: {
       discord: {
@@ -27,11 +25,14 @@ export interface Owner {
         ]
       },
 
-    yoo_kassa: {
+      yoo_kassa: {
         currency: string,
         secret_key: string,
         shop_id: string
-      }
+      },
+      primary_color: string,
+      kick: true,
+      site_url: string,
     },
 
     type: string,
