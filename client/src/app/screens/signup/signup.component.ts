@@ -41,7 +41,7 @@ export class SignupComponent implements OnInit {
     this.spinner.show();
     await this.auth.signUp(this.signUpForm.value)
       .then( (w: any) => {
-        this.auth.setToken(w.accessToken);
+        this.auth.setToken(w.access_token);
         this.router.navigate(['/account']);
       })
       .catch(e => {

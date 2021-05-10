@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
       this.spinner.show();
       await this.auth.login(this.loginForm.value)
         .then( (w: any) => {
-          this.auth.setToken(w.accessToken);
+          this.auth.setToken(w.access_token);
           this.router.navigate(['/account']);
         })
         .catch(e => {
