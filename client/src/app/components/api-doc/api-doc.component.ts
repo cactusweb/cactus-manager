@@ -8,7 +8,7 @@ import { SeoService } from 'src/app/services/seo/seo.service';
   styleUrls: ['./api-doc.component.scss']
 })
 export class ApiDocComponent implements AfterViewInit {
-  id: string = localStorage.getItem('ownerId');
+  id: string = localStorage.getItem('id');
   
   constructor(
     private activatedRoute: ActivatedRoute,

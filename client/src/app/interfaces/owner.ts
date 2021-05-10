@@ -25,10 +25,10 @@ export interface Owner {
         ]
       },
 
-      yoo_kassa: {
+      tinkoff: {
         currency: string,
-        secret_key: string,
-        shop_id: string
+        terminal_key: string,
+        password: string
       },
       primary_color: string,
       kick: true,

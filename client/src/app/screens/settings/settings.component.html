@@ -7,20 +7,20 @@
     ></app-profile-input>
     
     <app-profile-input
-        label="Yandex Shop ID" type="input" value="{{settings?.yoo_kassa?.shop_id}}"
-        (newValue)="settings.yoo_kassa.shop_id = $event" placeholder="ID" [isDisabled]="true"
+        label="Tinkoff Terminal Key" type="input" value="{{settings?.tinkoff?.terminal_key}}"
+        (newValue)="settings.tinkoff.terminal_key = $event" placeholder="Key" [isDisabled]="true"
     ></app-profile-input>
 
     <app-profile-input
-        label="Yandex Secret Key" type="input" value="{{settings?.yoo_kassa?.secret_key}}"
-        (newValue)="settings.yoo_kassa.secret_key = $event" placeholder="Key" [isDisabled]="true"
+        label="Tinkoff Payment Password" type="input" value="{{settings?.tinkoff?.password}}"
+        (newValue)="settings.tinkoff.password = $event" placeholder="Password" [isDisabled]="true"
     ></app-profile-input>
 
     
     <app-profile-input 
         label="Currency" type="radio" 
         [radios]=" [ {value: 'RUB', label: 'RUB'}, {value: 'EUR', label: 'EUR'}, {value: 'USD', label: 'USD'} ] "
-        value="{{settings?.yoo_kassa?.currency}}" (newValue)="settings.yoo_kassa.currency = $event"
+        value="{{settings?.tinkoff?.currency}}" (newValue)="settings.tinkoff.currency = $event"
     ></app-profile-input>
 
     
