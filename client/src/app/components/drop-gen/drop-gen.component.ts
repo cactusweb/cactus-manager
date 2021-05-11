@@ -50,7 +50,7 @@ export class DropGenComponent implements OnInit {
       return;
     }
 
-    this.dropForm.value.time = new Date(this.dropForm.value.time);
+    this.dropForm.value.start_at = new Date(this.dropForm.value.start_at);
     await this.http.postDrop( this.dropForm.value )
       .then( (w: any) => {
         this.isError = false;
