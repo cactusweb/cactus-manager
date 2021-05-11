@@ -58,7 +58,7 @@ export class HttpService {
 
   async putSelf( data: Owner ){
     this.setHeaders();
-    return await this.http.put( `${this.url}`, data, { headers: this.headers } ).toPromise();
+    return await this.http.put( `${this.url}/`, data, { headers: this.headers } ).toPromise();
   }
 
 
