@@ -19,7 +19,7 @@ export class SearchPipe implements PipeTransform {
           if ( ell[param.par1] )
             filterVar = ell[param.par1][param.par2];
             
-          if ( ell && filterVar?.toLowerCase().toString().indexOf(searchParam?.toLowerCase()) === 0 ){
+          if ( ell && filterVar?.toString().toLowerCase().toString().indexOf(searchParam?.toLowerCase()) === 0 ){
             isInclude = true;
             return false;
           }

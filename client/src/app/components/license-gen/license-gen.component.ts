@@ -125,9 +125,8 @@ export class LicenseGenComponent implements OnInit {
       unbindable: new FormControl({value: this.license?.unbindable || false, disabled: false}),
       roles: new FormControl({ value: [], disabled: false } ),
     })
-    console.log( this.formLicense.value )
     if ( this.license ){
-      this.formLicense.addControl( '_id', new FormControl({ value: this.license._id, disabled: false }) )
+      this.formLicense.addControl( 'id', new FormControl({ value: this.license.id, disabled: false }) )
       this.infinityActivating = this.license.quantity === 0 ? true : false;
     }
   }
