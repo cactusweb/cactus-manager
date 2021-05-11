@@ -77,11 +77,11 @@
                         </td>
                         <td> {{ license.type }} </td>
                         <td> 
-                            <ng-template [ngIf]="license.expires_in">
+                            <ng-template [ngIf]="license.type == 'renewal'">
                                 {{ license.expires_in | date:'dd.MM.yy' }} 
                             </ng-template>
 
-                            <ng-template [ngIf]="!license.expires_in">
+                            <ng-template [ngIf]="license.type != 'renewal'">
                                 -
                             </ng-template>
                         </td>
