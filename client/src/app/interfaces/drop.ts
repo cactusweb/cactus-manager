@@ -3,7 +3,7 @@ import { License } from './license';
 
 export interface Drop {
     id: string,
-    licenses: [License],
+    license: [License],
     owner: string,
     password: string,
     plan: string,

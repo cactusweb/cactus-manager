@@ -27,6 +27,7 @@ export class PlanGenComponent implements OnInit {
 
   ngOnInit(): void {
     this.generateForm();
+    console.log( this.viewingPlan )
   }
 
   generateForm(  ){
@@ -36,10 +37,14 @@ export class PlanGenComponent implements OnInit {
       activations: new FormControl( { value: this.viewingPlan?.activations || '', disabled: disabled }, [ Validators.required, Validators.pattern('[0-9]*') ] ),
       unbindable: new FormControl( { value: this.viewingPlan?.unbindable || false, disabled: disabled }, [ Validators.required ] ),
       license_status: new FormControl( { value: this.viewingPlan?.license_status || 'renewal', disabled: disabled }, [ Validators.required ] ),
-      renewal_price: new FormControl( { value: this.viewingPlan?.price || '', disabled: disabled }, [ Validators.required, Validators.pattern('[0-9]*') ] ),
+      renewal_price: new FormControl( { value: this.viewingPlan?.renewal_price || '', disabled: disabled }, [ Validators.required, Validators.pattern('[0-9]*') ] ),
       roles: new FormControl( { value: [], disabled: disabled }, [ Validators.required ] )
     })
-    this.roles = this.viewingPlan?.roles?.join(', ') || '';
+
+    this.roles = '';
+     this.viewingPlan?.roles?.forEach(role => {
+       this.roles += `${role.id}, `
+     });
   }
   
   onInfinity(){
