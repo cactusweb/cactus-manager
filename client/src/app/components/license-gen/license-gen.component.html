@@ -29,7 +29,7 @@
                 <input type="number" placeholder="1000" formControlName="price">
             </label>
     
-            <label class="renew-date" *ngIf="formLicense.value.type == 'renewal'">
+            <label class="renew-date">
                 Renewal:
                 <input type="date" name="date" id="date" formControlName="expires_in">
             </label>
@@ -39,7 +39,7 @@
 
         <label class="activations">
             Activations:
-            <input type="number" placeholder="Number" formControlName="quantity">
+            <input type="number" placeholder="Number" formControlName="activations">
             <div class="input">
                 <input type="checkbox" [(ngModel)]="infinityActivating" [ngModelOptions]="{standalone: true}" (ngModelChange)="onInfinity()" id="infinity"> <label for="infinity" class="pointer">8</label>
             </div>

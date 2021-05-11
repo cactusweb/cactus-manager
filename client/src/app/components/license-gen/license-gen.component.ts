@@ -119,13 +119,13 @@ export class LicenseGenComponent implements OnInit {
 
     this.formLicense = new FormGroup({
       type: new FormControl({value: this.license?.type || 'renewal', disabled: false}, [Validators.required]),
-      price: new FormControl({value: this.license?.price || Number, disabled: false}),
-      activations: new FormControl({value: this.license?.activations || Number, disabled: false}, [ Validators.required ]),
+      price: new FormControl({value: this.license?.payment.price || Number, disabled: false}),
+      activations: new FormControl({value: this.license?.activations?.quantity || Number, disabled: false}, [ Validators.required ]),
       expires_in: new FormControl({value: expires_in || '', disabled: false}),
       unbindable: new FormControl({value: this.license?.unbindable || false, disabled: false}),
       roles: new FormControl({ value: [], disabled: false } ),
     })
-
+    console.log( this.formLicense.value )
     if ( this.license ){
       this.formLicense.addControl( '_id', new FormControl({ value: this.license._id, disabled: false }) )
       this.infinityActivating = this.license.quantity === 0 ? true : false;
