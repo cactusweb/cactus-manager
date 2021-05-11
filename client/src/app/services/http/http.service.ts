@@ -19,7 +19,7 @@ export class HttpService {
 
   setHeaders(){
     let token = localStorage.getItem('accessToken');
-    this.headers = new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Access-Control-Allow-Origin', '*');
+    this.headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
 
 
