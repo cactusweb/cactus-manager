@@ -19,7 +19,7 @@
         <cdk-virtual-scroll-viewport class="custom-scroll" itemSize="65"> 
             <div class="plan" *cdkVirtualFor="let plan of plans">
                 <div class="data" (click)="viewingPlan = plan">
-                    <div> {{ plan.name }} (Coast: {{plan.price}})</div>
+                    <div> {{ plan.name }} (Cost: {{plan.renewal_price || '-'}})</div>
                 </div>
                 <button class="rec-small-btn outline-danger" (click)="deletePlan(plan.id)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="17" viewBox="0 0 14 17" fill="none">
