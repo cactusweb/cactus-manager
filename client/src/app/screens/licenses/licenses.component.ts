@@ -31,8 +31,7 @@ export class LicensesComponent implements OnInit {
   searchParam: string = '';
   searchKeys = [
     'key', 
-    // { par1: 'bindTo', par2: 'name' },
-    'user',
+    { par1: 'user', par2: 'full_name' },
    'expires_in', 'create_at'
   ]
 
