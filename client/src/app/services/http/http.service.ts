@@ -82,17 +82,17 @@ export class HttpService {
   // drops fetching
   async postDrop(data: Drop) {
     this.setHeaders();
-    return await this.http.post(`${this.url}/drop`, data, { headers: this.headers }).toPromise();
+    return await this.http.post(`${this.url}/drop/`, data, { headers: this.headers }).toPromise();
   }
 
   async getDrops() {
     this.setHeaders();
-    return await this.http.get(`${this.url}/drop`, { headers: this.headers }).toPromise();
+    return await this.http.get(`${this.url}/drop/`, { headers: this.headers }).toPromise();
   }
 
   async deleteDrop(id: string) {
     this.setHeaders();
-    return await this.http.delete(`${this.url}/drop/${id}`, { headers: this.headers }).toPromise();
+    return await this.http.delete(`${this.url}/drop/${id}/`, { headers: this.headers }).toPromise();
   }
 
   async stopDrop(id: string) {
