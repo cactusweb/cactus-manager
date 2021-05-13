@@ -82,7 +82,7 @@ export class HttpService {
   // drops fetching
   async postDrop(data: Drop) {
     this.setHeaders();
-    return await this.http.post(`${this.url}/drop`, data, { headers: this.headers }).toPromise();
+    return await this.http.post(`${this.url}/drop/`, data, { headers: this.headers }).toPromise();
   }
 
   async getDrops() {
