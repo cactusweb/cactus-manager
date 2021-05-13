@@ -87,7 +87,7 @@ export class HttpService {
 
   async getDrops() {
     this.setHeaders();
-    return await this.http.get(`${this.url}/drop/`, { headers: this.headers }).toPromise();
+    return await this.http.get(`${this.url}/drop`, { headers: this.headers }).toPromise();
   }
 
   async deleteDrop(id: string) {
