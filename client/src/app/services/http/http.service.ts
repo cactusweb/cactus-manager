@@ -69,7 +69,7 @@ export class HttpService {
   //files
   async postFile( formData: FormData, dirname: String ){
     this.setHeaders();
-    return await this.http.post( `${this.url}/upload/${dirname}/`, formData, { headers: this.headers } ).toPromise();
+    return await this.http.post( `${this.url}/upload/${dirname}`, formData, { headers: this.headers } ).toPromise();
   }
 
 
