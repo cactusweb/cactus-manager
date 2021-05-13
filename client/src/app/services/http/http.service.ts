@@ -92,7 +92,7 @@ export class HttpService {
 
   async deleteDrop(id: string) {
     this.setHeaders();
-    return await this.http.delete(`${this.url}/drop/${id}`, { headers: this.headers }).toPromise();
+    return await this.http.delete(`${this.url}/drop/${id}/`, { headers: this.headers }).toPromise();
   }
 
   async stopDrop(id: string) {
@@ -112,7 +112,7 @@ export class HttpService {
 
   async deletePlan(id: string) {
     this.setHeaders();
-    return await this.http.delete(`${this.url}/plan/${id}/`, { headers: this.headers }).toPromise();
+    return await this.http.delete(`${this.url}/plan/${id}`, { headers: this.headers }).toPromise();
   }
 
   async postPlan(data: Plan) {
