@@ -80,11 +80,11 @@ export class LicensesComponent implements OnInit {
       })
   }
 
-  async deleteLicense(key: string){
+  async deleteLicense(id: string){
     this.spinner.show()
-    await this.http.deleteLicense(key)
+    await this.http.deleteLicense(id)
       .then( async() => { 
-          this.licenses = this.licenses.filter( ell => ell.key !== key )
+          this.licenses = this.licenses.filter( ell => ell.id !== id )
           
           this.spinner.hide()
        })
