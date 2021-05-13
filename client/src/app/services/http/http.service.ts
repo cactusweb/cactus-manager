@@ -17,33 +17,33 @@ export class HttpService {
     private http: HttpClient
   ) { }
 
-  setHeaders(){
+  setHeaders() {
     let token = localStorage.getItem('accessToken');
     this.headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
 
 
 
-  
+
   //license fetching
-  async postNewLicense( data: License ){
+  async postNewLicense(data: License) {
     this.setHeaders();
     return await this.http.post(`${this.url}/license/`, data, { headers: this.headers }).toPromise();
   }
 
-  async getLicenses(){
+  async getLicenses() {
     this.setHeaders();
     return await this.http.get(`${this.url}/license/`, { headers: this.headers }).toPromise();
   }
 
-  async deleteLicense(id: string){
+  async deleteLicense(id: string) {
     this.setHeaders();
-    return await this.http.delete(`${this.url}/license/${id}/`, {headers: this.headers}).toPromise();
+    return await this.http.delete(`${this.url}/license/${id}/`, { headers: this.headers }).toPromise();
   }
 
-  async putLicense( data: License ){
+  async putLicense(data: License) {
     this.setHeaders();
-    return await this.http.put( `${this.url}/license/${data.id}/`, data, { headers: this.headers } ).toPromise();
+    return await this.http.put(`${this.url}/license/${data.id}/`, data, { headers: this.headers }).toPromise();
   }
 
 
@@ -51,14 +51,14 @@ export class HttpService {
 
 
   // owner profile
-  async getSelf(){
+  async getSelf() {
     this.setHeaders();
-    return await this.http.get( `${this.url}/@me`, { headers: this.headers } ).toPromise();
+    return await this.http.get(`${this.url}/@me`, { headers: this.headers }).toPromise();
   }
 
-  async putSelf( data: Owner ){
+  async putSelf(data: Owner) {
     this.setHeaders();
-    return await this.http.put( `${this.url}/`, data, { headers: this.headers } ).toPromise();
+    return await this.http.put(`${this.url}/`, data, { headers: this.headers }).toPromise();
   }
 
 
@@ -67,9 +67,9 @@ export class HttpService {
 
 
   //files
-  async postFile( formData: FormData, dirname: String ){
+  async postFile(formData: FormData, dirname: String) {
     this.setHeaders();
-    return await this.http.post( `${this.url}/upload/${dirname}`, formData, { headers: this.headers } ).toPromise();
+    return await this.http.post(`${this.url}/upload/${dirname}`, formData, { headers: this.headers }).toPromise();
   }
 
 
@@ -80,24 +80,24 @@ export class HttpService {
 
 
   // drops fetching
-  async postDrop( data: Drop ){
+  async postDrop(data: Drop) {
     this.setHeaders();
-    return await this.http.post( `${this.url}/drop/`, data, { headers: this.headers } ).toPromise();
+    return await this.http.post(`${this.url}/drop`, data, { headers: this.headers }).toPromise();
   }
 
-  async getDrops(){
+  async getDrops() {
     this.setHeaders();
-    return await this.http.get( `${this.url}/drop/`, { headers: this.headers } ).toPromise();
+    return await this.http.get(`${this.url}/drop`, { headers: this.headers }).toPromise();
   }
 
-  async deleteDrop( id: string ){
+  async deleteDrop(id: string) {
     this.setHeaders();
-    return await this.http.delete( `${this.url}/drop/${id}/`, { headers: this.headers } ).toPromise();
+    return await this.http.delete(`${this.url}/drop/${id}`, { headers: this.headers }).toPromise();
   }
 
-  async stopDrop( id: string ){
+  async stopDrop(id: string) {
     this.setHeaders();
-    return await this.http.get( `${this.url}/drop/${id}/stop/`, { headers: this.headers } ).toPromise();
+    return await this.http.get(`${this.url}/drop/${id}/stop`, { headers: this.headers }).toPromise();
   }
 
 
@@ -105,26 +105,26 @@ export class HttpService {
 
 
   // plans fetching
-  async getPlans(){
+  async getPlans() {
     this.setHeaders();
-    return await this.http.get( `${this.url}/plan/`, { headers: this.headers } ).toPromise();
+    return await this.http.get(`${this.url}/plan/`, { headers: this.headers }).toPromise();
   }
 
-  async deletePlan( id: string ){
+  async deletePlan(id: string) {
     this.setHeaders();
-    return await this.http.delete( `${this.url}/plan/${id}/`, { headers: this.headers } ).toPromise();
+    return await this.http.delete(`${this.url}/plan/${id}/`, { headers: this.headers }).toPromise();
   }
 
-  async postPlan( data: Plan ){
+  async postPlan(data: Plan) {
     this.setHeaders();
-    return await this.http.post( `${this.url}/plan/`, data, { headers: this.headers } ).toPromise();
+    return await this.http.post(`${this.url}/plan/`, data, { headers: this.headers }).toPromise();
   }
 
 
 
-  async getLogs(){
+  async getLogs() {
     this.setHeaders();
-    return await this.http.get( `${this.url}/logs/`, { headers: this.headers } ).toPromise();
+    return await this.http.get(`${this.url}/logs/`, { headers: this.headers }).toPromise();
   }
 
 }
