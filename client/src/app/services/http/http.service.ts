@@ -28,22 +28,22 @@ export class HttpService {
   //license fetching
   async postNewLicense(data: License) {
     this.setHeaders();
-    return await this.http.post(`${this.url}/license/`, data, { headers: this.headers }).toPromise();
+    return await this.http.post(`${this.url}/license`, data, { headers: this.headers }).toPromise();
   }
 
   async getLicenses() {
     this.setHeaders();
-    return await this.http.get(`${this.url}/license/`, { headers: this.headers }).toPromise();
+    return await this.http.get(`${this.url}/license`, { headers: this.headers }).toPromise();
   }
 
   async deleteLicense(id: string) {
     this.setHeaders();
-    return await this.http.delete(`${this.url}/license/${id}/`, { headers: this.headers }).toPromise();
+    return await this.http.delete(`${this.url}/license/${id}`, { headers: this.headers }).toPromise();
   }
 
   async putLicense(data: License) {
     this.setHeaders();
-    return await this.http.put(`${this.url}/license/${data.id}/`, data, { headers: this.headers }).toPromise();
+    return await this.http.put(`${this.url}/license/${data.id}`, data, { headers: this.headers }).toPromise();
   }
 
 
@@ -58,7 +58,7 @@ export class HttpService {
 
   async putSelf(data: Owner) {
     this.setHeaders();
-    return await this.http.put(`${this.url}/`, data, { headers: this.headers }).toPromise();
+    return await this.http.put(`${this.url}`, data, { headers: this.headers }).toPromise();
   }
 
 
@@ -107,7 +107,7 @@ export class HttpService {
   // plans fetching
   async getPlans() {
     this.setHeaders();
-    return await this.http.get(`${this.url}/plan/`, { headers: this.headers }).toPromise();
+    return await this.http.get(`${this.url}/plan`, { headers: this.headers }).toPromise();
   }
 
   async deletePlan(id: string) {
@@ -117,14 +117,14 @@ export class HttpService {
 
   async postPlan(data: Plan) {
     this.setHeaders();
-    return await this.http.post(`${this.url}/plan/`, data, { headers: this.headers }).toPromise();
+    return await this.http.post(`${this.url}/plan`, data, { headers: this.headers }).toPromise();
   }
 
 
 
   async getLogs() {
     this.setHeaders();
-    return await this.http.get(`${this.url}/logs/`, { headers: this.headers }).toPromise();
+    return await this.http.get(`${this.url}/logs`, { headers: this.headers }).toPromise();
   }
 
 }
