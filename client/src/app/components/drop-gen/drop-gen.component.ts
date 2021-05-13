@@ -59,7 +59,7 @@ export class DropGenComponent implements OnInit {
       })
       .catch( e => {
         this.isError = true;
-        this.message = e.error || e.error.error || e.error.message;
+        this.message = e.error.message || e.error.error || e.error;
       })
   }
 

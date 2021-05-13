@@ -66,7 +66,7 @@ export class PlanGenComponent implements OnInit {
       })
       .catch( e => {
         this.isError = true;
-        this.message = e.error.error || e.error.message || e.error;
+        this.message = e.error.message || e.error.error || e.error;
       })
     this.spinner.hide();
   }

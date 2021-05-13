@@ -73,6 +73,7 @@ export class LicenseGenComponent implements OnInit {
     this.message = '';
     this.setRoles();
     this.setBoolType();
+    this.setDateFormat();
     await this.http.postNewLicense(this.formLicense.value)
       .then( (w: any) => {
         this.key = w.key;
@@ -82,7 +83,7 @@ export class LicenseGenComponent implements OnInit {
       })
       .catch( e => {
         this.isError = true;
-        this.message = e.error.error || e.error.message || e.error;
+        this.message = e.error.message || e.error.error || e.error;
       })
   }
 
@@ -90,6 +91,7 @@ export class LicenseGenComponent implements OnInit {
     this.message = '';
     this.setRoles();
     this.setBoolType();
+    this.setDateFormat();
     
     await this.http.putLicense(this.formLicense.value)
       .then( async(w) => { 
@@ -99,7 +101,7 @@ export class LicenseGenComponent implements OnInit {
       })
       .catch( e => {
         this.isError = true;
-        this.message = e.error.error || e.error.message || e.error;
+        this.message = e.error.message || e.error.error || e.error;
       })
 
   }
@@ -139,6 +141,10 @@ export class LicenseGenComponent implements OnInit {
 
   setBoolType(){
     this.formLicense.value.unbindable = this.formLicense.value.unbindable == 'true';
+  }
+
+  setDateFormat(){
+    this.formLicense.value.expires_in = new Date(this.formLicense.value.expires_in)
   }
 
 
