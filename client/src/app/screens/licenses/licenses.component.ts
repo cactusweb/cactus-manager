@@ -19,10 +19,12 @@ export class LicensesComponent implements OnInit {
   editingLicense: License;
   infoLicense: License;
 
+  currentDate = new Date().getTime();
+
 
   filterParams = [
-    {key: 'status', status: false, str: 'renewal'},
-    {key: 'status', status: false, str: 'lifetime'}
+    {key: 'type', status: false, str: 'renewal'},
+    {key: 'type', status: false, str: 'lifetime'}
   ]
   filterChange: boolean = false;
 
@@ -63,7 +65,7 @@ export class LicensesComponent implements OnInit {
     this.spinner.show()
     await this.http.getLicenses()
       .then( (w: any = [{}]) => {
-        this.licenses = w;
+        this.licenses = this.setFirstExpired(w);
         this.licenses = this.licenses.map( license => ({
           ... license,
         }))
@@ -165,4 +167,20 @@ export class LicensesComponent implements OnInit {
       .catch()
     this.spinner.hide();
   }
+
+
+  daysToMs( countOfDays: number ){
+    return countOfDays * ( 1000 * 60 * 60 * 24 );
+  }
+
+
+
+  setFirstExpired( arr ){
+    return arr.sort( (a, b) => {
+      if ( a.expires_in > this.currentDate && a.type != 'lifetime' ) return 1;
+      else return 0;
+    })
+    // if ( this.currentDate > this )
+  }
+
 }

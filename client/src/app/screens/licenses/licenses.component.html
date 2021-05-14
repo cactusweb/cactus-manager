@@ -60,11 +60,16 @@
 
             <cdk-virtual-scroll-viewport class="custom-scroll" itemSize="32" *ngIf="licenses[0]"> 
                 <table>
-                    <tr *cdkVirtualFor="let license of licenses
+                    <tr class="license" *cdkVirtualFor="let license of licenses
                         | filter : filterParams : filterChange 
                         | search : searchKeys : searchParam
                         | sort : sortParam
-                        , let i = index, trackBy: trackByFn">
+                        , let i = index, trackBy: trackByFn"
+                        [ngClass]="{ 
+                            'warning': (currentDate + daysToMs(3) > license.expires_in) && license.type != 'lifetime',
+                            'danger': (currentDate > license.expires_in) && license.type != 'lifetime'
+                        }"
+                    >
                         <td> {{ license.user?.full_name }} </td>
                         <td class="key"> 
                             
@@ -76,7 +81,7 @@
 
                         </td>
                         <td> {{ license.type }} </td>
-                        <td> 
+                        <td class="date"> 
                             <ng-template [ngIf]="license.type == 'renewal'">
                                 {{ license.expires_in | date:'dd.MM.yy' }} 
                             </ng-template>
