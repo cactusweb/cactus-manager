@@ -77,7 +77,7 @@ tr.license{
         @extend .indicator;
     }
 
-    &.warnsing{
+    &.warning{
         .date{ color: $warning-color }
         &::before{
             content: '';
