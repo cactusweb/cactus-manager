@@ -112,21 +112,17 @@ export class LicenseGenComponent implements OnInit {
 
   generateForm(){
     this.key = this.license?.key || '';
-    let expires_in = '';
-
-    if ( this.license?.expires_in ){
-      let date = new Date(this.license.expires_in);
-      expires_in = `${date.getFullYear()}-${date.getMonth() < 9 ? `0${date.getMonth()+1}` : date.getMonth()+1}-${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()}`
-    }
+    let expires_in = this.license?.expires_in ? new Date(this.license.expires_in) : new Date();
 
     this.formLicense = new FormGroup({
       type: new FormControl({value: this.license?.type || 'renewal', disabled: false}, [Validators.required]),
       price: new FormControl({value: this.license?.payment.price || 0, disabled: false}),
       activations: new FormControl({value: this.license?.activations?.quantity || Number, disabled: false}, [ Validators.required ]),
-      expires_in: new FormControl({value: expires_in || '', disabled: false}),
+      expires_in: new FormControl({value: expires_in.toISOString().split('T')[0], disabled: false}),
       unbindable: new FormControl({value: this.license?.unbindable || false, disabled: false}),
       roles: new FormControl({ value: [], disabled: false } ),
     })
+    
     if ( this.license ){
       this.formLicense.addControl( 'id', new FormControl({ value: this.license.id, disabled: false }) )
       this.infinityActivating = this.license.quantity === 0 ? true : false;
