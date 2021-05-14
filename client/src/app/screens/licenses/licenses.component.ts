@@ -68,6 +68,8 @@ export class LicensesComponent implements OnInit {
         this.licenses = this.setFirstExpired(w);
         this.licenses = this.licenses.map( license => ({
           ... license,
+          expires_in: license.expires_in*1000,
+          created_at: license.created_at*1000
         }))
         this.spinner.hide()  
       })
@@ -176,10 +178,10 @@ export class LicensesComponent implements OnInit {
 
 
   setFirstExpired( arr ){
-    return arr.sort( (a, b) => {
-      if ( a.expires_in > this.currentDate && a.type != 'lifetime' ) return 1;
-      else return 0;
-    })
+    
+    let expires = arr.filter( license => license.expires_in >= this.currentDate );
+    let norm = arr.filter( license => license.expires_in < this.currentDate );
+    return expires.concat( norm );
     // if ( this.currentDate > this )
   }
 

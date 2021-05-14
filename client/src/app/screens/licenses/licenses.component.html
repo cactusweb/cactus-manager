@@ -70,7 +70,7 @@
                             'danger': (currentDate > license.expires_in) && license.type != 'lifetime'
                         }"
                     >
-                        <td> {{ license.user?.full_name }} </td>
+                        <td (click)="infoLicense = license"> {{ license.user?.full_name }} </td>
                         <td class="key"> 
                             
                             ...****
@@ -97,7 +97,7 @@
                                 <path d="M8.5 7.21212C8.07325 7.21212 7.72727 7.5581 7.72727 7.98485V12.6212C7.72727 13.048 8.07325 13.3939 8.5 13.3939C8.92675 13.3939 9.27273 13.048 9.27273 12.6212V7.98485C9.27273 7.5581 8.92675 7.21212 8.5 7.21212Z" fill="#3D3D3D"/>
                             </svg>
                         </td>
-                        <td *ngIf="license.activations?.quantity != 0; else infinity"> {{license.activations?.devices?.length}} of {{ license.activations?.quantity }} </td>
+                        <td *ngIf="license.activations?.quantity != 0; else infinity"> {{license.activations?.devices?.length || 0}} of {{ license.activations?.quantity }} </td>
                         <ng-template #infinity>
                             <td class="infinity"> <span>8</span> </td>
                         </ng-template>
