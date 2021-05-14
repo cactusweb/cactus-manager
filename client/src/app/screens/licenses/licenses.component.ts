@@ -179,8 +179,8 @@ export class LicensesComponent implements OnInit {
 
   setFirstExpired( arr ){
     
-    let expires = arr.filter( license => license.expires_in >= this.currentDate );
-    let norm = arr.filter( license => license.expires_in < this.currentDate );
+    let expires = arr.filter( license => license.expires_in*1000 >= this.currentDate );
+    let norm = arr.filter( license => license.expires_in*1000 < this.currentDate );
     return expires.concat( norm );
     // if ( this.currentDate > this )
   }
