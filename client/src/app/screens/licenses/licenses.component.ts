@@ -122,6 +122,7 @@ export class LicensesComponent implements OnInit {
 
 
 
+
   onAddLicense(license){
     this.licenses.push(license); 
     this.licenses = this.licenses.map( license => ({
@@ -154,7 +155,7 @@ export class LicensesComponent implements OnInit {
   }
   
 
-  async renewalNow( license ){
+  async renewLicense( license ){
     let expires_in = new Date(license.expires_in); 
     expires_in.setMonth( expires_in.getMonth()+1 );
     license.expires_in = expires_in;
@@ -163,8 +164,9 @@ export class LicensesComponent implements OnInit {
       expires_in: license.expires_in,
       id: license.id
     }
+
     this.spinner.show();
-    await this.http.putLicense( license )
+    await this.http.renewLicense( license.id )
       .then()
       .catch()
     this.spinner.hide();

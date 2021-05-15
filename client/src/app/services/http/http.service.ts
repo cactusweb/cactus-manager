@@ -46,6 +46,11 @@ export class HttpService {
     return await this.http.put(`${this.url}/license/${data.id}`, data, { headers: this.headers }).toPromise();
   }
 
+  async renewLicense( id: string ){
+    this.setHeaders();
+    return await this.http.get( `${this.url}/license/${id}/renew`, { headers: this.headers } ).toPromise()
+  }
+
 
 
 

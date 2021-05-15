@@ -103,7 +103,7 @@
                         </ng-template>
                         <td class="action">
                             <ng-template [ngIf]="license.type !== 'lifetime'">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" class="pointer renew" viewBox="0 0 19 19" fill="none" (click)="renewalNow(license)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" class="pointer renew" viewBox="0 0 19 19" fill="none" (click)="renewLicense(license)">
                                     <path d="M18 9.5C18 14.1944 14.1944 18 9.5 18C4.80558 18 1 14.1944 1 9.5C1 4.80558 4.80558 1 9.5 1C12.9 1 14.175 3.55 15.45 4.825M15.45 4.825V1M15.45 4.825H12.05" stroke="#3D3D3D" stroke-width="1.2" stroke-linecap="round"/>
                                 </svg>
                             </ng-template>
