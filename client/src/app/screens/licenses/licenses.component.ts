@@ -65,7 +65,7 @@ export class LicensesComponent implements OnInit {
     this.spinner.show()
     await this.http.getLicenses()
       .then( (w: any = [{}]) => {
-        this.licenses = this.setFirstExpired(w);
+        this.licenses = w;
         this.licenses = this.licenses.map( license => ({
           ... license,
           expires_in: license.expires_in*1000,
