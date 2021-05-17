@@ -2,7 +2,7 @@
 
     <ng-template [ngIf]="!onlyView">
         Roles: 
-        <input type="text" placeholder="Role name" [(ngModel)]="roleName" [ngModelOptions]="{standalone: true}" (focus)="showSelect(true)" (focusout)="showSelect(false)"> 
+        <input type="text" placeholder="Role name" id="role" autocomplete="off" [(ngModel)]="roleName" [ngModelOptions]="{standalone: true}" (focus)="showSelect(true)" (focusout)="showSelect(false)"> 
         <button>+</button>
     </ng-template>
 

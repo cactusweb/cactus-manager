@@ -116,7 +116,7 @@ export class LicenseGenComponent implements OnInit {
       activations: new FormControl({value: this.license?.activations?.quantity || Number, disabled: false}, [ Validators.required ]),
       expires_in: new FormControl({value: expires_in.toISOString().split('T')[0], disabled: false}),
       unbindable: new FormControl({value: this.license?.unbindable || false, disabled: false}),
-      roles: new FormControl({ value: [], disabled: false } ),
+      roles: new FormControl({ value: this.license?.roles || [], disabled: false } ),
     })
     
     if ( this.license ){

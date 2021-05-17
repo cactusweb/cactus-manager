@@ -47,9 +47,9 @@ export class RolesChoosingComponent implements OnInit {
   }
 
   setInputValue( name ){
-    console.log( name )
     this.isShowSelect = false;
     this.roleName = name;
+    this.addNewRole();
   }
 
   emitRoles(){

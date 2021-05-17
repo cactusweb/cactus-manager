@@ -45,10 +45,10 @@
             </div>
         </label>
 
-        <div *ngIf="!license">
+        <div>
             <!-- Roles: 
             <input type="text" placeholder="id1, id2" [(ngModel)]="roles" [ngModelOptions]="{standalone: true}"> -->
-            <app-roles-choosing (changeRoles)="onChangeRoles($event)"></app-roles-choosing>
+            <app-roles-choosing (changeRoles)="onChangeRoles($event)" [viewRoles]="formLicense.value.roles"></app-roles-choosing>
         </div>
         
         <label class="select-label">
