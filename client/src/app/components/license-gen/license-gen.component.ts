@@ -76,7 +76,7 @@ export class LicenseGenComponent implements OnInit {
         this.key = w.key;
         this.isError = false;
         this.message = 'Successful added';
-        this.onAdd.emit(w);
+        this.onAdd.emit( { ...w, expires_in: w.expires_in * 1000 } );
       })
       .catch( e => {
         this.isError = true;
@@ -90,10 +90,10 @@ export class LicenseGenComponent implements OnInit {
     this.setDateFormat();
     
     await this.http.putLicense(this.formLicense.value)
-      .then( async(w) => { 
+      .then( async(w: any) => { 
         this.isError = false;
         this.message = 'Successful edit';
-        this.onEdit.emit(w);
+        this.onEdit.emit( { ...w, expires_in: w.expires_in * 1000 } );
       })
       .catch( e => {
         this.isError = true;
@@ -116,7 +116,7 @@ export class LicenseGenComponent implements OnInit {
       activations: new FormControl({value: this.license?.activations?.quantity || Number, disabled: false}, [ Validators.required ]),
       expires_in: new FormControl({value: expires_in.toISOString().split('T')[0], disabled: false}),
       unbindable: new FormControl({value: this.license?.unbindable || false, disabled: false}),
-      roles: new FormControl({ value: this.license?.roles || [], disabled: false } ),
+      roles: new FormControl({ value: this.license?.discord?.roles || [], disabled: false } ),
     })
     
     if ( this.license ){
