@@ -31,11 +31,12 @@ export class AccountComponent implements OnInit {
     this.spinner.show();
     if (localStorage.getItem('accessToken'))
       await this.http.getSelf()
-        .then( (w: Owner) =>{
+        .then( (w: any) =>{
           localStorage.setItem( 'name', w.name);
           localStorage.setItem( 'email', w.email);
           localStorage.setItem( 'id', w.id );
-          localStorage.setItem( 'avatar', w.uploads.avatar )
+          localStorage.setItem( 'avatar', w.uploads.avatar );
+          localStorage.setItem( 'serverRoles', JSON.stringify(w.settings.discord.roles) )
         })
         .catch( e => {
           if ( e.status == 401 ){

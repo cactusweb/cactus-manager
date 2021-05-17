@@ -38,7 +38,6 @@ export class LicenseGenComponent implements OnInit {
 
   onEscape(){
     let listener = document.addEventListener( 'keyup', e => {
-      console.log(e)
       document.removeEventListener( 'keyup', () => { } )
       if ( e.key == 'Escape' ) this.onClose.emit();
     })
@@ -55,7 +54,6 @@ export class LicenseGenComponent implements OnInit {
 
     this.formLicense.value.quantity = this.infinityActivating ? 0 : this.formLicense.value.quantity;
 
-    console.log(this.formLicense);
     if ( this.formLicense.valid && !this.license ){
       await this.postLicense();
     }else 
@@ -71,7 +69,6 @@ export class LicenseGenComponent implements OnInit {
 
   async postLicense(){
     this.message = '';
-    this.setRoles();
     this.setBoolType();
     this.setDateFormat();
     await this.http.postNewLicense(this.formLicense.value)
@@ -89,7 +86,6 @@ export class LicenseGenComponent implements OnInit {
 
   async putLicense(){
     this.message = '';
-    this.setRoles();
     this.setBoolType();
     this.setDateFormat();
     
@@ -130,9 +126,6 @@ export class LicenseGenComponent implements OnInit {
   }
 
   
-  setRoles(){
-    this.formLicense.value.roles = this.roles.trim() ? this.roles.split(' ').join('').split(',') : [];
-  }
 
 
   setBoolType(){
@@ -141,6 +134,10 @@ export class LicenseGenComponent implements OnInit {
 
   setDateFormat(){
     this.formLicense.value.expires_in = new Date(this.formLicense.value.expires_in)
+  }
+
+  onChangeRoles( roles ){
+    this.formLicense.value.roles = roles;
   }
 
 

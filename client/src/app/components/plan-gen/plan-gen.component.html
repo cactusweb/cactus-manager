@@ -36,10 +36,9 @@
             <input type="number" placeholder="1000" formControlName="renewal_price" >
         </label>
 
-        <label>
-            Roles:
-            <input type="text" placeholder="ID1, ID2" [(ngModel)]="roles" [ngModelOptions]="{standalone: true}">
-        </label>
+        <div>
+            <app-roles-choosing (changeRoles)="onChangeRoles($event)" [viewRoles]="formPlan.value.roles" [onlyView]="viewingPlan ? true : false"></app-roles-choosing>
+        </div>
         
         <label class="activations">
             Activations:

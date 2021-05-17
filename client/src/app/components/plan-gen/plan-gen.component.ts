@@ -14,7 +14,6 @@ export class PlanGenComponent implements OnInit {
   @Output() onNewItem = new EventEmitter<{}>();
   @Input() viewingPlan; 
   formPlan: FormGroup;
-  roles: string = '';
   infinityActivating: boolean = false;
 
   isError: boolean = true;
@@ -38,13 +37,9 @@ export class PlanGenComponent implements OnInit {
       unbindable: new FormControl( { value: this.viewingPlan?.unbindable || false, disabled: disabled }, [ Validators.required ] ),
       license_status: new FormControl( { value: this.viewingPlan?.license_status || 'renewal', disabled: disabled }, [ Validators.required ] ),
       renewal_price: new FormControl( { value: this.viewingPlan?.renewal_price || 0, disabled: disabled }, [ Validators.required, Validators.pattern('[0-9]*') ] ),
-      roles: new FormControl( { value: [], disabled: disabled }, [ Validators.required ] )
+      roles: new FormControl( { value: this.viewingPlan?.roles || [], disabled: disabled }, [ Validators.required ] )
     })
 
-    this.roles = '';
-     this.viewingPlan?.roles?.forEach(role => {
-       this.roles += `${role.id}, `
-     });
   }
   
   onInfinity(){
@@ -55,7 +50,6 @@ export class PlanGenComponent implements OnInit {
     this.message = '';
 
     this.formPlan.value.quantity = this.infinityActivating ? 0 : this.formPlan.value.quantity;
-    this.setRoles()
     this.setBoolType();
     this.spinner.show();
     await this.http.postPlan( this.formPlan.value )
@@ -71,12 +65,13 @@ export class PlanGenComponent implements OnInit {
     this.spinner.hide();
   }
 
-  setRoles(){
-    this.formPlan.value.roles = this.roles.trim() ? this.roles.split(' ').join('').split(',') : [];
-  }
   
   setBoolType(){
     this.formPlan.value.unbindable = this.formPlan.value.unbindable == 'true';
+  }
+
+  onChangeRoles( roles ){
+    this.formPlan.value.roles = roles;
   }
 
 }

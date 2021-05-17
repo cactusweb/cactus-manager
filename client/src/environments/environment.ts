@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: '/api/v2/owner',
+  apiUrl: 'https://api.cactusweb.io/api/v2/owner'
 };
 
 /*

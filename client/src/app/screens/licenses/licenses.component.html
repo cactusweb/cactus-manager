@@ -70,7 +70,7 @@
                             'danger': (currentDate > license.expires_in) && license.type != 'lifetime'
                         }"
                     >
-                        <td (click)="infoLicense = license"> {{ license.user?.full_name }} </td>
+                        <td (click)="infoLicense = license" class="pointer"> {{ license.user?.full_name }} </td>
                         <td class="key"> 
                             
                             ...****

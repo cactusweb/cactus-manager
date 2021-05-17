@@ -44,6 +44,7 @@ import { SettingsComponent } from './screens/settings/settings.component';
 import { AuditLogComponent } from './screens/audit-log/audit-log.component';
 import { AuditLogViewComponent } from './components/audit-log-view/audit-log-view.component';
 import { AuditLogRowComponent } from './components/audit-log-row/audit-log-row.component';
+import { RolesChoosingComponent } from './components/roles-choosing/roles-choosing.component';
 
 
 
@@ -80,6 +81,7 @@ import { AuditLogRowComponent } from './components/audit-log-row/audit-log-row.c
     AuditLogComponent,
     AuditLogViewComponent,
     AuditLogRowComponent,
+    RolesChoosingComponent,
   ],
   imports: [
     BrowserModule,
