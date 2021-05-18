@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -14,7 +14,12 @@ export class DropsViewComponent implements OnInit, OnChanges {
   isNewDrop: boolean = false;
   @Input() plans: any;
 
+  @Input() loadNow = false;
+  @Output() onErrorLoad = new EventEmitter();
+  @Output() onSuccessLoad = new EventEmitter();
+
   drops;
+
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -32,7 +37,10 @@ export class DropsViewComponent implements OnInit, OnChanges {
     await this.getDrops();
   }
 
-  ngOnChanges(){}
+  async ngOnChanges(){
+    console.log( this.loadNow )
+    if ( this.loadNow ) await this.getDrops()
+  }
 
   closeDropGen(){
     this.isNewDrop = false;
@@ -45,16 +53,21 @@ export class DropsViewComponent implements OnInit, OnChanges {
 
   async getDrops(){
     this.spinner.show();
+    this.loadNow = false;
     await this.http.getDrops()
       .then( ( w: any ) => {
         this.drops = w?.reverse();
         this.spinner.hide();
+        this.onSuccessLoad.emit();
       })
       .catch( e => {
-        if ( e.status == 401 ){
+        this.spinner.hide();
+        if ( e.status == 401 )
           this.auth.logout();
-          this.spinner.hide();
+        else{
+          this.onErrorLoad.emit();
         }
+
       })
   }
 

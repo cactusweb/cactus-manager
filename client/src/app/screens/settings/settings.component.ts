@@ -15,6 +15,8 @@ export class SettingsComponent implements OnInit {
   me: Owner;
   settings;
 
+  load_error: any = false;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private seo: SeoService,
@@ -35,10 +37,12 @@ export class SettingsComponent implements OnInit {
 
   async putSettings(  ){
     this.spinner.show();
+    this.load_error = false;
     this.me.settings = this.settings;
     await this.http.putSelf( this.me )
-      .then( () => this.spinner.hide() )
-      .catch( console.log )
+      .then( () => {} )
+      .catch( () => this.load_error = 'put' )
+      this.spinner.hide()
   }
 
 
@@ -46,6 +50,7 @@ export class SettingsComponent implements OnInit {
 
   async getSettings(){
     this.spinner.show();
+    this.load_error = false;
     await this.http.getSelf()
       .then( (w: Owner) => {
         this.me = w;
@@ -54,8 +59,13 @@ export class SettingsComponent implements OnInit {
       .catch( e => {
         if (e.status == 401)
           this.auth.logout();
+        else this.load_error = 'get';
       })
     this.spinner.hide();
+  }
+
+  onRefresh(){
+    this.load_error == 'get' ? this.getSettings() : this.putSettings();
   }
 
 

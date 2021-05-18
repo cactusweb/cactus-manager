@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpService } from 'src/app/services/http/http.service';
@@ -9,10 +9,15 @@ import { Plan } from 'src/app/interfaces/plan';
   templateUrl: './plans-view.component.html',
   styleUrls: ['./plans-view.component.scss']
 })
-export class PlansViewComponent implements OnInit {
+export class PlansViewComponent implements OnInit, OnChanges {
   plans;
   isPlanGen: boolean = false;
   viewingPlan;
+
+  
+  @Input() loadNow = false;
+  @Output() onErrorLoad = new EventEmitter();
+  @Output() onSuccessLoad = new EventEmitter();
 
   @Output() onChangeItems = new EventEmitter<any>();
 
@@ -26,18 +31,24 @@ export class PlansViewComponent implements OnInit {
     await this.getPlans()
   }
 
+  async ngOnChanges(){
+    if ( this.loadNow ) await this.getPlans();
+  }
+
   async getPlans(){
+    this.loadNow = false;
     this.spinner.show();
     await this.http.getPlans()
       .then( ( w ) => {
         this.plans = w;
         this.onChangeItems.emit( this.plans );
+        this.onSuccessLoad.emit();
       })
       .catch( e => {
-        if ( e.status == 401 ){
-          this.spinner.hide();
+        this.spinner.hide();
+        if ( e.status == 401 )
           this.auth.logout();
-        }
+        else this.onErrorLoad.emit()
       })
   }
 

@@ -129,6 +129,8 @@
         <app-license-info *ngIf="infoLicense" (onClose)="onClose($event)" [license]="infoLicense"></app-license-info>
 
     </div>
+
+    <app-load-error *ngIf="load_error" (onRefresh)="getLicenses()"></app-load-error>
     
     <ngx-spinner
     type="ball-clip-rotate"

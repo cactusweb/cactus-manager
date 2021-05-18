@@ -55,6 +55,8 @@
 
     <button class="standart-btn" (click)="putSelfData()">Save</button>
 
+    <app-load-error *ngIf="load_error" (onRefresh)=" onRefresh() "></app-load-error>
+
 </div>
 <!-- <button class="blue-btn" id="view-profile">View profile</button> -->
 

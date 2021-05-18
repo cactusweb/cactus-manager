@@ -14,6 +14,7 @@ import { SeoService } from 'src/app/services/seo/seo.service';
 })
 export class ProfileComponent implements OnInit {
     selfData: Owner;
+    load_error: any = false;
 
 
   constructor(
@@ -37,17 +38,22 @@ export class ProfileComponent implements OnInit {
 
 
   async putSelfData(  ){
+    this.load_error = false;
     this.spinner.show();
     this.selfData.links = null;
     await this.http.putSelf( this.selfData )
-      .then( () => this.spinner.hide() )
-      .catch( console.log )
+      .then( () => {})
+      .catch( () => {
+        this.load_error = 'put'
+      })
+      this.spinner.hide()
   }
 
 
   
 
   async getSelf(){
+    this.load_error = false;
     this.spinner.show();
     await this.http.getSelf()
       .then( (w: Owner) => {
@@ -56,6 +62,7 @@ export class ProfileComponent implements OnInit {
       .catch( e => {
         if (e.status == 401)
           this.auth.logout();
+        else this.load_error = 'get';
       })
     this.spinner.hide();
   }
@@ -70,8 +77,6 @@ export class ProfileComponent implements OnInit {
     
     await this.http.postFile( file, 'background/background' )
       .then( async ( w: any ) => {
-        // this.avatar = w.filePath;
-        // this.newValue.emit( this.avatar );
         this.spinner.hide();
       })
       .catch( e => {
@@ -80,6 +85,10 @@ export class ProfileComponent implements OnInit {
           this.spinner.hide();
         }
       })
+  }
+
+  onRefresh(){
+    this.load_error == 'get' ? this.getSelf() : this.putSelfData();
   }
 
 

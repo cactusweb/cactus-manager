@@ -39,7 +39,7 @@
         <label>Discord bot</label>
         <a 
             class="standart-btn"
-            href="https://discord.com/api/oauth2/authorize?client_id=809535097157451807&permissions=268435459&redirect_uri=http%3A%2F%2Fapi.cactusweb.io%2Fapi%2Fv1%2Fuser%2Fauth%2Ftoken&scope=bot" target="_blank">
+            href="https://discord.com/api/oauth2/authorize?client_id=809535097157451807&permissions=268435459&redirect_uri=http%3A%2F%2Fapi.cactusweb.io%2Fapi%2Fv2%2Fuser%2Fauth%2Ftoken&scope=bot" target="_blank">
             Invite the bot
         </a>
 
@@ -69,6 +69,7 @@ shop_id: "793729" -->
 
     <!-- <a class="blue-btn" id="invite-bot" href="https://discord.com/api/oauth2/authorize?client_id=809535097157451807&permissions=268435459&redirect_uri=http%3A%2F%2Fapi.cactusweb.io%2Fapi%2Fv1%2Fuser%2Fauth%2Ftoken&scope=bot">Invite bot</a> -->
 
+    <app-load-error *ngIf="load_error" (onRefresh)=" onRefresh() "></app-load-error>
 
 
 </div>

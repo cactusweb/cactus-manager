@@ -19,6 +19,8 @@ export class LicensesComponent implements OnInit {
   editingLicense: License;
   infoLicense: License;
 
+  load_error = false;
+
   currentDate = new Date().getTime();
 
 
@@ -63,9 +65,11 @@ export class LicensesComponent implements OnInit {
 
   async getLicenses(){
     this.spinner.show()
+    this.load_error = false;
     await this.http.getLicenses()
       .then( (w: any = [{}]) => {
         this.licenses = w;
+        
         this.licenses = this.licenses.map( license => ({
           ... license,
           expires_in: license.expires_in*1000,
@@ -74,13 +78,11 @@ export class LicensesComponent implements OnInit {
         this.spinner.hide()  
       })
       .catch( e => {
+        this.spinner.hide();
         if (e.status == 401){
-          this.spinner.hide();
           this.auth.logout();
-        }
-        else{
-          this.spinner.show()
-        }
+        }else 
+          this.load_error = true;
       })
   }
 

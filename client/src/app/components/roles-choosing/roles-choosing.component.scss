@@ -29,6 +29,8 @@ button{
     padding: 7px 0px;
     background-color: #F7F7F7;
 
+    z-index: 2;
+
     &.show{
         transform: scale(1, 1);
     }
