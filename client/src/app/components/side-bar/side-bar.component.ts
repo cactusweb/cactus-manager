@@ -13,7 +13,6 @@ export class SideBarComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private router: ActivatedRoute
   ) { }
 
   logout(){
@@ -37,6 +36,7 @@ export class SideBarComponent implements OnInit {
       case 'licenses': dataHead = { pageName: 'Licenses' }; break;
       case 'settings': dataHead = { pageName: 'Settings' }; break;
       case 'audit': dataHead = { pageName: 'Audit log' }; break;
+      case 'dashboard': dataHead = { pageName: 'Dashboard' }; break;
       default: dataHead = { pageName: '404' }
     }
 

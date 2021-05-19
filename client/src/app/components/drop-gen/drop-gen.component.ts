@@ -31,12 +31,11 @@ export class DropGenComponent implements OnInit {
   }
 
   generateForm(){
-    console.log(new Date().toISOString().slice(0, -5))
     this.dropForm = new FormGroup({
       quantity: new FormControl( { value: '', disabled: false }, [Validators.required, Validators.pattern('[0-9]*')] ),
       price: new FormControl( { value: 0, disabled: false }, [Validators.required, Validators.pattern('[0-9]*')] ),
       password: new FormControl( { value: '', disabled: false }, [Validators.required] ),
-      start_at: new FormControl( { value: new Date().toISOString().slice(0, -5), disabled: false }, [Validators.required] ),
+      start_at: new FormControl( { value: new Date().toISOString().slice(0, -8), disabled: false }, [Validators.required] ),
       plan: new FormControl( { value: this.plans[0].id, disabled: false }, Validators.required )
     })
   }

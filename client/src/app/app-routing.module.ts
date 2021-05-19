@@ -12,6 +12,7 @@ import { NotFoundComponent } from './screens/not-found/not-found.component';
 import { DropsPlansComponent } from './screens/drops-plans/drops-plans.component';
 import { SettingsComponent } from './screens/settings/settings.component';
 import { AuditLogComponent } from './screens/audit-log/audit-log.component';
+import { DashboardComponent } from './screens/dashboard/dashboard.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
     { path: 'settings', component: SettingsComponent, data: { pageName: 'Settings', title: 'Settings - CactusManager' } },
     { path: 'audit', component: AuditLogComponent, data: { pageName: 'Audit log', title: 'Audit log - CactusManager' } },
     { path: 'api', component: ApiDocComponent, data: { pageName: 'API', title: 'API integration - CactusManager' } },
+    { path: 'dashboard', component: DashboardComponent, data: { pageName: 'Dashboard', title: 'Dashboard - CactusManager' } },
     { path: '**', component: NotFoundComponent, data: { showLogo: false, redirectTo: '/account/licenses', title: '404 - CactusManager' } }
 
   ]},

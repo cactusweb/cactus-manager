@@ -19,6 +19,8 @@ export class PlanGenComponent implements OnInit {
   isError: boolean = true;
   message: string = '';
 
+  roles = [];
+
   constructor(
     private http: HttpService,
     private spinner: NgxSpinnerService,
@@ -26,7 +28,6 @@ export class PlanGenComponent implements OnInit {
 
   ngOnInit(): void {
     this.generateForm();
-    console.log( this.viewingPlan )
   }
 
   generateForm(  ){
@@ -50,6 +51,7 @@ export class PlanGenComponent implements OnInit {
     this.message = '';
 
     this.formPlan.value.quantity = this.infinityActivating ? 0 : this.formPlan.value.quantity;
+    this.formPlan.value.roles = this.roles;
     this.setBoolType();
     this.spinner.show();
     await this.http.postPlan( this.formPlan.value )
@@ -71,7 +73,7 @@ export class PlanGenComponent implements OnInit {
   }
 
   onChangeRoles( roles ){
-    this.formPlan.value.roles = roles;
+    this.roles = roles;
   }
 
 }

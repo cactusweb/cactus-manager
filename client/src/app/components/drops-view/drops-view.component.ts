@@ -38,7 +38,6 @@ export class DropsViewComponent implements OnInit, OnChanges {
   }
 
   async ngOnChanges(){
-    console.log( this.loadNow )
     if ( this.loadNow ) await this.getDrops()
   }
 

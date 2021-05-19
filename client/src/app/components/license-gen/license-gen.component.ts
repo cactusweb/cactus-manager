@@ -19,7 +19,7 @@ export class LicenseGenComponent implements OnInit {
   @Input() license: any;
   
   infinityActivating: boolean = false;
-  roles: string = '';
+  roles = [];
 
   key: string = '';
   formLicense: FormGroup; 
@@ -71,6 +71,7 @@ export class LicenseGenComponent implements OnInit {
     this.message = '';
     this.setBoolType();
     this.setDateFormat();
+    this.formLicense.value.roles = this.roles
     await this.http.postNewLicense(this.formLicense.value)
       .then( (w: any) => {
         this.key = w.key;
@@ -88,6 +89,8 @@ export class LicenseGenComponent implements OnInit {
     this.message = '';
     this.setBoolType();
     this.setDateFormat();
+
+    this.formLicense.value.roles = this.roles
     
     await this.http.putLicense(this.formLicense.value)
       .then( async(w: any) => { 
@@ -137,7 +140,7 @@ export class LicenseGenComponent implements OnInit {
   }
 
   onChangeRoles( roles ){
-    this.formLicense.value.roles = roles;
+    this.roles = roles;
   }
 
 

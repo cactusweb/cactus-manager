@@ -46,6 +46,7 @@ import { AuditLogViewComponent } from './components/audit-log-view/audit-log-vie
 import { AuditLogRowComponent } from './components/audit-log-row/audit-log-row.component';
 import { RolesChoosingComponent } from './components/roles-choosing/roles-choosing.component';
 import { LoadErrorComponent } from './screens/load-error/load-error.component';
+import { DashboardComponent } from './screens/dashboard/dashboard.component';
 
 
 
@@ -84,6 +85,7 @@ import { LoadErrorComponent } from './screens/load-error/load-error.component';
     AuditLogRowComponent,
     RolesChoosingComponent,
     LoadErrorComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

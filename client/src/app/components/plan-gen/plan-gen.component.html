@@ -37,7 +37,7 @@
         </label>
 
         <div>
-            <app-roles-choosing (changeRoles)="onChangeRoles($event)" [viewRoles]="formPlan.value.roles" [onlyView]="viewingPlan ? true : false"></app-roles-choosing>
+            <app-roles-choosing (changeRoles)="onChangeRoles($event)" [viewRoles]="this.viewingPlan?.roles || []" [onlyView]="viewingPlan ? true : false"></app-roles-choosing>
         </div>
         
         <label class="activations">
