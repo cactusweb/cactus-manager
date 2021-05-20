@@ -33,8 +33,6 @@ export class AuditLogViewComponent implements OnInit {
     this.spinner.show();
     await this.http.getLogs()
       .then( (w: any) => {
-        w = w.concat(w)
-        w = w.concat(w)
         this.logs = w.reverse();
         this.logs = this.logs.map( log => ({
           ...log,
