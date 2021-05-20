@@ -83,10 +83,10 @@
 .select .options{
     position: absolute;
     bottom: 0px;
-    left: 0px;
+    left: -1px;
     transform-origin: top;
 
-    width: 100%;
+    width: calc(100% + 2px);
 
     border: 1px solid #3D3D3D;
     border-radius: 0px 0px 12px 12px;
