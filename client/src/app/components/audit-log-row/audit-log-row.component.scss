@@ -48,11 +48,14 @@
     border-radius: 50%;
 }
 
+div.circle{
+    background-color: #c4c4c4;
+}
+
 .indicator{
     @extend .circle;
     width: 10px;
     height: 10px;
-    background-color: #c4c4c4;
 }
 
 .date{

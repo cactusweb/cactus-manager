@@ -8,7 +8,13 @@
     </div>
     <div class="row inner-block">
         <div class="user">
-            <img [src]="log.user?.avatar || log.who?.avatar" alt="" class="circle">
+            <div *ngIf="log.user?.avatar || log.who?.avatar; then avatar else circle"></div>
+            <ng-template #avatar>
+                <img [src]="log.user?.avatar || log.who?.avatar" alt="" class="circle">
+            </ng-template>
+            <ng-template #circle>
+                <div class="circle"></div>
+            </ng-template>
             {{ log.who?.name }}
         </div>
         <div class="action">
@@ -16,7 +22,7 @@
                 [ngClass]="{
                     'danger': log.action == 'deleted' || log.action == 'expired',
                     'warning': log.action == 'unbind',
-                    'success': log.action == 'bind',
+                    'success': log.action == 'bind' || log.action == 'purchase' || log.action == 'renewal',
                     'primary': log.action == 'generated'
                 }"
             >
