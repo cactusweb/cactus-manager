@@ -13,7 +13,7 @@ export class FilterPipe implements PipeTransform {
       let filter = arr.filter( ell => {
         let isInclude = false;
         params.forEach(param => {
-          if ( param.str != '' && param.status && ell[param.key].toLowerCase().toString().includes(param.str.toLowerCase())){
+          if ( param.str != '' && param.status && ell[param.key].toLowerCase().toString() == param.str.toLowerCase() ){
             isInclude = true;
             return false;
           }
