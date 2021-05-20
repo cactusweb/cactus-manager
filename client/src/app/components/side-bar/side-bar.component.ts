@@ -35,7 +35,7 @@ export class SideBarComponent implements OnInit {
       case 'profile': dataHead = { pageName: 'Profile' }; break;
       case 'licenses': dataHead = { pageName: 'Licenses' }; break;
       case 'settings': dataHead = { pageName: 'Settings' }; break;
-      case 'audit': dataHead = { pageName: 'Audit log' }; break;
+      case 'audit': dataHead = { pageName: 'Audit logs' }; break;
       case 'dashboard': dataHead = { pageName: 'Dashboard' }; break;
       default: dataHead = { pageName: '404' }
     }
