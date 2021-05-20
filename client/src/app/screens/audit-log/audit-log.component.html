@@ -4,19 +4,27 @@
 
     <div class="header">
 
-        <div class="checkboxes">
-            <div class="checkbox-1-2">
-                <input type="checkbox" name="type" id="renewal">
-                <label for="renewal" class="pointer">Renewal</label>
-            </div>
-            <div class="checkbox-1-2">
-                <input type="checkbox" name="type" id="lifetime">
-                <label for="lifetime" class="pointer">Lifetime</label>
+        <div class="select">
+            Filter
+            {{ filterCount == 0 ? '' : '(' + filterCount + ')' }}
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="6" viewBox="0 0 14 6" fill="none">
+                <path d="M1 1L7 5L13 1" stroke="#3D3D3D" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="options">
+                <div *ngFor="let param of filterParams" 
+                    [ngClass]="{ 'active': param.status }" 
+                    (click)="param.status = !param.status; param.status? filterCount = filterCount + 1 : filterCount = filterCount - 1"
+                >
+                    {{ param.str }}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="8" viewBox="0 0 11 8" fill="none">
+                        <path d="M1 4L4 7L10 1" stroke="#3D3D3D" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
             </div>
         </div>
 
         <div class="search">
-            <input type="text" placeholder="Search" name="search" id="search" class="search-input" autocomplete="off"  >
+            <input type="text" placeholder="Search" name="search" id="search" class="search-input" autocomplete="off" [(ngModel)]="searchParam">
             <img src="/assets/img/icons/search.svg">
         </div>
     </div>
@@ -24,7 +32,17 @@
     <span class="hr grey"></span>
 
     <div class="logs">
-        <app-audit-log-view></app-audit-log-view>
+        <app-audit-log-view [searchParam]="searchParam" [filterParams]="filterParams" [filterChange]="filterCount"></app-audit-log-view>
     </div>
 
 </div>
+
+<app-load-error *ngIf="load_error" (onRefresh)="getLogs()"></app-load-error>
+
+
+<ngx-spinner
+type="ball-clip-rotate"
+size="large"
+zIndex='1'
+[fullScreen]="false"
+></ngx-spinner>

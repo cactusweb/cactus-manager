@@ -54,7 +54,7 @@ export class LicensesComponent implements OnInit {
   }
 
   async ngOnInit(){
-    await this.getLicenses();
+    this.getLicenses();
   }
 
   onClose(){

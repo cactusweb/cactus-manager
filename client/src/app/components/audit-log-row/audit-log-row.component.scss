@@ -35,6 +35,7 @@
         grid-template-columns: auto 1fr;
         column-gap: 10px;
         align-items: center;
+        text-transform: capitalize;
     }
 }
 
@@ -45,13 +46,13 @@
     width: 30px;
 
     border-radius: 50%;
-    background-color: #c4c4c4;
 }
 
 .indicator{
     @extend .circle;
     width: 10px;
     height: 10px;
+    background-color: #c4c4c4;
 }
 
 .date{
@@ -63,3 +64,18 @@
 }
 
 
+.danger{
+    background-color: #C83A3A;
+}
+
+.success{
+    background-color: #78D47B;
+}
+
+.warning{
+    background-color: #F29120;
+}
+
+.primary{
+    background-color: #78AFF8;
+}

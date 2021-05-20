@@ -129,7 +129,7 @@ export class HttpService {
 
   async getLogs() {
     this.setHeaders();
-    return await this.http.get(`${this.url}/logs`, { headers: this.headers }).toPromise();
+    return await this.http.get(`${this.url}/log`, { headers: this.headers }).toPromise();
   }
 
 }

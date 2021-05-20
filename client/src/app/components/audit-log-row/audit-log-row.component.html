@@ -1,25 +1,32 @@
 <div class="row log" >
     <div class="date">
-        <span>{{ log.date | date:'dd.MM' }}</span>
+        <span>{{ log.when | date:'dd.MM' }}</span>
         <br>
-        {{ log.date | date:'hh:mmaa' }}
+        {{ log.when | date:'hh:mmaa' }}
 
 
     </div>
     <div class="row inner-block">
         <div class="user">
-            <div class="circle"></div>
-            {{ log?.user?.fullName }}
+            <img [src]="log.user?.avatar || log.who?.avatar" alt="" class="circle">
+            {{ log.who?.name }}
         </div>
         <div class="action">
-            <span class="indicator">
+            <span class="indicator"
+                [ngClass]="{
+                    'danger': log.action == 'deleted' || log.action == 'expired',
+                    'warning': log.action == 'unbind',
+                    'success': log.action == 'bind',
+                    'primary': log.action == 'generated'
+                }"
+            >
                 
             </span>
-            {{ log.type }}
+            {{ log.action }}
         </div>
 
         <div class="license">
-            {{ log.license }}
+            {{ log.key }}
         </div>
     </div>
 

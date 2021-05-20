@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
   }
 
   async ngOnInit() {
-    await this.getSelf();
+    this.getSelf();
   }
 
 
