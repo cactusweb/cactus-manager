@@ -48,7 +48,7 @@
         <div>
             <!-- Roles: 
             <input type="text" placeholder="id1, id2" [(ngModel)]="roles" [ngModelOptions]="{standalone: true}"> -->
-            <app-roles-choosing (changeRoles)="onChangeRoles($event)" [viewRoles]="this.license?.discord?.roles || []"></app-roles-choosing>
+            <app-roles-choosing (changeRoles)="onChangeRoles($event)" [viewRoles]="license?.discord?.roles || []"></app-roles-choosing>
         </div>
         
         <label class="select-label">

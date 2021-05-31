@@ -113,13 +113,15 @@ export class LicenseGenComponent implements OnInit {
     this.key = this.license?.key || '';
     let expires_in = this.license?.expires_in ? new Date(this.license.expires_in) : new Date();
 
+    this.roles = this.license?.discord?.roles.map( role => role.id ) || [];
+    console.log( this.roles  )
     this.formLicense = new FormGroup({
       type: new FormControl({value: this.license?.type || 'renewal', disabled: false}, [Validators.required]),
       price: new FormControl({value: this.license?.payment.price || 0, disabled: false}),
       activations: new FormControl({value: this.license?.activations?.quantity || Number, disabled: false}, [ Validators.required ]),
       expires_in: new FormControl({value: expires_in.toISOString().split('T')[0], disabled: false}),
       unbindable: new FormControl({value: this.license?.unbindable || false, disabled: false}),
-      roles: new FormControl({ value: this.license?.discord?.roles || [], disabled: false } ),
+      roles: new FormControl({ value: this.roles, disabled: false } ),
     })
     
     if ( this.license ){
