@@ -13,13 +13,20 @@
     </div>
 
     <div class="action">
-        <button class="btn outline-primary" routerLink="{{redirectTo}}">Go to the main</button>
+        <div *ngIf="redirectTo == '/'; then link else routerLink"></div>
+        <ng-template #link>
+            <a class="btn outline-primary" href="/">Go to the main</a>
+        </ng-template>
+
+        <ng-template #routerLink>
+            <a class="btn outline-primary" routerLink="{{redirectTo}}">Go to the main</a>
+        </ng-template>
     </div>
 
 </div>
 
-<div class="logo pointer" routerLink="{{redirectTo}}">
-    <h2 class="cactus-name" *ngIf="showLogo">Cactus <br> Manager</h2>
+<a class="logo pointer" href="{{redirectTo}}">
+    <h2 class="cactus-name" *ngIf="showLogo">Cactus <br> Dashboard</h2>
     <img src="/assets/img/logo/cactusweb_logo.svg" alt="">
-</div>
+</a>
 

@@ -14,11 +14,9 @@ export class NotFoundComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private seo: SeoService,
     ) { 
     let data: any = this.activatedRoute.data.pipe();
     data = data._value;
-    this.seo.changeTitle(data.title);
     this.showLogo = data.showLogo;
     this.redirectTo = data.redirectTo;
   }

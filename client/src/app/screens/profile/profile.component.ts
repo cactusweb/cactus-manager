@@ -18,16 +18,11 @@ export class ProfileComponent implements OnInit {
 
 
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private seo: SeoService,
     private aio: AioService,
     private http: HttpService,
     private spinner: NgxSpinnerService,
     private auth: AuthService
   ) { 
-    let data: any = this.activatedRoute.data.pipe();
-    data = data._value;
-    this.seo.changeTitle(data.title);
   }
 
   async ngOnInit() {

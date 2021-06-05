@@ -15,16 +15,10 @@ export class SignupComponent implements OnInit {
   errorMessage: string = '';
 
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private seo: SeoService,
     private auth: AuthService,
     private router: Router,
     private spinner: NgxSpinnerService,
   ) {
-    let data: any = this.activatedRoute.data.pipe();
-    data = data._value;
-    this.seo.changeTitle(data.title);
-    this.seo.changeUrl(this.router.url);
   }
 
   ngOnInit(): void {

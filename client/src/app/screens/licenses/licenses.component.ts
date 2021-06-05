@@ -41,16 +41,11 @@ export class LicensesComponent implements OnInit {
 
 
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private seo: SeoService,
     private http: HttpService,
     private aio: ToolsService,
     private spinner: NgxSpinnerService,
     private auth: AuthService,
   ) { 
-    let data: any = this.activatedRoute.data.pipe();
-    data = data._value;
-    this.seo.changeTitle(data.title);
   }
 
   async ngOnInit(){

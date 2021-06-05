@@ -18,15 +18,10 @@ export class SettingsComponent implements OnInit {
   load_error: any = false;
 
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private seo: SeoService,
     private spinner: NgxSpinnerService,
     private http: HttpService,
     private auth: AuthService
   ) { 
-    let data: any = this.activatedRoute.data.pipe();
-    data = data._value;
-    this.seo.changeTitle(data.title);
   }
 
   ngOnInit(): void {
