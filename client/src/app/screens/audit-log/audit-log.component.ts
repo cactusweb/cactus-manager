@@ -15,7 +15,7 @@ export class AuditLogComponent implements OnInit {
   filterParams = [
     {key: 'action', status: false, str: 'bind'},
     {key: 'action', status: false, str: 'unbind'},
-    {key: 'action', status: false, str: 'renewal'},
+    {key: 'action', status: false, str: 'renew'},
     {key: 'action', status: false, str: 'deleted'},
     {key: 'action', status: false, str: 'expired'},
     {key: 'action', status: false, str: 'purchase'},
