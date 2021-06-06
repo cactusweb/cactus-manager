@@ -1,18 +1,40 @@
 .content{
     display: grid;
-    grid-template-columns: minmax(390px, 0.5fr) 1fr;
-    column-gap: 70px;
-    align-self: center;
+    grid-template-columns: 1fr 1fr;
+    @media screen and ( max-width: 780px ) {
+        grid-template-columns: auto;
+    }
     height: auto;
+    > div:first-child{
+        width: 80%;
+        max-width: 450px;
+        justify-self: center;
+        margin: 20px;
+        @media screen and (max-width: 780px)  {
+            width: calc(100% - 40px);
+        }
+    }
+}
+
+h1{
+    font-size: 36px;
 }
 
 /* .content> div{} */
 
 .background-cover{
-    background-image: url('/assets/img/background/login.svg');
+    background-color: #F3F8FF;
     background-size: contain;
     justify-self: stretch;
     align-self: stretch;
+    display: grid;
+    place-items: center;
+    img{
+        width: 150px;
+    }
+    @media screen and ( max-width: 780px ) {
+        display: none !important;
+    }
 }
 
 .or{

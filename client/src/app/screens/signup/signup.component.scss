@@ -1,18 +1,52 @@
 .content{
     display: grid;
-    grid-template-columns: minmax(390px, 0.5fr) 1fr;
-    column-gap: 70px;
-    align-self: center;
+    grid-template-columns: 1fr 1fr;
+    @media screen and ( max-width: 780px ) {
+        grid-template-columns: auto;
+    }
     height: auto;
+    > div:first-child{
+        width: 80%;
+        max-width: 450px;
+        justify-self: center;
+        margin: 20px 0px;
+        padding: 20px 0px;
+        grid-template-rows: 1fr auto;
+        @media screen and (max-width: 780px)  {
+            width: calc(100% - 40px);
+        }
+        > p{
+            color: #878787;
+            font-size: 14px;
+            a{
+                color: #3E84E6;
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
+h1{
+    font-size: 36px;
 }
 
 .content> div{height: 100%;}
 
 .background-cover{
-    background-image: url('/assets/img/background/sign-up.svg');
+    background-color: #F3F8FF;
     background-size: contain;
     align-self: stretch;
     justify-self: stretch;
+    display: grid;
+    place-items: center;
+    img{
+        width: 150px
+    }
+    @media screen and ( max-width: 780px ) {
+        display: none !important;
+    }
 }
 
 .or{
