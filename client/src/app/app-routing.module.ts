@@ -18,7 +18,7 @@ import { DashboardComponent } from './screens/dashboard/dashboard.component';
 
 const routes: Routes = [
   
-  // { path: '', component: LoginComponent, canActivate: [ ToHomeGuard ] },
+  { path: '', component: LoginComponent, canActivate: [ ToHomeGuard ] },
 
   //auth
   { path: 'login', component: LoginComponent, data: { 

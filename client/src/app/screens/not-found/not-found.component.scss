@@ -28,14 +28,16 @@
 
 a.logo{
     display: grid;
-    grid-template-columns: auto 60px;
+    grid-template-columns: 1fr auto;
     column-gap: 20px;
     align-items: center;
 
     position: absolute;
     top: 50px;
     left: 60px;
-
+    img{
+        height: 60px;
+    }
 }
 .cactus-name{
     line-height: 31px;
