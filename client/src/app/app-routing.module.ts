@@ -18,6 +18,7 @@ import { AppComponent } from './app.component';
 
 
 const routes: Routes = [
+  { path: '', redirectTo: '/login' },
   
 
   //auth
@@ -72,7 +73,6 @@ const routes: Routes = [
         descript: 'Dashboard - Cactus Manager. View statistics of your business in the current time and for the past months.' 
       } 
     },
-    { path: '', redirectTo: '/login' },
     { path: '**', component: NotFoundComponent, data: { 
         showLogo: false, redirectTo: '/account/licenses', title: '404 - CactusManager',
         descript: 'Not Found - Cactus Manager. Page not found - Go to Home.'
