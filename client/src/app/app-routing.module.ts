@@ -14,11 +14,12 @@ import { DropsPlansComponent } from './screens/drops-plans/drops-plans.component
 import { SettingsComponent } from './screens/settings/settings.component';
 import { AuditLogComponent } from './screens/audit-log/audit-log.component';
 import { DashboardComponent } from './screens/dashboard/dashboard.component';
+import { AppComponent } from './app.component';
 
 
 const routes: Routes = [
   
-  { path: '', component: LoginComponent, canActivate: [ ToHomeGuard ] },
+  { path: '', component: AppComponent },
 
   //auth
   { path: 'login', component: LoginComponent, data: { 
