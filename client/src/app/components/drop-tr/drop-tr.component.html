@@ -22,7 +22,7 @@
 
                 </div>
                 <div> {{ drop.price || '-' }} </div>
-                <div> {{ drop.plan || '-' }} </div>
+                <div> {{ drop.plan?.name || '-' }} </div>
                 <div> {{ drop.quantity - drop.license?.length }} / {{ drop.quantity }} </div>
                 <div> {{ drop.status }} </div>
             </div>
