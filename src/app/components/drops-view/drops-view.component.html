@@ -1,0 +1,52 @@
+<div class="content">
+    <div class="header">
+        <h3>Drops</h3>
+        <button class="adding-btn"(click)="isNewDrop = true">
+            <span class="plus">
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <path d="M0 5H10M5 0V10" stroke="#fff"/>
+                </svg>
+            </span>
+            <span class="text">
+                Add new drop
+            </span>
+        </button>
+    
+
+    </div>
+        
+    <span class="hr grey"></span>
+
+    <div class="drops">
+
+
+            <div class="thead tr">
+
+                <div></div>
+                <div class="main">
+                    <div>Password</div>
+                    <div>Price</div>
+                    <div>Plan</div>
+                    <div>Stock</div>
+                    <div>Status</div>
+                    
+                </div>
+                <div></div>
+
+            </div>
+
+            <cdk-virtual-scroll-viewport class="custom-scroll" itemSize="65"> 
+                    <app-drop-tr *cdkVirtualFor="let drop of drops 
+                    | filter : '' : true , let i = index, trackBy: trackByFn"
+                    [drop]="drop" (onDeleteDrop)="onDeleteDrop($event)"
+                    ></app-drop-tr>
+            </cdk-virtual-scroll-viewport>
+
+
+ 
+    </div>
+
+
+</div>
+    <app-drop-gen *ngIf="isNewDrop" (onClose)="closeDropGen()" (onNewItem)="onNewItem($event)" [plans]="plans"></app-drop-gen>
+

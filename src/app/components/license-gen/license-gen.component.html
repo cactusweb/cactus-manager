@@ -1,0 +1,82 @@
+<div class="artboard" (click)="onClose.emit();"></div>
+<div class="popup">
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none" (click)="onClose.emit()" class="pointer" id="closePopup">
+        <path d="M1 13L13 1M1 1L13 13" stroke="#3D3D3D" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <div *ngIf="license; then edit else new"></div>
+    <ng-template #new>
+        <h3> New key </h3>
+    </ng-template>
+
+    <ng-template #edit>
+        <h3> Edit key </h3>
+    </ng-template>
+    
+    <form class="data"  [formGroup]="formLicense">
+
+        <label class="select-label">
+            Type:
+            <select formControlName="type">
+                <option value="renewal">renewal</option>
+                <option value="lifetime">lifetime</option>
+            </select>
+        </label>
+
+        <ng-template [ngIf]="formLicense.value.type == 'renewal'">
+            <label>
+                Amount: 
+                <input type="number" placeholder="1000" formControlName="price">
+            </label>
+    
+            <label class="renew-date">
+                Renewal:
+                <input type="date" name="date" id="date" formControlName="expires_in">
+            </label>
+
+        </ng-template>
+
+
+        <label class="activations">
+            Activations:
+            <input type="number" placeholder="Number" formControlName="activations">
+            <div class="input">
+                <input type="checkbox" [(ngModel)]="infinityActivating" [ngModelOptions]="{standalone: true}" (ngModelChange)="onInfinity()" id="infinity"> <label for="infinity" class="pointer">8</label>
+            </div>
+        </label>
+
+        <div>
+            <!-- Roles: 
+            <input type="text" placeholder="id1, id2" [(ngModel)]="roles" [ngModelOptions]="{standalone: true}"> -->
+            <app-roles-choosing (changeRoles)="onChangeRoles($event)" [viewRoles]="license?.discord?.roles || []"></app-roles-choosing>
+        </div>
+        
+        <label class="select-label">
+            Unbind:
+            <select formControlName="unbindable">
+                <option value="true">unbindable</option>
+                <option value="false">non-unbindable</option>
+            </select>
+        </label>
+
+        <div *ngIf="license; then editBtn else newBtn"></div>
+        <ng-template #newBtn>
+            <button (click)="newLicense()">Generate</button>
+        </ng-template>
+        <ng-template #editBtn>
+            <button (click)="newLicense()">Edit</button>
+        </ng-template>
+
+    </form>
+
+    <div class="key">
+        <h4>Key:</h4>
+        <span id="key">{{key}}</span>
+        <button class="standart-btn border-btn" (click)="copy(key)">
+            <img src="/assets/img/icons/copy.svg" alt="copy">
+        </button>
+    </div>
+
+    <app-popup-message [message]="message" [isError]="isError"></app-popup-message>
+
+</div>

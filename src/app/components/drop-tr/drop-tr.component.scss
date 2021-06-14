@@ -1,0 +1,67 @@
+
+.tr{
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 70px 1fr 40px;
+    column-gap: 10px;
+    margin-bottom: 10px;
+    padding-right: 20px;
+    align-items: center;
+
+
+    padding-right: 15px;
+    font-size: 16px;
+    font-weight: 400;
+
+    &:last-child{
+        margin-bottom: 10px;
+    }
+        
+    .main{
+        padding: 15px 20px;
+        box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        padding: 15px 0px 15px 20px;
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-columns: .3fr .16fr .3fr .1fr .16fr;
+        align-items: center;
+
+        > :first-child{
+            display: grid;
+            grid-template-columns: auto auto 1fr;
+            column-gap: 10px;
+            align-items: center;
+
+            span{
+                white-space: nowrap; /* Запрещаем перенос строк */
+                overflow: hidden; /* Обрезаем все, что не помещается в область */
+                text-overflow: ellipsis;
+            }
+
+            svg:hover path{
+                fill: #78AFF8;
+            }
+        }
+        
+        > :last-child{
+            text-transform: capitalize;
+        }
+    }
+
+    .time{
+        display: grid;
+        row-gap: 5px;
+
+        > span:first-child{
+            font-size: 16px;
+            line-height: 16px;
+            font-weight: 500;
+        }
+
+        > span:last-child{
+            font-size: 14px;
+        }
+    }
+    
+}

@@ -1,0 +1,40 @@
+.overlay{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background: rgba(120, 175, 248, 0.4);
+    backdrop-filter: blur(10px);
+
+    z-index: 5;
+    
+}
+
+.info{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    display: grid;
+    row-gap: 10px;
+    width: 150px;
+}
+
+h2{
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 28px;
+    color: #3D3D3D;
+    text-align: center;
+}
+
+button{
+    border-color: #78AFF8;
+
+}
+
+button svg{
+    margin-right: 10px;
+}

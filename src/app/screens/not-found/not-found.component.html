@@ -1,0 +1,32 @@
+<div class="error">
+    
+    <div class="info">
+
+        <span class="error-num">
+            404
+        </span>
+
+        <span class="error-message">
+            page not found :(
+        </span>
+
+    </div>
+
+    <div class="action">
+        <div *ngIf="redirectTo == '/'; then link else routerLink"></div>
+        <ng-template #link>
+            <a class="btn outline-primary" href="/">Go to the main</a>
+        </ng-template>
+
+        <ng-template #routerLink>
+            <a class="btn outline-primary" routerLink="{{redirectTo}}">Go to the main</a>
+        </ng-template>
+    </div>
+
+</div>
+
+<a class="logo pointer" href="{{redirectTo}}">
+    <h2 class="cactus-name" *ngIf="showLogo">Cactus <br> Dashboard</h2>
+    <img src="/assets/dash-logo.svg" alt="">
+</a>
+

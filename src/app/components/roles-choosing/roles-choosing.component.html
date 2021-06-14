@@ -1,0 +1,32 @@
+<form class="label-standart" (ngSubmit)="addNewRole()">
+
+    <ng-template [ngIf]="!onlyView">
+        Roles: 
+        <input type="text" placeholder="Role name" id="role" autocomplete="off" [(ngModel)]="roleName" [ngModelOptions]="{standalone: true}" (focus)="showSelect(true)" (focusout)="showSelect(false)"> 
+        <button>+</button>
+    </ng-template>
+
+
+    <div class="roles" >
+        <span *ngFor="let role of setRoles">
+            <span>
+                {{ role?.name }}
+            </span>
+            <svg *ngIf="!onlyView" xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none" (click)="deleteRole(role)">
+                <path d="M1 7L7 1M1 1L7 7" stroke="#808080" stroke-linecap="round"/>
+            </svg>
+        </span>
+    </div>
+
+    <div class="select custom-scroll " [ngClass]="{'show': isShowSelect}" *ngIf="!onlyView">
+        <span *ngFor="let role of allRoles
+        | search : ['name'] : roleName
+        " (click)="setInputValue( role.name )">
+            {{ role.name }}
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="8" viewBox="0 0 11 8" fill="none">
+                <path d="M1 4L4 7L10 1" stroke="#3D3D3D" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </span>
+    </div>
+
+</form>

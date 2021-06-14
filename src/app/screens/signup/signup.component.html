@@ -1,0 +1,52 @@
+<div class="auth login login-padding align-items-center content">
+
+    <div class="align-items-center">
+
+        <div>
+            <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+                <span class="h1-underline">
+                    <h1 class="underline">Sign Up</h1>
+                    <span class="hr"></span>
+                </span>
+    
+                <div class="inputs relative">
+
+                    <span class="error" *ngIf="errorMessage">
+                        {{ errorMessage }}
+                    </span>
+                    
+                    <input formControlName="name" type="text" name="organisation-name" id="organisation-name" class="standart-input" placeholder="Organisation name*">
+                    <input formControlName="email" type="text" name="email" id="email" class="standart-input" placeholder="E-mail*">
+                    <div class="input relative">
+                        <span class="input-error" *ngIf="signUpForm.controls.password.invalid && !signUpForm.controls.password.untouched">6 characters - minimum length</span>
+                        <input formControlName="password" type="password" name="password" id="password" placeholder="Password*" class="standart-input">
+                    </div>
+                    <input formControlName="key" type="text" name="key" id="key" class="standart-input" placeholder="Register key*" autocomplete="off">
+
+                </div>
+                <button class="linear-btn">Sign Up</button>
+            </form>
+    
+            <span class="or"><span class="hr"></span>or<span class="hr"></span></span>
+    
+            <button routerLink="/login" class="standart-btn">Login</button>
+        </div>
+
+        <p>
+            *Don’t have the register key? <a href="" target="_blank" rel="noopener">Contact us</a>
+        </p>
+
+    </div>
+
+    <div class="background-cover">
+
+        <img src="/assets/dash-logo-text.svg" alt="">
+
+    </div>
+    <ngx-spinner
+    type="ball-clip-rotate"
+    size="large"
+    [fullScreen]="true"
+    class="absolute"
+    ></ngx-spinner>
+</div>

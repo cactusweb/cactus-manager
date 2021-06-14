@@ -1,0 +1,37 @@
+<div class="table">
+
+    <div class=" header">
+        <div class="row">
+            <div class="col">
+                User
+            </div>
+            <div class="col">
+                Action
+            </div>
+            <div class="col">
+                License
+            </div>
+        </div>
+    </div>
+
+
+    
+    <cdk-virtual-scroll-viewport *ngIf="logs" class="custom-scroll" itemSize="70"> 
+        <!-- <div > -->
+            
+            <app-audit-log-row *cdkVirtualFor="let log of logs 
+                | search : searchKeys : searchParam
+                | filter: filterParams : filterChange
+            "
+                [log]="log"
+            ></app-audit-log-row>
+
+        <!-- </div> -->
+        
+
+        <!-- *cdkVirtualFor="let drop of drops 
+        | filter : '' : true , let i = index, trackBy: trackByFn" -->
+    </cdk-virtual-scroll-viewport>
+
+
+</div>
