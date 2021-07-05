@@ -98,7 +98,7 @@ export class LicenseGenComponent implements OnInit {
 
     this.formLicense.value.roles = this.roles
     
-    this.http.request( Requests.editLicense, this.formLicense.value)
+    this.http.request( Requests.editLicense, this.formLicense.value, this.formLicense.value.id)
       .pipe( take(1) )
       .subscribe( res => handleSuccess( res ), err => handleErr( err ) )
 
