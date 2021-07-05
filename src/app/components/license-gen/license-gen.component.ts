@@ -71,7 +71,7 @@ export class LicenseGenComponent implements OnInit {
     this.message = '';
     this.setBoolType();
     this.setDateFormat();
-    this.formLicense.value.roles = this.roles
+    this.formLicense.value.roles = this.roles || [];
     await this.http.postNewLicense(this.formLicense.value)
       .then( (w: any) => {
         this.key = w.key;
@@ -113,7 +113,7 @@ export class LicenseGenComponent implements OnInit {
     this.key = this.license?.key || '';
     let expires_in = this.license?.expires_in ? new Date(this.license.expires_in) : new Date();
 
-    this.roles = this.license?.discord?.roles.map( role => role.id ) || [];
+    this.roles = this.license?.discord?.roles?.map( role => role.id ) || [];
     console.log( this.roles  )
     this.formLicense = new FormGroup({
       type: new FormControl({value: this.license?.type || 'renewal', disabled: false}, [Validators.required]),
