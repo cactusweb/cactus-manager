@@ -4,6 +4,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpService } from 'src/app/services/http/http.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { License } from 'src/app/interfaces/license'
+import { Requests } from 'src/app/const';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-license-gen',
@@ -55,10 +57,10 @@ export class LicenseGenComponent implements OnInit {
     this.formLicense.value.quantity = this.infinityActivating ? 0 : this.formLicense.value.quantity;
 
     if ( this.formLicense.valid && !this.license ){
-      await this.postLicense();
+      this.postLicense();
     }else 
     if ( this.formLicense.valid && this.license ){
-      await this.putLicense();
+      this.putLicense();
     }
     else{
       this.isError = true;
@@ -67,42 +69,49 @@ export class LicenseGenComponent implements OnInit {
 
   }
 
-  async postLicense(){
+  postLicense(){
     this.message = '';
     this.setBoolType();
     this.setDateFormat();
     this.formLicense.value.roles = this.roles || [];
-    await this.http.postNewLicense(this.formLicense.value)
-      .then( (w: any) => {
-        this.key = w.key;
-        this.isError = false;
-        this.message = 'Successful added';
-        this.onAdd.emit( { ...w, expires_in: w.expires_in * 1000 } );
-      })
-      .catch( e => {
-        this.isError = true;
-        this.message = e.error.message || e.error.error || e.error;
-      })
+    this.http.request( Requests.postLicense, this.formLicense.value)
+      .pipe( take(1) )
+      .subscribe( res =>  handleSuccess(res), err => handleErr(err) )
+
+    let handleSuccess = (res: License) => {
+      this.key = res.key;
+      this.isError = false;
+      this.message = 'Successful added';
+      this.onAdd.emit( { ...res, expires_in: Number(res.expires_in) * 1000 } );
+    }
+
+    let handleErr = ( err: any ) => {
+      this.isError = true;
+      this.message = err.error.message || err.error.error || err.error;
+    }
   }
 
-  async putLicense(){
+  putLicense(){
     this.message = '';
     this.setBoolType();
     this.setDateFormat();
 
     this.formLicense.value.roles = this.roles
     
-    await this.http.putLicense(this.formLicense.value)
-      .then( async(w: any) => { 
+    this.http.request( Requests.editLicense, this.formLicense.value)
+      .pipe( take(1) )
+      .subscribe( res => handleSuccess( res ), err => handleErr( err ) )
+
+    let handleSuccess = ( res: License ) => {
         this.isError = false;
         this.message = 'Successful edit';
-        this.onEdit.emit( { ...w, expires_in: w.expires_in * 1000 } );
-      })
-      .catch( e => {
-        this.isError = true;
-        this.message = e.error.message || e.error.error || e.error;
-      })
+        this.onEdit.emit( { ...res, expires_in: Number(res.expires_in) * 1000 } );
+    }
 
+    let handleErr = ( err: any ) => {
+      this.isError = true;
+      this.message = err.error.message || err.error.error || err.error;
+    }
   }
 
   onInfinity(){
@@ -114,7 +123,6 @@ export class LicenseGenComponent implements OnInit {
     let expires_in = this.license?.expires_in ? new Date(this.license.expires_in) : new Date();
 
     this.roles = this.license?.discord?.roles?.map( role => role.id ) || [];
-    console.log( this.roles  )
     this.formLicense = new FormGroup({
       type: new FormControl({value: this.license?.type || 'renewal', disabled: false}, [Validators.required]),
       price: new FormControl({value: this.license?.payment.price || 0, disabled: false}),

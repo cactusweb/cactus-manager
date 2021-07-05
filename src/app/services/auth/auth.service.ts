@@ -1,7 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
+import { Requests } from 'src/app/const';
 import { environment } from 'src/environments/environment';
+import { HttpService } from '../http/http.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,17 +14,19 @@ export class AuthService {
   headers: HttpHeaders;
 
   constructor(
-    private http: HttpClient,
+    private http: HttpService,
     private router: Router
   ) { }
 
-  async login(data){
-    return await this.http.post(`${this.url}/sign-in`, data).toPromise();
+  login(data){
+    return this.http.request ( Requests.login, data )
+      .pipe( tap( data => this.setToken( data.access_token ) ) )
   }
   
 
-  async signUp(data){
-    return await this.http.post(`${this.url}/sign-up`, data).toPromise();
+  registr(data){
+    return this.http.request( Requests.registr, data )
+      .pipe( tap( data => this.setToken( data.access_token ) ) )
   }
 
   logout(){

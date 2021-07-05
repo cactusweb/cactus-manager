@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { finalize, take } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { SeoService } from 'src/app/services/seo/seo.service';
 
@@ -30,19 +31,23 @@ export class SignupComponent implements OnInit {
     })
   }
 
-  async signUp(){
+  signUp(){
     this.errorMessage = '';
     this.spinner.show();
-    await this.auth.signUp(this.signUpForm.value)
-      .then( (w: any) => {
-        this.auth.setToken(w.access_token);
-        this.router.navigate(['/account']);
-      })
-      .catch(e => {
-        console.log(e)
-        this.errorMessage = e.error.message || e.error.error;
-        this.spinner.hide();
-      })
+    this.auth.registr(this.signUpForm.value)
+      .pipe( take(1), finalize( () => this.spinner.hide() ) )  
+      .subscribe( res => this.router.navigate(['/account']), err => { this.errorMessage = err.error.message || err.error.error; } )
+    
+
+      // .then( (w: any) => {
+      //   this.auth.setToken(w.access_token);
+      //   this.router.navigate(['/account']);
+      // })
+      // .catch(e => {
+      //   console.log(e)
+      //   
+      //   this.spinner.hide();
+      // })
   }
 
 }

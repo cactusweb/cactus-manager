@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { NgxMaskModule } from "ngx-mask";
@@ -47,6 +47,8 @@ import { AuditLogRowComponent } from './components/audit-log-row/audit-log-row.c
 import { RolesChoosingComponent } from './components/roles-choosing/roles-choosing.component';
 import { LoadErrorComponent } from './screens/load-error/load-error.component';
 import { DashboardComponent } from './screens/dashboard/dashboard.component';
+import { HttpService } from './services/http/http.service';
+import { AllInterceptor } from './interceptors/all/all.interceptor';
 
 
 
@@ -98,7 +100,14 @@ import { DashboardComponent } from './screens/dashboard/dashboard.component';
     NgxMaskModule.forRoot(/*options*/),
     ScrollingModule
   ],
-  providers: [],
+  providers: [
+    HttpService, 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AllInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

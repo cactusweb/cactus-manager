@@ -7,6 +7,8 @@ import { HttpService } from 'src/app/services/http/http.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { SeoService } from 'src/app/services/seo/seo.service';
 import { License } from 'src/app/interfaces/license';
+import { Requests } from 'src/app/const';
+import { finalize, map, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-licenses',
@@ -61,40 +63,35 @@ export class LicensesComponent implements OnInit {
   async getLicenses(){
     this.spinner.show()
     this.load_error = false;
-    await this.http.getLicenses()
-      .then( (w: any = [{}]) => {
-        this.licenses = w;
-        
-        this.licenses = this.licenses.map( license => ({
-          ... license,
-          expires_in: license.expires_in*1000,
-          created_at: license.created_at*1000
+
+    this.http.request( Requests.getAllLicense )
+      .pipe( 
+        take(1), 
+        finalize( () => this.spinner.hide() ),
+        map( ( licenses: License[] ) => 
+          licenses.map( license => { 
+            return {
+              ...license,
+              expires_in: Number(license.expires_in) * 1000,
+              created_at: Number(license.created_at) * 1000
+            }
         }))
-        this.spinner.hide()  
-      })
-      .catch( e => {
-        this.spinner.hide();
-        if (e.status == 401){
-          this.auth.logout();
-        }else 
-          this.load_error = true;
-      })
+      )
+      .subscribe(
+        res => this.licenses = res,
+        err => this.load_error = true
+      )
   }
 
-  async deleteLicense(id: string){
+  deleteLicense(id: string){
     this.spinner.show()
-    await this.http.deleteLicense(id)
-      .then( async() => { 
-          this.licenses = this.licenses.filter( ell => ell.id !== id )
-          
-          this.spinner.hide()
-       })
-      .catch( e => { 
-        if (e.status == 401){
-          this.spinner.hide()
-          this.auth.logout();
-        }
-      })
+    this.http.request( Requests.deleteLicense, null, id )
+      .pipe( take(1), finalize( () => this.spinner.hide() ) )
+      .subscribe( 
+        res => this.licenses = this.licenses.filter( ell => ell.id !== id ),
+        err => {},
+        () => this.licenses = this.licenses.filter( ell => ell.id !== id )
+      )
   }
 
   async onEditLicense( license: License ){
@@ -152,7 +149,7 @@ export class LicensesComponent implements OnInit {
   }
   
 
-  async renewLicense( license ){
+  renewLicense( license ){
     let expires_in = new Date(license.expires_in); 
     expires_in.setMonth( expires_in.getMonth()+1 );
     license.expires_in = expires_in;
@@ -163,10 +160,9 @@ export class LicensesComponent implements OnInit {
     }
 
     this.spinner.show();
-    await this.http.renewLicense( license.id )
-      .then()
-      .catch()
-    this.spinner.hide();
+    this.http.request( Requests.renewLicense, null, license.id )
+      .pipe( take(1), finalize( () => this.spinner.hide() ) )
+      .subscribe( res => {}, err => {} )
   }
 
 

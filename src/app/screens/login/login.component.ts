@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { finalize, take } from 'rxjs/operators';
 import { AuthService } from '../../services/auth/auth.service';
-import { SeoService } from '../../services/seo/seo.service';
 
 @Component({
   selector: 'app-login',
@@ -30,18 +30,11 @@ export class LoginComponent implements OnInit {
   }
 
 
-  async login(){
+  login(){
       this.spinner.show();
-      await this.auth.login(this.loginForm.value)
-        .then( (w: any) => {
-          this.auth.setToken(w.access_token);
-          this.router.navigate(['/account']);
-        })
-        .catch(e => {
-          console.log(e)
-          this.errorMessage = e.error.message || e.error.error;
-          this.spinner.hide();
-        })
+      this.auth.login(this.loginForm.value)
+        .pipe( take(1), finalize( () => this.spinner.hide() ) )
+        .subscribe( res => this.router.navigate(['/account']), err => this.errorMessage = err.error.message || err.error.error )
   }
 
 

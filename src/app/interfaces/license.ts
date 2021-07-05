@@ -7,9 +7,9 @@ export interface License {
         ],
         quantity: number
     },
-    bought_at: Date,
-    created_at: Date,
-    expires_in?: Date,
+    bought_at: Date | number,
+    created_at: Date | number,
+    expires_in?: Date | number,
     discord: {
         id: string,
         roles: [
