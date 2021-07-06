@@ -20,14 +20,12 @@ export class AllInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     req = this.setAuthHeader(req);
-    console.log(req)
     if ( !localStorage.getItem( 'accessToken' ) && !req.url.includes('sign') ){
       this.auth.logout();
       this.notifications.generateNotification( 401, 'You are not authorized' )
       return EMPTY;
     }
     
-    console.log( 'rer' )
     return next.handle(req)
       .pipe( 
         catchError( err => {
