@@ -8,28 +8,39 @@ import {
 import { EMPTY, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { NotificationsService } from 'src/app/services/notifications/notifications.service';
 
 @Injectable()
 export class AllInterceptor implements HttpInterceptor {
 
   constructor(
-    private auth: AuthService
+    private auth: AuthService,
+    private notifications: NotificationsService
   ) {}
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     req = this.setAuthHeader(req);
-    
+    console.log(req)
     if ( !localStorage.getItem( 'accessToken' ) && !req.url.includes('sign') ){
       this.auth.logout();
+      this.notifications.generateNotification( 401, 'You are not authorized' )
       return EMPTY;
     }
     
-
+    console.log( 'rer' )
     return next.handle(req)
       .pipe( 
         catchError( err => {
-          if ( err.status == 401 )
+          if ( err.status == 401 ){
             this.auth.logout();
+            this.notifications.generateNotification( 401, 'You are not authorized' )
+          }else
+          if ( err.status > 500 ){
+            this.notifications.generateNotification( err.status, 'Server is temporarily unavailable' );
+          }else
+          if ( err.status >= 400 && err.status < 500 && req.method != 'POST' ){
+            this.notifications.generateNotification( err.status, err.error.message || err.error.error || err.message )
+          }
             
           return throwError(err)
         }) 

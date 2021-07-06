@@ -1,0 +1,11 @@
+#notifications-block{
+    width: 250px;
+    bottom: 80px;
+    right: 40px;
+    z-index: 1000;
+
+    
+    display: grid;
+    row-gap: 20px;
+    position: absolute;
+}

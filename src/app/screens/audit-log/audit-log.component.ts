@@ -32,18 +32,7 @@ export class AuditLogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getLogs();
   }
 
-  getLogs(){
-    this.load_error = false;
-    this.spinner.show();
-    this.http.request( Requests.getAllLog )
-      .pipe( take(1), finalize( () => this.spinner.hide() ) )
-      .subscribe(
-        res => {},
-        err => this.load_error = true
-      )
-  }
 
 }
