@@ -5,7 +5,7 @@ import {
   HttpEvent,
   HttpInterceptor
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { EMPTY, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
@@ -19,6 +19,10 @@ export class AllInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     req = this.setAuthHeader(req);
     
+    if ( !localStorage.getItem( 'accessToken' ) && !req.url.includes('sign') ){
+      this.auth.logout();
+      return EMPTY;
+    }
     
 
     return next.handle(req)
