@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { finalize, take } from 'rxjs/operators';
+import { Requests } from 'src/app/const';
 import { Owner } from 'src/app/interfaces/owner';
 import { AioService } from 'src/app/services/aio/aio.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -21,65 +23,59 @@ export class ProfileComponent implements OnInit {
     private aio: AioService,
     private http: HttpService,
     private spinner: NgxSpinnerService,
-    private auth: AuthService
   ) { 
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.getSelf();
   }
 
 
 
 
-  async putSelfData(  ){
+  putSelfData(  ){
     this.load_error = false;
     this.spinner.show();
     this.selfData.links = null;
-    await this.http.putSelf( this.selfData )
-      .then( () => {})
-      .catch( () => {
-        this.load_error = 'put'
-      })
-      this.spinner.hide()
+
+    this.http.request( Requests.editSelf, this.selfData )
+      .pipe( take(1), finalize( () => this.spinner.hide() ) )
+      .subscribe(
+        res => {},
+        err => this.load_error = 'put'
+      )
   }
 
 
   
 
-  async getSelf(){
+  getSelf(){
     this.load_error = false;
+
     this.spinner.show();
-    await this.http.getSelf()
-      .then( (w: Owner) => {
-        this.selfData = w;
-      })
-      .catch( e => {
-        if (e.status == 401)
-          this.auth.logout();
-        else this.load_error = 'get';
-      })
-    this.spinner.hide();
+
+    this.http.request( Requests.getSelf )
+      .pipe( take(1), finalize( () => this.spinner.hide() ) )
+      .subscribe(
+        res => this.selfData = res,
+        err => this.load_error = 'get'
+      )
   }
 
-  async onAddBG(file){
+
+
+  onAddBG(file){
     file = this.aio.getFormData( file );
     if ( !file ) return;
 
-    file.forEach( console.log )
-
     this.spinner.show();
     
-    await this.http.postFile( file, 'background/background' )
-      .then( async ( w: any ) => {
-        this.spinner.hide();
-      })
-      .catch( e => {
-        if ( e.status == 401 ){
-          this.auth.logout();
-          this.spinner.hide();
-        }
-      })
+    this.http.request( Requests.postFile, file, 'background/background' )
+      .pipe( take(1), finalize( () => this.spinner.hide() ) )
+      .subscribe(
+        res => {},
+        err => {}
+      )
   }
 
   onRefresh(){

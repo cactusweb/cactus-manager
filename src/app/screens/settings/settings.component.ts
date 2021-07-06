@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { finalize, take } from 'rxjs/operators';
+import { Requests } from 'src/app/const';
 import { Owner } from 'src/app/interfaces/owner';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpService } from 'src/app/services/http/http.service';
@@ -30,33 +32,32 @@ export class SettingsComponent implements OnInit {
 
   
 
-  async putSettings(  ){
+  putSettings(  ){
     this.spinner.show();
     this.load_error = false;
     this.me.settings = this.settings;
-    await this.http.putSelf( this.me )
-      .then( () => {} )
-      .catch( () => this.load_error = 'put' )
-      this.spinner.hide()
+
+    this.http.request( Requests.editSelf, this.me )
+      .pipe( take(1), finalize( () => this.spinner.hide() ) )
+      .subscribe(
+        res => {},
+        err => this.load_error = 'put'
+      )
   }
 
 
   
 
-  async getSettings(){
+  getSettings(){
     this.spinner.show();
     this.load_error = false;
-    await this.http.getSelf()
-      .then( (w: Owner) => {
-        this.me = w;
-        this.settings = this.me.settings;
-      })
-      .catch( e => {
-        if (e.status == 401)
-          this.auth.logout();
-        else this.load_error = 'get';
-      })
-    this.spinner.hide();
+
+    this.http.request( Requests.getSelf )
+      .pipe( take(1), finalize( () => this.spinner.hide() ) )
+      .subscribe(
+        res => { this.me = res; this.settings = res.settings },
+        err => this.load_error = 'get'
+      )
   }
 
   onRefresh(){

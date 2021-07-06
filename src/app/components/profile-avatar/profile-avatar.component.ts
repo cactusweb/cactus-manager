@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { finalize, take } from 'rxjs/operators';
+import { Requests } from 'src/app/const';
 import { AioService } from 'src/app/services/aio/aio.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpService } from 'src/app/services/http/http.service';
@@ -23,27 +25,18 @@ export class ProfileAvatarComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  async onAddFile(event){
+  onAddFile(event){
     let file = this.aio.getFormData( event );
-    console.log( event )
     if ( !file ) return;
-
-    file.forEach( console.log )
 
     this.spinner.show();
     
-    await this.http.postFile( file, 'avatar' )
-      .then( async ( w: any ) => {
-        this.avatar = w.avatar;
-        // this.newValue.emit( this.avatar );
-        this.spinner.hide();
-      })
-      .catch( e => {
-        if ( e.status == 401 ){
-          this.auth.logout();
-          this.spinner.hide();
-        }
-      })
+    this.http.request( Requests.postFile, file, 'avatar' )
+      .pipe( take(1), finalize( () => this.spinner.hide() ) )
+      .subscribe(
+        res => { this.avatar = res.avatar; this.newValue.emit( this.avatar ) },
+        err => {}
+      )
   }
 
 }

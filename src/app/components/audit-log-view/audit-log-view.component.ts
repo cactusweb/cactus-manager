@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { finalize, map, take } from 'rxjs/operators';
+import { Requests } from 'src/app/const';
 import { HttpService } from 'src/app/services/http/http.service';
 
 @Component({
@@ -29,23 +31,25 @@ export class AuditLogViewComponent implements OnInit {
     this.getLogs();
   }
 
-  async getLogs(){
+  getLogs(){
     this.spinner.show();
-    await this.http.getLogs()
-      .then( (w: any) => {
-        this.logs = w.reverse();
-        this.logs = this.logs.map( log => ({
-          ...log,
-          who: {
-            ...log.who,
-            name: log.who?.name == localStorage.getItem('name') ? 'Admin' : log.who?.name
-          },
-          when: log.when * 1000
-        }))
-      })
-      .catch( e => {})
-
-    this.spinner.hide();
+    this.http.request( Requests.getAllLog )
+      .pipe( take(1), finalize( () => this.spinner.hide() ), 
+             map( logs => {
+               logs.reverse() 
+               return logs.map( log => {
+                 return {
+                  ...log,
+                  who: {
+                    ...log.who,
+                    name: log.who?.name == localStorage.getItem('name') ? 'Admin' : log.who?.name
+                  },
+                  when: log.when * 1000
+                 } 
+               })
+             }) 
+        )
+      .subscribe( res => this.logs = res, err => {})
   }
 
 }

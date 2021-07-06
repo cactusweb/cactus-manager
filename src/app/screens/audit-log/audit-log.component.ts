@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { finalize, take } from 'rxjs/operators';
+import { Requests } from 'src/app/const';
 import { HttpService } from 'src/app/services/http/http.service';
 
 @Component({
@@ -29,19 +31,19 @@ export class AuditLogComponent implements OnInit {
     private spinner: NgxSpinnerService,
   ) { }
 
-  async ngOnInit() {
-    await this.getLogs();
+  ngOnInit() {
+    this.getLogs();
   }
 
-  async getLogs(){
+  getLogs(){
     this.load_error = false;
     this.spinner.show();
-    await this.http.getLogs()
-      .then( w => {}) 
-      .catch( e => {
-        this.load_error = true;
-      })
-    this.spinner.hide();
+    this.http.request( Requests.getAllLog )
+      .pipe( take(1), finalize( () => this.spinner.hide() ) )
+      .subscribe(
+        res => {},
+        err => this.load_error = true
+      )
   }
 
 }

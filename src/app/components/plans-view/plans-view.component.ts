@@ -3,6 +3,8 @@ import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpService } from 'src/app/services/http/http.service';
 import { Plan } from 'src/app/interfaces/plan';
+import { Requests } from 'src/app/const';
+import { finalize, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-plans-view',
@@ -27,47 +29,35 @@ export class PlansViewComponent implements OnInit, OnChanges {
     private spinner: NgxSpinnerService
   ) { }
 
-  async ngOnInit(){
-    await this.getPlans()
+  ngOnInit(){
+    this.getPlans()
   }
 
-  async ngOnChanges(){
-    if ( this.loadNow ) await this.getPlans();
+  ngOnChanges(){
+    if ( this.loadNow ) this.getPlans();
   }
 
-  async getPlans(){
+  getPlans(){
     this.loadNow = false;
     this.spinner.show();
-    await this.http.getPlans()
-      .then( ( w ) => {
-        this.plans = w;
-        this.onChangeItems.emit( this.plans );
-        this.onSuccessLoad.emit();
-      })
-      .catch( e => {
-        this.spinner.hide();
-        if ( e.status == 401 )
-          this.auth.logout();
-        else this.onErrorLoad.emit()
-      })
+    this.http.request( Requests.getAllPlan )
+      .pipe( take(1), finalize( () => this.spinner.hide() ) )
+      .subscribe(
+        res => { this.plans = res; this.onChangeItems.emit( this.plans ); this.onSuccessLoad.emit() },
+        err => { this.onErrorLoad.emit() }
+      )
   }
 
-  async deletePlan( id: string ){
+  deletePlan( id: string ){
 
     this.spinner.show();
-    await this.http.deletePlan( id )
-      .then( () => {
-        this.plans = this.plans.filter( ell => ell.id != id );
-        this.onChangeItems.emit( this.plans );
-        this.spinner.hide();
-      })
-      .catch( e => {
-        if ( e.status == 401 ){
-          this.spinner.hide();
-          this.auth.logout();
-        }
-      })
-
+    this.http.request( Requests.deletePlan, null, id )
+      .pipe( take(1), finalize( () => this.spinner.hide() ) )
+      .subscribe(
+        res => { this.plans = this.plans.filter( ell => ell.id != id ); this.onChangeItems.emit( this.plans ); },
+        err => {  },
+        () => { this.plans = this.plans.filter( ell => ell.id != id ); this.onChangeItems.emit( this.plans ); }
+      )
   }
 
 

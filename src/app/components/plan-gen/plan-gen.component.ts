@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { finalize, take } from 'rxjs/operators';
+import { Requests } from 'src/app/const';
 import { HttpService } from 'src/app/services/http/http.service';
 
 @Component({
@@ -47,24 +49,20 @@ export class PlanGenComponent implements OnInit {
     this.infinityActivating ? this.formPlan.controls.quantity.disable() : this.formPlan.controls.quantity.enable()
   }
 
-  async onAddPlan(){
+  onAddPlan(){
     this.message = '';
 
     this.formPlan.value.quantity = this.infinityActivating ? 0 : this.formPlan.value.quantity;
     this.formPlan.value.roles = this.roles;
     this.setBoolType();
     this.spinner.show();
-    await this.http.postPlan( this.formPlan.value )
-      .then( w => {
-        this.isError = false;
-        this.message = 'Successful added';
-        this.onNewItem.emit(w);
-      })
-      .catch( e => {
-        this.isError = true;
-        this.message = e.error.message || e.error.error || e.error;
-      })
-    this.spinner.hide();
+    
+    this.http.request( Requests.postPlan, this.formPlan.value )
+      .pipe( take(1), finalize( () => this.spinner.hide() ) )
+      .subscribe(
+        res => { this.isError = false, this.message = 'Successful added'; this.onNewItem.emit(res) },
+        err => { this.isError = true; this.message = err.error.message || err.error.error || err.error }
+      )
   }
 
   

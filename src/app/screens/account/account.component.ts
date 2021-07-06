@@ -3,6 +3,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpService } from 'src/app/services/http/http.service';
 import { Owner } from 'src/app/interfaces/owner'
+import { Requests } from 'src/app/const';
+import { finalize, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-account',
@@ -22,29 +24,27 @@ export class AccountComponent implements OnInit {
     
   }
 
-  async ngOnInit() {
-    await this.getSetAccountData();
+  ngOnInit() {
+    this.getSetAccountData();
     this.firstLoad = false;
   }
 
-  async getSetAccountData(){
-    this.spinner.show();
-    if (localStorage.getItem('accessToken'))
-      await this.http.getSelf()
-        .then( (w: any) =>{
-          localStorage.setItem( 'name', w.name);
-          localStorage.setItem( 'email', w.email);
-          localStorage.setItem( 'id', w.id );
-          localStorage.setItem( 'avatar', w.uploads.avatar );
-          localStorage.setItem( 'serverRoles', JSON.stringify(w.settings.discord.roles) )
-        })
-        .catch( e => {
-          if ( e.status == 401 ){
-            this.auth.logout();
+  getSetAccountData(){
+    if ( !localStorage.getItem( 'accessToken' ) )
+      return;
 
-          }
-        })
-    this.spinner.hide();
+    this.spinner.show();
+    this.http.request( Requests.getSelf )
+      .pipe( take(1), finalize( () => this.spinner.hide() ) )
+      .subscribe( res => this.setLocalStorage( res ), err => {})
+  }
+
+  setLocalStorage( res: any ){
+    localStorage.setItem( 'name', res.name);
+    localStorage.setItem( 'email', res.email);
+    localStorage.setItem( 'id', res.id );
+    localStorage.setItem( 'avatar', res.uploads.avatar );
+    localStorage.setItem( 'serverRoles', JSON.stringify(res.settings.discord.roles) )
   }
 
 }

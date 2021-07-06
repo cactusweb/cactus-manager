@@ -4,6 +4,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpService } from 'src/app/services/http/http.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { Drop } from 'src/app/interfaces/drop';
+import { Requests } from 'src/app/const';
+import { finalize, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-drop-tr',
@@ -17,7 +19,6 @@ export class DropTrComponent implements OnInit {
   constructor(
     private spinner: NgxSpinnerService,
     private http: HttpService,
-    private auth: AuthService,
     private aio: ToolsService
   ) { }
 
@@ -25,34 +26,26 @@ export class DropTrComponent implements OnInit {
   }
 
   
-  async deleteDrop( id: string ){
+  deleteDrop( id: string ){
     this.spinner.show();
-    await this.http.deleteDrop( id )
-      .then( w => {
-        this.onDeleteDrop.emit( id );
-        this.spinner.hide();
-      })
-      .catch( e => {
-        if ( e.status == 401 ){
-          this.auth.logout();
-          this.spinner.hide();
-        }
-      })
+    this.http.request( Requests.deleteDrop, null, id )
+      .pipe( take(1), finalize( () => this.spinner.hide() ) )
+      .subscribe( 
+        res => this.onDeleteDrop.emit( id ),
+        err => {},
+        () => this.onDeleteDrop.emit(id)
+      )
   }
 
-  async stopDrop( id: string ){
+  stopDrop( id: string ){
     this.spinner.show();
-    await this.http.stopDrop( id )
-      .then( () => {
-        this.drop.status = 'stopped';
-        this.spinner.hide();
-      })
-      .catch(e => {
-        if ( e.status == 401 ){
-          this.auth.logout();
-          this.spinner.hide();
-        }
-      })
+    this.http.request( Requests.stopDrop, null, id )
+      .pipe( take(1), finalize( () => this.spinner.hide() ) )
+      .subscribe(
+        res => this.drop.status = 'stopped',
+        err => {},
+        () => this.drop.status = 'stopped'
+      )
   }
 
   

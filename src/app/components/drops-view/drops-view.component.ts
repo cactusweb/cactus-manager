@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { finalize, map, take } from 'rxjs/operators';
+import { Requests } from 'src/app/const';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpService } from 'src/app/services/http/http.service';
 import { SeoService } from 'src/app/services/seo/seo.service';
@@ -33,12 +35,12 @@ export class DropsViewComponent implements OnInit, OnChanges {
     this.seo.changeTitle(data.title);
   }
 
-  async ngOnInit() {
-    await this.getDrops();
+  ngOnInit() {
+    this.getDrops();
   }
 
-  async ngOnChanges(){
-    if ( this.loadNow ) await this.getDrops()
+  ngOnChanges(){
+    if ( this.loadNow ) this.getDrops()
   }
 
   closeDropGen(){
@@ -50,24 +52,14 @@ export class DropsViewComponent implements OnInit, OnChanges {
   }
 
 
-  async getDrops(){
+  getDrops(){
     this.spinner.show();
     this.loadNow = false;
-    await this.http.getDrops()
-      .then( ( w: any ) => {
-        this.drops = w?.reverse();
-        this.spinner.hide();
-        this.onSuccessLoad.emit();
-      })
-      .catch( e => {
-        this.spinner.hide();
-        if ( e.status == 401 )
-          this.auth.logout();
-        else{
-          this.onErrorLoad.emit();
-        }
-
-      })
+    this.http.request( Requests.getAllDrop )
+      .pipe( take(1), finalize( () => this.spinner.hide() ), map( drops => drops?.reverse() ) )
+      .subscribe(
+        res => { this.onSuccessLoad.emit(); this.drops = res;}, err => this.onErrorLoad.emit(), () => this.onSuccessLoad.emit()
+      )
   }
 
   onNewItem( event ){

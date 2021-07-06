@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { take, tap } from 'rxjs/operators';
+import { Requests } from 'src/app/const';
 import { HttpService } from 'src/app/services/http/http.service';
 
 @Component({
@@ -40,7 +42,7 @@ export class DropGenComponent implements OnInit {
     })
   }
 
-  async onAddDrop(){
+  onAddDrop(){
     this.message = '';
 
     if ( this.dropForm.invalid ){
@@ -50,16 +52,19 @@ export class DropGenComponent implements OnInit {
     }
 
     this.dropForm.value.start_at = new Date(this.dropForm.value.start_at);
-    await this.http.postDrop( this.dropForm.value )
-      .then( (w: any) => {
-        this.isError = false;
-        this.message = 'Successful added';
-        this.onNewItem.emit( w );
-      })
-      .catch( e => {
-        this.isError = true;
-        this.message = e.error.message || e.error.error || e.error;
-      })
+    this.http.request( Requests.postDrop, this.dropForm.value )
+      .pipe( take(1), tap( w => this.onNewItem.emit(w) ) )
+      .subscribe( res => handleSuccess(), err => handleError(err) )
+
+    let handleSuccess = () => {
+      this.isError = false;
+      this.message = 'Successful added';
+    }
+
+    let handleError = (err: any) => {
+      this.isError = true;
+      this.message = err.error.message || err.error.error || err.error;
+    }
   }
 
 
