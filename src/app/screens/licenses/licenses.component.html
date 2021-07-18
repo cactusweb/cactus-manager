@@ -67,7 +67,8 @@
                         , let i = index, trackBy: trackByFn"
                         [ngClass]="{ 
                             'warning': (currentDate + daysToMs(3) > license.expires_in) && license.type != 'lifetime',
-                            'danger': (currentDate > license.expires_in) && license.type != 'lifetime'
+                            'danger': (currentDate > license.expires_in) && license.type != 'lifetime',
+                            'card': license.payment?.last4
                         }"
                     >
                         <td (click)="infoLicense = license" class="pointer"> {{ license.user?.full_name }} </td>
