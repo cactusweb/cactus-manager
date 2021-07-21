@@ -23,6 +23,7 @@ export interface License {
     payment: {
         currency: string,
         last4: string,
+        exp_date: string,
         payment_id: string,
         payment_method_id: string,
         price: number

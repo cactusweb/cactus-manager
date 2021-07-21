@@ -38,7 +38,11 @@ export class LicensesComponent implements OnInit {
   searchKeys = [
     'key', 
     { par1: 'user', par2: 'full_name' },
-   'expires_in', 'create_at'
+    { par1: 'user', par2: 'discord_id' },
+    { par1: 'payment', par2: 'email' },
+    { par1: 'payment', par2: 'last4' },
+   'expires_in', 
+   'create_at'
   ]
 
 
@@ -73,7 +77,11 @@ export class LicensesComponent implements OnInit {
             return {
               ...license,
               expires_in: Number(license.expires_in) * 1000,
-              created_at: Number(license.created_at) * 1000
+              created_at: Number(license.created_at) * 1000,
+              payment: {
+                ...license.payment,
+                exp_date: this.getValidExtDate( license.payment?.exp_date ) 
+              }
             }
         }))
       )
@@ -105,6 +113,11 @@ export class LicensesComponent implements OnInit {
       ... license,
     }))
     
+  }
+
+  getValidExtDate( date: string ){
+    if ( !date ) return '';
+    return date.slice(0, 2) + "/" + date.slice(2);
   }
 
 
