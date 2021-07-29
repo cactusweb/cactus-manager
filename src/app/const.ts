@@ -18,6 +18,7 @@ export const Requests: reqMap = {
     // profile
     getSelf: { url: '/@me', method: 'GET' },
     editSelf: { url: '', method: 'PUT' },
+    changePassword: { url: '/password', method: 'PUT' },
 
     // files
     postFile: { url: '/upload/:param', method: 'POST' },

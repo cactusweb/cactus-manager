@@ -49,6 +49,7 @@ import { LoadErrorComponent } from './screens/load-error/load-error.component';
 import { DashboardComponent } from './screens/dashboard/dashboard.component';
 import { HttpService } from './services/http/http.service';
 import { AllInterceptor } from './interceptors/all/all.interceptor';
+import { PasswordChangeFormComponent } from './components/password-change-form/password-change-form.component';
 
 
 
@@ -88,6 +89,7 @@ import { AllInterceptor } from './interceptors/all/all.interceptor';
     RolesChoosingComponent,
     LoadErrorComponent,
     DashboardComponent,
+    PasswordChangeFormComponent,
   ],
   imports: [
     BrowserModule,

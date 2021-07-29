@@ -35,14 +35,15 @@
     >
     </app-profile-input>
 
-    <div>
-        <label>Discord bot</label>
+    <div class="others">
+        <label>Others</label>
         <a 
             class="standart-btn"
             href="https://discord.com/api/oauth2/authorize?client_id=809535097157451807&permissions=268435459&redirect_uri=http%3A%2F%2Fapi.cactusweb.io%2Fapi%2Fv2%2Fuser%2Fauth%2Ftoken&scope=bot" target="_blank">
-            Invite the bot
+            Invite the Discord bot
         </a>
 
+        <a class="standart-btn" (click)="showChangePasswordForm = true">Change password</a>
     </div>
 
     <button class="standart-btn" (click)="putSettings()">
@@ -71,7 +72,7 @@ shop_id: "793729" -->
 
     <app-load-error *ngIf="load_error" (onRefresh)=" onRefresh() "></app-load-error>
 
-
+    <app-password-change-form (onClose)="showChangePasswordForm = false" *ngIf="showChangePasswordForm"></app-password-change-form>
 </div>
 
 

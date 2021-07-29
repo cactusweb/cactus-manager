@@ -33,7 +33,7 @@ button, input{background: none; border: none; padding: 0px; box-sizing: border-b
 input[type="date"]{cursor: text; text-align: center;}
 input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calendar-picker-indicator{display: none; -webkit-appearance: none;}
 a, a *, button, button *{transition: .4s;}
-div{box-sizing: border-box;}
+div, form{box-sizing: border-box;}
 h1, h2, h3, h4, p{margin: 0px; padding: 0px;}
 span.hr{width: 100%; display: inline-block; box-sizing: border-box; border: 0.5px solid #3d3d3d; height: 1px; margin: 0px; background-color: #3d3d3d;}
 span.hr.grey{background-color: #898989; border-color: #898989;}
@@ -119,6 +119,9 @@ input[type=number] {
     @extend .btn;
     background: linear-gradient(91.44deg, #9DC2F3 0%, #91DCF4 100%);
     color: #FFFFFF;
+    &:hover{
+        filter: brightness(1.1);
+    }
 }
 
 

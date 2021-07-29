@@ -19,6 +19,8 @@ export class SettingsComponent implements OnInit {
 
   load_error: any = false;
 
+  showChangePasswordForm: boolean = false;
+
   constructor(
     private spinner: NgxSpinnerService,
     private http: HttpService,
