@@ -40,7 +40,10 @@ export class PasswordChangeFormComponent implements OnInit {
     this.http.request( Requests.changePassword, this.passwordForm.value )
       .pipe( take(1) )
       .subscribe(
-        res => this.message = 'Successful change',
+        res => {
+          this.message = 'Successful change';
+          localStorage.setItem( 'accessToken', res.token || localStorage.accessToken )
+        },
         err => {
           this.message = err.error?.error || err.error?.message || err.message || 'Smth went wrong';
           this.isError = true;
