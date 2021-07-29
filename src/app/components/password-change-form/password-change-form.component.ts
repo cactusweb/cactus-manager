@@ -42,7 +42,7 @@ export class PasswordChangeFormComponent implements OnInit {
       .subscribe(
         res => {
           this.message = 'Successful change';
-          localStorage.setItem( 'accessToken', res.token || localStorage.accessToken )
+          localStorage.setItem( 'accessToken', res.accessToken || localStorage.accessToken )
         },
         err => {
           this.message = err.error?.error || err.error?.message || err.message || 'Smth went wrong';
