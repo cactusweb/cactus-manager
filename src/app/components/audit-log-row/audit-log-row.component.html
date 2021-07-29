@@ -21,14 +21,16 @@
             <span class="indicator"
                 [ngClass]="{
                     'danger': log.action == 'deleted' || log.action == 'expired',
-                    'warning': log.action == 'unbind',
-                    'success': log.action == 'bind' || log.action == 'purchase' || log.action == 'renew',
+                    'warning': log.action == 'unbind' || log.action == 'auto-renew-failed',
+                    'success': log.action == 'bind' || log.action == 'purchase' || log.action == 'renew' || log.action == 'card-binding' || log.action == 'auto-renew',
                     'primary': log.action == 'generated'
                 }"
             >
                 
             </span>
-            {{ log.action }}
+            <span>
+                {{ log.action }}
+            </span>
         </div>
 
         <div class="license">

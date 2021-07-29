@@ -21,7 +21,10 @@ export class AuditLogComponent implements OnInit {
     {key: 'action', status: false, str: 'deleted'},
     {key: 'action', status: false, str: 'expired'},
     {key: 'action', status: false, str: 'purchase'},
-    {key: 'action', status: false, str: 'generated'}
+    {key: 'action', status: false, str: 'generated'},
+    {key: 'action', status: false, str: 'auto-renew'},
+    {key: 'action', status: false, str: 'renew-failed'},
+    {key: 'action', status: false, str: 'card-binding'},
   ]
 
   filterCount: number = 0;
