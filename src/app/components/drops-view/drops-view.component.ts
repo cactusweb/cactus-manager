@@ -56,7 +56,12 @@ export class DropsViewComponent implements OnInit, OnChanges {
     this.spinner.show();
     this.loadNow = false;
     this.http.request( Requests.getAllDrop )
-      .pipe( take(1), finalize( () => this.spinner.hide() ), map( drops => drops?.reverse() ) )
+      .pipe( 
+        take(1), 
+        finalize( () => this.spinner.hide() ), 
+        map( drops => drops?.reverse() ),
+        map( drops => drops.map( drop => { return { ...drop, start_at: drop.start_at * 1000 } }) )
+      )
       .subscribe(
         res => { this.onSuccessLoad.emit(); this.drops = res;}, err => this.onErrorLoad.emit(), () => this.onSuccessLoad.emit()
       )
