@@ -24,6 +24,7 @@ export class AuditLogComponent implements OnInit {
     {key: 'action', status: false, str: 'generated'},
     {key: 'action', status: false, str: 'auto-renew'},
     {key: 'action', status: false, str: 'renew-failed'},
+    {key: 'action', status: false, str: 'channel-created' },
     {key: 'action', status: false, str: 'card-binding'},
   ]
 
