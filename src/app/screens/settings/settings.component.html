@@ -29,6 +29,12 @@
         value="{{settings?.site_url}}" (newValue)="settings.site_url = $event"
     ></app-profile-input>
 
+    <app-input-tags label="Bank card numbers" [values]="me?.payment_details?.cards || []" (onChange)="me.payment_details.cards = $event; onChangeTags($event)">
+    </app-input-tags>
+    <app-input-tags label="Phone numbers" [values]="me?.payment_details?.phones || []" (onChange)="me.payment_details.phones = $event">
+    </app-input-tags>
+
+
     <app-profile-input
         label="Kick member upon expiration (after 3 days)" type="checkbox"
         [value]="settings?.kick" (newValue)="settings.kick = $event"

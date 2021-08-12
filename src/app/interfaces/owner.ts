@@ -13,7 +13,10 @@ export interface Owner {
     name: string,
     region: string,
     price: string,
-
+    payment_details: {
+      cards: string[] | null,
+      phones: string[] | null,
+    }
     settings: {
       discord: {
         id: string,

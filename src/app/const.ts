@@ -40,5 +40,9 @@ export const Requests: reqMap = {
 
     // auth
     registr: { url: '/sign-up', method: 'POST', authType: null },
-    login: { url: '/sign-in', method: 'POST', authType: null }
+    login: { url: '/sign-in', method: 'POST', authType: null },
+
+
+    // stats
+    getStats: { url: '/stats', method: 'GET' }
 }

@@ -50,6 +50,7 @@ import { DashboardComponent } from './screens/dashboard/dashboard.component';
 import { HttpService } from './services/http/http.service';
 import { AllInterceptor } from './interceptors/all/all.interceptor';
 import { PasswordChangeFormComponent } from './components/password-change-form/password-change-form.component';
+import { InputTagsComponent } from './components/input-tags/input-tags.component';
 
 
 
@@ -90,6 +91,7 @@ import { PasswordChangeFormComponent } from './components/password-change-form/p
     LoadErrorComponent,
     DashboardComponent,
     PasswordChangeFormComponent,
+    InputTagsComponent,
   ],
   imports: [
     BrowserModule,

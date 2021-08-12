@@ -67,4 +67,9 @@ export class SettingsComponent implements OnInit {
   }
 
 
+  onChangeTags(e){
+    console.log(e)
+  }
+
+
 }
