@@ -1,0 +1,18 @@
+<div class="input-label">
+    <label for="{{label.split(' ').join('')}}">{{ label }}</label>
+    <form class="profile-inp custom-scroll" (click)="focusInp($event)" (ngSubmit)="onAdd()">
+        <span class="placeholder" *ngIf="!values[0] && !input">{{placeholder}}</span>
+
+        <span class="tag" *ngFor="let value of values, let i = index">
+            <span class="row">
+                <span>
+                    {{value}}
+                </span>
+                <svg class="pointer" (click)="deleteValue(i)" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <path d="M1 9L9 1M1 1L9 9" stroke="#3D3D3D" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </span>
+        </span>
+        <input type="text" [(ngModel)]="input" id="{{label.split(' ').join('')}}" [ngModelOptions]="{standalone: true}" autocomplete="off" (blur)="onAdd()">
+    </form>
+</div>
