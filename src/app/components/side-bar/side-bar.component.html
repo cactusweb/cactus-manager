@@ -3,6 +3,20 @@
     <h2 class="cactus-name">Cactus Manager</h2>
 
     <ul>
+
+        
+        <li>
+            <button class="standart-btn " routerLink="dashboard" routerLinkActive="blue-btn"  (click)="changePageName.emit({pageName: 'Dashboard', dataShow: false}); ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+                    <path d="M7.96875 9.03125V2.05859H7.4707C5.4752 2.05859 3.59915 2.83568 2.18812 4.24671C0.777086 5.65775 0 7.53379 0 9.5293C0 11.5248 0.777086 13.4008 2.18812 14.8119C3.59915 16.2229 5.4752 17 7.4707 17C9.46621 17 11.3423 16.2229 12.7533 14.8119C14.1643 13.4008 14.9414 11.5248 14.9414 9.5293V9.03125H7.96875ZM7.4707 16.0039C3.9006 16.0039 0.996094 13.0994 0.996094 9.5293C0.996094 6.12674 3.63435 3.32881 6.97266 3.07365V10.0273H13.9264C13.6712 13.3657 10.8733 16.0039 7.4707 16.0039Z" fill="#3D3D3D"/>
+                    <path d="M14.8119 2.18812C13.4008 0.777086 11.5248 0 9.5293 0H9.03125V7.96875H17V7.4707C17 5.4752 16.2229 3.59915 14.8119 2.18812ZM10.0273 6.97266V1.01505C13.2012 1.25763 15.7424 3.79877 15.9849 6.97266H10.0273Z" fill="#3D3D3D"/>
+                </svg>
+                Dashboard
+            </button>
+        </li>
+
+
+        
         <li>
             <button class="standart-btn " routerLink="licenses" routerLinkActive="blue-btn" (click)="changePageName.emit({pageName: 'Licenses' })">
                 
@@ -26,15 +40,6 @@
         </li>
         
 
-        <!-- <li> -->
-            <!-- <button class="standart-btn " routerLink="dashboard" routerLinkActive="blue-btn"  (click)="changePageName.emit({pageName: 'Dashboard', dataShow: false}); ">
-                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
-                    <path d="M7.96875 9.03125V2.05859H7.4707C5.4752 2.05859 3.59915 2.83568 2.18812 4.24671C0.777086 5.65775 0 7.53379 0 9.5293C0 11.5248 0.777086 13.4008 2.18812 14.8119C3.59915 16.2229 5.4752 17 7.4707 17C9.46621 17 11.3423 16.2229 12.7533 14.8119C14.1643 13.4008 14.9414 11.5248 14.9414 9.5293V9.03125H7.96875ZM7.4707 16.0039C3.9006 16.0039 0.996094 13.0994 0.996094 9.5293C0.996094 6.12674 3.63435 3.32881 6.97266 3.07365V10.0273H13.9264C13.6712 13.3657 10.8733 16.0039 7.4707 16.0039Z" fill="#3D3D3D"/>
-                    <path d="M14.8119 2.18812C13.4008 0.777086 11.5248 0 9.5293 0H9.03125V7.96875H17V7.4707C17 5.4752 16.2229 3.59915 14.8119 2.18812ZM10.0273 6.97266V1.01505C13.2012 1.25763 15.7424 3.79877 15.9849 6.97266H10.0273Z" fill="#3D3D3D"/>
-                </svg>
-                Dashboard
-            </button> -->
-        <!-- </li> -->
         
         <li>
             <button class="standart-btn" routerLink="audit" routerLinkActive="blue-btn" (click)="changePageName.emit({pageName: 'Audit log' })">

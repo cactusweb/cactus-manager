@@ -37,7 +37,8 @@ const routes: Routes = [
   //owner
   { path: 'account', component: AccountComponent, children: [
 
-    { path: '', redirectTo: 'licenses', pathMatch: 'full'},
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+    
     { path: 'licenses', component: LicensesComponent, data: { 
         pageName:"Licenses", title: 'Licenses manage - CactusManager',
         descript: 'License manager - Cactus Manager. View, editing, deliting of license keys and their activations. Get started now!'
@@ -74,7 +75,7 @@ const routes: Routes = [
       } 
     },
     { path: '**', component: NotFoundComponent, data: { 
-        showLogo: false, redirectTo: '/account/licenses', title: '404 - CactusManager',
+        showLogo: false, redirectTo: '/account/dashboard', title: '404 - CactusManager',
         descript: 'Not Found - Cactus Manager. Page not found - Go to Home.'
       } 
     }
