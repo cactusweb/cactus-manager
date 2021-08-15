@@ -34,7 +34,10 @@
     <span class="hr grey"></span>
 
     <div class="logs">
-        <app-audit-log-view [searchParam]="searchParam" [filterParams]="filterParams" [filterChange]="filterCount"></app-audit-log-view>
+        <app-audit-log-view 
+            [searchParam]="searchParam" [filterParams]="filterParams" [filterChange]="filterCount"
+            [logs]="logs"
+        ></app-audit-log-view>
     </div>
 
 </div>

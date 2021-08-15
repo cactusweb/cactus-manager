@@ -20,7 +20,7 @@ export class AuditLogViewComponent implements OnInit {
   @Input() filterParams;
   @Input() filterChange;
 
-  logs;
+  @Input() logs;
 
   constructor(
     private http: HttpService,
@@ -28,7 +28,7 @@ export class AuditLogViewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getLogs();
+    // this.getLogs();
   }
 
   getLogs(){

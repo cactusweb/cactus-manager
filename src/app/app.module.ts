@@ -8,6 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { NgxMaskModule } from "ngx-mask";
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { NgxEchartsModule } from 'ngx-echarts';
+import * as echarts from 'echarts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,6 +53,8 @@ import { HttpService } from './services/http/http.service';
 import { AllInterceptor } from './interceptors/all/all.interceptor';
 import { PasswordChangeFormComponent } from './components/password-change-form/password-change-form.component';
 import { InputTagsComponent } from './components/input-tags/input-tags.component';
+import { DashboardMonthlyStatsComponent } from './components/dashboard-monthly-stats/dashboard-monthly-stats.component';
+import { DashboardLicenseStatsComponent } from './components/dashboard-license-stats/dashboard-license-stats.component';
 
 
 
@@ -92,6 +96,8 @@ import { InputTagsComponent } from './components/input-tags/input-tags.component
     DashboardComponent,
     PasswordChangeFormComponent,
     InputTagsComponent,
+    DashboardMonthlyStatsComponent,
+    DashboardLicenseStatsComponent,
   ],
   imports: [
     BrowserModule,
@@ -102,6 +108,7 @@ import { InputTagsComponent } from './components/input-tags/input-tags.component
     BrowserAnimationsModule,
     NgxSpinnerModule,
     NgxMaskModule.forRoot(/*options*/),
+    NgxEchartsModule.forRoot({echarts,}),
     ScrollingModule
   ],
   providers: [

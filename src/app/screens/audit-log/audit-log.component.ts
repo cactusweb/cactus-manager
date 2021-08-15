@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { finalize, take } from 'rxjs/operators';
+import { finalize, map, take } from 'rxjs/operators';
 import { Requests } from 'src/app/const';
 import { HttpService } from 'src/app/services/http/http.service';
 
@@ -12,7 +12,7 @@ import { HttpService } from 'src/app/services/http/http.service';
 export class AuditLogComponent implements OnInit {
   searchParam = '';
   load_error = false;
-
+  logs: any;
   
   filterParams = [
     {key: 'action', status: false, str: 'bind'},
@@ -36,6 +36,29 @@ export class AuditLogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getLogs();
+  }
+  
+  getLogs(){
+    this.spinner.show();
+    this.load_error = false;
+    this.http.request( Requests.getAllLog )
+      .pipe( take(1), finalize( () => this.spinner.hide() ), 
+             map( logs => {
+               logs.reverse() 
+               return logs.map( log => {
+                 return {
+                  ...log,
+                  who: {
+                    ...log.who,
+                    name: log.who?.name == localStorage.getItem('name') ? 'Admin' : log.who?.name
+                  },
+                  when: log.when * 1000
+                 } 
+               })
+             }) 
+        )
+      .subscribe( res => this.logs = res, err => this.load_error = true)
   }
 
 

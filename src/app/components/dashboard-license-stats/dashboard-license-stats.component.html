@@ -1,0 +1,21 @@
+<div class="inp-shadow">
+
+    <div class="diagramm">
+        <div class="title">
+            <h3>Total keys</h3>
+            <h4>{{stats?.keys_total || 0}}</h4>
+        </div>
+        <div class="chart" echarts [options]="opt"></div>
+    </div>
+
+    <div class="card" style="background-color: #6B9BDC; align-self: end;">
+        <h3>Renewal keys</h3>
+        <h4>{{ stats?.renewal_keys || 0 }}</h4>
+    </div>
+
+    <div class="card" style="background-color: #344E72; align-self: start;">
+        <h3>Lifetime keys</h3>
+        <h4>{{ stats?.lifetime_keys || 0 }}</h4>
+    </div>
+
+</div>

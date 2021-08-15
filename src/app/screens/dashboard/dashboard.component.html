@@ -1,6 +1,28 @@
 <div class="content">
-    Dashboard soon
+    
+    <app-dashboard-monthly-stats [monthlyStats]="stats?.monthly_stats || []"
+        [currency]="stats?.currency || 'USD'"
+    ></app-dashboard-monthly-stats>
+
+    <div class="wrapper-stats">
+        <h2>General statistics</h2>
+
+        <div class="stats">
+            <app-dashboard-license-stats [stats]="stats"></app-dashboard-license-stats>
+            <div class="inp-shadow">
+                <h3>Average license cost</h3>
+                <h4>{{ (stats?.avg_license_cost || 0) | currency:stats?.currency:'symbol-narrow':'1.0-1'}}</h4>
+            </div>
+            <div class="inp-shadow">
+                <h3>Estimated monthly profit</h3>
+                <h4>{{ (stats?.expected_income || 0) | currency:stats?.currency:'symbol-narrow':'1.0-1'}}</h4>
+            </div>
+        </div>
+    </div>
+
 </div>
+
+<app-load-error *ngIf="load_error" (onRefresh)="getStats()"></app-load-error>
 
 
 <ngx-spinner
