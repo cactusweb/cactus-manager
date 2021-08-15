@@ -24,7 +24,7 @@ export class DashboardLicenseStatsComponent implements OnInit, OnChanges {
         formatter: '{a} <br/>{b} : {c} ({d}%)'
       },series: [
         {
-            name: 'Количество',
+            name: 'Count',
             color: ['#6B9BDC', '#344E72', '#000000'],
             type: 'pie',
             radius: ['40%', '70%'],
