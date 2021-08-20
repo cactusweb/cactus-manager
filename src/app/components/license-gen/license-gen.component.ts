@@ -71,10 +71,15 @@ export class LicenseGenComponent implements OnInit {
 
   postLicense(){
     this.message = '';
-    this.setBoolType();
     this.setDateFormat();
-    this.formLicense.value.roles = this.roles || [];
-    this.http.request( Requests.postLicense, this.formLicense.value)
+    
+    let data = {
+      ...this.formLicense.value,
+      roles: this.roles || [],
+      unbindable: this.formLicense.controls.unbindable.value == 'true' || this.formLicense.controls.unbindable.value === true
+    }
+
+    this.http.request( Requests.postLicense, data)
       .pipe( take(1) )
       .subscribe( res =>  handleSuccess(res), err => handleErr(err) )
 
@@ -93,12 +98,17 @@ export class LicenseGenComponent implements OnInit {
 
   putLicense(){
     this.message = '';
-    this.setBoolType();
     this.setDateFormat();
 
     this.formLicense.value.roles = this.roles
     
-    this.http.request( Requests.editLicense, this.formLicense.value, this.formLicense.value.id)
+    let data = {
+      ...this.formLicense.value,
+      roles: this.roles || [],
+      unbindable: this.formLicense.controls.unbindable.value == 'true' || this.formLicense.controls.unbindable.value === true
+    }
+    // return;
+    this.http.request( Requests.editLicense, data, this.formLicense.value.id)
       .pipe( take(1) )
       .subscribe( res => handleSuccess( res ), err => handleErr( err ) )
 
@@ -141,9 +151,6 @@ export class LicenseGenComponent implements OnInit {
   
 
 
-  setBoolType(){
-    this.formLicense.value.unbindable = this.formLicense.value.unbindable == 'true';
-  }
 
   setDateFormat(){
     this.formLicense.value.expires_in = new Date(this.formLicense.value.expires_in)
