@@ -59,6 +59,10 @@
             </select>
         </label>
 
+        <textarea formControlName="description" placeholder="Description" cols="30" rows="10" class="standart-input"
+            style="height: 79px; resize: none; box-sizing: border-box; width: 100%; padding: 5px 10px;"
+        ></textarea>
+
         <div *ngIf="license; then editBtn else newBtn"></div>
         <ng-template #newBtn>
             <button (click)="newLicense()">Generate</button>

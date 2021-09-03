@@ -140,6 +140,7 @@ export class LicenseGenComponent implements OnInit {
       expires_in: new FormControl({value: expires_in.toISOString().split('T')[0], disabled: false}),
       unbindable: new FormControl({value: this.license?.unbindable || false, disabled: false}),
       roles: new FormControl({ value: this.roles, disabled: false } ),
+      description: new FormControl( this.license?.description || '' )
     })
     
     if ( this.license ){
