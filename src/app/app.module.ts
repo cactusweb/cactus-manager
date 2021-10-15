@@ -55,6 +55,7 @@ import { PasswordChangeFormComponent } from './components/password-change-form/p
 import { InputTagsComponent } from './components/input-tags/input-tags.component';
 import { DashboardMonthlyStatsComponent } from './components/dashboard-monthly-stats/dashboard-monthly-stats.component';
 import { DashboardLicenseStatsComponent } from './components/dashboard-license-stats/dashboard-license-stats.component';
+import { EllTitleDirective } from './directives/ell-title.directive';
 
 
 
@@ -98,6 +99,7 @@ import { DashboardLicenseStatsComponent } from './components/dashboard-license-s
     InputTagsComponent,
     DashboardMonthlyStatsComponent,
     DashboardLicenseStatsComponent,
+    EllTitleDirective,
   ],
   imports: [
     BrowserModule,

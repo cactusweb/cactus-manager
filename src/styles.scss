@@ -559,3 +559,21 @@ app-load-error{
         line-height: 20px;
     }
 }
+
+
+
+
+
+
+
+#ell-title{
+    position: absolute;
+    display: grid;
+    align-items: center;
+    border-radius: 10px; 
+    height: 20px;
+    font-size: 16px;
+    background-color: #444;
+    color: #78AFF8;
+    transform: translate(-50%, -50px);
+}

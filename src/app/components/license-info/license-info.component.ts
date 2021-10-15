@@ -13,6 +13,7 @@ export class LicenseInfoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log( this.license )
   }
 
   copyData( data ){

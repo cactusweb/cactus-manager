@@ -10,6 +10,8 @@
     border: none;
     font-weight: 400;
     text-align: center;   
+    height: 40px;
+    border-radius: 10px;
 }
 
 #license-key{
@@ -21,8 +23,9 @@
     }
 
     button{
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
         right: 0px;
         bottom: 0px;
         position: absolute;
@@ -48,7 +51,7 @@
 
 .popup > div:nth-child(3), .popup > div:nth-child(4){
     display: grid;
-    row-gap: 20px;
+    row-gap: 15px;
     column-gap: 30px;
 }
 
@@ -90,5 +93,22 @@
         font-size: 24px;
         font-weight: 600;
         line-height: 29px;
+    }
+}
+
+
+.devices{
+    max-height: 120px;
+    height: auto;
+    min-height: 40px;
+    overflow: auto;
+    display: grid;
+    row-gap: 7px;
+    padding-left: 10px;
+    &__item{
+        overflow: auto;
+        text-overflow: ellipsis;
+        font-size: 16px;
+
     }
 }

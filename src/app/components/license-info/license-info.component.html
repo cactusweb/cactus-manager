@@ -75,9 +75,16 @@
 
     </div>
 
-    <label style="grid-column: 1/3;">
+    <label style="grid-column: 1/3;" *ngIf="license.description">
         Description
         <div class="standart-input" style="text-align: start; display: grid; align-items: center; padding: 10px 20px;">{{license.description}}</div>
+    </label>
+
+    <label style="grid-column: 1/3;">
+        Activations:
+        <div class="standart-input devices custom-scroll" style="text-align: start; display: grid; align-items: center; padding: 10px 20px;">
+            <span class="devices__item" *ngFor="let id of license?.activations.devices"> {{ id }} </span>
+        </div>
     </label>
 
 
