@@ -4,7 +4,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpService } from 'src/app/services/http/http.service';
 import { Owner } from 'src/app/interfaces/owner'
 import { Requests } from 'src/app/const';
-import { finalize, take } from 'rxjs/operators';
+import { finalize, take, tap } from 'rxjs/operators';
+import { SingletonService } from 'src/app/services/singleton/singleton.service';
 
 @Component({
   selector: 'app-account',
@@ -19,7 +20,8 @@ export class AccountComponent implements OnInit {
   constructor(
     private http: HttpService,
     private auth: AuthService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private singleton: SingletonService
   ) { 
     
   }
@@ -35,7 +37,10 @@ export class AccountComponent implements OnInit {
 
     this.spinner.show();
     this.http.request( Requests.getSelf )
-      .pipe( take(1), finalize( () => this.spinner.hide() ) )
+      .pipe( 
+        take(1), finalize( () => this.spinner.hide() ), 
+        tap(d => this.singleton.owner = d)
+      )
       .subscribe( res => this.setLocalStorage( res ), err => {})
   }
 

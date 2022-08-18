@@ -1,5 +1,5 @@
 
-<div class="input-label" [ngClass]="{'extra': type == 'color' || type == 'file'}" [ngSwitch]="type">
+<div class="input-label" [ngClass]="{'extra': type == 'color' || type == 'file'}" [ngSwitch]="type" [ngStyle]="isRow ? { 'grid-auto-flow': 'column', 'align-items': 'center', 'column-gap': '15px' } : {}">
     <label for="{{label}}"> {{ label }} </label>
 
     <ng-content select=[inside]></ng-content>

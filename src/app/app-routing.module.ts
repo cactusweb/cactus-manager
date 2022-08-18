@@ -15,6 +15,7 @@ import { SettingsComponent } from './screens/settings/settings.component';
 import { AuditLogComponent } from './screens/audit-log/audit-log.component';
 import { DashboardComponent } from './screens/dashboard/dashboard.component';
 import { AppComponent } from './app.component';
+import { ReferralsComponent } from './screens/referrals/referrals.component';
 
 
 const routes: Routes = [
@@ -42,6 +43,11 @@ const routes: Routes = [
     { path: 'licenses', component: LicensesComponent, data: { 
         pageName:"Licenses", title: 'Licenses manage - CactusManager',
         descript: 'License manager - Cactus Manager. View, editing, deliting of license keys and their activations. Get started now!'
+      }, 
+    },
+    { path: 'referrals', component: ReferralsComponent, data: { 
+        pageName:"Referrals", title: 'Referrals info - CactusManager',
+        descript: 'Referrals info - Cactus Manager. Info about referral system. Get started now!'
       }, 
     },
     { path: 'profile', component: ProfileComponent, data: { 

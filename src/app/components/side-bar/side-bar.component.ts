@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { SingletonService } from 'src/app/services/singleton/singleton.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -13,6 +14,7 @@ export class SideBarComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
+    public singleton: SingletonService,
   ) { }
 
   logout(){
@@ -34,6 +36,7 @@ export class SideBarComponent implements OnInit {
       case 'drops': dataHead = { pageName: 'Drops' }; break;
       case 'profile': dataHead = { pageName: 'Profile' }; break;
       case 'licenses': dataHead = { pageName: 'Licenses' }; break;
+      case 'referrals': dataHead = { pageName: 'Referrals' }; break;
       case 'settings': dataHead = { pageName: 'Settings' }; break;
       case 'audit': dataHead = { pageName: 'Audit logs' }; break;
       case 'dashboard': dataHead = { pageName: 'Dashboard' }; break;

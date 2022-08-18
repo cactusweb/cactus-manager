@@ -16,6 +16,8 @@ export class ProfileInputComponent {
   @Input() value: any;
   @Input() checked: boolean;
 
+  @Input() isRow: boolean = false;
+
   @Output() newValue = new EventEmitter<any>();
   @Output() reset = new EventEmitter();
 

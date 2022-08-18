@@ -1,0 +1,35 @@
+:host{
+    display: grid;
+    row-gap: 10px;
+}
+
+app-profile-input{
+    justify-self: start;
+}
+
+.row{
+    column-gap: 20px;
+}
+
+.inp-wrapper{
+    column-gap: 10px;
+
+    > :last-child{
+        height: 27px;
+        width: 180px;
+        border-radius: 5px;
+        border: 1px solid #3d3d3d;
+        font-size: 14px;
+        line-height: 100%;
+        padding-left: 10px !important;
+
+        &:not(select){
+            padding: 5px 0px;
+        }
+    }
+}
+
+
+select:invalid{
+    color: #b3b3b3
+}

@@ -44,5 +44,9 @@ export const Requests: reqMap = {
 
 
     // stats
-    getStats: { url: '/stats', method: 'GET' }
+    getStats: { url: '/stats', method: 'GET' },
+
+
+    // referrals
+    resetRefPoints: { url: '/referrals/:param', method: 'DELETE' }
 }

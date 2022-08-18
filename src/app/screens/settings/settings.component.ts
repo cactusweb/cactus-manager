@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { finalize, take } from 'rxjs/operators';
+import { finalize, take, tap } from 'rxjs/operators';
 import { Requests } from 'src/app/const';
 import { Owner } from 'src/app/interfaces/owner';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpService } from 'src/app/services/http/http.service';
 import { SeoService } from 'src/app/services/seo/seo.service';
+import { SingletonService } from 'src/app/services/singleton/singleton.service';
 
 @Component({
   selector: 'app-settings',
@@ -24,7 +25,8 @@ export class SettingsComponent implements OnInit {
   constructor(
     private spinner: NgxSpinnerService,
     private http: HttpService,
-    private auth: AuthService
+    private auth: AuthService,
+    private singleton: SingletonService
   ) { 
   }
 
@@ -40,9 +42,12 @@ export class SettingsComponent implements OnInit {
     this.me.settings = this.settings;
 
     this.http.request( Requests.editSelf, this.me )
-      .pipe( take(1), finalize( () => this.spinner.hide() ) )
+      .pipe( 
+        take(1), 
+        finalize( () => this.spinner.hide() ),
+      )
       .subscribe(
-        res => {},
+        res => { this.singleton.owner = this.me },
         err => this.load_error = 'put'
       )
   }
@@ -55,7 +60,11 @@ export class SettingsComponent implements OnInit {
     this.load_error = false;
 
     this.http.request( Requests.getSelf )
-      .pipe( take(1), finalize( () => this.spinner.hide() ) )
+      .pipe( 
+        take(1), 
+        finalize( () => this.spinner.hide() ),
+        tap( d => this.singleton.owner = d ) 
+      )
       .subscribe(
         res => { this.me = res; this.settings = res.settings },
         err => this.load_error = 'get'

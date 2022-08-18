@@ -56,6 +56,9 @@ import { InputTagsComponent } from './components/input-tags/input-tags.component
 import { DashboardMonthlyStatsComponent } from './components/dashboard-monthly-stats/dashboard-monthly-stats.component';
 import { DashboardLicenseStatsComponent } from './components/dashboard-license-stats/dashboard-license-stats.component';
 import { EllTitleDirective } from './directives/ell-title.directive';
+import { RadioBtnComponent } from './components/radio-btn/radio-btn.component';
+import { ReferralSystemSettingsComponent } from './components/referral-system-settings/referral-system-settings.component';
+import { ReferralsComponent } from './screens/referrals/referrals.component';
 
 
 
@@ -100,6 +103,9 @@ import { EllTitleDirective } from './directives/ell-title.directive';
     DashboardMonthlyStatsComponent,
     DashboardLicenseStatsComponent,
     EllTitleDirective,
+    RadioBtnComponent,
+    ReferralSystemSettingsComponent,
+    ReferralsComponent,
   ],
   imports: [
     BrowserModule,
