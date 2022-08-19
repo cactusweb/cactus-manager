@@ -27,12 +27,12 @@ export class ReferralSystemSettingsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if ( !environment.production )
-      this.refSettings = {
-        enable: false,
-        price: 0,
-        plan: ''
-      }
+    // if ( !environment.production )
+    //   this.refSettings = {
+    //     enable: false,
+    //     price: 0,
+    //     plan: ''
+    //   }
     this.getPlans();
   }
 
