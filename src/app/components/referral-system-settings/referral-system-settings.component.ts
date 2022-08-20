@@ -5,7 +5,7 @@ import { take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 interface ReferralSystem{
-  enable: boolean,
+  enabled: boolean,
   price: number,
   plan: string
 }

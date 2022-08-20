@@ -1,6 +1,6 @@
 <app-profile-input
     label="Referral system" type="checkbox"
-    [value]="refSettings?.enable" (newValue)="refSettings.enable = $event; onChangeData.emit(refSettings)"
+    [value]="refSettings?.enabled" (newValue)="refSettings.enabled = $event; onChangeData.emit(refSettings)"
     [isRow]="true"
 >
 </app-profile-input>
@@ -9,7 +9,7 @@
 <div class="row">
     <div class="row inp-wrapper">
         <label for="ref-price">Price:</label>
-        <input type="text" id="ref-price" class="inp-primary" required [(ngModel)]="refSettings.price" (ngModelChange)="onChangeData.emit(refSettings)">
+        <input type="number" id="ref-price" class="inp-primary" required [(ngModel)]="refSettings.price" (ngModelChange)="onChangeData.emit(refSettings)">
     </div>
     <div class="row inp-wrapper">
         <label for="ref-plan">Plan:</label>
