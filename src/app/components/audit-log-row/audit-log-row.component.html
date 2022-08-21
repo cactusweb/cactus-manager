@@ -22,7 +22,7 @@
                 [ngClass]="{
                     'danger': log.action == 'deleted' || log.action == 'expired',
                     'warning': log.action == 'unbind' || log.action == 'auto-renew-failed' || log.action == 'renew-failed' || log.action == 'channel-created',
-                    'success': log.action == 'bind' || log.action == 'purchase' || log.action == 'renew' || log.action == 'card-binding' || log.action == 'auto-renew',
+                    'success': log.action == 'bind' || log.action == 'purchase' || log.action == 'renew' || log.action == 'card-binding' || log.action == 'auto-renew' || log.action == 'ref-purchase',
                     'primary': log.action == 'generated'
                 }"
             >
