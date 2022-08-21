@@ -30,5 +30,9 @@ export interface License {
     },
     type: string,
     unbindable: true,
-    user: string
+    user: string,
+    referral: { 
+      code: string,
+      score: number
+    }
 }

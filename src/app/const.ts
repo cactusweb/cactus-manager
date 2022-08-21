@@ -48,5 +48,5 @@ export const Requests: reqMap = {
 
 
     // referrals
-    resetRefPoints: { url: '/referrals/:param', method: 'DELETE' }
+    resetRefPoints: { url: '/referral', method: 'DELETE' }
 }

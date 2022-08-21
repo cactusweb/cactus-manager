@@ -106,14 +106,21 @@ export class ReferralsComponent implements OnInit {
 
 
   resetPoints(license?: License){
-    this.http.request( Requests.resetRefPoints, null, license?.id || '' )
-      .pipe(take(1))
+    this.spinner.show()
+    this.http.request( Requests.resetRefPoints, null, null, license ? `/${license.id}` : '' )
+      .pipe(
+        take(1),
+        finalize(() => this.spinner.hide())
+      )
       .subscribe(
         res => {},
         err => {},
         () => {
           this.licenses = this.licenses.map( l => {
-            return l
+            if ( !license ) return { ...l, referral: { ...l.referral, score: 0 } }
+            
+            if ( license.id == l.id ) return { ...l, referral: { ...l.referral, score: 0 } }
+            else return l
           }) 
         }
       )
