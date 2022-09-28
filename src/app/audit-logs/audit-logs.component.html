@@ -1,0 +1,42 @@
+<app-header
+    (onFIlterChange)="pipeData = $event"
+></app-header>
+
+<div class="window">
+    <table class="table-primary">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>User</th>
+                <th>Action</th>
+                <th>License key</th>
+            </tr>
+        </thead>
+    </table>
+
+    
+    <span class="table-primary-hr"></span>
+    
+    <cdk-virtual-scroll-viewport class="custom-scroll" itemSize="46"> 
+        <table class="table-primary">
+            <app-log-row *cdkVirtualFor="let log of logs
+                | search : pipeParams.search : pipeData.search
+                | filter : pipeParams.filter : pipeData.filter
+            " [log]="log"></app-log-row>
+        </table>
+    </cdk-virtual-scroll-viewport>
+</div>
+
+
+
+<!-- | search : pipeParams.search : pipeData.search
+| filter : pipeParams.filter : pipeData.filter
+| sort : pipeParams.sortNickname : pipeData.sortNickname
+| sort : pipeParams.sortRenewDate : pipeData.sortRenewDate
+, let i = index, trackBy: trackByFn -->
+
+    <!-- [license]="license"
+    (onDelete)="onDeleteLicense($event)"
+    (onRenew)="onRenewLicense($event)"
+    (onView)="onViewLicense($event)"
+    (onEdit)="popupType = 'licenseForm'; popupLicenseId = $event" -->

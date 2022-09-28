@@ -1,0 +1,17 @@
+@import '/src/environments/environment.scss';
+
+.window{
+    grid-template-columns: auto auto 1fr;
+    column-gap: 8px;
+}
+
+
+#btn-update{
+    width: 128px;
+    height: 40px;
+    color: $primary-color;
+
+    &:hover{
+        color: $primary-hover-color;
+    }
+}

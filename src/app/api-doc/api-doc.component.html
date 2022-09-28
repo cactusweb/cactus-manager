@@ -1,0 +1,7 @@
+<app-header
+    (onNewAccId)="accId = $event"
+></app-header>
+
+<div class="requests-wrapper">
+    <app-request *ngFor="let req of requests" [req]="req" [accId]="accId"></app-request>
+</div>

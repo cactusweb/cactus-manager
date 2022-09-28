@@ -1,0 +1,48 @@
+app-settings{
+
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+
+    > * > * > .window{
+        row-gap: 12px;
+        padding: 24px;
+    }
+
+    .inp-wrapper{
+        grid-template-columns: 140px 1fr;
+        column-gap: 12px;
+    }
+
+    .col{
+        display: grid;
+        row-gap: 8px;
+        align-content: start;
+        align-items: start;
+    }
+
+    .form-control{
+        padding-left: 12px;
+    }
+
+    .switcher-wrapper{
+        display: grid;
+        column-gap: 16px;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        app-checkbox-switcher{
+            justify-self: end;
+        }
+    }
+
+
+    .btns{
+        column-gap: 8px;
+        justify-content: end;
+        align-content: end;
+        grid-column: 2/3;
+        button{
+            width: 200px;
+        }
+    }
+}

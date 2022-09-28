@@ -1,0 +1,26 @@
+<div class="window">
+    <h3 class="window__title">Monthly statistics</h3>
+
+    <app-month-switcher [stat]="stats" (onChangeMonthIndex)="monthStatIndex = $event"></app-month-switcher>
+
+    <div class="window__indicators">
+        <div class="window__indicator indicator">
+            <p class="indicator__label">Monthly revenue</p>
+            <span class="indicator__value"> {{ (stats[monthStatIndex]?.income||0) | currency:currency:'symbol-narrow':'1.0-1' }} </span>
+        </div>
+        <div class="window__indicator indicator indicator--success">
+            <p class="indicator__label">New keys</p>
+            <span class="indicator__value"> {{ stats[monthStatIndex]?.new_keys || 0 }} </span>
+        </div>
+        <div class="window__indicator indicator indicator--error">
+            <p class="indicator__label">Expired/Deleted keys</p>
+            <span class="indicator__value"> {{ stats[monthStatIndex]?.expired_deleted_keys || 0 }} </span>
+        </div>
+    </div>
+</div>
+
+
+<!-- name: string,
+expired_deleted_keys: number,
+new_keys: number,
+income: number, -->

@@ -1,0 +1,8 @@
+<form class="window row" [formGroup]="form">
+    <app-selector-filter formControlName="filter" [opt]="logStatuses"></app-selector-filter>
+
+    
+    <div class="search-control-wrapper">
+        <input type="text" placeholder="Search" class="form-control no-validate" formControlName="search">
+    </div>
+</form>

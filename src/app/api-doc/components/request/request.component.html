@@ -1,0 +1,43 @@
+<div class="window req">
+    <h3 class="req__name">{{req.name}}</h3>
+
+    <div class="req__data">
+        <div class="req__window window">
+            <div class="row req__data-head">
+                <h4 class="req__data-name">Request</h4>
+                <span class="req__method">{{req.method}}</span>
+            </div>
+
+            <div class="data">
+                <p class="data__name">URL:</p>
+                <pre class="data__value">{{req.url}}</pre>
+            </div>
+
+            
+            <div class="data">
+                <p class="data__name">Headers:</p>
+                <pre class="data__value">{{req.headers}}</pre>
+            </div>
+
+            
+            <div class="data">
+                <p class="data__name">Body:</p>
+                <pre class="data__value">{{req.body}}</pre>
+            </div>
+        </div>
+
+        <div class="req__window window">
+            <h4 class="req__data-name">Response</h4>
+
+            <div class="data">
+                <p class="data__name">Status:</p>
+                <pre class="data__value">{{req.res.status}}</pre>
+            </div>
+
+            <div class="data">
+                <p class="data__name">Body:</p>
+                <pre class="data__value">{{req.res.body}}</pre>
+            </div>
+        </div>
+    </div>
+</div>

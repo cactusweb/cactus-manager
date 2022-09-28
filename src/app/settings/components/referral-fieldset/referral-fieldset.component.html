@@ -1,0 +1,21 @@
+<form class="window" [formGroup]="form">
+    <div class="window__head switcher-wrapper">
+        <label class="window__title switcher-wrapper__label" for="referral">Referral system</label>
+        <app-checkbox-switcher formControlName="enabled" i-id="referral"></app-checkbox-switcher>
+    </div>
+
+    <fieldset class="window__body" >
+        
+        <div class="inp-wrapper" [class.inp-wrapper--disabled]="form.controls['price'].disabled">
+            <label for="price" class="inp-wrapper__label">Price</label>
+            <input type="number" id="price" formControlName="price" class="form-control" placeholder="Amount" autocomplete="off">
+        </div>
+
+        
+        <div class="inp-wrapper" [class.inp-wrapper--disabled]="form.controls['plan'].disabled">
+            <label for="plan" class="inp-wrapper__label">Plan</label>
+            <app-select-primary [opt]="planOpts || []" formControlName="plan"></app-select-primary>
+        </div>
+
+    </fieldset>
+</form>

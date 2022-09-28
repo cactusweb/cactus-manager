@@ -1,0 +1,50 @@
+@import '/src/environments/environment.scss';
+
+tr{
+    grid-template-columns: .8fr 140px 32px;
+    justify-content: space-between;
+    margin-bottom: 12px;
+
+    
+    &:hover{
+        background-color: rgba($color: $primary-color, $alpha: 0.07);
+    }
+}
+
+*{
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 400;
+}
+
+td:first-child{
+    column-gap: 4px;
+    justify-content: start;
+    cursor: pointer;
+    
+    button{
+        width: 22px;
+        height: 22px;
+    }
+
+    &:hover button svg path{
+        fill: $primary-color;
+    }
+}
+
+td:nth-child(2){
+    text-transform: capitalize;
+}
+
+td:last-child{
+    height: 30px;
+}
+
+td:last-child button{
+    width: 32px;
+    height: 32px;
+
+    &:hover svg path{
+        fill: rgba($color: $err-color, $alpha: .6)
+    }
+}

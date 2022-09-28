@@ -1,0 +1,18 @@
+<form class="window" [formGroup]="form">
+    <div class="window__head">
+        <h4 class="window__title">Project</h4>
+    </div>
+
+    <fieldset class="window__body">
+        <div class="inp-wrapper">
+            <label for="ds-id" class="inp-wrapper__label">Discord Server ID</label>
+            <input type="text" id="ds-id" formControlName="discordId" class="form-control" placeholder="ID" autocomplete="off">
+        </div>
+
+
+        <div class="inp-wrapper">
+            <label for="site_url" class="inp-wrapper__label">Website link</label>
+            <input type="text" id="site_url" formControlName="site_url" class="form-control" [class.no-validate]="!form.controls['site_url'].value" placeholder="URL" autocomplete="off">
+        </div>
+    </fieldset>
+</form>

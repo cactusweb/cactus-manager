@@ -1,0 +1,20 @@
+<label *ngFor="let opt of options"
+    [class.active]="val === opt.value"
+    (click)="opt.valueChange ? focusOnInput() : null"
+>
+
+    <div class="radio-wrapper" >
+        <input type="radio" hidden [(ngModel)]="val" [value]="opt.value" (ngModelChange)="writeValue(val)" [name]="radioName">
+
+        <span class="radio-wrapper__label" *ngIf="opt.valueChange" [ngStyle]="val != opt.value ? { 'display': 'none' } : {}">
+            <input type="number" 
+                [min]="opt.valueChange.min" [max]="opt.valueChange.max" 
+                [placeholder]="opt.display || 'Value'" [name]="radioName" 
+                [(ngModel)]="val" (ngModelChange)="opt.value = val; writeValue(val)" 
+                required
+            >
+        </span>
+        <span class="radio-wrapper__label" *ngIf="!opt.valueChange || val != opt.value" [innerHTML]="opt.display || opt.value"></span>
+    </div>
+
+</label>

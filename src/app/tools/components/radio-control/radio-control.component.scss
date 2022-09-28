@@ -1,0 +1,55 @@
+@import '/src/environments/environment.scss';
+
+:host{
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    height: 40px;
+}
+
+label{
+    display: grid;
+    transition: .3s;
+    border: 1px solid $secondary-color;
+    justify-content: center;
+
+    &:not(:first-child){
+        transform: translate(-1px, 0);
+    }
+
+    &.active{
+        border-color: $primary-color;
+        background-color: rgba($color: $primary-color, $alpha: .05);
+    }
+
+    &:first-child{
+        border-radius: 8px 0px 0px 8px;
+    }
+
+    &:last-child{
+        border-radius: 0px 8px 8px 0px;
+    }
+
+    &:hover .radio-wrapper__label::after{
+        border-color: $primary-color;
+    }
+}
+
+
+.radio-wrapper__label{
+    text-transform: capitalize;
+}
+
+
+input{
+    width: 54px;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+
+    transition: .3s;
+
+    &:not(:focus, :hover).ng-invalid.ng-touched::placeholder{
+        color: rgba($color: $err-color, $alpha: .6)
+    }
+}

@@ -1,0 +1,26 @@
+:host{
+    display: grid;
+    grid-template-rows: auto 1fr;
+    row-gap: 8px;
+}
+
+.window{
+    grid-template-rows: auto auto 1fr;
+    row-gap: 12px;
+}
+
+tr{
+    grid-template-columns: 0.3fr 115px 120px 90px;
+    // column-gap: 90px;
+    justify-content: space-between;
+
+    th:first-child{
+        padding-left: 21px;
+        min-width: 250px;
+        box-sizing: border-box;
+    }
+
+    th:last-child{
+        text-align: end;
+    }
+}

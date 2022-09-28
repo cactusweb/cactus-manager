@@ -1,0 +1,79 @@
+@import '/src/environments/environment.scss';
+
+:host{
+    position: relative;
+}
+
+
+
+.form-control{
+    display: grid;
+    padding: 0px 16px;
+    grid-template-columns: 1fr auto;
+    justify-content: stretch;
+
+    &__placeholder{
+        column-gap: 4px;
+        color: $secondary-color;
+        justify-content: start;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        transition: .3s;
+        max-width: 100%;
+        word-break: break-word;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+        pointer-events: none;
+    
+        svg, svg path{
+            transition: inherit;
+        }
+    }
+
+    &--active{
+        border-color: $primary-color;
+    }
+
+    // &--active &__placeholder{
+    //     color: $primary-color;
+    //     font-weight: 500;
+    //     svg path{
+    //         fill: $primary-color;
+    //     }
+    // }
+
+    &__value{
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        max-width: 100%;
+        word-break: break-word;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+    }
+
+    &--active &__btn svg path, &:hover &__btn svg path, &--focus &__btn svg path{
+        fill: $primary-color;
+    }
+
+    &--focus &__placeholder{
+        color: $primary-color
+    }
+
+    &--focus &__btn{
+        transform: rotate(180deg);
+    }
+
+    &__btn{
+        width: 20px;
+        height: 20px;
+        transition: .3s;
+        transform-origin: center;
+    }
+
+}

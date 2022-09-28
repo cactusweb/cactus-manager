@@ -1,0 +1,102 @@
+@import '/src/environments/environment.scss';
+
+.license{
+    grid-template-columns: 0.4fr 115px 64px 122px 65px 85px;
+    // column-gap: 90px;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    height: 23px;
+
+    &:hover{
+        background-color: rgba($color: $primary-color, $alpha: 0.07);
+    }
+
+    &__user{
+        padding-left: 21px;
+        min-width: 250px;
+        box-sizing: border-box;
+        position: relative;
+        cursor: pointer;
+        height: 100%;
+
+        display: flex;
+        align-items: center;
+
+        button{
+            position: absolute;
+            left: 0px;
+            top: 50%;
+            transform: translate(0, -50%);
+            height: 12.83px;
+        }
+
+        &:hover button svg path{
+            fill: $primary-color;
+        }
+    }
+    
+
+    &__key-copy {
+        grid-template-columns: 1fr auto;
+        cursor: pointer;
+    
+        svg{
+            transition: .4s;
+        }
+    
+        &:hover svg path{
+            fill: $primary-color;
+        }
+    }
+
+
+    &__date{
+        &--warning{
+            color: $warning-color;
+        }
+
+        &--danger{
+            color: $err-color;
+        }
+    }
+
+
+    &__renew-indicator{
+        text-align: center;
+        width: 36px;
+        display: inline-block;
+        border-radius: 16px;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 21px;
+        color: $success-color;
+        background-color: rgba($color: $success-color, $alpha: .1);
+    }
+
+
+    &__action{
+        column-gap: 8px;
+        justify-content: start;
+
+        button{
+            height: 22px;
+            width: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            &:hover:not(:disabled) svg path{
+                fill: $primary-color; 
+            }
+
+            &:disabled{
+                opacity: .4;
+            }
+        }
+    }
+}
+
+
+.infinity{
+    font-size: 20px;
+}

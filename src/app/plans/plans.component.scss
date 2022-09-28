@@ -1,0 +1,29 @@
+:host{
+    display: grid;
+    row-gap: 1px;
+    grid-template-rows: auto 1fr;
+}
+
+.window{
+    grid-template-rows: auto auto 1fr;
+    row-gap: 12px;
+    min-height: 196px;
+    position: relative;
+}
+
+tr{
+    grid-template-columns: 0.8fr 140px 32px;
+    // column-gap: 90px;
+    justify-content: space-between;
+
+    th:first-child{
+        padding-left: 26px;
+        box-sizing: border-box;
+    }
+}
+
+
+app-plan-form{
+    width: 100%;
+    max-width: 688px;
+}

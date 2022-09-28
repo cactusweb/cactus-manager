@@ -1,0 +1,50 @@
+@import '/src/environments/environment.scss';
+
+.req{
+    padding: 24px;
+    row-gap: 16px;
+
+    &__name, &__data-name, &__method{
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+    }
+
+    &__data{
+        display: grid;
+        row-gap: 8px;
+    }
+
+    &__window{
+        background-color: rgba($color: $primary-color, $alpha: .05);
+        row-gap: 8px;
+    }
+
+    &__data-name{
+        color: $primary-color;
+    }
+
+    &__method{
+        justify-self: end;
+        color: $success-color;
+    }
+
+}
+
+
+.data{
+    display: grid;
+    row-gap: 2px;
+
+    &__name, &__value{
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+    }
+
+    &__value{
+        font-weight: 400;
+        padding-left: 24px;
+        margin: 0px;
+    }
+}

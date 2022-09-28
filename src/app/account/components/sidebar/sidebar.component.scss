@@ -1,0 +1,93 @@
+@import '/src/environments/environment.scss';
+
+.sidebar{
+    background-color: #fff;
+    padding: 32px 24px;
+
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    row-gap: 40px;
+
+    height: 100%;
+
+    box-sizing: border-box;
+
+    &__head{
+        position: relative;
+    }
+
+    
+
+    &__title{
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 86%;
+        letter-spacing: 0.04em;
+    }
+
+    &__list{
+        list-style: none;
+        display: grid;
+        row-gap: 2px;
+    }
+
+    &__link{
+        height: 48px;
+        font-size: 16px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        padding-left: 12px;
+        color: $secondary-color;
+        border-radius: 8px;
+
+        &:hover{
+            background-color: rgba($color: $primary-color, $alpha: 0.1);
+            // backdrop-filter: ;
+        }
+
+        &--active{
+            background-color: rgba($color: $primary-color, $alpha: 0.1);
+            color: $primary-color;
+            font-weight: 600;
+            svg path{
+                fill: $primary-color
+            }
+        }
+
+        svg{
+            margin-right: 8px;
+        }
+    }
+}
+
+app-router-loader{
+    top: 7px;
+    right: 7px;
+    position: absolute;
+}
+
+#logout{
+    height: 30px;
+    padding: 0px 8px;
+    color: $secondary-color;
+    justify-self: start;
+    align-self: end;
+    font-size: 14px;
+    font-weight: 500;
+
+    display: flex;
+    align-items: center;
+
+    svg{
+        margin-left: 2px;
+        position: relative;
+        transition: .4s;
+    }
+
+    &:hover svg{
+        transform: translate(6px, 0px);
+    }
+
+}
+

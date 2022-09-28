@@ -1,0 +1,13 @@
+[
+    {
+        "name": "Key auth",
+        "method": "POST",
+        "url": "https://api.cactusweb.io/api/v1/devices",
+        "headers": "content-type: application/json",
+        "body": "{\n   key: '[licenseKey]',\n   device: '[deviceId]',\n   id: ':param'\n}",
+        "res": {
+            "status": 200,
+            "body": "[licenseData]"
+        }
+    }
+]

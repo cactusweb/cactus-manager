@@ -1,0 +1,6 @@
+<label [for]="id" class="form-control" [class.form-control--focus]="focused">
+
+    {{ placeholder }}
+    <input type="color"  [id]="id" [(ngModel)]="val" (ngModelChange)="writeValue(val)" (focus)="focused = true" (blur)="focused = false">
+    <!-- [style.color]="val" -->
+</label>

@@ -1,0 +1,22 @@
+@import '/src/environments/environment.scss';
+
+.form-control{
+    box-sizing: border-box;
+    justify-content: start;
+
+    &:hover{
+        border-color: $primary-color;
+
+        .placeholder{
+            color: $primary-color
+        }
+    }
+}
+
+.placeholder{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: $secondary-color;
+    transition: .3s;
+}

@@ -1,0 +1,32 @@
+:host{
+    position: absolute;
+    z-index: 10;
+    border-radius: 8px;
+}
+
+.artboard{
+    background: rgba(240, 240, 247, 0.25);
+    backdrop-filter: blur(8px);
+    border-radius: inherit;
+
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+    row-gap: 24px;
+
+    &__title{
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    &__btn{
+        width: 146px;
+        height: 40px;
+
+        svg{
+            margin-right: 6px;
+        }
+    }
+}

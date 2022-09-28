@@ -1,0 +1,7 @@
+<ul class="list custom-scroll window" [class.list--show]="show">
+    <li class="list__item" *ngFor="let opt of options" [class.list__item--active]="value.includes(opt.value)" (click)="onItemClick(opt.value)">
+        <span class="list__text">
+            {{opt.display || opt.value}}
+        </span>
+    </li>
+</ul>

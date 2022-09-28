@@ -1,0 +1,87 @@
+@import '/src/environments/environment.scss';
+:host{
+    z-index: 5;
+    width: 100%;
+
+    transform: translate(0, 100%);
+    position: absolute;
+    left: 0px;
+
+    transition: .3s;
+
+    transform-origin: top;
+}
+
+.list{
+    width: calc(100% - 3px);
+    display: grid;
+    border: 1px solid $secondary-color;
+    box-shadow: 0px 2px 4px #F0F0F7;
+    padding: 8px 1px;
+
+    max-height: 203px;
+    max-width: 100%;
+    overflow: auto;
+
+    &--show{
+        transform: scale(1,1);
+    }
+
+    &__text{
+        max-width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        letter-spacing: 0.04em;
+    }
+
+    &__item{
+        display: grid;
+        align-items: center;
+        position: relative;
+        padding-left: 16px;
+        padding-right: 35px;
+        margin-right: 2px;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        height: 29px;
+        transition: .4s;
+        cursor: pointer;
+
+        &:hover, &--active{
+            background-color: rgba($color: $primary-color, $alpha: .1);
+        }
+
+        &::after{
+            content: '';
+            display: inline-block;
+            opacity: 0;
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translate(0, -50%);
+            height: 14px;
+            width: 14px;
+            background-position: center;
+            background-size: cover;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='15' viewBox='0 0 14 15' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M12.0226 3.53716C12.0834 3.58387 12.1343 3.6421 12.1726 3.70852C12.2109 3.77494 12.2357 3.84825 12.2456 3.92426C12.2555 4.00027 12.2503 4.07749 12.2304 4.15151C12.2104 4.22552 12.1761 4.29488 12.1293 4.35562L6.29599 11.9393C6.24538 12.0051 6.18132 12.0593 6.10809 12.0984C6.03485 12.1374 5.95412 12.1604 5.8713 12.1657C5.78848 12.1711 5.70547 12.1587 5.62782 12.1294C5.55016 12.1001 5.47965 12.0546 5.42099 11.9959L2.50432 9.07909C2.39807 8.96907 2.33927 8.82171 2.3406 8.66876C2.34193 8.5158 2.40328 8.36949 2.51143 8.26133C2.61959 8.15317 2.76589 8.09182 2.91884 8.09049C3.07179 8.08916 3.21914 8.14796 3.32916 8.25422L5.77624 10.7014L11.2042 3.64391C11.2509 3.58313 11.3091 3.53216 11.3755 3.49389C11.4419 3.45563 11.5152 3.43083 11.5912 3.42092C11.6673 3.411 11.7445 3.41616 11.8185 3.43611C11.8925 3.45606 11.9618 3.49039 12.0226 3.53716Z' fill='%2378AFF8'/%3E%3C/svg%3E");
+            transition: .4s;
+        }
+
+        &--active::after{
+            opacity: 1;
+        }
+    }
+
+    
+    &::-webkit-scrollbar{
+        width:3px;
+    }
+
+}

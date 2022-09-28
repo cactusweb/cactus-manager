@@ -1,0 +1,14 @@
+@import '/src/environments/environment.scss';
+
+
+.switcher-wrapper{
+    padding: 12px 16px;
+    background-color: rgba($color: $primary-color, $alpha: .05);
+    border-radius: 8px;
+
+    &__label{
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

@@ -1,0 +1,16 @@
+<div class="window">
+    <h3 class="window__title">License statistics</h3>
+
+    <div class="chart-wrapper">
+        <div class="chart" echarts [options]="opt"></div>
+        <div class="summary">
+            <span class="summary__title">Total keys</span>
+            <span class="summary__value">{{stats?.keys_total || 0}}</span>
+        </div>
+    </div>
+    
+    <div class="chart-indicators">
+        <p class="chart-indicator chart-indicator--primary"><span>Renewal keys</span> <span>-</span> <span>{{stats?.renewal_keys || 0}}</span></p>
+        <p class="chart-indicator chart-indicator--success"><span>Lifetime keys</span> <span>-</span> <span>{{stats?.lifetime_keys || 0}}</span></p>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="col" style="grid-row: 1/3;">
+    <app-project-fieldset #fieldset></app-project-fieldset>
+    <app-payment-fieldset #fieldset></app-payment-fieldset>
+</div>
+
+<div class="col">
+    <app-personalization-fieldset #fieldset></app-personalization-fieldset>
+    <app-referral-fieldset #fieldset></app-referral-fieldset>
+    <app-other-fieldset></app-other-fieldset>
+
+    
+</div>
+
+<div class="row btns">
+    <button class="btn--err-outline" type="button" (click)="patchFormValue()">Discard changes</button>
+    <button class="btn--primary" (click)="onSubmit()">Save</button>
+</div>

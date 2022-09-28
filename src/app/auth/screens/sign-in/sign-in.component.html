@@ -1,0 +1,19 @@
+<form class="auth-form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <h1 class="auth-form__title">Login</h1>
+
+    <fieldset class="auth-form__fieldset" [disabled]="loading">
+        <input type="email"  class="form-control" formControlName="email" placeholder="E-mail" autocomplete="email">
+        <input type="password" class="form-control" formControlName="password" placeholder="Password" autocomplete="current-password">
+
+        <p class="auth-form__help-info auth-form__help-info--left">
+            <a href="" class="auth-form__link">Forgot password?</a>
+        </p>
+    </fieldset>
+
+
+    <button class="btn--primary" [disabled]="loading">
+        <btn-loader text="Login" [isSpinner]="loading"></btn-loader>
+    </button>
+
+    <p class="auth-form__help-info">Don’t have an account? <a routerLink="../sign-up" class="auth-form__link">Sign up</a></p>
+</form>

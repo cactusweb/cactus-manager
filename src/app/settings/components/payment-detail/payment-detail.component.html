@@ -1,0 +1,4 @@
+<ng-container [formGroup]="form">
+    <app-select-primary formControlName="type" [opt]="typeOpts" placeholder="Choose type"></app-select-primary>
+    <input type="text" formControlName="value" class="form-control" [placeholder]="placeholder" autocomplete="off">
+</ng-container>

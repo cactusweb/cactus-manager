@@ -1,0 +1,56 @@
+<div class="drops-wrapper">
+    <app-header
+        (onOpenDropForm)="showDropForm = true"
+    ></app-header>
+
+    <div class="window">
+        <table class="table-primary">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Price</th>
+                    <th>Password</th>
+                    <th>Plan</th>
+                    <th>Stock</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+        </table>
+
+        <span class="table-primary-hr">
+            <ngx-spinner
+                class="window-radius"
+                type="ball-clip-rotate"
+                size="large"
+                [fullScreen]="false"
+                [name]="spinnerName"
+                template='
+                    <span class="loader loader--show">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none">
+                            <path d="M80 40C80 62.0914 62.0914 80 40 80C17.9086 80 0 62.0914 0 40C0 17.9086 17.9086 0 40 0C62.0914 0 80 17.9086 80 40ZM14.4 40C14.4 54.1385 25.8615 65.6 40 65.6C54.1385 65.6 65.6 54.1385 65.6 40C65.6 25.8615 54.1385 14.4 40 14.4C25.8615 14.4 14.4 25.8615 14.4 40Z" fill="#78AFF8" fill-opacity="0.1"/>
+                            <path d="M34.2698 72.4988C33.9181 74.4931 32.0091 75.8427 30.0599 75.2937C26.6166 74.3239 23.3273 72.8536 20.2992 70.9245C16.2381 68.3373 12.7264 64.9756 9.96459 61.0313C7.20274 57.087 5.24483 52.6373 4.20264 47.9363C3.42554 44.431 3.16892 40.8372 3.43529 37.2698C3.58608 35.2504 5.50723 33.9181 7.50151 34.2698C9.49579 34.6214 10.8031 36.5253 10.7028 38.5478C10.5733 41.1605 10.7936 43.7844 11.3621 46.3491C12.1959 50.1099 13.7622 53.6696 15.9717 56.8251C18.1812 59.9805 20.9905 62.6699 24.2394 64.7396C26.4549 66.1511 28.8452 67.2555 31.3446 68.0274C33.2795 68.6249 34.6214 70.5045 34.2698 72.4988Z" fill="#78AFF8"/>
+                        </svg>
+                    </span>'
+            ></ngx-spinner>
+        </span>
+
+        <cdk-virtual-scroll-viewport class="custom-scroll" itemSize="44"> 
+            <table class="table-primary">
+                <app-drop *cdkVirtualFor="let drop of drops"
+                    [drop]="drop"
+                    (onDelete)="onDeleteDrop($event)"
+                ></app-drop>
+            </table>
+        </cdk-virtual-scroll-viewport>
+    </div>
+
+</div>
+
+<app-plans></app-plans>
+
+
+<div class="overlay" *ngIf="showDropForm">
+    <div class="artboard" (click)="showDropForm = false"></div>
+    <app-drop-form (onClose)="showDropForm = false" (onCreate)="onNewDrop($event)"></app-drop-form>
+</div>

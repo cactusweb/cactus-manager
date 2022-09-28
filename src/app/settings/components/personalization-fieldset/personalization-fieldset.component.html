@@ -1,0 +1,22 @@
+<form class="window" [formGroup]="form">
+    <div class="window__head">
+        <h4 class="window__title">Personalization</h4>
+    </div>
+
+    <fieldset class="window__body">
+        
+        <div class="inp-wrapper">
+            <label for="avatar" class="inp-wrapper__label">Logotype</label>
+            <app-avatar-inp></app-avatar-inp>
+        </div>
+
+        <div class="inp-wrapper">
+            <span class="inp-wrapper__label">Website link</span>
+            <app-color-inp
+                formControlName="primary_color"
+                i-id="primary-color"
+            ></app-color-inp>
+        </div>
+
+    </fieldset>
+</form>

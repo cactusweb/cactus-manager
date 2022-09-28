@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'https://api.cactusweb.io/api/v2/owner',
+  siteDome: 'http://localhost:4200',
+  currency: ['USD', 'RUB', 'EUR'],
+  dsBotInvite: 'https://discord.com/api/oauth2/authorize?client_id=809535097157451807&permissions=268435459&redirect_uri=http%3A%2F%2Fapi.cactusweb.io%2Fapi%2Fv2%2Fuser%2Fauth%2Ftoken&scope=bot',
+  primaryOwnerColor: '#5D9BF3'
 };
 
 /*

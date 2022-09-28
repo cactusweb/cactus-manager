@@ -1,0 +1,13 @@
+<div class="window">
+    <h4 class="window__title">Other</h4>
+
+    <div class="window__body">
+        <button class="btn--primary-outline" (click)="onInvite()">Invite the bot</button>
+        <button class="btn--primary-outline" (click)="showPassForm = true">Change password</button>
+    </div>
+</div>
+
+<div class="overlay" *ngIf="showPassForm">
+    <div class="artboard" (click)="showPassForm = false"></div>
+    <app-password-form (onClose)="showPassForm = false"></app-password-form>
+</div>

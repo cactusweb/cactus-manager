@@ -1,0 +1,13 @@
+:host{
+    display: grid;
+    row-gap: 8px;
+    grid-template-rows: auto 1fr;
+}
+
+.requests-wrapper{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 580px));
+    row-gap: 8px;
+    justify-content: space-between;
+
+}

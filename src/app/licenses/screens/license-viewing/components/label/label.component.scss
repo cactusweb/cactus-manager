@@ -1,0 +1,25 @@
+@import '/src/environments/environment.scss';
+
+:host{
+    display: grid;
+    row-gap: 6px;
+}
+
+label{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    cursor: default;
+}
+
+.btn{
+    background-color: rgba($color: $primary-color, $alpha: .1);
+    font-weight: 400;
+    min-height: 40px;
+    height: auto;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    white-space: nowrap;
+}

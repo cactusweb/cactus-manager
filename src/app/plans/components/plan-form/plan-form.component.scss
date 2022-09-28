@@ -1,0 +1,9 @@
+
+
+.popup__body{
+    row-gap: 12px;
+
+    &--disabled{
+        pointer-events: none;
+    }
+}

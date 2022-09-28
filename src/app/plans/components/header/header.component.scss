@@ -1,0 +1,14 @@
+
+.window{
+    grid-template-columns: auto 1fr;
+    column-gap: 8px;
+    padding-bottom: 8px;
+}
+
+
+.plans-length{
+    justify-self: end;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+}

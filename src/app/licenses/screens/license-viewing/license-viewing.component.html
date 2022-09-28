@@ -1,0 +1,78 @@
+<div class="popup">
+    <div class="popup__head">
+        <app-user-data [user]="license.user"></app-user-data>
+        <button class="popup__icon" (click)="onClose.emit()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25074 6.26119C6.41134 6.1005 6.62913 6.01023 6.85622 6.01023C7.08331 6.01023 7.3011 6.1005 7.4617 6.26119L11.9946 10.798L16.5276 6.26119C16.6066 6.17932 16.7011 6.11402 16.8056 6.0691C16.9101 6.02418 17.0224 6.00053 17.1362 5.99954C17.2499 5.99856 17.3626 6.02024 17.4679 6.06334C17.5731 6.10644 17.6688 6.17008 17.7492 6.25056C17.8296 6.33104 17.8932 6.42674 17.9362 6.53208C17.9793 6.63742 18.001 6.75029 18 6.8641C17.999 6.97791 17.9754 7.09039 17.9305 7.19496C17.8856 7.29954 17.8203 7.39412 17.7386 7.47319L13.2056 12.01L17.7386 16.5469C17.8946 16.7086 17.9809 16.9251 17.9789 17.1498C17.977 17.3746 17.8869 17.5895 17.7281 17.7485C17.5693 17.9074 17.3545 17.9975 17.13 17.9995C16.9054 18.0014 16.6891 17.915 16.5276 17.7589L11.9946 13.222L7.4617 17.7589C7.30018 17.915 7.08385 18.0014 6.8593 17.9995C6.63476 17.9975 6.41996 17.9074 6.26118 17.7485C6.10239 17.5895 6.01232 17.3746 6.01037 17.1498C6.00842 16.9251 6.09474 16.7086 6.25074 16.5469L10.7837 12.01L6.25074 7.47319C6.09019 7.31245 6 7.09447 6 6.86719C6 6.6399 6.09019 6.42193 6.25074 6.26119Z" fill="#A2ACD2"/>
+            </svg>
+        </button>
+    </div>
+
+    <div class="popup__body">
+        
+        <app-label label="License key" class="pointer" (click)="tools.copy(license.key)">
+            <button class="btn license">
+                <span class="license__key">**** {{getLastFour()}}</span>
+                <span class="license__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4.71597 0.743934C4.87417 0.587636 5.08874 0.499803 5.3125 0.499756H8.6875C9.35883 0.499756 10.0027 0.763161 10.4774 1.23202C10.9521 1.70089 11.2188 2.3368 11.2188 2.99988V10.5002C11.2187 11.1633 10.9521 11.7992 10.4774 12.2681C10.0027 12.737 9.35883 13.0004 8.6875 13.0004H2.78125C2.10992 13.0004 1.46609 12.737 0.991386 12.2681C0.516685 11.7992 0.25 11.1633 0.25 10.5002V5.5C0.250048 5.27899 0.338974 5.06706 0.497219 4.9108L4.71597 0.743934V0.743934ZM8.6875 2.1665H6.15625V5.5C6.15625 5.72102 6.06736 5.933 5.90912 6.08928C5.75089 6.24557 5.53628 6.33337 5.3125 6.33337H1.9375V10.5002C1.9375 10.7213 2.02639 10.9332 2.18463 11.0895C2.34286 11.2458 2.55747 11.3336 2.78125 11.3336H8.6875C8.91128 11.3336 9.12589 11.2458 9.28412 11.0895C9.44236 10.9332 9.53125 10.7213 9.53125 10.5002V2.99988C9.53125 2.77885 9.44236 2.56688 9.28412 2.41059C9.12589 2.25431 8.91128 2.1665 8.6875 2.1665ZM3.13056 4.66663H4.46875V3.34489L3.13056 4.66663ZM12.9062 2.1665C13.13 2.1665 13.3446 2.25431 13.5029 2.41059C13.6611 2.56688 13.75 2.77885 13.75 2.99988V13.0004C13.75 13.6634 13.4833 14.2994 13.0086 14.7682C12.5339 15.2371 11.8901 15.5005 11.2188 15.5005H2.78125C2.55747 15.5005 2.34286 15.4127 2.18463 15.2564C2.02639 15.1001 1.9375 14.8881 1.9375 14.6671C1.9375 14.4461 2.02639 14.2341 2.18463 14.0778C2.34286 13.9215 2.55747 13.8337 2.78125 13.8337H11.2188C11.4425 13.8337 11.6571 13.7459 11.8154 13.5896C11.9736 13.4334 12.0625 13.2214 12.0625 13.0004V2.99988C12.0625 2.77885 12.1514 2.56688 12.3096 2.41059C12.4679 2.25431 12.6825 2.1665 12.9062 2.1665V2.1665Z" fill="#A2ACD2"/>
+                    </svg>
+                </span>
+            </button>    
+        </app-label>
+
+        <app-label label="Referral points">
+            <span class="row referral-data"> 
+                {{ license.referral ? license.referral.score : '-' }} 
+                <button class="btn--err-outline" [disabled]="!license.referral">
+                    <btn-loader text="Reset" [isSpinner]="loading"></btn-loader>
+                </button>
+            </span>
+        </app-label>
+
+        <app-label label="Discord ID" style="grid-column: 3/5"> {{ license.user?.id || '-' }} </app-label>
+
+        <app-label label="Plan type">{{license.type}}</app-label>
+        <app-label label="Price">
+            <ng-template [ngIf]="license.type == 'lifetime'">-</ng-template>
+            <ng-template [ngIf]="license.type == 'renewal'">
+                {{ license.payment.price | currency:(license.payment.currency||'USD'):'symbol-narrow':'1.0-1' }}
+            </ng-template>
+        </app-label>
+
+
+        <app-label label="Card info" style="grid-column: 3/5">
+            <div class="card row" *ngIf="license.payment.last4 && license.type == 'renewal'">
+                <span class="card__number">**** {{license.payment.last4}}</span>
+                <span class="card__exp">{{getExpDate()}}</span>
+            </div>
+
+            <ng-template [ngIf]="!license.payment.last4 || license.type == 'lifetime'">-</ng-template>
+        </app-label>
+
+
+        <app-label label="Date of joining">{{license.created_at | date:'dd.MM.yy'}}</app-label>
+        <app-label label="Next renewal date">
+            <ng-template [ngIf]="license.type == 'renewal'">
+                {{ license.expires_in | date:'dd.MM.yy' }} 
+            </ng-template>
+
+            <ng-template [ngIf]="license.type == 'lifetime'">-</ng-template>
+        </app-label>
+
+        <app-label label="Email" style="grid-column: 3/5">
+            {{ license.payment.email || '-' }}
+        </app-label>
+
+
+        <app-label label="Description" *ngIf="license.description" style="grid-column: 1/5">
+            <span class="label-description">{{license.description}}</span>
+        </app-label>
+        <app-label label="Activations" style="grid-column: 1/5" *ngIf="license.activations.devices.length > 1">
+            <span class="label-inner">
+                <ng-template ngFor let-device let-i="index" let-c="count" [ngForOf]="license.activations.devices">{{device}} <br *ngIf="i+1 !== c"></ng-template>
+            </span>
+        </app-label>
+        
+    </div>
+</div>

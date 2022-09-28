@@ -1,0 +1,15 @@
+<div class="window">
+    <h3 class="window__title">General statistics</h3>
+
+    <div class="window__indicators">
+        <div class="window__indicator indicator">
+            <p class="indicator__label">Average license cost</p>
+            <span class="indicator__value">{{(stats?.avg_license_cost || 0) | currency:(stats?.currency||'USD'):'symbol-narrow':'1.0-1'}}</span>
+        </div>
+        
+        <div class="window__indicator indicator">
+            <p class="indicator__label">Estimated monthly profit</p>
+            <span class="indicator__value">{{(stats?.expected_income || 0) | currency:(stats?.currency||'USD'):'symbol-narrow':'1.0-1'}}</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,5 @@
+
+<input type="checkbox" [id]="id" hidden [(ngModel)]="val" (ngModelChange)="writeValue(val)" [disabled]="disabled">
+<label class="switcher" [for]="id" [class.switcher--disabled]="disabled">
+    <span class="slider"></span>
+</label>

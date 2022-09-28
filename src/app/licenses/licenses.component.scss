@@ -1,0 +1,26 @@
+:host{
+    display: grid;
+    row-gap: 8px;
+    grid-template-rows: auto 1fr;
+}
+
+.window{
+    grid-template-rows: auto auto 1fr;
+    row-gap: 8px;
+}
+
+tr{
+    grid-template-columns: 0.4fr 115px 64px 122px 65px 85px;
+    // column-gap: 90px;
+    justify-content: space-between;
+
+    th:first-child{
+        padding-left: 21px;
+        min-width: 250px;
+        box-sizing: border-box;
+    }
+}
+
+app-license-row{
+    margin-bottom: 8px;
+}

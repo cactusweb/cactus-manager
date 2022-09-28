@@ -1,0 +1,29 @@
+@import '/src/environments/environment.scss';
+
+:host{
+    display: grid;
+    justify-content: start;
+}
+
+.label{
+    display: grid;
+    column-gap: 4px;
+    align-items: center;
+    grid-auto-flow: column;
+    cursor: pointer;
+
+    &--active &__text{
+        color: $primary-color;
+    }
+    &--active &__icon path{
+        fill: $primary-color;
+    }
+
+    &__icon--reverse{
+        transform: scale(1, -1);
+    }
+}
+
+*{
+    transition: 0s;
+}

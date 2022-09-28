@@ -1,0 +1,75 @@
+@import '/src/environments/environment.scss';
+
+.popup{
+    top: 0px;
+}
+
+.popup__icon{
+    align-self: start;
+}
+
+.popup__body{
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 17px;
+    row-gap: 12px;
+}
+
+.referral-data{
+    width: 100%;
+    grid-template-columns: 1fr auto;
+
+    button{
+        width: 61px;
+        position: relative;
+        right: -16px;
+        font-size: 14px;
+        font-weight: 500;
+        background-color: rgba($color: $err-color, $alpha: .05);
+        color: rgba($color: $err-color, $alpha: .6);
+        border: none;
+        font-size: 14px;
+        &:disabled{
+            opacity: 1;
+            cursor: not-allowed;
+        }
+    }
+}
+
+.label-inner{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    white-space: nowrap;
+    padding: 11px 0px;
+    font-size: 14px;
+}
+
+.label-description{
+    white-space: initial;
+    word-break: break-word;
+    padding: 11px 0px;
+    font-size: 14px;
+}
+
+.card{
+    display: grid;
+    column-gap: 16px;
+    *{
+        font-size: 14px;
+    }
+}
+
+.license{
+    font-weight: 400;
+    font-size: 14px;
+    padding: 0px;
+    &__icon{
+        margin-left: 6.5px;
+        height: 16px;
+        width: 14px;
+    }
+
+    &:hover svg path{
+        fill: $primary-color;
+    }
+}

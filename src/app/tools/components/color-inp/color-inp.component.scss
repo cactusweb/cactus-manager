@@ -1,0 +1,58 @@
+@import '/src/environments/environment.scss';
+
+:host{
+    display: grid;
+    position: relative;
+}
+
+.form-control{
+    display: grid;
+    grid-template-columns: 1fr 98px;
+    column-gap: 8px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: $secondary-color;
+    box-sizing: border-box;
+}
+
+input{
+    padding: 0!important;
+    -webkit-appearance: none;
+    overflow: hidden;
+    outline: none;
+    cursor: pointer;
+    border-left: inherit;
+    border-right: inherit;
+    border-top: inherit;
+    width: 100%;
+    height: calc(100% + 1px);
+    border-radius: inherit ;
+
+    position: relative;
+    top: -0.5px;
+    right: -1px;
+
+    transition: .3s;
+
+    
+    &::-webkit-color-swatch-wrapper {
+        padding: 0;    
+    }
+
+    &::-webkit-color-swatch {
+        border: none;  
+    }
+    &::-moz-focus-inner {
+        border: none;
+        padding: 0;
+    }
+
+    &::-moz-color-swatch {
+        border: none;
+    }
+}
+
+
+// .placeholder{
+// }

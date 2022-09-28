@@ -1,0 +1,10 @@
+<div class="window row">
+    <button class="btn--err-outline" type="button" (click)="resetPoints()">
+        <btn-loader [isSpinner]="loading" text="Reset all points"></btn-loader>
+    </button>
+
+    
+    <div class="search-control-wrapper">
+        <input type="text" placeholder="Search" class="form-control no-validate" [(ngModel)]="searchParam" (ngModelChange)="onSearch.emit(searchParam)">
+    </div>
+</div>

@@ -1,0 +1,41 @@
+@import '/src/environments/environment.scss';
+
+:host{
+    display: grid;
+}
+
+.switcher{
+    width: 48px;
+    height: 24px;
+    border-radius: 30px;
+    box-sizing: border-box;
+    position: relative;
+    cursor: pointer;
+    transition: .4s;
+    background-color: $secondary-color;
+
+    &--disabled{
+        cursor: default;
+    }
+
+    > .slider{
+        display: block;
+        width: 20px;
+        height: 20px;
+        background-color: #fff;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 2.5px;
+        transform: translate(0px, -50%);
+        transition: .4s;
+    }
+}
+
+input[type=checkbox]:checked + .switcher{
+    background: $primary-color;
+
+    .slider{
+        transform: translate(23px, -50%);
+    }
+}

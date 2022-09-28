@@ -1,0 +1,9 @@
+:host{
+    display: grid;
+    grid-template-columns: 145px 1fr;
+    column-gap: 16px;
+}
+
+input::placeholder{
+    font-weight: 400;
+}

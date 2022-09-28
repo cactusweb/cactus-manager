@@ -1,0 +1,67 @@
+@import '/src/environments/environment.scss';
+
+.license{
+    grid-template-columns: 0.3fr 115px 120px 90px;
+    justify-content: space-between;
+    margin-bottom: 8px;
+
+    &__user{
+        padding-left: 21px;
+        min-width: 250px;
+        box-sizing: border-box;
+        position: relative;
+        cursor: pointer;
+        height: 100%;
+
+        display: flex;
+        align-items: center;
+
+        button{
+            position: absolute;
+            left: 0px;
+            top: 50%;
+            transform: translate(0, -50%);
+            height: 12.83px;
+        }
+
+        &:hover button svg path{
+            fill: $primary-color;
+        }
+    }
+
+    
+    &__key-copy {
+        grid-template-columns: 1fr auto;
+        cursor: pointer;
+    
+        svg{
+            transition: .4s;
+        }
+    
+        &:hover svg path{
+            fill: $primary-color;
+        }
+    }
+
+    
+    &__action{
+        display: grid;
+        justify-content: end;
+
+        button{
+            height: 22px;
+            width: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            &:hover:not(:disabled) svg path{
+                fill: $primary-color; 
+            }
+
+            &:disabled{
+                opacity: .4;
+            }
+        }
+    }
+}

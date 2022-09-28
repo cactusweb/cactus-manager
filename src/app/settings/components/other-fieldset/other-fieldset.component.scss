@@ -1,0 +1,9 @@
+app-password-form{
+    max-width: 480px;
+    width: 100%;
+}
+
+.window__body{
+    column-gap: 12px;
+    grid-template-columns: 1fr 1fr;
+}

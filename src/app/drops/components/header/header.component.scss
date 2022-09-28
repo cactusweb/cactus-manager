@@ -1,0 +1,15 @@
+.window{
+    grid-template-columns: auto 1fr;
+
+}
+
+.info{
+    justify-self: end;
+    column-gap: 24px;
+    
+    *{
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

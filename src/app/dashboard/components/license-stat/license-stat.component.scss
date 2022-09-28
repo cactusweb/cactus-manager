@@ -1,0 +1,89 @@
+@import '/src/environments/environment.scss';
+
+.window{
+    align-content: stretch;
+    grid-template-rows: auto auto 1fr;
+}
+
+.chart-wrapper{
+    width: 210px;
+    height: 210px;
+    justify-self: center;
+
+    position: relative;
+
+    .chart{
+        width: inherit;
+        height: inherit;
+    }
+}
+
+
+.summary{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    row-gap: 8px;
+    justify-items: center;
+    text-align: center;
+
+    &__title{
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    &__value{
+        font-size: 20px;
+        font-weight: 600;
+    }
+}
+
+
+.chart-indicators{
+    display: grid;
+    justify-self: center;
+    align-self: end;
+
+    row-gap: 16px;
+
+}
+
+.chart-indicator{
+    font-size: 14px;
+    font-weight: 500;
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 6px;
+    justify-content: start;
+    position: relative;
+
+    padding-left: 14px;
+
+    &::before{
+        content: '';
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        position: absolute;
+        left: 0px;
+        top: 50%;
+        transform: translate(0, -50%);
+    }
+
+    &--primary::before{
+        background-color: $primary-color;
+    }
+
+    &--success::before{
+        background-color: rgba($color: $success-color, $alpha: 0.6);
+    }
+
+
+    *{
+        font-size: inherit;
+    }
+
+}
