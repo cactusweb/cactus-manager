@@ -7,11 +7,15 @@
     <app-personalization-fieldset #fieldset></app-personalization-fieldset>
     <app-referral-fieldset #fieldset></app-referral-fieldset>
     <app-other-fieldset></app-other-fieldset>
-
-    
 </div>
 
 <div class="row btns">
     <button class="btn--err-outline" type="button" (click)="patchFormValue()">Discard changes</button>
     <button class="btn--primary" (click)="onSubmit()">Save</button>
+</div>
+
+
+<div class="overlay" *ngIf="unloadWarning">
+    <div class="artboard" (click)="unloadWarning = false;"></div>
+    <app-on-before-unload (onClose)="unloadWarning = false" (onEmitStatus)="$deactivating.next($event)" style="width: 480px;"></app-on-before-unload>
 </div>

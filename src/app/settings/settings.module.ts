@@ -16,6 +16,7 @@ import { AmeriaFieldsetComponent } from './components/ameria-fieldset/ameria-fie
 import { PendingChangesGuard } from './guards/pending-changes.guard';
 import { PaymentDetailsFieldsetComponent } from './components/payment-details-fieldset/payment-details-fieldset.component';
 import { PaymentDetailComponent } from './components/payment-detail/payment-detail.component';
+import { OnBeforeUnloadComponent } from './components/on-before-unload/on-before-unload.component';
 
 const routes: Routes = [
   { path: '', component: SettingsComponent, canDeactivate: [PendingChangesGuard], data: {
@@ -38,7 +39,8 @@ const routes: Routes = [
     TinkoffFieldsetComponent,
     AmeriaFieldsetComponent,
     PaymentDetailsFieldsetComponent,
-    PaymentDetailComponent
+    PaymentDetailComponent,
+    OnBeforeUnloadComponent
   ],
   imports: [
     CommonModule,

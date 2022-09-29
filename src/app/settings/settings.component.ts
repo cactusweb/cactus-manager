@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, HostListener, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { Owner } from '../account/interfaces/owner';
 import { AccountService } from '../account/services/account.service';
-import { filter, first, Observable, Subscription, take, tap } from 'rxjs'
+import { filter, first, Observable, Subject, Subscription, take, tap } from 'rxjs'
 import { FailedLoadService } from '../failed-load/services/failed-load.service';
 import { ComponentCanDeactivate } from './guards/pending-changes.guard';
 
@@ -20,8 +20,11 @@ export class SettingsComponent implements OnInit, OnDestroy, ComponentCanDeactiv
   @ViewChildren('fieldset') fieldsets!: QueryList<SettingsFieldset>
 
   account!: Owner | null
-
   sub1: Subscription | undefined
+
+  unloadWarning: boolean = false;
+  initialData: Record<any, any> = {}
+  $deactivating = new Subject<boolean>();
 
   constructor(
     private acc: AccountService,
@@ -29,13 +32,6 @@ export class SettingsComponent implements OnInit, OnDestroy, ComponentCanDeactiv
   ) { 
   }
 
-  @HostListener('window:beforeunload')
-  canDeactivate(): Observable<boolean> | boolean {
-    return true
-    // insert logic to check if there are pending changes here;
-    // returning true will navigate without confirmation
-    // returning false will show a confirm dialog before navigating away
-  }
 
   ngOnInit(): void {
     this.getAcc()
@@ -70,6 +66,13 @@ export class SettingsComponent implements OnInit, OnDestroy, ComponentCanDeactiv
       
       f._form = this.account;
     })
+
+    setTimeout(() => {
+      this.initialData = {};
+      this.fieldsets.toArray().forEach(f => {
+        this.initialData = { ...this.initialData, ...f._form }
+      })
+    }, 10);
   }
   
   onFailedLoad(){
@@ -90,6 +93,23 @@ export class SettingsComponent implements OnInit, OnDestroy, ComponentCanDeactiv
     })
 
     console.log( valid, data )
+  }
+
+
+
+  
+  canDeactivate(): Observable<boolean> | boolean {
+    let data = {}
+
+    this.fieldsets.toArray().forEach(f => {
+      data = { ...data, ...f._form }
+    })
+
+    if ( JSON.stringify(data) != JSON.stringify(this.initialData) )
+      this.unloadWarning = true;
+    else return true;
+
+    return this.$deactivating.asObservable();
   }
   
 }
