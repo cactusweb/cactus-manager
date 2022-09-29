@@ -491,6 +491,7 @@ textarea.form-control{
         border: 1px solid $secondary-color;
         background-position: center;
         background-repeat: no-repeat;
+        box-sizing: border-box;
         transition: .3s;
     }
 
@@ -544,6 +545,7 @@ textarea.form-control{
         background-size: auto;
         background-position: center;
         left: 0px;
+        background-size: cover !important;
     }
 
     
