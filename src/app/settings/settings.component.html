@@ -16,6 +16,6 @@
 
 
 <div class="overlay" *ngIf="unloadWarning">
-    <div class="artboard" (click)="unloadWarning = false;"></div>
+    <div class="artboard" (click)="unloadWarning = false; $deactivating.next(false)"></div>
     <app-on-before-unload (onClose)="unloadWarning = false" (onEmitStatus)="$deactivating.next($event)" style="width: 480px;"></app-on-before-unload>
 </div>
