@@ -45,7 +45,7 @@ export class ReferralsComponent implements OnInit {
   }
 
   getLicenses(){
-    // this.spinner.show(spinnerName)
+    this.spinner.show(spinnerName)
 
     this.lic.getLicenses()
       .pipe(
