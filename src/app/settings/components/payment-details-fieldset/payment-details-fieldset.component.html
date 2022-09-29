@@ -10,7 +10,7 @@
     </div>
 
     <fieldset class="popup__body" formArrayName="details">
-        <app-payment-detail *ngFor="let inp of getFormControls('details')['controls']; let i = index" formControlName="{{i}}"></app-payment-detail>
+        <app-payment-detail *ngFor="let inp of getFormControls('details')['controls']; let i = index" formControlName="{{i}}" (onDelete)="getFormControls('details').removeAt(i)"></app-payment-detail>
 
         <button class="btn" type="button" (click)="addControl()">
             Add new

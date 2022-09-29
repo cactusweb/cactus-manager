@@ -17,6 +17,7 @@ export class PaymentDetailComponent implements ControlValueAccessor, OnDestroy {
   val: any
 
   @Output() onTypeChange = new EventEmitter<string>();
+  @Output() onDelete = new EventEmitter();
 
   form!: FormGroup
   placeholder: string = 'Data'
@@ -63,7 +64,7 @@ export class PaymentDetailComponent implements ControlValueAccessor, OnDestroy {
       this.val = res;
       this.onChange(this.val)
     })
-    
+
     this.subOnType();
   }
 
