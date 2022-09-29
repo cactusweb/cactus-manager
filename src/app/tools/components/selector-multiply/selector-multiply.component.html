@@ -1,5 +1,5 @@
 <input type="text" hidden value="-1" #showStatus>
-<!-- showStatus.value = showStatus.value == '-1' ? '1' : '-1' -->
+
 <div class="form-control" [class.form-control--focus]="showStatus.value == '1'" (click)="onClickControl($event)">
     <div class="form-control__value-wrapper custom-scroll">
         <span class="form-control__placeholder" *ngIf="getSelectedValues().length == 0">{{placeholder}}</span>

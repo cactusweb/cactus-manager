@@ -22,21 +22,9 @@
             <app-log-row *cdkVirtualFor="let log of logs
                 | search : pipeParams.search : pipeData.search
                 | filter : pipeParams.filter : pipeData.filter
+                , let i = index, trackBy: trackByFn
             " [log]="log"></app-log-row>
         </table>
     </cdk-virtual-scroll-viewport>
 </div>
 
-
-
-<!-- | search : pipeParams.search : pipeData.search
-| filter : pipeParams.filter : pipeData.filter
-| sort : pipeParams.sortNickname : pipeData.sortNickname
-| sort : pipeParams.sortRenewDate : pipeData.sortRenewDate
-, let i = index, trackBy: trackByFn -->
-
-    <!-- [license]="license"
-    (onDelete)="onDeleteLicense($event)"
-    (onRenew)="onRenewLicense($event)"
-    (onView)="onViewLicense($event)"
-    (onEdit)="popupType = 'licenseForm'; popupLicenseId = $event" -->

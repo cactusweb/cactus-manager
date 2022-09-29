@@ -80,4 +80,8 @@ export class AuditLogsComponent implements OnInit, OnDestroy {
       .subscribe(res => this.getLogs())
   }
 
+  
+  trackByFn(index: any, item: Log){
+    return item.id;
+  }
 }

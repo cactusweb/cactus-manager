@@ -1,15 +1,6 @@
 
 <tr class="license">
                 
-                <!-- 'warning': (currentDate + daysToMs(3) > license.expires_in) && license.type != 'lifetime',
-                'danger': (currentDate > license.expires_in) && license.type != 'lifetime',
-                'card': license.payment?.last4 -->
-                
-                <!-- | filter : filterParams : filterChange 
-                | search : searchKeys : searchParam
-                | sort : sortParam
-                , let i = index, trackBy: trackByFn -->
-
     <td  class="license__user" (click)="onView.emit(license.id)"> 
         <button class="btn-info">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
