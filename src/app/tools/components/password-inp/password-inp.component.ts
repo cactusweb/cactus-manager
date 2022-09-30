@@ -14,6 +14,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class PasswordInpComponent implements ControlValueAccessor {
   val: string = '';
   @Input() id: string = 'password'
+  @Input() placeholder = '';
+  @Input() autoComplete = '';
 
   inpType: 'password' | 'text' = 'password'
 
