@@ -3,10 +3,10 @@
 
     <fieldset class="auth-form__fieldset" [disabled]="loading">
         <input type="email"  class="form-control" formControlName="email" placeholder="E-mail" autocomplete="email">
-        <input type="password" class="form-control" formControlName="password" placeholder="Password" autocomplete="current-password">
+        <app-password-inp formControlName="password" placeholder="Password" autocomplete="current-password" autoComplete="current-password"></app-password-inp>
 
         <p class="auth-form__help-info auth-form__help-info--left">
-            <a href="" class="auth-form__link">Forgot password?</a>
+            <a routerLink="/" class="auth-form__link">Forgot password?</a>
         </p>
     </fieldset>
 

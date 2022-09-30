@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { take, finalize, catchError } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
@@ -10,12 +10,12 @@ import { AuthService } from '../../services/auth.service';
 })
 export class SignInComponent implements OnInit {
   loginForm!: FormGroup;
-  error: string = '';
 
   loading: boolean = false;
 
   constructor(
-    private auth: AuthService
+    private auth: AuthService,
+    private eRef: ElementRef
   ) { }
 
   ngOnInit(): void {
@@ -45,7 +45,11 @@ export class SignInComponent implements OnInit {
       )
       .subscribe({
         next: undefined,
-        error: (err) => this.error = err.error,
+        error: (err) => {
+          setTimeout(() => {
+            this.eRef.nativeElement.querySelector('#password').focus()
+          }, 10);
+        },
       })
   }
 
