@@ -68,7 +68,7 @@
         <app-label label="Description" *ngIf="license.description" style="grid-column: 1/5">
             <span class="label-description">{{license.description}}</span>
         </app-label>
-        <app-label label="Activations" style="grid-column: 1/5" *ngIf="license.activations.devices.length > 1">
+        <app-label label="Activations" style="grid-column: 1/5" *ngIf="license.activations.devices.length > 0">
             <span class="label-inner">
                 <ng-template ngFor let-device let-i="index" let-c="count" [ngForOf]="license.activations.devices">{{device}} <br *ngIf="i+1 !== c"></ng-template>
             </span>
