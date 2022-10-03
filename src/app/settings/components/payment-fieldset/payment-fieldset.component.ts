@@ -41,7 +41,7 @@ export class PaymentFieldsetComponent implements OnInit, OnDestroy, SettingsFiel
 
   generateForm(){
     this.form = new FormGroup({
-      way: new FormControl('', Validators.required),
+      way: new FormControl(''),
       currency: new FormControl('USD', Validators.required),
       kick: new FormControl({ value: false, disabled: true }, Validators.required),
     })
