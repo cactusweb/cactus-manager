@@ -29,16 +29,15 @@ export interface Owner {
     payment: {
         kick: boolean,
         way: string,
+        currency: string,
         tinkoff: {
             terminal_key: string,
             password: string,
-            currency: string
         },
         ameria: {
             merchant_id: string,
             merchant_username: string,
             merchant_password: string,
-            currency: string,
         },
         details: {
             cards: string[],

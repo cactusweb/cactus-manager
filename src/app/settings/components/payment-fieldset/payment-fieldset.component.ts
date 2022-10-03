@@ -77,11 +77,9 @@ export class PaymentFieldsetComponent implements OnInit, OnDestroy, SettingsFiel
 
   set _form(val: Owner){
     this.owner = val
-    this.form.patchValue({
-      way: val.payment.way, 
-      kick: val.payment.kick, 
-      currency: val.payment.tinkoff?.currency || val.payment.ameria?.currency || 'USD'
-    })
+    val.payment.currency = val.payment.currency || 'USD';
+
+    this.form.patchValue({ ...val.payment })
     this.dataDetails._form = val;
   }
 
