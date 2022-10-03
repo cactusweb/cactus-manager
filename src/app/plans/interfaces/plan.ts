@@ -6,8 +6,8 @@ export interface Plan {
     name: string
     unbindable: boolean
     activations: number
-    license_status: 'lifetime' | 'renewal' | 'trial' | 'trial-renewal'
-    renewal_price: number
+    type: 'lifetime' | 'renewal' | 'trial' | 'trial-renewal'
+    price: number
     roles: DsRole[],
     trial_time: number
 }

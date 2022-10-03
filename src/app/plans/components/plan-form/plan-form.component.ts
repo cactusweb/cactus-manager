@@ -51,8 +51,8 @@ export class PlanFormComponent implements OnInit, OnDestroy {
       name: new FormControl( null, Validators.required ),
       activations: new FormControl( null, Validators.required ),
       unbindable: new FormControl( false ),
-      license_status: new FormControl( 'renewal', Validators.required ),
-      renewal_price: new FormControl( null, Validators.required ),
+      type: new FormControl( 'renewal', Validators.required ),
+      price: new FormControl( null, Validators.required ),
       roles: new FormControl( [] ),
       trial_time: new FormControl( { value: null, disabled: true }, Validators.required )
     })
@@ -76,16 +76,16 @@ export class PlanFormComponent implements OnInit, OnDestroy {
 
   
   subOnLicenseType(){
-    this.sub = this.form.controls['license_status'].valueChanges.subscribe(v => {
+    this.sub = this.form.controls['type'].valueChanges.subscribe(v => {
       if ( v.includes('trial') )
         this.form.controls['trial_time'].enable();
       else
         this.form.controls['trial_time'].disable();
 
       if ( v == 'lifetime' || v == 'trial' )
-        this.form.controls['renewal_price'].disable();
+        this.form.controls['price'].disable();
       else 
-        this.form.controls['renewal_price'].enable();
+        this.form.controls['price'].enable();
     })
   }
 
@@ -100,7 +100,7 @@ export class PlanFormComponent implements OnInit, OnDestroy {
 
     let data = { 
       ...this.form.value, 
-      trial_time: !this.form.controls['license_status'].value.includes('trial') ? null : (this.form.controls['trial_time'].value * 24 * 60 * 60)
+      trial_time: !this.form.controls['type'].value.includes('trial') ? null : (this.form.controls['trial_time'].value * 24 * 60 * 60)
     }
 
     this.plansService.postPlan( data )
