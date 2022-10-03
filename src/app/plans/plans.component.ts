@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { filter, finalize, Subscription, take, tap } from 'rxjs';
 import { FailedLoadService } from '../failed-load/services/failed-load.service';
@@ -21,6 +21,8 @@ export class PlansComponent implements OnInit, OnDestroy {
 
   sub: Subscription | undefined
 
+  @Output('onFailedLoad') emitFailedLoad = new EventEmitter();
+
   constructor(
     private planService: PlansService,
     private spinner: NgxSpinnerService,
@@ -33,7 +35,7 @@ export class PlansComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
-    this.flService.hide();
+    // this.flService.hide();
   }
 
   getPlans(){
