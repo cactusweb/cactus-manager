@@ -37,20 +37,21 @@
 
         <cdk-virtual-scroll-viewport class="custom-scroll" itemSize="44"> 
             <table class="table-primary">
-                <app-drop *cdkVirtualFor="let drop of drops"
+                <app-drop *cdkVirtualFor="let drop of drops | async"
                     [drop]="drop"
-                    (onDelete)="onDeleteDrop($event)"
                 ></app-drop>
-            </table>
-        </cdk-virtual-scroll-viewport>
+                    <!-- (onDelete)="onDeleteDrop($event)" -->
+                </table>
+            </cdk-virtual-scroll-viewport>
+        </div>
+        
     </div>
-
-</div>
 
 <app-plans></app-plans>
 
 
 <div class="overlay" *ngIf="showDropForm">
     <div class="artboard" (click)="showDropForm = false"></div>
-    <app-drop-form (onClose)="showDropForm = false" (onCreate)="onNewDrop($event)"></app-drop-form>
+    <app-drop-form (onClose)="showDropForm = false" ></app-drop-form>
+    <!-- (onCreate)="onNewDrop($event)" -->
 </div>

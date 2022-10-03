@@ -21,14 +21,15 @@ export class PlansService {
   ) { }
 
   getPlans( update: boolean = false ): Observable<Plan[]>{
-    if ( !update ) 
-      return this.$plans.asObservable().pipe(share());
-
-    return this.http.request( Requests['getPlans'] )
-      .pipe(tap(d => {
-        this.plans = d.reverse();
-        this.$plans.next(this.plans)
-      }))
+    if ( update )
+      this.http.request( Requests['getPlans'] )
+          .pipe(tap(d => {
+            this.plans = d.reverse();
+            this.$plans.next(this.plans)
+          }))
+          .subscribe(res => {}, err => {})
+        
+    return this.$plans.asObservable().pipe(share());
   }
 
 

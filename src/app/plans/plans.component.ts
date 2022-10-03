@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { filter, finalize, Subscription, take, tap } from 'rxjs';
+import { catchError, filter, finalize, map, Observable, Subscription, take, tap, throwError } from 'rxjs';
 import { FailedLoadService } from '../failed-load/services/failed-load.service';
 import { PlansSpinnerName } from './const';
 import { Plan } from './interfaces/plan';
@@ -12,7 +12,7 @@ import { PlansService } from './services/plans.service';
   styleUrls: ['./plans.component.scss']
 })
 export class PlansComponent implements OnInit, OnDestroy {
-  plans!: Plan[]
+  plans!: Observable<Plan[]>
   spinnerName = PlansSpinnerName
 
   showPlanForm: boolean = false;
@@ -39,31 +39,35 @@ export class PlansComponent implements OnInit, OnDestroy {
   }
 
   getPlans(){
+    let takeCount = 0;
     this.spinner.show(this.spinnerName)
 
-    this.planService.getPlans( true )
+    this.plans = this.planService.getPlans( true )
       .pipe(
-        take(1),
-        finalize(() => this.spinner.hide(this.spinnerName))
+        tap(() => {
+          takeCount++
+          if ( takeCount == 2 ) this.spinner.hide(this.spinnerName);
+        }),
+        map(t => t.map(d => d)),
+        catchError(err => {
+          this.onFailedLoad();
+          return throwError(err)
+        }),
       )
-      .subscribe({
-        next: d => this.plans = d,
-        error: () => this.onFailedLoad()
-      })
   }
 
-  onDeletePlan(id: string){
-    this.plans = this.plans.filter(p => p.id != id)
-  }
+  // onDeletePlan(id: string){
+  //   this.plans = this.plans.filter(p => p.id != id)
+  // }
 
 
-  onNewPlan( p: Plan ){
-    this.plans = [p,...this.plans]
-    this.plans = this.plans.map(pl => pl)
-  }
+  // onNewPlan( p: Plan ){
+  //   this.plans = [p,...this.plans]
+  //   this.plans = this.plans.map(pl => pl)
+  // }
 
-  onViewPlan(id: string){
-    this.viewingPlan = this.plans.find(p => p.id == id) || null;
+  onViewPlan(plan: Plan){
+    this.viewingPlan = plan;
     this.showPlanForm = true;
   }
 

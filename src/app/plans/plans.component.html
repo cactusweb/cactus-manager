@@ -32,17 +32,18 @@
 
     <cdk-virtual-scroll-viewport class="custom-scroll" itemSize="44"> 
         <table class="table-primary">
-            <app-plan *cdkVirtualFor="let plan of plans"
+            <app-plan *cdkVirtualFor="let plan of plans | async"
                 [plan]="plan"
-                (onDelete)="onDeletePlan($event)"
-                (onView)="onViewPlan($event)"
+                (onView)="onViewPlan(plan)"
             ></app-plan>
-        </table>
-    </cdk-virtual-scroll-viewport>
-</div>
+            </table>
+        </cdk-virtual-scroll-viewport>
+    </div>
+    <!-- (onDelete)="onDeletePlan($event)" -->
 
 
 <div class="overlay" *ngIf="showPlanForm">
     <div class="artboard" (click)="showPlanForm = false; viewingPlan = null"></div>
-    <app-plan-form (onClose)="showPlanForm = false; viewingPlan = null" (onCreate)="onNewPlan($event)" [plan]="viewingPlan"></app-plan-form>
+    <app-plan-form (onClose)="showPlanForm = false; viewingPlan = null" [plan]="viewingPlan"></app-plan-form>
+    <!-- (onCreate)="onNewPlan($event)"  -->
 </div>

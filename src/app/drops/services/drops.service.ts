@@ -18,19 +18,19 @@ export class DropsService {
   ) { }
 
   getDrops( update: boolean = false ): Observable<Drop[]>{
-    if ( !update ) 
-      return this.$drops.asObservable().pipe(share());
-
-    return this.http.request( Requests['getDrops'] )
-      .pipe(
-        map((drops: Drop[]) => drops.map(d => { 
-          return { ...d, start_at: d.start_at*1000 }
-        })),
-        tap(d => {
-          this.drops = d.reverse();
-          this.$drops.next(this.drops)
-        })
-      )
+    if ( update ) 
+      this.http.request( Requests['getDrops'] )
+        .pipe(
+          map((drops: Drop[]) => drops.map(d => { 
+            return { ...d, start_at: d.start_at*1000 }
+          })),
+          tap(d => {
+            this.drops = d.reverse();
+            this.$drops.next(this.drops)
+          })
+        ).subscribe({ next: () => {}, error: () => {} })
+    
+    return this.$drops.asObservable().pipe(share());
   }
 
   

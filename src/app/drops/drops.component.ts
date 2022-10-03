@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { filter, finalize, Subscription, take, tap } from 'rxjs';
+import { catchError, filter, finalize, map, Observable, Subscription, take, tap, throwError } from 'rxjs';
 import { FailedLoadService } from '../failed-load/services/failed-load.service';
 import { DropsSpinnerName } from './const';
 import { Drop } from './interfaces/drop';
@@ -13,7 +13,7 @@ import { DropsService } from './services/drops.service';
 })
 export class DropsComponent implements OnInit, OnDestroy {
   spinnerName = DropsSpinnerName
-  drops!: Drop[]
+  drops!: Observable<Drop[]>
 
   showDropForm: boolean = false;
 
@@ -37,26 +37,37 @@ export class DropsComponent implements OnInit, OnDestroy {
   getDrops(){
     this.spinner.show(this.spinnerName)
 
-    this.dropsService.getDrops(true)
+    let takeCount = 0;
+
+    this.drops = this.dropsService.getDrops(true)
       .pipe(
-        take(1),
-        finalize(() => this.spinner.hide(this.spinnerName))
+        tap(() => {
+          takeCount++;
+          if ( takeCount == 2 )
+            this.spinner.hide(this.spinnerName);
+        }),
+        map(d => d.map(t => t)),
+        catchError(err => {
+          this.spinner.hide(this.spinnerName);
+          this.onFailedLoad();
+          return throwError(err)
+        })
       )
-      .subscribe({
-        next: d => this.drops = d,
-        error: () => this.onFailedLoad(),
-      })
+      // .subscribe({
+      //   next: d => this.drops = d,
+      //   error: () => this.onFailedLoad(),
+      // })
   }
 
 
-  onDeleteDrop( id: string ){
-    this.drops = this.drops.filter(d => d.id != id)
-  }
+  // onDeleteDrop( id: string ){
+  //   this.drops = this.drops.filter(d => d.id != id)
+  // }
 
-  onNewDrop( drop: Drop ){
-    this.drops = [drop, ...this.drops]
-    this.drops = this.drops.map(d => d)
-  }
+  // onNewDrop( drop: Drop ){
+  //   this.drops = [drop, ...this.drops]
+  //   this.drops = this.drops.map(d => d)
+  // }
 
 
   
