@@ -62,7 +62,7 @@ export class DropFormComponent implements OnInit, OnDestroy {
       .subscribe(planId => {
         let plan = this.plans.find(p => p.id == planId)
 
-        if ( plan?.license_status.includes('trial') )
+        if ( plan?.type.includes('trial') )
           this.form.controls['price'].disable()
         else
           this.form.controls['price'].enable()

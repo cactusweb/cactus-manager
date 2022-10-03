@@ -6,10 +6,10 @@
     </td>
 
     <td>
-        <ng-template [ngIf]="!drop.plan.license_status.includes('trial') && drop.price">
+        <ng-template [ngIf]="!drop.plan.type.includes('trial') && drop.price">
             {{ drop.price | currency:drop.currency||'USD':'symbol-narrow':'1.0-1' }}
         </ng-template>
-        <ng-template [ngIf]="drop.plan.license_status.includes('trial') || !drop.price">
+        <ng-template [ngIf]="drop.plan.type.includes('trial') || !drop.price">
             -
         </ng-template>
     </td>
