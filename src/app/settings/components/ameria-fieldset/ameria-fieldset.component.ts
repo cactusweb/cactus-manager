@@ -36,6 +36,6 @@ export class AmeriaFieldsetComponent implements OnInit, SettingsFieldset {
   }
 
   set _form(val: Owner){
-    this.form.patchValue(val.settings.ameria)
+    this.form.patchValue(val.payment.ameria)
   }
 }

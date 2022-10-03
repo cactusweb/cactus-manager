@@ -35,6 +35,6 @@ export class TinkoffFieldsetComponent implements OnInit, SettingsFieldset {
   }
 
   set _form(val: Owner){
-    this.form.patchValue(val.settings.tinkoff)
+    this.form.patchValue(val.payment.tinkoff)
   }
 }

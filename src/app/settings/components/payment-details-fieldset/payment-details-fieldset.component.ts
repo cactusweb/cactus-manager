@@ -55,10 +55,10 @@ export class PaymentDetailsFieldsetComponent implements OnInit, SettingsFieldset
   }
 
   set _form(val: Owner){
-    this.lastData = val.payment_details;
+    this.lastData = val.payment.details;
 
-    let cards: DetailValue[] = val.payment_details.cards.map(v => { return { type: 'card', value: v } })
-    let wallets: DetailValue[] = val.payment_details.phones.map(v => { return { type: 'cryptowallet', value: v } })
+    let cards: DetailValue[] = val.payment.details.cards.map(v => { return { type: 'card', value: v } })
+    let wallets: DetailValue[] = val.payment.details.phones.map(v => { return { type: 'cryptowallet', value: v } })
 
     let value = cards.concat(wallets)
     this.getFormControls('details').clear();

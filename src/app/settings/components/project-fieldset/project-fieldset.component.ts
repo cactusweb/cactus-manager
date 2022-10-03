@@ -36,7 +36,7 @@ export class ProjectFieldsetComponent implements SettingsFieldset {
   }
 
   set _form(val: Owner){
-    this.form.patchValue({ ...val.settings, discordId: val.settings.discord.id })
+    this.form.patchValue({ ...val.general, discordId: val.discord.id })
   }
 
 }

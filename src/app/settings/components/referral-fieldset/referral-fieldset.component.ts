@@ -50,7 +50,7 @@ export class ReferralFieldsetComponent implements OnInit, SettingsFieldset {
   }
 
   set _form(val: Owner){
-    this.form.patchValue(val.settings.referral)
+    this.form.patchValue(val.referral)
   }
 
 

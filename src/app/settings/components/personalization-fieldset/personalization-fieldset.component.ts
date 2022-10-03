@@ -35,7 +35,7 @@ export class PersonalizationFieldsetComponent implements OnInit, SettingsFieldse
   }
 
   set _form(val: Owner){
-    this.form.patchValue({ primary_color: val.settings.primary_color || environment.primaryOwnerColor })
+    this.form.patchValue({ primary_color: val.general.primary_color || environment.primaryOwnerColor })
   }
 
 }

@@ -38,7 +38,7 @@ export class AuditLogsComponent implements OnInit, OnDestroy {
     this.getLogs();
 
     this.acc.owner.pipe(take(1))
-      .subscribe(res => this.ownerName = res?.name || '')
+      .subscribe(res => this.ownerName = res?.general.name || '')
   }
 
   

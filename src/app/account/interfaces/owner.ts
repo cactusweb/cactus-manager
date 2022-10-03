@@ -3,29 +3,32 @@ import { DsRole } from "src/app/tools/interfaces/ds-role"
 export interface Owner {
     id: string,
 
-    email: string,
-    name: string,
     
     uploads: {
         avatar: string
     }
 
-    payment_way: string,
-    payment_details: {
-        cards: string[],
-        phones: string[]
+    referral: {
+        enabled: boolean,
+        price: number,
+        plan: string
     }
 
-
-
-    settings: {
-        discord: {
-            id: string,
-            roles: DsRole[]
-        },
+    general: {
         site_url: string,
         primary_color: string,
+        email: string,
+        name: string,
+    }
+
+    discord: {
+        id: string,
+        roles: DsRole[]
+    },
+
+    payment: {
         kick: boolean,
+        way: string,
         tinkoff: {
             terminal_key: string,
             password: string,
@@ -37,10 +40,9 @@ export interface Owner {
             merchant_password: string,
             currency: string,
         },
-        referral: {
-            enabled: boolean,
-            price: number,
-            plan: string
+        details: {
+            cards: string[],
+            phones: string[]
         }
     }
 }

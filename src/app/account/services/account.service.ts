@@ -39,7 +39,7 @@ export class AccountService {
       .pipe(
         take(1),
         tap(w => this.$owner.next(w)),
-        tap((w: Owner) => this.$roles.next(w.settings.discord.roles)),
+        tap((w: Owner) => this.$roles.next(w.discord.roles)),
         tap(() => this.lastReqErr = false),
         catchError(err => {
           this.lastReqErr = true

@@ -18,7 +18,7 @@ export class OrgInfoComponent implements OnInit, OnDestroy {
   ) {
     this.sub = this.acc.owner.subscribe(res => {
       this.logo = res?.uploads.avatar || '';
-      this.name = res?.name || '';
+      this.name = res?.general.name || '';
     })
   }
 

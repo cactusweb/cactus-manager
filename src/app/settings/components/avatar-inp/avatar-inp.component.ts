@@ -28,7 +28,7 @@ export class AvatarInpComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.sub = this.acc.owner
       .subscribe(res => {
-        this.ownerName = res?.name || ''
+        this.ownerName = res?.general.name || ''
         this.logoUrl = res?.uploads.avatar || '';
       })
   }

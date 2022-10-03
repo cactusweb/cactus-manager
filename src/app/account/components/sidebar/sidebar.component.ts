@@ -20,7 +20,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.sub = this.acc.owner.subscribe(acc => this.referralSystem = acc?.settings.referral.enabled || false)
+    this.sub = this.acc.owner.subscribe(acc => this.referralSystem = acc?.referral.enabled || false)
   }
 
   ngOnDestroy(): void {
