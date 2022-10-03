@@ -11,7 +11,9 @@
 
 <div class="row btns">
     <button class="btn--err-outline" type="button" (click)="patchFormValue()">Discard changes</button>
-    <button class="btn--primary" (click)="onSubmit()">Save</button>
+    <button class="btn--primary" (click)="onSubmit()">
+        <btn-loader [isSpinner]="loading" text="Save"></btn-loader>
+    </button>
 </div>
 
 

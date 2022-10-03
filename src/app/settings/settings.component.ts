@@ -1,9 +1,10 @@
 import { AfterViewInit, Component, HostListener, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { Owner } from '../account/interfaces/owner';
 import { AccountService } from '../account/services/account.service';
-import { filter, first, Observable, Subject, Subscription, take, tap } from 'rxjs'
+import { filter, finalize, first, Observable, Subject, Subscription, take, tap } from 'rxjs'
 import { FailedLoadService } from '../failed-load/services/failed-load.service';
 import { ComponentCanDeactivate } from './guards/pending-changes.guard';
+import { SettingsService } from './services/settings.service';
 
 export interface SettingsFieldset{
   validate: () => boolean,
@@ -26,9 +27,12 @@ export class SettingsComponent implements OnInit, OnDestroy, ComponentCanDeactiv
   initialData: Record<any, any> = {}
   $deactivating = new Subject<boolean>();
 
+  loading: boolean = false;
+
   constructor(
     private acc: AccountService,
-    private flService: FailedLoadService
+    private flService: FailedLoadService,
+    private settings: SettingsService
   ) { 
   }
 
@@ -91,8 +95,22 @@ export class SettingsComponent implements OnInit, OnDestroy, ComponentCanDeactiv
       f.validate() ? null : valid = false;
       data = { ...data, ...f._form }
     })
-
     console.log( valid, data )
+
+    if ( !valid ) return;
+
+    this.loading = true;
+
+    this.settings.putSettings(data)
+      .pipe(
+        take(1),
+        finalize(() => this.loading = false)
+      )
+      .subscribe({
+        next: () => {},
+        error: () => {}
+      })
+      
   }
 
 

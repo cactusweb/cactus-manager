@@ -15,7 +15,11 @@ export class SettingsService {
   ) { }
 
   public putSettings( data: Record<string,any> ){
-    
+    return this.http.request( Requests['editSelf'], data )
+      .pipe(
+        take(1),
+        tap( d => this.acc.putOwnerData(d))
+      )
   }
 
   public postAvatar( file: FormData ){
