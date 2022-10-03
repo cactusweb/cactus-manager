@@ -385,6 +385,10 @@ input::placeholder, textarea::placeholder{color: $secondary-color;}
         border-color: rgba($color: $err-color, $alpha: 0.6);
     }
 
+    &__placeholder{
+        pointer-events: none;
+    }
+
 }
 
 
