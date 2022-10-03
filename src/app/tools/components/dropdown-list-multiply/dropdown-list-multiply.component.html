@@ -1,7 +1,21 @@
-<ul class="list custom-scroll window" [class.list--show]="show">
-    <li class="list__item" *ngFor="let opt of options" [class.list__item--active]="value.includes(opt.value)" (click)="onItemClick(opt.value)">
-        <span class="list__text">
-            {{opt.display || opt.value}}
-        </span>
-    </li>
-</ul>
+<div class="window">
+    <div class="search-control-wrapper" *ngIf="showSearch">
+        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchData.param" #search>
+    </div>
+
+    <ul class="list custom-scroll" [class.list--show]="show"
+        [ngStyle]="{ 'max-height': !showSearch ? '203px' : '168px' }"
+    >
+        <li class="list__item" 
+            [class.list__item--active]="value.includes(opt.value)" 
+            (click)="onItemClick(opt.value)"
+            *ngFor="let opt of options
+                | search : searchData.keys : searchData.param
+            " 
+        >
+            <span class="list__text">
+                {{opt.display || opt.value}}
+            </span>
+        </li>
+    </ul>
+</div>

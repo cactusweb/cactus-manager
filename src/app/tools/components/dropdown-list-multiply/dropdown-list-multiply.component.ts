@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { SelectorValue } from '../../interfaces/selector-values';
 
 @Component({
@@ -10,7 +10,7 @@ import { SelectorValue } from '../../interfaces/selector-values';
       '[style.transform]' : "show ? 'translate(0, 100%)' : 'translate(0, 100%) scale(1, 0)'"
   }
 })
-export class DropdownListMultiplyComponent implements OnInit {
+export class DropdownListMultiplyComponent implements OnChanges {
   @Input() show: boolean = false;
 
   @Input('opt') options: SelectorValue[] = [];
@@ -19,11 +19,26 @@ export class DropdownListMultiplyComponent implements OnInit {
 
   @Output() onChangeValue = new EventEmitter<any>();
 
-  constructor() { }
+  @Input() showSearch: boolean = false;
+  @ViewChild('search') searchInp: ElementRef | undefined;
 
-  ngOnInit(): void {
+  searchData = {
+    keys: [
+            ['value'],
+            ['display']
+    ],
+    param: ''
   }
 
+  constructor() { }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if ( !changes['show'] || !this.searchInp ) return;
+
+    setTimeout(() => {
+      changes['show'].currentValue ? this.searchInp?.nativeElement.focus() : this.searchData.param = '';
+    }, 300);
+  }
 
   onItemClick(newValue: any){
     let indexOf = this.value.indexOf(newValue)
