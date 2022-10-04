@@ -95,7 +95,6 @@ export class SettingsComponent implements OnInit, OnDestroy, ComponentCanDeactiv
       f.validate() ? null : valid = false;
       data = { ...data, ...f._form }
     })
-    console.log( valid, data )
 
     if ( !valid ) return;
 
