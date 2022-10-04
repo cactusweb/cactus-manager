@@ -41,7 +41,7 @@ export interface Owner {
         },
         details: {
             cards: string[],
-            phones: string[]
+            cryptowallets: string[]
         }
     }
 }

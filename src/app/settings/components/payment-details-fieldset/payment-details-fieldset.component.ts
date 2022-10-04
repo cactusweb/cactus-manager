@@ -18,7 +18,7 @@ export class PaymentDetailsFieldsetComponent implements OnInit, SettingsFieldset
 
   form!: FormGroup
   
-  lastData!: { cards: string[], phones: string[] }
+  lastData!: { cards: string[], cryptowallets: string[] }
 
   constructor() { }
 
@@ -58,7 +58,7 @@ export class PaymentDetailsFieldsetComponent implements OnInit, SettingsFieldset
     this.lastData = val.payment.details;
 
     let cards: DetailValue[] = val.payment.details.cards.map(v => { return { type: 'card', value: v } })
-    let wallets: DetailValue[] = val.payment.details.phones.map(v => { return { type: 'cryptowallet', value: v } })
+    let wallets: DetailValue[] = val.payment.details.cryptowallets.map(v => { return { type: 'cryptowallet', value: v } })
 
     let value = cards.concat(wallets)
     this.getFormControls('details').clear();
