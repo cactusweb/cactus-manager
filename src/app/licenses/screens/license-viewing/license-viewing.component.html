@@ -42,12 +42,12 @@
 
 
         <app-label label="Card info" style="grid-column: 3/5">
-            <div class="card row" *ngIf="license.payment.last4 && license.type == 'renewal'">
-                <span class="card__number">**** {{license.payment.last4}}</span>
+            <div class="card row" *ngIf="license.payment.last_4 && license.type == 'renewal'">
+                <span class="card__number">**** {{license.payment.last_4}}</span>
                 <span class="card__exp">{{getExpDate()}}</span>
             </div>
 
-            <ng-template [ngIf]="!license.payment.last4 || license.type == 'lifetime'">-</ng-template>
+            <ng-template [ngIf]="!license.payment.last_4 || license.type == 'lifetime'">-</ng-template>
         </app-label>
 
 
