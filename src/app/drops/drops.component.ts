@@ -42,7 +42,6 @@ export class DropsComponent implements OnInit, OnDestroy {
     this.drops = this.dropsService.getDrops(true)
       .pipe(
         tap((d) => {
-          console.log(d)
           takeCount++;
           if ( takeCount == 2 )
             this.spinner.hide(this.spinnerName);
