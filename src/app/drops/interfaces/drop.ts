@@ -11,5 +11,5 @@ export interface Drop {
     url: string,
     status: 'stopped' | 'started' | 'not started'
     start_at: number,
-    license: string[]
+    licenses: string[]
 }
