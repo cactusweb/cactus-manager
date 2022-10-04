@@ -107,7 +107,7 @@ export class SettingsComponent implements OnInit, OnDestroy, ComponentCanDeactiv
         finalize(() => this.loading = false)
       )
       .subscribe({
-        next: () => {},
+        next: (d: Owner) => {this.account = d, this.patchFormValue()},
         error: () => {}
       })
       
