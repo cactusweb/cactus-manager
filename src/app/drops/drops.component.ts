@@ -38,10 +38,11 @@ export class DropsComponent implements OnInit, OnDestroy {
     this.spinner.show(this.spinnerName)
 
     let takeCount = 0;
-
+    
     this.drops = this.dropsService.getDrops(true)
       .pipe(
-        tap(() => {
+        tap((d) => {
+          console.log(d)
           takeCount++;
           if ( takeCount == 2 )
             this.spinner.hide(this.spinnerName);
@@ -51,7 +52,7 @@ export class DropsComponent implements OnInit, OnDestroy {
           this.spinner.hide(this.spinnerName);
           this.onFailedLoad();
           return throwError(err)
-        })
+        }),
       )
       // .subscribe({
       //   next: d => this.drops = d,

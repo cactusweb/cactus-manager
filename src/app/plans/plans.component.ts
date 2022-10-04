@@ -50,6 +50,7 @@ export class PlansComponent implements OnInit, OnDestroy {
         }),
         map(t => t.map(d => d)),
         catchError(err => {
+          this.spinner.hide(this.spinnerName)
           this.onFailedLoad();
           return throwError(err)
         }),

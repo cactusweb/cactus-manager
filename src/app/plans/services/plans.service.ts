@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, share, tap } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, share, tap, throwError } from 'rxjs';
 import { HttpService } from 'src/app/tools/services/http.service';
 import { Requests } from '../const';
 import { Plan } from '../interfaces/plan';
@@ -23,11 +23,20 @@ export class PlansService {
   getPlans( update: boolean = false ): Observable<Plan[]>{
     if ( update )
       this.http.request( Requests['getPlans'] )
-          .pipe(tap(d => {
-            this.plans = d.reverse();
-            this.$plans.next(this.plans)
-          }))
-          .subscribe(res => {}, err => {})
+          .pipe(
+            tap(d => {
+              this.plans = d.reverse();
+              this.$plans.next(this.plans)
+            }),
+            catchError(err => {
+              this.$plans.error(err);
+              return err
+            })
+          )
+          .subscribe({
+            next: () => {},
+            error: () => this.$plans = new BehaviorSubject<Plan[]>(this.plans||[])
+          })
         
     return this.$plans.asObservable().pipe(share());
   }
