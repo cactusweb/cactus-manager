@@ -39,7 +39,7 @@ export class ReferralsComponent implements OnInit, OnDestroy {
   }
 
   constructor(
-    private lic: LicensesService,
+    public lic: LicensesService,
     private spinner: NgxSpinnerService,
     private flService: FailedLoadService
   ) { }

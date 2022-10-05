@@ -11,14 +11,14 @@
             <tr>
                 <th>
                     <th-sortable label="Nickname"
-                        (onChangeSort)="pipeData.sortNickname = $event;"
+                        (onChangeSort)="pipeData.sortNickname = $event; lic.justMap()"
                     ></th-sortable>
                 </th>
                 <th>License key</th>
                 <th>Type</th>
                 <th>
                     <th-sortable label="Renewal date"
-                        (onChangeSort)="pipeData.sortRenewDate = $event;"
+                        (onChangeSort)="pipeData.sortRenewDate = $event; lic.justMap()"
                         
                     ></th-sortable>
                 </th>

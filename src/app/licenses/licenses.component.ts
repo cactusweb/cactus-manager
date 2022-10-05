@@ -52,9 +52,8 @@ export class LicensesComponent implements OnInit, OnDestroy {
   sub: Subscription | undefined
 
   constructor(
-    private http: HttpService,
     private spinner: NgxSpinnerService,
-    private licenseService: LicensesService,
+    public lic: LicensesService,
     private flService: FailedLoadService
   ) { }
 
@@ -70,7 +69,7 @@ export class LicensesComponent implements OnInit, OnDestroy {
   getLicenses(){
     this.spinner.show(spinnerName)
 
-    this.licenses = this.licenseService.getLicenses(true)
+    this.licenses = this.lic.getLicenses(true)
       .pipe(
         filter(d => !!d),
         map(d => d ? d.map(l => l) : []),
@@ -86,7 +85,7 @@ export class LicensesComponent implements OnInit, OnDestroy {
   updLicenses(){
     this.spinner.show(spinnerName)
 
-    this.licenseService.updateLicenses()
+    this.lic.updateLicenses()
       .pipe(
         finalize(() => this.spinner.hide(spinnerName))
       )

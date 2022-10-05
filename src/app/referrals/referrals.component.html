@@ -11,13 +11,13 @@
             <tr>
                 <th>
                     <th-sortable label="Nickname"
-                        (onChangeSort)="pipeData.nickname = $event;"
+                        (onChangeSort)="pipeData.nickname = $event; lic.justMap()"
                     ></th-sortable>
                 </th>
                 <th>License key</th>
                 <th>
                     <th-sortable label="Points"
-                        (onChangeSort)="pipeData.refScore = $event; "
+                        (onChangeSort)="pipeData.refScore = $event; lic.justMap()"
                     ></th-sortable>
                 </th>
                 <th>Reset points</th>

@@ -118,4 +118,8 @@ export class LicensesService {
         })
       )
   }
+
+  justMap(){
+    this.$licenses.next(this._licenses);
+  }
 }
