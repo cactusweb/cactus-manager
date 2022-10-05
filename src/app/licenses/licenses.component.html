@@ -1,7 +1,7 @@
 <app-header 
     (onSearch)="pipeData.search = $event"
     (onFilter)="pipeData.filter = $event"
-    (onDataUpdate)="getLicenses(true)"
+    (onDataUpdate)="updLicenses()"
     (onOpenLicenseForm)="popupType = 'licenseForm'"
 ></app-header>
 
@@ -11,14 +11,14 @@
             <tr>
                 <th>
                     <th-sortable label="Nickname"
-                        (onChangeSort)="pipeData.sortNickname = $event; justMap()"
+                        (onChangeSort)="pipeData.sortNickname = $event;"
                     ></th-sortable>
                 </th>
                 <th>License key</th>
                 <th>Type</th>
                 <th>
                     <th-sortable label="Renewal date"
-                        (onChangeSort)="pipeData.sortRenewDate = $event; justMap()"
+                        (onChangeSort)="pipeData.sortRenewDate = $event;"
                         
                     ></th-sortable>
                 </th>
@@ -32,41 +32,40 @@
     
     <cdk-virtual-scroll-viewport class="custom-scroll" itemSize="30"> 
         <table class="table-primary">
-            <app-license-row *cdkVirtualFor="let license of licenses
+            <app-license-row *cdkVirtualFor="let license of ((licenses | async)||[])
                 | search : pipeParams.search : pipeData.search
-                | filter : pipeParams.filter : pipeData.filter
                 | sort : pipeParams.sortNickname : pipeData.sortNickname
                 | sort : pipeParams.sortRenewDate : pipeData.sortRenewDate
+                | filter : pipeParams.filter : pipeData.filter
                 , let i = index, trackBy: trackByFn
-                " 
-                [license]="license"
-                (onDelete)="onDeleteLicense($event)"
-                (onRenew)="onRenewLicense($event)"
-                (onView)="onViewLicense($event)"
-                (onEdit)="popupType = 'licenseForm'; popupLicenseId = $event"
+            " 
+            (onEdit)="popupType = 'licenseForm'; popupLicense = license"
+            [license]="license"
+            (onView)="onViewLicense(license)"
             ></app-license-row>
         </table>
+
     </cdk-virtual-scroll-viewport>
     
 </div>
 
 
 
-<div class="overlay" *ngIf="popupType == 'licenseViewing' && popupLicenseId">
-    <div class="artboard" (click)="popupType = null; popupLicenseId = null"></div>
+<div class="overlay" *ngIf="popupType == 'licenseViewing' && popupLicense">
+    <div class="artboard" (click)="popupType = null; popupLicense = null"></div>
     <app-license-viewing style="width: 720px"
-        [license]="getLicenseById(popupLicenseId) || licenses[0]"
-        (onClose)="popupType = null; popupLicenseId = null"
+        [license]="popupLicense"
+        (onClose)="popupType = null; popupLicense = null"
     ></app-license-viewing>
 </div>
 
 
 <div class="overlay" *ngIf="popupType == 'licenseForm'">
-    <div class="artboard" (click)="popupType = null; popupLicenseId = null"></div>
+    <div class="artboard" (click)="popupType = null; popupLicense = null"></div>
     <app-license-form style="width: 480px"
-        [license]="popupLicenseId ? getLicenseById(popupLicenseId) : null"
-        (onClose)="popupType = null; popupLicenseId = null"
-        (onPost)="onPostLicense($event)"
-    ></app-license-form>
+        [license]="popupLicense"
+        (onClose)="popupType = null; popupLicense = null"
+        ></app-license-form>
+
 </div>
 

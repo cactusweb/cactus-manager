@@ -1,12 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { filter, finalize, map, Subscription, take, tap } from 'rxjs';
+import { catchError, filter, finalize, map, Subscription, take, tap, throwError } from 'rxjs';
 import { spinnerName } from '../account/consts';
 import { FailedLoadService } from '../failed-load/services/failed-load.service';
 import { HttpService } from '../tools/services/http.service';
 import { searchLicenseKeys, Requests, nicknameSort, renewDateSort } from './const';
 import { License } from './interfaces/license';
 import { LicensesService } from './services/licenses.service';
+import { Observable } from 'rxjs';
 
 interface PipeData{
   search: string,
@@ -43,10 +44,10 @@ export class LicensesComponent implements OnInit, OnDestroy {
 
   en = SortType
   
-  licenses: License[] = []
+  licenses!: Observable<License[]>
 
   popupType: 'licenseForm' | 'licenseViewing' | null = null;
-  popupLicenseId: string | null = null;
+  popupLicense: License | null = null;
 
   sub: Subscription | undefined
 
@@ -66,50 +67,40 @@ export class LicensesComponent implements OnInit, OnDestroy {
     this.flService.hide();
   }
 
-  getLicenses(fetch: boolean = false){
+  getLicenses(){
     this.spinner.show(spinnerName)
 
-    this.licenseService.getLicenses(fetch)
+    this.licenses = this.licenseService.getLicenses(true)
       .pipe(
-        take(1),
+        filter(d => !!d),
+        map(d => d ? d.map(l => l) : []),
+        tap(() => this.spinner.hide(spinnerName)),
+        catchError(err => {
+          this.spinner.hide(spinnerName)
+          this.onFailedLoad();
+          return throwError(err)
+        })
+      )
+  }
+
+  updLicenses(){
+    this.spinner.show(spinnerName)
+
+    this.licenseService.updateLicenses()
+      .pipe(
         finalize(() => this.spinner.hide(spinnerName))
       )
       .subscribe({
-        next: val => this.licenses = val,
-        error: () => this.onFailedLoad()
+        next: () => {},
+        error: () => this.onFailedLoad(true)
       })
   }
 
 
-  onDeleteLicense( id: string ){
-    this.licenses = this.licenses.filter(l => l.id !== id);
-  }
 
-  onRenewLicense( data: { id: string, expiresDate: number } ){
-    this.licenses = this.licenses.map(l => {
-      if ( l.id != data.id ) return l;
-      return { ...l, expires_in: data.expiresDate }
-    })
-  }
-
-  onPostLicense(license: License){
-    if ( this.licenses.findIndex(l => l.id == license.id) < 0 ){
-      this.licenses.push(license);
-      return this.justMap()
-    }
-    this.licenses = this.licenses.map(l => {
-      if ( l.id !== license.id ) return l;
-      return license
-    })
-  }
-
-  onViewLicense(id: string){
-    this.popupLicenseId = id;
+  onViewLicense(lic: License){
+    this.popupLicense = lic;
     this.popupType = 'licenseViewing';
-  }
-
-  getLicenseById(id: string): License | null{
-    return this.licenses.find(l => l.id == id) || null
   }
 
   
@@ -117,18 +108,14 @@ export class LicensesComponent implements OnInit, OnDestroy {
     return item.key;
   }
 
-  justMap( ){
-    this.licenses = this.licenses.map(l => l)
-  }
 
-
-  onFailedLoad(){
+  onFailedLoad(upd: boolean = false){
     this.sub = this.flService.show()
       .pipe(
         filter(r => !r),
         take(1),
       )
-      .subscribe(res => this.getLicenses())
+      .subscribe(res => !upd ? this.getLicenses() : this.updLicenses())
   }
 
 }

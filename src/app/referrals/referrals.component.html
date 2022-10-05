@@ -1,7 +1,7 @@
 <app-header
     (onSearch)="pipeData.search = $event"
-    (onReset)="resetPoints()"
 ></app-header>
+    <!-- (onReset)="resetPoints()" -->
 
 
 
@@ -11,13 +11,13 @@
             <tr>
                 <th>
                     <th-sortable label="Nickname"
-                        (onChangeSort)="pipeData.nickname = $event; justMap()"
+                        (onChangeSort)="pipeData.nickname = $event;"
                     ></th-sortable>
                 </th>
                 <th>License key</th>
                 <th>
                     <th-sortable label="Points"
-                        (onChangeSort)="pipeData.refScore = $event; justMap()"
+                        (onChangeSort)="pipeData.refScore = $event; "
                     ></th-sortable>
                 </th>
                 <th>Reset points</th>
@@ -29,26 +29,26 @@
     
     <cdk-virtual-scroll-viewport class="custom-scroll" itemSize="32"> 
         <table class="table-primary">
-            <app-license *cdkVirtualFor="let license of licenses
+            <app-license *cdkVirtualFor="let license of ((licenses | async) || [])
                     | search : pipeParams.search : pipeData.search
                     | sort : pipeParams.nickname : pipeData.nickname
                     | sort : pipeParams.refScore : pipeData.refScore
                     , let i = index, trackBy: trackByFn
                 " 
                 [license]="license"
-                (onView)="popupLicenseId = $event"
-                (onReset)="resetPoints($event)"
+                (onView)="popupLicense = license"
             ></app-license>
+                <!-- (onReset)="resetPoints($event)" -->
         </table>
     </cdk-virtual-scroll-viewport>
     
 </div>
 
 
-<div class="overlay" *ngIf="popupLicenseId">
-    <div class="artboard" (click)="popupLicenseId = null"></div>
+<div class="overlay" *ngIf="popupLicense">
+    <div class="artboard" (click)="popupLicense = null"></div>
     <app-license-viewing style="width: 720px"
-        [license]="getLicenseById(popupLicenseId) || licenses[0]"
-        (onClose)="popupLicenseId = null"
+        [license]="popupLicense"
+        (onClose)="popupLicense = null"
     ></app-license-viewing>
 </div>
