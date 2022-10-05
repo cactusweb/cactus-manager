@@ -41,7 +41,7 @@ export class LicensesService {
       .pipe(
         map(l => { return { ...l, expires_in: l.expires_in*1000 } }),
         tap(newL => this.licenses = this.licenses.map(l => {
-            if ( l.id != l.id ) return l;
+            if ( l.id != id ) return l;
             return newL;
         })),
         tap(() => this.tools.generateNotification('License renewed', 'success'))
