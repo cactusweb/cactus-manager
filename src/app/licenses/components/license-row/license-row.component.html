@@ -26,11 +26,11 @@
             'license__date--danger': license.type != 'lifetime' && renewBeforeDays(0)
         }"
     > 
-        <ng-template [ngIf]="license.type == 'renewal'">
+        <ng-template [ngIf]="license.type != 'lifetime'">
             {{ license.expires_in | date:'dd.MM.yy' }} 
         </ng-template>
 
-        <ng-template [ngIf]="license.type != 'renewal'">
+        <ng-template [ngIf]="license.type == 'lifetime'">
             -
         </ng-template>
 
