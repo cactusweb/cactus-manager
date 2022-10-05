@@ -5,6 +5,10 @@
     justify-content: space-between;
     margin-bottom: 8px;
 
+    &:hover{
+        background-color: rgba($color: $primary-color, $alpha: 0.07);
+    }
+    
     &__user{
         padding-left: 21px;
         min-width: 250px;
