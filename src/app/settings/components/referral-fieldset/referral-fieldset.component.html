@@ -14,7 +14,7 @@
         
         <div class="inp-wrapper" [class.inp-wrapper--disabled]="form.controls['plan'].disabled">
             <label for="plan" class="inp-wrapper__label">Plan</label>
-            <app-select-primary [opt]="planOpts || []" formControlName="plan"></app-select-primary>
+            <app-select-primary [opt]="(planOpts|async) || []" formControlName="plan"></app-select-primary>
         </div>
 
     </fieldset>

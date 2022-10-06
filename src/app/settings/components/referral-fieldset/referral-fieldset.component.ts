@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { filter, finalize, map, Subscription, take, tap } from 'rxjs';
+import { catchError, filter, finalize, map, Observable, Subscription, take, tap, throwError } from 'rxjs';
 import { spinnerName } from 'src/app/account/consts';
 import { Owner } from 'src/app/account/interfaces/owner';
 import { PlansService } from 'src/app/plans/services/plans.service';
@@ -18,7 +18,9 @@ export class ReferralFieldsetComponent implements OnInit, SettingsFieldset {
 
   sub!: Subscription
 
-  planOpts!: SelectorValue[] ;
+  planOpts!: Observable<SelectorValue[]>;
+
+  loading: boolean = false;
 
   constructor(
     private plans: PlansService,
@@ -70,24 +72,30 @@ export class ReferralFieldsetComponent implements OnInit, SettingsFieldset {
   }
 
   getPlans(){
-    let first = true;
+    if (this.loading) return
+    this.loading = true;
     this.spinner.show(spinnerName)
 
-    this.plans.getPlans()
+    this.planOpts = this.plans.getPlans(true)
       .pipe(
-        tap(p => first && p.length == 0 ? this.plans.getPlans(true).pipe(take(1)).subscribe() : null),
-        filter(p => {
-          let filtered = !(first && p.length == 0);
-          first = false;
-          return filtered
-        }),
-        take(1),
         map(plans => plans.map(p => {
             return { display: p.name, value: p.id }
         })),
-        finalize(() => this.spinner.hide(spinnerName))
+        tap(() => {
+          this.spinner.hide(spinnerName);
+          this.loading = false;
+        }),
+        catchError((err) => {
+          this.spinner.hide(spinnerName)
+          this.loading = false;
+          return throwError(err)
+        })
+        // finalize(() => {
+        //   this.spinner.hide(spinnerName)
+        //   this.loading = false;
+        // })
       )
-      .subscribe(res => this.planOpts = res)
+      // .subscribe(res => this.planOpts = res)
   }
 
 }

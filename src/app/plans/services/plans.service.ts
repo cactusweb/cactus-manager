@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, Observable, share, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, filter, finalize, Observable, share, tap, throwError } from 'rxjs';
 import { HttpService } from 'src/app/tools/services/http.service';
 import { Requests } from '../const';
 import { Plan } from '../interfaces/plan';
@@ -10,7 +10,8 @@ import { Plan } from '../interfaces/plan';
 export class PlansService {
   private plans!: Plan[]
 
-  private $plans = new BehaviorSubject<Plan[]>([])
+  private $plans = new BehaviorSubject<Plan[]|null>(null)
+  loading: boolean = false;
 
   
 
@@ -21,7 +22,8 @@ export class PlansService {
   ) { }
 
   getPlans( update: boolean = false ): Observable<Plan[]>{
-    if ( update )
+    if ( (update || !this.plans) && !this.loading){
+      this.loading = true;
       this.http.request( Requests['getPlans'] )
           .pipe(
             tap(d => {
@@ -29,16 +31,25 @@ export class PlansService {
               this.$plans.next(this.plans)
             }),
             catchError(err => {
-              this.$plans.error(err);
+              if ( !this.plans ){
+                this.$plans.error(err);
+                this.$plans = new BehaviorSubject<Plan[]|null>(this.plans||[])
+              }
               return err
-            })
+            }),
+            finalize(() => this.loading = false)
           )
           .subscribe({
             next: () => {},
-            error: () => this.$plans = new BehaviorSubject<Plan[]>(this.plans||[])
+            error: () => {}
           })
-        
-    return this.$plans.asObservable().pipe(share());
+    }
+    
+    // @ts-ignore
+    return this.$plans.asObservable().pipe(share())
+      .pipe(
+        filter(d => !!d)
+      );
   }
 
 

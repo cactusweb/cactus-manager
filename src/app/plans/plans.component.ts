@@ -39,15 +39,11 @@ export class PlansComponent implements OnInit, OnDestroy {
   }
 
   getPlans(){
-    let takeCount = 0;
     this.spinner.show(this.spinnerName)
 
     this.plans = this.planService.getPlans( true )
       .pipe(
-        tap(() => {
-          takeCount++
-          if ( takeCount == 2 ) this.spinner.hide(this.spinnerName);
-        }),
+        tap(() => this.spinner.hide(this.spinnerName)),
         map(t => t.map(d => d)),
         catchError(err => {
           this.spinner.hide(this.spinnerName)
