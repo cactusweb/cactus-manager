@@ -52,7 +52,6 @@ export class LicensesService {
             if ( l.id != id ) return l;
             return newL;
         })),
-        tap(d => console.log(this._licenses)),
         tap(() => this.tools.generateNotification('License renewed', 'success')),
         tap(d => this.$licenses.next(this._licenses))
       )
