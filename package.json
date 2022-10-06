@@ -1,6 +1,12 @@
 {
   "name": "cactus-manager",
   "version": "2.0.0",
+  "description": "This is a business dashboard for managing license keys, payments, drops and plans. This is one of the sites of the CactusDash project. Powered by CactusDash and CactusWeb.",
+  "keywords": ["angular", "dashboard", "cactusweb", "cactusmanager", "rxjs"],
+  "author": {
+    "name": "CactusWeb",
+    "url": "https://cactusweb.io"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
