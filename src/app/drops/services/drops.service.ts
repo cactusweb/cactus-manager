@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, map, Observable, share, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, filter, finalize, map, Observable, share, throwError } from 'rxjs';
 import { HttpService } from 'src/app/tools/services/http.service';
 import { Requests } from '../const';
 import { Drop } from '../interfaces/drop';
@@ -10,7 +10,9 @@ import { tap } from 'rxjs';
 })
 export class DropsService {
   private drops!: Drop[];
-  private $drops = new BehaviorSubject<Drop[]>([])
+  private $drops = new BehaviorSubject<Drop[]|null>(null)
+
+  private loading: boolean = false;
 
   constructor(
     private http: HttpService
@@ -18,7 +20,8 @@ export class DropsService {
 
   getDrops( update: boolean = false ): Observable<Drop[]>{
 
-    if ( update ) 
+    if ( (update || !this.drops) && !this.loading){
+      this.loading = true;
       this.http.request( Requests['getDrops'] )
         .pipe(
           map((drops: Drop[]) => drops.map(d => { 
@@ -29,15 +32,25 @@ export class DropsService {
             this.$drops.next(this.drops)
           }),
           catchError(err => {
-            this.$drops.error(err)
+            if ( !this.drops ){
+              this.$drops.error(err)
+              this.$drops = new BehaviorSubject<Drop[]|null>(this.drops||[]) 
+            }
             return err
-          })
+          }),
+          finalize(() => this.loading = false)
         ).subscribe({ 
           next: () => {}, 
-          error: () => this.$drops = new BehaviorSubject<Drop[]>(this.drops||[]) 
+          error: () => {}
         })
+    }
     
-    return this.$drops.asObservable().pipe(share());
+    return this.$drops.asObservable()
+      .pipe(
+        // @ts-ignore
+        filter(d => !!d),
+        share()
+      );
   }
 
   
