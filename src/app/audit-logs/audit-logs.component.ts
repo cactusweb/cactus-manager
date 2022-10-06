@@ -1,12 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { filter, finalize, map, Subscription, take, tap } from 'rxjs';
+import { catchError, filter, finalize, map, Observable, Subscription, take, tap, throwError } from 'rxjs';
 import { spinnerName } from '../account/consts';
 import { AccountService } from '../account/services/account.service';
 import { FailedLoadService } from '../failed-load/services/failed-load.service';
 import { HttpService } from '../tools/services/http.service';
 import { logStatuses, Requests } from './const';
 import { Log } from './interfaces/log';
+import { AuditLogsService } from './services/audit-logs.service';
 
 @Component({
   selector: 'app-audit-logs',
@@ -14,7 +15,7 @@ import { Log } from './interfaces/log';
   styleUrls: ['./audit-logs.component.scss']
 })
 export class AuditLogsComponent implements OnInit, OnDestroy {
-  logs: Log[] = []
+  logs!: Observable<Log[]>
 
   pipeData: { filter: string[], search: string } = { filter: [], search: '' }
 
@@ -29,7 +30,7 @@ export class AuditLogsComponent implements OnInit, OnDestroy {
 
   constructor(
     private spinner: NgxSpinnerService,
-    private http: HttpService,
+    private logSvc: AuditLogsService,
     private acc: AccountService,
     private flService: FailedLoadService
   ) { }
@@ -51,23 +52,16 @@ export class AuditLogsComponent implements OnInit, OnDestroy {
   getLogs(){
     this.spinner.show(spinnerName)
 
-    this.http.request( Requests['getLogs'] )
+    this.logs = this.logSvc.getLogs(true)
       .pipe(
-        take(1),
-        finalize(() => this.spinner.hide(spinnerName)),
-        map((logs: Log[]) => logs.reverse()),
-        map(logs => logs.map(l => {
-          return {
-            ...l,
-            when: l.when * 1000,
-            name: l.who?.name == this.ownerName ? 'Admin' : l.who?.name
-          }
-        }))
+        tap(d => d = d.map(l => l)),
+        tap(() => this.spinner.hide(spinnerName)),
+        catchError(err => {
+          this.spinner.hide(spinnerName)
+          this.onFailedLoad();
+          return throwError(err);
+        })
       )
-      .subscribe({
-        next: (v) => this.logs = v,
-        error: () => this.onFailedLoad(),
-      })
   }
 
   

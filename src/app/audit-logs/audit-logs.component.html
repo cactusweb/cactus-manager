@@ -19,7 +19,7 @@
     
     <cdk-virtual-scroll-viewport class="custom-scroll" itemSize="46"> 
         <table class="table-primary">
-            <app-log-row *cdkVirtualFor="let log of logs
+            <app-log-row *cdkVirtualFor="let log of ((logs|async) || [])
                 | search : pipeParams.search : pipeData.search
                 | filter : pipeParams.filter : pipeData.filter
                 , let i = index, trackBy: trackByFn
