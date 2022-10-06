@@ -34,7 +34,7 @@ export class DropsService {
           catchError(err => {
             if ( !this.drops ){
               this.$drops.error(err)
-              this.$drops = new BehaviorSubject<Drop[]|null>(this.drops||[]) 
+              this.$drops = new BehaviorSubject<Drop[]|null>(null) 
             }
             return err
           }),

@@ -113,8 +113,10 @@ export class LicensesService {
         tap(d => this._licenses = d),
         tap(d => this.$licenses.next(this._licenses)),
         catchError(err => {
-          if ( !this._licenses ) this.$licenses.error(err);
-          this.$licenses = new BehaviorSubject<License[]|null>(this._licenses)
+          if ( !this._licenses ){
+            this.$licenses.error(err);
+            this.$licenses = new BehaviorSubject<License[]|null>(null)
+          }
           return err
         })
       )
