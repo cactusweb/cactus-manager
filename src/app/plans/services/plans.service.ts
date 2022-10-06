@@ -11,7 +11,7 @@ export class PlansService {
   private plans!: Plan[]
 
   private $plans = new BehaviorSubject<Plan[]|null>(null)
-  loading: boolean = false;
+  private loading: boolean = false;
 
   
 
