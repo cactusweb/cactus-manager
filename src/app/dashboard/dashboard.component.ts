@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { filter, finalize, Subscription, take, tap } from 'rxjs';
+import { catchError, filter, finalize, Observable, Subscription, take, tap, throwError } from 'rxjs';
 import { spinnerName } from '../account/consts';
 import { FailedLoadService } from '../failed-load/services/failed-load.service';
 import { HttpService } from '../tools/services/http.service';
 import { Requests } from './consts';
 import { Stats } from './interfaces/stats';
+import { DashboardService } from './services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,12 +18,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   stats!: Stats
 
   sub: Subscription | undefined
+  subReq!: Subscription
 
 
   constructor(
-    private http: HttpService,
     private spinner: NgxSpinnerService,
-    private flService: FailedLoadService
+    private flService: FailedLoadService,
+    private dash: DashboardService
   ) { }
 
   ngOnInit(): void {
@@ -31,19 +33,24 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
+    this.subReq.unsubscribe();
     this.flService.hide()
   }
 
   getStats(){
     this.spinner.show(spinnerName);
     
-    this.http.request( Requests['getStats'] )
+    this.subReq = this.dash.getStat(true)
       .pipe(
-        take(1),
-        finalize(() => this.spinner.hide(spinnerName))
+        tap(() => this.spinner.hide(spinnerName)),
+        catchError(err => {
+          this.spinner.hide(spinnerName)
+          this.subReq.unsubscribe();
+          return throwError(err)
+        })
       )
       .subscribe({
-        next: res => this.stats = res,
+        next: d => this.stats = d,
         error: () => this.onFailedLoad()
       })
   }
