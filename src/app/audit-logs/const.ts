@@ -11,9 +11,10 @@ export const logStatuses = [
     { "value": "deleted", "display": "Deleted" },
     { "value": "expired", "display": "Expired" },
     { "value": "purchase", "display": "Purchase" },
+    { "value": "ref-purchase", "display": "Ref-purchase" },
     { "value": "generated", "display": "Generated" },
     { "value": "auto-renew", "display": "Auto-renew" },
     { "value": "renew-failed", "display": "Renew-failed" },
     { "value": "channel-created", "display": "Channel-created" },
-    { "value": "card-binding", "display": "Card-binding" }
+    { "value": "card-binding", "display": "Card-binding" },
 ]
