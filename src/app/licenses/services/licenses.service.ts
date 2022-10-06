@@ -94,7 +94,8 @@ export class LicensesService {
     return this.http.request( Requests['resetRefPoints'], null, undefined, licId ? `/${licId}` : '' )
       .pipe(
         tap(() => reset()),
-        tap(() => this.$licenses.next(this._licenses))
+        tap(() => this.$licenses.next(this._licenses)),
+        tap(() => this.tools.generateNotification('Points reseted', 'success'))
       )
   }
 

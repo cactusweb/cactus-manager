@@ -1,8 +1,9 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { AccountService } from 'src/app/account/services/account.service';
 import { License } from '../../interfaces/license';
-import { take } from 'rxjs';
+import { finalize, take } from 'rxjs';
 import { ToolsService } from 'src/app/tools/services/tools.service';
+import { LicensesService } from '../../services/licenses.service';
 
 @Component({
   selector: 'app-license-viewing',
@@ -17,7 +18,8 @@ export class LicenseViewingComponent implements OnInit {
   loading: boolean = false;
 
   constructor(
-    public tools: ToolsService
+    public tools: ToolsService,
+    private lic: LicensesService
   ) { }
 
   ngOnInit(): void {
@@ -31,8 +33,15 @@ export class LicenseViewingComponent implements OnInit {
 
   resetPoints(){
     this.loading = true;
-
-    this.loading = false;
+    this.lic.resetPoints(this.license.id)
+      .pipe(
+        take(1),
+        finalize(() => this.loading = false)
+      )
+      .subscribe({
+        next: () => this.license.referral? this.license.referral.score = 0 : '',
+        error: () => {}
+      })
   }
 
 

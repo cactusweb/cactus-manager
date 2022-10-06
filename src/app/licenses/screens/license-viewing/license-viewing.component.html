@@ -24,7 +24,7 @@
         <app-label label="Referral points">
             <span class="row referral-data"> 
                 {{ license.referral ? license.referral.score : '-' }} 
-                <button class="btn--err-outline" [disabled]="!license.referral">
+                <button class="btn--err-outline" [disabled]="!license.referral" (click)="resetPoints()">
                     <btn-loader text="Reset" [isSpinner]="loading"></btn-loader>
                 </button>
             </span>
