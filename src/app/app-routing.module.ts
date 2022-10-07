@@ -9,6 +9,7 @@ const routes: Routes = [
     { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule), canActivate: [IsAuthGuard] },
     { path: 'account', loadChildren: () => import('./account/account.module').then(m => m.AccountModule) },
 
+    { path: 'login', redirectTo: '/auth/login' },
     { path: '**', loadChildren: () => import('./not-found/not-found.module').then(m => m.NotFoundModule) }
 ]
 
