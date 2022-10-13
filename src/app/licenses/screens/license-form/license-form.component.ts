@@ -71,9 +71,15 @@ export class LicenseFormComponent implements OnInit {
 
   subOnLicenseType(){
     this.sub = this.form.controls['type'].valueChanges.subscribe(v => {
-      let type: 'disable' | 'enable' = v !== 'lifetime' ? 'enable' : 'disable';
-      this.form.controls['price'][type]();
-      this.form.controls['expires_in'][type]();
+      if ( v == 'trial' || v == 'lifetime' )
+        this.form.controls['price'].disable();
+      else 
+        this.form.controls['price'].enable();
+
+      if ( v == 'lifetime' )
+        this.form.controls['expires_in'].disable();
+      else
+        this.form.controls['expires_in'].enable();
     })
   }
 

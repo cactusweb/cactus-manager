@@ -472,12 +472,12 @@ textarea.form-control{
 
 
 .checkbox-wrapper, .radio-wrapper{
-    @extend .row;
-    position: relative;
+        @extend .row;
+        position: relative;
 
-    *{
-        transition: .3s;
-    }
+        *{
+            transition: .3s;
+        }
 
     &__label{
         font-weight: 400;

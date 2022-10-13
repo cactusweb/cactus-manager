@@ -18,7 +18,7 @@
 
         <div class="inp-wrapper">
             <span class="inp-wrapper__label">Type 1</span>
-            <app-radio-control formControlName="type" name="type" [options]="[ {  value: 'renewal' }, { value: 'lifetime' } ]"></app-radio-control>
+            <app-radio-control formControlName="type" name="type" [options]="[ {  value: 'renewal' }, { value: 'lifetime' }, { value: 'trial' }, { value: 'trial-renewal' } ]"></app-radio-control>
         </div>
 
         <div class="inp-wrapper">
@@ -34,7 +34,11 @@
         </div>        
             
         <div class="inp-wrapper" [class.inp-wrapper--disabled]="form.controls['expires_in'].disabled">
-            <label for="renew-date" class="inp-wrapper__label">Renewal date</label>
+            <label for="renew-date" class="inp-wrapper__label">
+                <ng-template [ngIf]="form.controls['type'].value == 'trial'">Expires</ng-template>
+                <ng-template [ngIf]="form.controls['type'].value != 'trial'">Renewal</ng-template>
+                date
+            </label>
             <input type="date" id="renew-date" formControlName="expires_in" class="form-control" autocomplete="off">
         </div>
 
