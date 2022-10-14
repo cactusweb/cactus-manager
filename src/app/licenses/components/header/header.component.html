@@ -14,6 +14,14 @@
 
         <div class="search-fieldset__checkboxes">
             <label class="checkbox-wrapper">
+                <input type="checkbox" hidden [(ngModel)]="filterType.trial" (ngModelChange)="onFilterChange()">
+                <span class="checkbox-wrapper__label">Trial</span>
+            </label>
+            <label class="checkbox-wrapper">
+                <input type="checkbox" hidden [(ngModel)]="filterType.trialRenewal" (ngModelChange)="onFilterChange()">
+                <span class="checkbox-wrapper__label">Trial-renewal</span>
+            </label>
+            <label class="checkbox-wrapper">
                 <input type="checkbox" hidden [(ngModel)]="filterType.lifetime" (ngModelChange)="onFilterChange()">
                 <span class="checkbox-wrapper__label">Lifetime</span>
             </label>

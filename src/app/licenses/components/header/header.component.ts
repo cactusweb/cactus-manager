@@ -13,9 +13,11 @@ export class HeaderComponent implements OnInit {
   @Output() onDataUpdate = new EventEmitter();
   @Output() onOpenLicenseForm = new EventEmitter();
 
-  filterType: { lifetime: boolean, renewal: boolean } = {
+  filterType: { lifetime: boolean, renewal: boolean, trial: boolean, trialRenewal: boolean } = {
     lifetime: false,
     renewal: false,
+    trial: false,
+    trialRenewal: false,
   };
   
 
@@ -29,6 +31,8 @@ export class HeaderComponent implements OnInit {
 
     if ( this.filterType.lifetime ) filter.push('lifetime')
     if ( this.filterType.renewal ) filter.push('renewal')
+    if ( this.filterType.trial ) filter.push('trial')
+    if ( this.filterType.trialRenewal ) filter.push('trial-renewal')
 
     this.onFilter.emit(filter)
   }

@@ -39,7 +39,7 @@ export class LicenseStatComponent implements OnInit, OnChanges {
       },series: [
         {
             name: 'Count',
-            color: ['#78AFF8', '#45B95899', '#000000'],
+            color: ['#78AFF8', '#45B95899', '#E4AE24', '#E24C4C', '#000000'],
             type: 'pie',
             radius: ['83%', '95%'],
             avoidLabelOverlap: false,
@@ -49,6 +49,8 @@ export class LicenseStatComponent implements OnInit, OnChanges {
             data: [
               { name: 'Renewal keys', value: this.stats?.renewal_keys || 0 },
               { name: 'Lifetime keys', value: this.stats?.lifetime_keys || 0  },
+              { name: 'Trial-renewal keys', value: this.stats?.trial_renewal_keys || 0 },
+              { name: 'Trial keys', value: this.stats?.trial_keys || 0  },
             ],
             label: {
               show: false,

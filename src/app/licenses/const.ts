@@ -25,7 +25,9 @@ export const searchLicenseKeys: string[][] = [
 
 export const filterLicenseParams = [
   {key: 'type', status: false, str: 'renewal'},
-  {key: 'type', status: false, str: 'lifetime'}
+  {key: 'type', status: false, str: 'lifetime'},
+  {key: 'type', status: false, str: 'trial'},
+  {key: 'type', status: false, str: 'trial-renewal'},
 ]
 
 export const nicknameSort: SortParams = {

@@ -10,7 +10,9 @@
     </div>
     
     <div class="chart-indicators">
-        <p class="chart-indicator chart-indicator--primary"><span>Renewal keys</span> <span>-</span> <span>{{stats?.renewal_keys || 0}}</span></p>
-        <p class="chart-indicator chart-indicator--success"><span>Lifetime keys</span> <span>-</span> <span>{{stats?.lifetime_keys || 0}}</span></p>
+        <p class="chart-indicator chart-indicator--primary"><span>Renewal</span> <span>-</span> <span>{{stats?.renewal_keys || 0}}</span></p>
+        <p class="chart-indicator chart-indicator--warning"><span>Trial-renewal</span> <span>-</span> <span>{{stats?.trial_renewal_keys || 0}}</span></p>
+        <p class="chart-indicator chart-indicator--success"><span>Lifetime</span> <span>-</span> <span>{{stats?.lifetime_keys || 0}}</span></p>
+        <p class="chart-indicator chart-indicator--err"><span>Trial</span> <span>-</span> <span>{{stats?.trial_keys || 0}}</span></p>
     </div>
 </div>

@@ -43,9 +43,12 @@
 
 .chart-indicators{
     display: grid;
-    justify-self: center;
     align-self: end;
-
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    max-width: 330px;
+    width: 100%;
+    justify-self: center;
     row-gap: 16px;
 
 }
@@ -78,7 +81,15 @@
     }
 
     &--success::before{
-        background-color: rgba($color: $success-color, $alpha: 0.6);
+        background-color: $success-color
+    }
+
+    &--err::before{
+        background-color: $err-color;
+    }
+
+    &--warning::before{
+        background-color: $warning-color;
     }
 
 
