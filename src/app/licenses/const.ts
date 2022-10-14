@@ -18,7 +18,7 @@ export const searchLicenseKeys: string[][] = [
     [ 'user', 'full_name'],
     [ 'user', 'discord_id' ],
     [ 'payment', 'email' ],
-    [ 'payment', 'last4' ],
+    [ 'payment', 'last_4' ],
     [ 'expires_in' ],
     [ 'create_at' ]
   ]
