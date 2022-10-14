@@ -22,7 +22,7 @@ export class LicenseStatComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.buildOpt();
+    this.buildOpt(true);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -31,7 +31,7 @@ export class LicenseStatComponent implements OnInit, OnChanges {
   }
 
 
-  buildOpt(){
+  buildOpt(isNull: boolean = false){
     this.opt = {
       tooltip: {
         trigger: 'item',
@@ -47,10 +47,10 @@ export class LicenseStatComponent implements OnInit, OnChanges {
               show: false
             },
             data: [
-              { name: 'Renewal keys', value: this.stats?.renewal_keys || 0 },
-              { name: 'Lifetime keys', value: this.stats?.lifetime_keys || 0  },
-              { name: 'Trial-renewal keys', value: this.stats?.trial_renewal_keys || 0 },
-              { name: 'Trial keys', value: this.stats?.trial_keys || 0  },
+              { name: 'Renewal keys', value: !isNull ? this.stats?.renewal_keys || 0 : 0 },
+              { name: 'Lifetime keys', value: !isNull ? this.stats?.lifetime_keys || 0 : 0 },
+              { name: 'Trial-renewal keys', value: !isNull ? this.stats?.trial_renewal_keys || 0 : 0 },
+              { name: 'Trial keys', value: !isNull ? this.stats?.trial_keys || 0 : 0 },
             ],
             label: {
               show: false,
