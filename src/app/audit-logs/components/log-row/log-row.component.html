@@ -15,9 +15,9 @@
     <td class="log__action">
         <span class="action"
             [ngClass]="{
-                'action--danger': log.action == 'deleted' || log.action == 'expired',
+                'action--danger': log.action == 'deleted' || log.action == 'expired' || log.action == 'trial-expired',
                 'action--warning': log.action == 'unbind' || log.action == 'auto-renew-failed' || log.action == 'renew-failed' || log.action == 'channel-created',
-                'action--success': log.action == 'bind' || log.action == 'purchase' || log.action == 'renew' || log.action == 'card-binding' || log.action == 'auto-renew' || log.action == 'ref-purchase',
+                'action--success': log.action == 'bind' || log.action == 'purchase' || log.action == 'renew' || log.action == 'card-binding' || log.action == 'auto-renew' || log.action == 'ref-purchase' || log.action == 'trial-to-renewal',
                 'action--primary': log.action == 'generated'
             }"
         >
