@@ -34,15 +34,15 @@
 
         <app-label label="Plan type">{{license.type}}</app-label>
         <app-label label="Price">
-            <ng-template [ngIf]="license.type == 'lifetime'">-</ng-template>
-            <ng-template [ngIf]="license.type == 'renewal'">
+            <ng-template [ngIf]="license.type == 'lifetime' || license.type == 'trial'">-</ng-template>
+            <ng-template [ngIf]="license.type == 'renewal' || license.type == 'trial-renewal'">
                 {{ license.payment.price | currency:(license.payment.currency||'USD'):'symbol-narrow':'1.0-1' }}
             </ng-template>
         </app-label>
 
 
         <app-label label="Card info" style="grid-column: 3/5">
-            <div class="card row" *ngIf="license.payment.last_4 && license.type == 'renewal'">
+            <div class="card row" *ngIf="license.payment.last_4 && license.type != 'lifetime'">
                 <span class="card__number">**** {{license.payment.last_4}}</span>
                 <span class="card__exp">{{getExpDate()}}</span>
             </div>
@@ -53,7 +53,7 @@
 
         <app-label label="Date of joining">{{license.created_at | date:'dd.MM.yy'}}</app-label>
         <app-label label="Next renewal date">
-            <ng-template [ngIf]="license.type == 'renewal'">
+            <ng-template [ngIf]="license.type != 'lifetime'">
                 {{ license.expires_in | date:'dd.MM.yy' }} 
             </ng-template>
 
