@@ -1,47 +1,70 @@
 import { DsRole } from "src/app/tools/interfaces/ds-role"
 
 export interface Owner {
-    id: string,
+    id: string
 
-    
     uploads: {
         avatar: string
     }
 
-    referral: {
-        enabled: boolean,
-        price: number,
-        plan: string
-    }
+    referral: Referral
 
-    general: {
-        site_url: string,
-        primary_color: string,
-        email: string,
-        name: string,
-    }
+    general: GeneralInfo
 
-    discord: {
-        id: string,
-        roles: DsRole[]
-    },
+    discord: Discord
 
-    payment: {
-        kick: boolean,
-        way: string,
-        currency: string,
-        tinkoff: {
-            terminal_key: string,
-            password: string,
-        },
-        ameria: {
-            merchant_id: string,
-            merchant_username: string,
-            merchant_password: string,
-        },
-        details: {
-            cards: string[],
-            cryptowallets: string[]
-        }
-    }
+    payment: Payment
+}
+
+
+interface Referral{
+    enabled: boolean,
+    price: number,
+    plan: string
+}
+
+
+interface GeneralInfo{
+    site_url: string,
+    primary_color: string,
+    email: string,
+    name: string
+}
+
+
+interface Discord{
+    id: string,
+    roles: DsRole[]
+}
+
+
+interface Payment{
+    kick: boolean,
+    way: '' | 'Tinkoff' | 'Ameria' | 'Crypto',
+    currency: string,
+    tinkoff: Tinkoff,
+    ameria: Ameria,
+    crypto: Crypto[],
+    details: PaymentDetails
+}
+
+interface Tinkoff{
+    terminal_key: string,
+    password: string
+}
+
+interface Ameria{
+    merchant_id: string,
+    merchant_username: string,
+    merchant_password: string
+}
+
+interface Crypto{
+    id: string,
+    address: string
+}
+
+interface PaymentDetails{
+    cards: string[],
+    cryptowallets: string[]
 }
