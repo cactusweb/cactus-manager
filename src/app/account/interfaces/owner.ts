@@ -60,7 +60,7 @@ interface Ameria{
 }
 
 interface Crypto{
-    id: string,
+    id: number,
     address: string
 }
 
