@@ -1,5 +1,5 @@
 export interface CryptoPaymentMethod{
-    id: number,
+    id: string,
     network: string,
     coin: Coin
 }
