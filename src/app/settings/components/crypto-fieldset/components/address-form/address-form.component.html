@@ -17,7 +17,9 @@
             <label class="inp-wrapper__label" for="method-address">Wallet address</label>
             <input 
                 type="text" placeholder="Input recepient address" [(ngModel)]="address" [ngModelOptions]="{standalone: true}" 
-                id="method-address" autocomplete="off" class="form-control" required
+                id="method-address" autocomplete="off" class="form-control" 
+                #input
+                required
             >
         </div>
 
