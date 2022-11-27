@@ -1,0 +1,14 @@
+.inp-wrapper{
+    position: static;
+    &__label{
+        margin-top: 16px;
+        align-self: start;
+    }
+
+}
+
+.cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}

@@ -17,6 +17,7 @@
 
         <app-ameria-fieldset *ngIf="form.controls['way'].value == 'Ameria'" #PaymentWayData></app-ameria-fieldset>
 
+        <app-crypto-fieldset *ngIf="form.controls['way'].value == 'Crypto'" #PaymentWayData></app-crypto-fieldset>
         
         <div class="inp-wrapper">
             <label for="currency" class="inp-wrapper__label">Currency</label>

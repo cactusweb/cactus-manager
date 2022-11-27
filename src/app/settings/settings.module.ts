@@ -17,6 +17,7 @@ import { PendingChangesGuard } from './guards/pending-changes.guard';
 import { PaymentDetailsFieldsetComponent } from './components/payment-details-fieldset/payment-details-fieldset.component';
 import { PaymentDetailComponent } from './components/payment-detail/payment-detail.component';
 import { OnBeforeUnloadComponent } from './components/on-before-unload/on-before-unload.component';
+import { CryptoFieldsetModule } from './components/crypto-fieldset/crypto-fieldset.module';
 
 const routes: Routes = [
   { path: '', component: SettingsComponent, canDeactivate: [PendingChangesGuard], data: {
@@ -47,7 +48,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
-    ToolsModule
+    ToolsModule,
+    CryptoFieldsetModule
   ]
 })
 export class SettingsModule { }

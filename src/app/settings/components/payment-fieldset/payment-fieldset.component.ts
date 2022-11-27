@@ -5,6 +5,7 @@ import { Owner } from 'src/app/account/interfaces/owner';
 import { paymentWays, currencies } from '../../const';
 import { SettingsFieldset } from '../../settings.component';
 import { AmeriaFieldsetComponent } from '../ameria-fieldset/ameria-fieldset.component';
+import { CryptoFieldsetComponent } from '../crypto-fieldset/crypto-fieldset.component';
 import { PaymentDetailsFieldsetComponent } from '../payment-details-fieldset/payment-details-fieldset.component';
 import { TinkoffFieldsetComponent } from '../tinkoff-fieldset/tinkoff-fieldset.component';
 
@@ -14,7 +15,7 @@ import { TinkoffFieldsetComponent } from '../tinkoff-fieldset/tinkoff-fieldset.c
   styleUrls: ['./payment-fieldset.component.scss']
 })
 export class PaymentFieldsetComponent implements OnInit, OnDestroy, SettingsFieldset {
-  @ViewChild('PaymentWayData') dataFieldset!: TinkoffFieldsetComponent | AmeriaFieldsetComponent
+  @ViewChild('PaymentWayData') dataFieldset!: TinkoffFieldsetComponent | AmeriaFieldsetComponent | CryptoFieldsetComponent
   @ViewChild('PaymentDetails') dataDetails!: PaymentDetailsFieldsetComponent
 
   form!: FormGroup;
@@ -69,6 +70,7 @@ export class PaymentFieldsetComponent implements OnInit, OnDestroy, SettingsFiel
         ...this.form.value,
         tinkoff: way !== 'Tinkoff' ? null : this.dataFieldset._form,
         ameria: way !== 'Ameria' ? null : this.dataFieldset._form,
+        crypto: way !== 'Crypto' ? null : this.dataFieldset._form,
         details: this.dataDetails._form
       }
     }

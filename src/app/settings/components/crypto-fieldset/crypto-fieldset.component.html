@@ -1,0 +1,16 @@
+<fieldset>
+    <div class="inp-wrapper">
+        <span class="inp-wrapper__label">Methods</span>
+        <div class="cards">
+            <ng-template [ngIf]="methodControls">
+                <payment-method *ngFor="let method of methodControls" [method]="method" [formControl]="method.control"></payment-method>
+            </ng-template>
+            <ng-template [ngIf]="!methodControls">
+                <payment-method></payment-method>
+                <payment-method></payment-method>
+                <payment-method></payment-method>
+                <payment-method></payment-method>
+            </ng-template>
+        </div>
+    </div>
+</fieldset>
