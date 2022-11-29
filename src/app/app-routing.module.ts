@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { IsAuthGuard } from './tools/guards/is-auth.guard';
+import { NetworkAwarePreloadingServiceService } from './tools/services/network-aware-preloading-service.service';
 
 
 const routes: Routes = [
@@ -14,7 +15,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes, { preloadingStrategy: NetworkAwarePreloadingServiceService })],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }
