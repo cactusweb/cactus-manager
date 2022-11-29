@@ -7,6 +7,8 @@ import { ToolsModule } from '../tools/tools.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogRowComponent } from './components/log-row/log-row.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { TransactionViewComponent } from './components/transaction-view/transaction-view.component';
+import { TransactionViewService } from './components/transaction-view/transaction-view.service';
 
 const routes: Routes = [
   { path: '', component: AuditLogsComponent, data: {
@@ -20,7 +22,8 @@ const routes: Routes = [
   declarations: [
     AuditLogsComponent,
     HeaderComponent,
-    LogRowComponent
+    LogRowComponent,
+    TransactionViewComponent
   ],
   imports: [
     CommonModule,
@@ -29,6 +32,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     ScrollingModule
-  ]
+  ],
+  providers: [TransactionViewService]
 })
 export class AuditLogsModule { }

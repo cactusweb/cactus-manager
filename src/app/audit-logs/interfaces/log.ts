@@ -5,7 +5,7 @@ export interface Log {
     action: string
     when: number
     key: string
-    detail: string
+    details: string
 }
 
 interface whoRes{

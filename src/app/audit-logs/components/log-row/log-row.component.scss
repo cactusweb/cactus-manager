@@ -67,12 +67,21 @@
 }
 
 .action{
-    display: block;
     padding: 4px 12px;
     border-radius: 24px;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
+    column-gap: 4px;
+
+    &__info{
+        display: grid;
+        align-items: center;
+    }
+
+    &--pointer{
+        cursor: pointer;
+    }
 
     &--danger{
         background-color: rgba($color: $err-color, $alpha: .15);

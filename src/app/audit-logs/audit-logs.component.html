@@ -28,3 +28,7 @@
     </cdk-virtual-scroll-viewport>
 </div>
 
+<ng-container *ngVar="(txInfo|async) as txInfo">
+    <app-transaction-view *ngIf="txInfo" [data]="txInfo" (onClose)="txService.changePopupState(undefined)"></app-transaction-view>
+</ng-container>
+

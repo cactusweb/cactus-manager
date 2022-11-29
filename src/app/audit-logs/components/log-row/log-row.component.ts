@@ -1,25 +1,44 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ToolsService } from 'src/app/tools/services/tools.service';
 import { Log } from '../../interfaces/log';
+import { TransactionViewService } from '../transaction-view/transaction-view.service';
+import { TxInfo } from '../transaction-view/tx-info';
 
 @Component({
   selector: 'app-log-row',
   templateUrl: './log-row.component.html',
   styleUrls: ['./log-row.component.scss']
 })
-export class LogRowComponent implements OnInit {
+export class LogRowComponent implements OnChanges {
   @Input() log!: Log
 
+  txInfo: TxInfo|undefined;
+
   constructor(
-    public tools: ToolsService
+    public tools: ToolsService,
+    private popup: TransactionViewService,
+    private eRef: ElementRef
   ) { }
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    this.getTxInfo();
   }
 
+  getTxInfo(){
+    try{
+      this.txInfo = (JSON.parse(this.log.details) as TxInfo)
+    }
+    catch(e){
+      this.txInfo = undefined
+    }
+  }
 
   
   getLastFour(): string{
     return this.log.key.substring(15,19)
+  }
+
+  showTxInfo(){
+    this.popup.changePopupState(this.txInfo)
   }
 }
