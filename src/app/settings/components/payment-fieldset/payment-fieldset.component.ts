@@ -6,6 +6,7 @@ import { paymentWays, currencies } from '../../const';
 import { SettingsFieldset } from '../../settings.component';
 import { AmeriaFieldsetComponent } from '../ameria-fieldset/ameria-fieldset.component';
 import { CryptoFieldsetComponent } from '../crypto-fieldset/crypto-fieldset.component';
+import { PaymentCallsFieldsetComponent } from '../payment-calls-fieldset/payment-calls-fieldset.component';
 import { PaymentDetailsFieldsetComponent } from '../payment-details-fieldset/payment-details-fieldset.component';
 import { TinkoffFieldsetComponent } from '../tinkoff-fieldset/tinkoff-fieldset.component';
 
@@ -17,7 +18,7 @@ import { TinkoffFieldsetComponent } from '../tinkoff-fieldset/tinkoff-fieldset.c
 export class PaymentFieldsetComponent implements OnInit, OnDestroy, SettingsFieldset {
   @ViewChild('PaymentWayData') dataFieldset!: TinkoffFieldsetComponent | AmeriaFieldsetComponent | CryptoFieldsetComponent
   @ViewChild('PaymentDetails') dataDetails!: PaymentDetailsFieldsetComponent
-
+  @ViewChild('PaymentCalls') dataCalls!: PaymentCallsFieldsetComponent;
   form!: FormGroup;
 
   paymentOpts = paymentWays
@@ -27,6 +28,7 @@ export class PaymentFieldsetComponent implements OnInit, OnDestroy, SettingsFiel
 
   owner!: Owner
   showPaymentDetails: boolean = false;
+  showPaymentCalls: boolean = false;
 
   constructor() { }
 
@@ -43,18 +45,9 @@ export class PaymentFieldsetComponent implements OnInit, OnDestroy, SettingsFiel
   generateForm(){
     this.form = new FormGroup({
       way: new FormControl(''),
-      currency: new FormControl('USD', Validators.required),
-      kick: new FormControl({ value: false, disabled: true }, Validators.required),
+      currency: new FormControl('USD', Validators.required)
     })
 
-    this.sub = this.form.controls['way'].valueChanges
-      .subscribe(res => {
-        this.form.controls['kick'][res === '' ? 'disable' : 'enable']()
-        if ( !res ) return
-        setTimeout(() => {
-          this.dataFieldset._form = this.owner
-        }, 10);
-      })
   }
 
   validate(){
@@ -71,7 +64,8 @@ export class PaymentFieldsetComponent implements OnInit, OnDestroy, SettingsFiel
         tinkoff: way !== 'Tinkoff' ? null : this.dataFieldset._form,
         ameria: way !== 'Ameria' ? null : this.dataFieldset._form,
         crypto: way !== 'Crypto' ? null : this.dataFieldset._form,
-        details: this.dataDetails._form
+        details: this.dataDetails._form,
+        calls: this.dataCalls._form
       }
     }
   }
