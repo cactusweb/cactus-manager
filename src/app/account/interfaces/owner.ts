@@ -39,13 +39,13 @@ interface Discord{
 
 
 interface Payment{
-    kick: boolean,
     way: '' | 'Tinkoff' | 'Ameria' | 'Crypto',
     currency: string,
     tinkoff: Tinkoff,
     ameria: Ameria,
     crypto: Crypto[],
     details: PaymentDetails
+    calls: PaymentCalls
 }
 
 interface Tinkoff{
@@ -67,4 +67,10 @@ interface Crypto{
 interface PaymentDetails{
     cards: string[],
     cryptowallets: string[]
+}
+
+interface PaymentCalls{
+    attempts: number,
+    action: 'ticket'|'kick'|'roles',
+    role: string|undefined
 }
