@@ -18,6 +18,7 @@ import { PaymentDetailsFieldsetComponent } from './components/payment-details-fi
 import { PaymentDetailComponent } from './components/payment-detail/payment-detail.component';
 import { OnBeforeUnloadComponent } from './components/on-before-unload/on-before-unload.component';
 import { CryptoFieldsetModule } from './components/crypto-fieldset/crypto-fieldset.module';
+import { PaymentCallsFieldsetComponent } from './components/payment-calls-fieldset/payment-calls-fieldset.component';
 
 const routes: Routes = [
   { path: '', component: SettingsComponent, canDeactivate: [PendingChangesGuard], data: {
@@ -41,7 +42,8 @@ const routes: Routes = [
     AmeriaFieldsetComponent,
     PaymentDetailsFieldsetComponent,
     PaymentDetailComponent,
-    OnBeforeUnloadComponent
+    OnBeforeUnloadComponent,
+    PaymentCallsFieldsetComponent
   ],
   imports: [
     CommonModule,
