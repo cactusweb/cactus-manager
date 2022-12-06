@@ -70,7 +70,7 @@ interface PaymentDetails{
 }
 
 interface PaymentCalls{
-    attempts: number,
+    max_attempts: number,
     action: 'ticket'|'kick'|'roles',
-    role: string|undefined
+    expires_role: DsRole|undefined
 }
