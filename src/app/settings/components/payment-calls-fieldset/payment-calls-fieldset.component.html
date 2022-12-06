@@ -14,7 +14,7 @@
             <label for="attempts" class="inp-wrapper__label">Max. number of payment attempts</label>
             <input type="number" 
                 id="attempts" 
-                formControlName="attempts" 
+                formControlName="max_attempts" 
                 class="form-control" placeholder="Input num of attempts" autocomplete="OFF"
                 min="1"
                 max="10"
@@ -27,9 +27,9 @@
             <app-select-primary formControlName="action" [opt]="actionOpts"></app-select-primary>
         </div>
 
-        <div class="inp-wrapper" [class.inp-wrapper--disabled]="form.controls['role'].disabled">
+        <div class="inp-wrapper" [class.inp-wrapper--disabled]="form.controls['expires_role'].disabled">
             <span for="role" class="inp-wrapper__label">Issued role</span>
-            <app-select-primary formControlName="role" [opt]="dsRoleOpts"></app-select-primary>
+            <app-select-primary formControlName="expires_role" [opt]="dsRoleOpts"></app-select-primary>
         </div>
     </fieldset>
 

@@ -42,13 +42,13 @@ export class PaymentCallsFieldsetComponent implements OnInit {
 
   generateForm(){
     this.form = new FormGroup({
-      attempts: new FormControl(3, Validators.required),
-      role: new FormControl({ value: null, disabled: true }, Validators.required),
+      max_attempts: new FormControl(3, Validators.required),
+      expires_role: new FormControl({ value: null, disabled: true }, Validators.required),
       action: new FormControl('ticket', Validators.required)
     })
 
     this.sub = this.form.controls['action'].valueChanges
-      .subscribe(res => this.form.controls['role'][res == 'roles' ? 'enable' : 'disable']() )
+      .subscribe(res => this.form.controls['expires_role'][res == 'roles' ? 'enable' : 'disable']() )
   }
 
   
@@ -66,7 +66,14 @@ export class PaymentCallsFieldsetComponent implements OnInit {
   }
 
   set _form(owner: Owner){
-    this.form.patchValue(owner.payment.calls)
+    console.log({
+      ...owner.payment.calls,
+      role: owner.payment.calls.expires_role?.id||undefined
+    })
+    this.form.patchValue({
+      ...owner.payment.calls,
+      expires_role: owner.payment.calls.expires_role?.id||undefined
+    })
   }
 
 }
