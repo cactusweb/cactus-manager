@@ -48,6 +48,13 @@ export class PaymentFieldsetComponent implements OnInit, OnDestroy, SettingsFiel
       currency: new FormControl('USD', Validators.required)
     })
 
+    this.sub = this.form.controls['way'].valueChanges
+      .subscribe(res => {
+        if ( !res ) return
+        setTimeout(() => {
+          this.dataFieldset._form = this.owner
+        }, 10);
+      })
   }
 
   validate(){
@@ -77,6 +84,7 @@ export class PaymentFieldsetComponent implements OnInit, OnDestroy, SettingsFiel
 
     this.form.patchValue({ ...val.payment })
     this.dataDetails._form = val;
+    this.dataCalls._form = val;
   }
 
 
