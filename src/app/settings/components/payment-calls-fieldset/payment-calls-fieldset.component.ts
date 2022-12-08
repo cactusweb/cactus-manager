@@ -44,11 +44,15 @@ export class PaymentCallsFieldsetComponent implements OnInit {
     this.form = new FormGroup({
       max_attempts: new FormControl(3, Validators.required),
       expires_role: new FormControl({ value: null, disabled: true }, Validators.required),
-      action: new FormControl('ticket', Validators.required)
+      action: new FormControl('ticket', Validators.required),
+      wh_content: new FormControl({value: '', disabled: true})
     })
 
     this.sub = this.form.controls['action'].valueChanges
-      .subscribe(res => this.form.controls['expires_role'][res == 'roles' ? 'enable' : 'disable']() )
+      .subscribe(res => {
+        this.form.controls['expires_role'][res == 'roles' ? 'enable' : 'disable']() 
+        this.form.controls['wh_content'][res == 'ticket' ? 'disable' : 'enable']()
+      })
   }
 
   

@@ -31,6 +31,12 @@
             <span for="role" class="inp-wrapper__label">Issued role</span>
             <app-select-primary formControlName="expires_role" [opt]="dsRoleOpts"></app-select-primary>
         </div>
+
+        
+        <div class="inp-wrapper" [class.inp-wrapper--disabled]="form.controls['wh_content'].disabled" id="wh-content-wrapper">
+            <label for="wh-content" class="inp-wrapper__label">Content of last webhook</label>
+            <textarea formControlName="wh_content" id="wh-content" class="form-control"></textarea>
+        </div>
     </fieldset>
 
     <button class="btn--primary" (click)="onClose.emit()">Ok</button>

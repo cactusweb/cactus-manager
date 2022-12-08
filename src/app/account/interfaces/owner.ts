@@ -72,5 +72,6 @@ interface PaymentDetails{
 interface PaymentCalls{
     max_attempts: number,
     action: 'ticket'|'kick'|'roles',
-    expires_role: DsRole|undefined
+    expires_role: DsRole|undefined,
+    wh_content: string
 }
