@@ -33,7 +33,7 @@ export class LicenseViewingComponent implements OnInit {
 
   resetPoints(){
     this.loading = true;
-    this.lic.resetPoints(this.license.id)
+    this.lic.changeReferralScore(this.license.id)
       .pipe(
         take(1),
         finalize(() => this.loading = false)

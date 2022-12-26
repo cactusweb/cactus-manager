@@ -26,7 +26,7 @@ export class HeadComponent implements OnInit {
   resetPoints(){
     this.loading = true;
 
-    this.lic.resetPoints()
+    this.lic.changeReferralScore()
       .pipe(
         take(1),
         finalize(() => this.loading = false)

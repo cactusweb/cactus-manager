@@ -83,18 +83,21 @@ export class LicensesService {
   }
   
   
-  public resetPoints( licId?: string ){
+  public changeReferralScore( licId?: string, points?: number ){
     
     let reset = () => this._licenses = this._licenses.map(l => { 
                         if ( licId && l.id !== licId || !l.referral ) return l;
-                        return { ...l, referral: { ...l.referral, score: 0 } }
+                        return { ...l, referral: { ...l.referral, score: points||0 } }
                       })
 
-    return this.http.request( Requests['resetRefPoints'], null, undefined, licId ? `/${licId}` : '' )
+    let req = licId && points ? Requests['changeRefPoints'] : Requests['resetRefPoints'];
+    let body = points ? { score: points } : null
+
+    return this.http.request( req, body, points ? licId : undefined, licId && !points ? `/${licId}` : '' )
       .pipe(
         tap(() => reset()),
         tap(() => this.$licenses.next(this._licenses)),
-        tap(() => this.tools.generateNotification('Points reseted', 'success'))
+        tap(() => this.tools.generateNotification('Points changed', 'success'))
       )
   }
 
