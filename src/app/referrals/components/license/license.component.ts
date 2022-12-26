@@ -15,6 +15,7 @@ export class LicenseComponent implements OnInit {
 
   @Output() onView = new EventEmitter<string>();
   @Output() onReset = new EventEmitter<string>()
+  @Output() onEdit = new EventEmitter<License>()
 
   constructor(
     public tools: ToolsService,
@@ -32,7 +33,7 @@ export class LicenseComponent implements OnInit {
   resetPoints(){
     this.loading = true;
 
-    this.lic.resetPoints(this.license.id)
+    this.lic.changeReferralScore(this.license.id)
       .pipe(
         take(1),
         finalize(() => this.loading = false)

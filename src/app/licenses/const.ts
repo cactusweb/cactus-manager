@@ -10,7 +10,8 @@ export const Requests: ReqMap  = {
     putLicense: { url: '/license/:param', method: 'PUT' },
 
 
-    resetRefPoints: { url: '/referral', method: 'DELETE' }
+    resetRefPoints: { url: '/referral', method: 'DELETE' },
+    changeRefPoints: { url: '/referral/:param', method: 'PUT' }
 }
 
 export const searchLicenseKeys: string[][] = [

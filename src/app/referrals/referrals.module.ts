@@ -8,6 +8,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ToolsModule } from '../tools/tools.module';
 import { HeadComponent } from './components/header/header.component';
 import { LicenseComponent } from './components/license/license.component';
+import { PointsFormComponent } from './components/points-form/points-form.component';
 
 const routes: Routes = [
   { path: '', component: ReferralsComponent, data: {
@@ -21,7 +22,8 @@ const routes: Routes = [
   declarations: [
     ReferralsComponent,
     HeadComponent,
-    LicenseComponent
+    LicenseComponent,
+    PointsFormComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,9 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     ScrollingModule,
-    ToolsModule
+    ToolsModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ReferralsModule { }

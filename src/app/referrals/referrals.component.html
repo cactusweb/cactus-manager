@@ -37,6 +37,7 @@
                 " 
                 [license]="license"
                 (onView)="popupLicense = license"
+                (onEdit)="scoreEditLicense = license"
             ></app-license>
                 <!-- (onReset)="resetPoints($event)" -->
         </table>
@@ -51,4 +52,13 @@
         [license]="popupLicense"
         (onClose)="popupLicense = null"
     ></app-license-viewing>
+</div>
+
+
+<div class="overlay" *ngIf="scoreEditLicense">
+    <div class="artboard" (click)="scoreEditLicense = null"></div>
+    <app-points-form 
+        [license]="scoreEditLicense"
+        (onClose)="scoreEditLicense = null"
+    ></app-points-form>
 </div>

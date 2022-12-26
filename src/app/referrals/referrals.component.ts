@@ -24,6 +24,7 @@ export class ReferralsComponent implements OnInit, OnDestroy {
   licenses!: Observable<License[]>
 
   popupLicense: License | null = null;
+  scoreEditLicense: License|null = null;
   sub: Subscription | undefined
 
   pipeParams = {
