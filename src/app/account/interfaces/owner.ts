@@ -83,7 +83,7 @@ interface AdditionalActivations{
     plans:  AdditionalActiovationPlan[]
 }
 
-interface AdditionalActiovationPlan{
+export interface AdditionalActiovationPlan{
     price: number,
     duration: number|null
 }
