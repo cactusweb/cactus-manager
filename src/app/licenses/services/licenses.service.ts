@@ -63,7 +63,6 @@ export class LicensesService {
         map(l => { return { ...l, expires_in: l.expires_in*1000 } }),
         tap(l => this._licenses.push(l)),
         tap(() => this.$licenses.next(this._licenses)),
-        tap(d => console.log(d)),
         tap(() => this.tools.generateNotification('Generated!', 'success')),
         tap(l => this.tools.copy(l.key, 'License key copied')),
       )

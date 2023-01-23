@@ -70,10 +70,6 @@ export class PaymentCallsFieldsetComponent implements OnInit {
   }
 
   set _form(owner: Owner){
-    console.log({
-      ...owner.payment.calls,
-      role: owner.payment.calls.expires_role?.id||undefined
-    })
     this.form.patchValue({
       ...owner.payment.calls,
       expires_role: owner.payment.calls.expires_role?.id||undefined
