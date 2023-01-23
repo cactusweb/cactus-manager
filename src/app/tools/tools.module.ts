@@ -18,6 +18,7 @@ import { PasswordInpComponent } from './components/password-inp/password-inp.com
 import { ColorInpComponent } from './components/color-inp/color-inp.component';
 import { CheckboxSwitcherComponent } from './components/checkbox-switcher/checkbox-switcher.component';
 import { NgvarDirective } from './directives/ngvar.directive';
+import { DoubleInputComponent } from './components/double-input/double-input.component';
 
 
 
@@ -37,7 +38,8 @@ import { NgvarDirective } from './directives/ngvar.directive';
     PasswordInpComponent,
     ColorInpComponent,
     CheckboxSwitcherComponent,
-    NgvarDirective
+    NgvarDirective,
+    DoubleInputComponent
   ],
   imports: [
     CommonModule,
@@ -59,7 +61,8 @@ import { NgvarDirective } from './directives/ngvar.directive';
     PasswordInpComponent,
     ColorInpComponent,
     CheckboxSwitcherComponent,
-    NgvarDirective
+    NgvarDirective,
+    DoubleInputComponent
   ]
 })
 export class ToolsModule { }

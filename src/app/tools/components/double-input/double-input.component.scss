@@ -1,0 +1,45 @@
+@import '/src/environments/environment.scss';
+
+:host{
+    display: grid;
+    grid-template-columns: 145px 1fr;
+    column-gap: 16px;
+}
+
+.form-control--padding{
+    padding-right: 40px !important;
+}
+
+input::placeholder{
+    font-weight: 400;
+}
+
+.inp-wrapper{
+    grid-template-columns: auto;
+
+    &__icon{
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translate(0%, -50%);
+        font-size: 14px;
+    }
+}
+
+button{
+    background-color: rgba($color: $primary-color, $alpha: .1);
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    padding: 0;
+
+    svg, svg path{
+        transition: .3s;
+    }
+
+    &:hover svg path{
+        fill: $primary-color;
+    }
+}
