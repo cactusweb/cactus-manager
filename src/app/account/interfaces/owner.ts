@@ -13,7 +13,9 @@ export interface Owner {
 
     discord: Discord
 
-    payment: Payment
+    payment: Payment,
+
+    additional_activations: AdditionalActivations
 }
 
 
@@ -74,4 +76,14 @@ interface PaymentCalls{
     action: 'ticket'|'kick'|'roles',
     expires_role: DsRole|undefined,
     wh_content: string
+}
+
+interface AdditionalActivations{
+    enabled: boolean;
+    plans:  AdditionalActiovationPlan[]
+}
+
+interface AdditionalActiovationPlan{
+    price: number,
+    duration: number|null
 }
