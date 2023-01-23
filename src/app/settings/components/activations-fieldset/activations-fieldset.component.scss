@@ -1,0 +1,28 @@
+@import '/src/environments/environment.scss';
+
+.popup{
+    min-width: 455px;
+    &__body{
+        row-gap: 8px;
+    }
+}
+
+.btn{
+    height: 20px;
+    width: 90px;
+    justify-self: end;
+    margin-top: 4px;
+    padding: 0px;
+    color: $primary-color;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+
+    &:hover{
+        text-decoration: underline;
+    }
+
+    svg{
+        margin-left: 6px;
+    }
+}
