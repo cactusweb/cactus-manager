@@ -81,9 +81,15 @@ interface PaymentCalls{
 interface AdditionalActivations{
     enabled: boolean;
     plans:  AdditionalActivationPlan[],
+    limits: AdditionalActivationsLimits
 }
 
 export interface AdditionalActivationPlan{
     price: number,
     duration: number|null
+}
+
+export interface AdditionalActivationsLimits{
+    lifetime: number,
+    temporary: number
 }
