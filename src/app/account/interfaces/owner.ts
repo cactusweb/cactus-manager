@@ -80,10 +80,10 @@ interface PaymentCalls{
 
 interface AdditionalActivations{
     enabled: boolean;
-    plans:  AdditionalActiovationPlan[]
+    plans:  AdditionalActivationPlan[],
 }
 
-export interface AdditionalActiovationPlan{
+export interface AdditionalActivationPlan{
     price: number,
     duration: number|null
 }

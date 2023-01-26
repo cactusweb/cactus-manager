@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AdditionalActiovationPlan, Owner } from 'src/app/account/interfaces/owner';
+import { AdditionalActivationPlan, Owner } from 'src/app/account/interfaces/owner';
 import { ToolsService } from 'src/app/tools/services/tools.service';
 import { SettingsFieldset } from '../../settings.component';
 
@@ -31,7 +31,7 @@ export class ActivationsFieldsetComponent implements OnInit, SettingsFieldset {
   }
 
   validate(): boolean{
-    let valid = (this.form.get('plans')!.value as AdditionalActiovationPlan[])
+    let valid = (this.form.get('plans')!.value as AdditionalActivationPlan[])
       .filter( v => 
         v && !this.isNullOrUndefined(v.duration) && v.price 
       )
@@ -45,7 +45,7 @@ export class ActivationsFieldsetComponent implements OnInit, SettingsFieldset {
     
   // @ts-ignore
   get _form(): Record<string, any>{
-    let value = this.form.get('plans')!.value as AdditionalActiovationPlan[];
+    let value = this.form.get('plans')!.value as AdditionalActivationPlan[];
     return value
       .filter( v => v && !this.isNullOrUndefined(v.duration) && v.price )
       .map( v => {
@@ -71,7 +71,7 @@ export class ActivationsFieldsetComponent implements OnInit, SettingsFieldset {
     return this.form.get(name) as FormArray
   }
   
-  addControl( value: AdditionalActiovationPlan|null = null ){
+  addControl( value: AdditionalActivationPlan|null = null ){
     (this.form.get('plans') as FormArray).push(new FormControl(value))
   }
 
