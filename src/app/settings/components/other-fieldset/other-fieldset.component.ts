@@ -41,7 +41,7 @@ export class OtherFieldsetComponent implements OnInit, SettingsFieldset {
     return {
       additional_activations: {
         ...this.form.value,
-        plans: this.plansFieldset._form
+        ...this.plansFieldset._form,
       }
     };
   }

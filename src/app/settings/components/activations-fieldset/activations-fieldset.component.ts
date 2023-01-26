@@ -25,7 +25,11 @@ export class ActivationsFieldsetComponent implements OnInit, SettingsFieldset {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      plans: new FormArray([], Validators.required)
+      plans: new FormArray([], Validators.required),
+      limits: new FormGroup({
+        lifetime: new FormControl(null, Validators.required),
+        temporary: new FormControl(null, Validators.required)
+      })
     })
 
   }
@@ -40,13 +44,16 @@ export class ActivationsFieldsetComponent implements OnInit, SettingsFieldset {
     if ( !valid )
       this.tools.generateNotification( "Add at least one activations plan", 'err' )
 
+    if ( this.form.get('limits')?.invalid )
+      this.tools.generateNotification("Fill the limits of activations", "err")
+
     return valid && this.form.valid;
   }
     
   // @ts-ignore
   get _form(): Record<string, any>{
     let value = this.form.get('plans')!.value as AdditionalActivationPlan[];
-    return value
+    let plans = value
       .filter( v => v && !this.isNullOrUndefined(v.duration) && v.price )
       .map( v => {
         return { 
@@ -54,17 +61,20 @@ export class ActivationsFieldsetComponent implements OnInit, SettingsFieldset {
           price: Number(v.price) 
         }
       })
+    
+    return {
+      ...this.form.value,
+      plans,
+    }
   }
 
   set _form(val: Owner){
+    this.form.patchValue(val.additional_activations)
     val.additional_activations.plans.forEach(p => {
       if ( !p.duration )
        p = { duration: 0, price: p.price }
       this.addControl(p)
     })
-
-    if ( val.additional_activations.plans.length == 0 )
-      this.addControl();
   }
 
   getFormControlAsArr(name: string): FormArray{

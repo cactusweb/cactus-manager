@@ -2,9 +2,19 @@
 
 .popup{
     min-width: 455px;
+    
     &__body{
+        row-gap: 28px;
+    }
+
+    &__fieldset{
+        display: grid;
         row-gap: 8px;
     }
+}
+
+.inp-wrapper{
+    grid-template-columns: 215px 1fr;
 }
 
 .btn{
