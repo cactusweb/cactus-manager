@@ -62,7 +62,7 @@ export class LicenseFormComponent implements OnInit {
     this.form.patchValue({
       ...this.license,
       price: this.license.payment.price,
-      activations: this.license.activations.quantity,
+      activations: this.license.activations.quantity - (this.license.activations.additional_activations?.length||0),
       expires_in: new Date(this.license.expires_in).toISOString().split('T')[0],
       roles: this.license.discord.roles.map(r => r.id)
     })
