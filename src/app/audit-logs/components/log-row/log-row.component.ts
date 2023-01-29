@@ -26,7 +26,9 @@ export class LogRowComponent implements OnChanges {
 
   getTxInfo(){
     try{
-      this.txInfo = (JSON.parse(this.log.details) as TxInfo)
+      let data = JSON.parse(this.log.details) as TxInfo;
+      if ( !data.tx ) throw '';
+      this.txInfo = data;
     }
     catch(e){
       this.txInfo = undefined
