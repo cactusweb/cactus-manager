@@ -24,7 +24,7 @@ export class AuditLogsComponent implements OnInit, OnDestroy {
   ownerName: string = '';
 
   pipeParams = {
-    search: [['key'], ['who', 'name']],
+    search: [['key'], ['who', 'name'], ['details']],
     filter: ['action'],
   }
 

@@ -7,7 +7,6 @@ import { SearchParam } from '../interfaces/search-param';
 export class SearchPipe implements PipeTransform {
 
   transform(arr: any[], keyParams: string[][], searchParam: any): any[] {
-
     let filter = arr.filter(el => {
       let valid: boolean = false;
 
@@ -21,6 +20,10 @@ export class SearchPipe implements PipeTransform {
         if ( !filteredParam ) continue;
         
         valid = String(filteredParam).toLowerCase().indexOf( String(searchParam).toLowerCase() ) == 0 || searchParam === filteredParam;
+        
+        if ( keyParams[2] && keyParams[2][0] === 'details' && String(filteredParam).toLowerCase().includes(String(searchParam).toLowerCase()) )
+          valid = true;
+
         if ( valid ) break;
       }
 
