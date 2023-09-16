@@ -1,0 +1,100 @@
+@import "/src/environments/environment.scss";
+
+.spinner-wrapper {
+  height: 300px;
+}
+
+.control-wrapper {
+  display: grid;
+  row-gap: 4px;
+  span {
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 500;
+  }
+}
+
+.row {
+  gap: 16px;
+}
+
+form {
+  display: grid;
+  row-gap: 12px;
+}
+
+textarea {
+  height: 78px;
+}
+
+.description {
+  &__label {
+    margin-bottom: 2px;
+  }
+
+  &__point {
+    position: relative;
+  }
+
+  &__index {
+    top: 12px;
+    left: 8px;
+    font-size: 14px;
+    position: absolute;
+  }
+
+  &__control {
+    background-color: rgba($color: $primary-color, $alpha: 0.1);
+    padding: 12px;
+    padding-left: 24px;
+    font-weight: 400;
+    min-height: 40px;
+    font-size: 14px;
+    height: auto;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    white-space: nowrap;
+    text-align: start;
+    border-radius: 8px;
+  }
+}
+
+.images {
+  background-color: rgba($color: $primary-color, $alpha: 0.1);
+  padding: 8px;
+  border-radius: 8px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40px, 50px));
+  gap: 8px;
+  align-content: center;
+
+  &__item {
+    height: 40px;
+    width: 40px;
+    border-radius: 4px;
+    object-fit: cover;
+    justify-self: center;
+    cursor: pointer;
+  }
+}
+
+.image-viewer {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+
+  &__wrapper {
+    display: grid;
+    place-content: center;
+  }
+
+  &__item {
+    max-width: 100%;
+    max-height: 80vh;
+  }
+}

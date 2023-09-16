@@ -1,0 +1,43 @@
+@import "/src/environments/environment.scss";
+
+.window {
+  grid-template-columns: auto auto 1fr;
+  gap: 32px;
+}
+
+.btn-group {
+  width: 280px;
+  border-radius: 8px;
+  border: 1px solid #a2acd2;
+  padding: 4px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.btn {
+  font-weight: 600;
+  color: #a2acd2;
+  &:hover,
+  &_active {
+    background: rgba(120, 175, 248, 0.1);
+  }
+
+  &_active {
+    color: #78aff8;
+  }
+}
+
+#btn-update {
+  width: 128px;
+  height: 40px;
+  color: $primary-color;
+  font-weight: 600;
+
+  &:hover {
+    color: $primary-hover-color;
+  }
+}
+
+.search-control-wrapper {
+  justify-self: end;
+}

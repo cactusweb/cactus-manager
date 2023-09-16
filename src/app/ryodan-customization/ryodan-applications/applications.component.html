@@ -1,0 +1,57 @@
+<div class="window applications">
+  <table class="table-primary">
+    <thead>
+      <tr>
+        <th>
+          Nickname
+          <!-- <th-sortable
+            label="Nickname"
+            (onChangeSort)="pipeData.sortNickname = $event; lic.justMap()"
+          ></th-sortable> -->
+        </th>
+        <th>No.</th>
+        <th>Target</th>
+        <th>Updated</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+  </table>
+
+  <span class="table-primary-hr"></span>
+
+  <cdk-virtual-scroll-viewport class="custom-scroll" itemSize="30">
+    <table class="table-primary">
+      <ryodan-application-row
+        *cdkVirtualFor="
+          let application of applications$ | async;
+          trackBy: trackByIndex
+        "
+        [application]="application"
+        (view)="viewingApplication$.next(application)"
+      ></ryodan-application-row>
+      <!-- <app-license-row
+        *cdkVirtualFor="
+          let license of (licenses | async) || []
+            | search : pipeParams.search : pipeData.search
+            | sort : pipeParams.sortNickname : pipeData.sortNickname
+            | sort : pipeParams.sortRenewDate : pipeData.sortRenewDate
+            | filter : pipeParams.filter : pipeData.filter;
+          let i = index;
+          trackBy: trackByFn
+        "
+        (onEdit)="popupType = 'licenseForm'; popupLicense = license"
+        [license]="license"
+        (onView)="onViewLicense(license)"
+      ></app-license-row> -->
+    </table>
+  </cdk-virtual-scroll-viewport>
+</div>
+
+<ryodan-popup
+  *ngIf="viewingApplication$ | async as application"
+  [user]="application.user"
+  (close)="viewingApplication$.next(null)"
+>
+  <ryodan-application [application]="application"></ryodan-application>
+</ryodan-popup>

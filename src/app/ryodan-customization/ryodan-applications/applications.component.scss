@@ -1,0 +1,17 @@
+tr {
+  grid-template-columns: 0.4fr 100px 91px 80px 120px 85px;
+  // column-gap: 90px;
+  justify-content: space-between;
+
+  th:first-child {
+    padding-left: 21px;
+    min-width: 250px;
+    box-sizing: border-box;
+  }
+}
+
+.window {
+  height: 100%;
+  grid-template-rows: auto auto 1fr;
+  row-gap: 8px;
+}

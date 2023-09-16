@@ -14,6 +14,8 @@ const routes: Routes = [
         { path: 'settings', loadChildren: () => import('../settings/settings.module').then(m => m.SettingsModule), data: { pageName: 'Settings' } },
         { path: 'audit-logs', loadChildren: () => import('../audit-logs/audit-logs.module').then(m => m.AuditLogsModule), data: { pageName: 'Audit logs' } },
 
+        { path: 'ryodan', loadChildren: () => import('../ryodan-customization/ryodan-customization.module').then(m => m.RyodanCustomizationModule), data: { pageName: 'Ryodan' } },
+
         { path: '**', redirectTo: 'dashboard' }
     ]}
 ]

@@ -1,0 +1,27 @@
+<div class="window row">
+  <div class="btn-group">
+    <a routerLink="reports" class="btn" routerLinkActive="btn_active">
+      Reports
+    </a>
+    <a routerLink="applications" class="btn" routerLinkActive="btn_active">
+      Applications
+    </a>
+  </div>
+
+  <button
+    id="btn-update"
+    (click)="updateData()"
+    [disabled]="updateDisabled$ | async"
+  >
+    Update data
+  </button>
+
+  <div class="search-fieldset__input search-control-wrapper">
+    <input
+      type="text"
+      placeholder="Search"
+      class="form-control no-validate"
+      [formControl]="searchControl"
+    />
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<form [formGroup]="form" (ngSubmit)="putApplication()">
+  <div class="row">
+    <ryodan-label label="Report №">
+      {{ application.number }}
+    </ryodan-label>
+    <ryodan-label label="Posted">
+      {{ application.created_at * 1000 | date : "dd.MM.YY" }}
+    </ryodan-label>
+    <ryodan-label label="Updated">
+      {{ application.updated_at * 1000 | date : "dd.MM.YY" }}
+    </ryodan-label>
+  </div>
+
+  <ryodan-label label="Target">
+    {{ application.target }}
+  </ryodan-label>
+
+  <ryodan-label *ngIf="application.wallet" label="Wallet">
+    {{ application.wallet }}
+  </ryodan-label>
+
+  <ryodan-label label="Description">
+    {{ application.description }}
+  </ryodan-label>
+
+  <div class="control-wrapper">
+    <span>Admin comment</span>
+    <textarea
+      type="text"
+      formControlName="adminComment"
+      class="form-control"
+    ></textarea>
+  </div>
+
+  <div class="row" style="align-items: end; grid-template-columns: 1fr 1fr">
+    <div class="control-wrapper">
+      <span>Status</span>
+      <app-select-primary
+        formControlName="state"
+        [opt]="applicationStates"
+      ></app-select-primary>
+    </div>
+    <button
+      class="btn--primary"
+      *ngVar="!!(loading$ | async) as loading"
+      [disabled]="loading"
+    >
+      <btn-loader text="Save" [isSpinner]="loading"></btn-loader>
+    </button>
+  </div>
+</form>
