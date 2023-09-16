@@ -37,7 +37,7 @@ export default class RyodanHeaderComponent implements OnDestroy {
     this.searchControl.valueChanges
       .pipe(
         distinctUntilChanged(),
-        debounceTime(200),
+        debounceTime(500),
         takeUntil(this.destroyed$)
       )
       .subscribe((res) => (this.headerService.searchString = res));
@@ -60,6 +60,6 @@ export default class RyodanHeaderComponent implements OnDestroy {
         takeUntil(this.destroyed$),
         filter((val) => val instanceof NavigationEnd)
       )
-      .subscribe(() => this.searchControl.reset());
+      .subscribe(() => this.searchControl.setValue(''));
   }
 }

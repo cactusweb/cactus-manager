@@ -28,6 +28,7 @@ export class SortPipe implements PipeTransform {
       else return sortType == 'ascend' ? -1 : 1
     })
 
+    console.log(sort)
     return sort;
   }
 
