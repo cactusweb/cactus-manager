@@ -72,7 +72,7 @@ export class ActivationsFieldsetComponent implements OnInit, SettingsFieldset {
     this.getFormControlAsArr('plans').clear();
     
     this.form.patchValue(val.additional_activations)
-    val.additional_activations.plans.forEach(p => {
+    val.additional_activations.plans?.forEach(p => {
       if ( !p.duration )
         p = { duration: 0, price: p.price }
         this.addControl(p)
