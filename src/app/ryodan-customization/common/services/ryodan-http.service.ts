@@ -53,12 +53,11 @@ export class RyodanHttpService {
       reportId
     ).pipe(
       withLatestFrom(this.dataService.reports$),
-      tap(
-        ([editRep, oldReps]) =>
-          (this.dataService.reports = oldReps!.map((rep) =>
-            rep.id === editRep.id ? editRep : rep
-          ))
-      ),
+      tap(([editRep, oldReps]) => {
+        const reps = oldReps!.filter((rep) => rep.id !== reportId);
+        reps.unshift(editRep);
+        this.dataService.reports = reps;
+      }),
       switchMap(([editRep]) => of(editRep)),
       take(1)
     );
@@ -72,12 +71,11 @@ export class RyodanHttpService {
       applicationId
     ).pipe(
       withLatestFrom(this.dataService.applications$),
-      tap(
-        ([editApp, oldApps]) =>
-          (this.dataService.applications = oldApps!.map((rep) =>
-            rep.id === editApp.id ? editApp : rep
-          ))
-      ),
+      tap(([editApp, oldApps]) => {
+        const apps = oldApps!.filter((app) => app.id !== applicationId);
+        apps.unshift(editApp);
+        this.dataService.applications = apps;
+      }),
       switchMap(([editRep]) => of(editRep)),
       take(1)
     );
