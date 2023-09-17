@@ -60,6 +60,9 @@ export default class RyodanHeaderComponent implements OnDestroy {
         takeUntil(this.destroyed$),
         filter((val) => val instanceof NavigationEnd)
       )
-      .subscribe(() => this.searchControl.setValue(''));
+      .subscribe(() => {
+        this.searchControl.setValue('', { emitEvent: false });
+        this.headerService.searchString = '';
+      });
   }
 }
