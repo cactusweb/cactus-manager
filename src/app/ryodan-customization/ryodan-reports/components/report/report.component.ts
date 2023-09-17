@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { BehaviorSubject, Observable, finalize, tap } from 'rxjs';
+import { BehaviorSubject, Observable, finalize, of, tap } from 'rxjs';
 import {
   RyodanReport,
   RyodanReportStates,
@@ -49,6 +49,8 @@ export class RyodanReportComponent implements OnInit {
     value: state.toUpperCase(),
   }));
 
+  readonly RyodanReportStates = RyodanReportStates;
+
   constructor(
     private http: RyodanHttpService,
     private tools: ToolsService,
@@ -75,8 +77,10 @@ export class RyodanReportComponent implements OnInit {
       .putReport(this.form.value, this.reportId)
       .pipe(finalize(() => this.loading$.next(false)))
       .subscribe({
-        next: () =>
-          this.tools.generateNotification('Report changed', 'success'),
+        next: (report) => {
+          this.tools.generateNotification('Report changed', 'success');
+          this.report$ = of(report);
+        },
         error: () => {},
       });
   }

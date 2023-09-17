@@ -65,10 +65,18 @@
       </div>
       <button
         class="btn--primary"
-        *ngVar="!!(loading$ | async) as loading"
-        [disabled]="loading"
+        *ngVar="{
+          loading: !!(loading$ | async),
+          editDisabled:
+            report.state === RyodanReportStates.CONFIRMED ||
+            report.state === RyodanReportStates.REJECTED
+        } as tmplVars"
+        [disabled]="tmplVars.loading || tmplVars.editDisabled"
+        [title]="
+          tmplVars.editDisabled ? 'You cant edit Report from this state' : ''
+        "
       >
-        <btn-loader text="Save" [isSpinner]="loading"></btn-loader>
+        <btn-loader text="Save" [isSpinner]="tmplVars.loading"></btn-loader>
       </button>
     </div>
   </form>

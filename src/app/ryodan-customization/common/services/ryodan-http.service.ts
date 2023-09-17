@@ -46,7 +46,7 @@ export class RyodanHttpService {
   }
 
   putReport(data: Record<string, any>, reportId: string) {
-    return this.request<RyodanShortReport>(
+    return this.request<RyodanReport>(
       'report',
       RyodanRequests['putReport'],
       data,

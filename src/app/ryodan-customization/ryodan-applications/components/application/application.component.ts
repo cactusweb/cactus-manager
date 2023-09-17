@@ -44,6 +44,8 @@ export class RyodanApplicationComponent implements OnInit {
     })
   );
 
+  readonly RyodanApplicationStates = RyodanApplicationStates;
+
   constructor(private http: RyodanHttpService, private tools: ToolsService) {}
 
   ngOnInit(): void {
@@ -60,8 +62,10 @@ export class RyodanApplicationComponent implements OnInit {
       .putApplication(this.form.value, this.application.id)
       .pipe(finalize(() => this.loading$.next(false)))
       .subscribe({
-        next: () =>
-          this.tools.generateNotification('Application changed', 'success'),
+        next: (updatedApp) => {
+          this.tools.generateNotification('Application changed', 'success');
+          this.application = updatedApp;
+        },
         error: () => {},
       });
   }

@@ -40,12 +40,21 @@
         [opt]="applicationStates"
       ></app-select-primary>
     </div>
+
     <button
       class="btn--primary"
-      *ngVar="!!(loading$ | async) as loading"
-      [disabled]="loading"
+      *ngVar="{
+        loading: !!(loading$ | async),
+        editDisabled:
+          application.state === RyodanApplicationStates.CONFIRMED ||
+          application.state === RyodanApplicationStates.REJECTED
+      } as tmplVars"
+      [disabled]="tmplVars.loading || tmplVars.editDisabled"
+      [title]="
+        tmplVars.editDisabled ? 'You cant edit Application from this state' : ''
+      "
     >
-      <btn-loader text="Save" [isSpinner]="loading"></btn-loader>
+      <btn-loader text="Save" [isSpinner]="tmplVars.loading"></btn-loader>
     </button>
   </div>
 </form>
