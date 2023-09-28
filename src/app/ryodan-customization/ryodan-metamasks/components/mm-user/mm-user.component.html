@@ -1,0 +1,7 @@
+<div class="header row">
+  <span class="header__title">
+    Wallets <span *ngIf="metamasks">({{ metamasks.length }})</span>
+  </span>
+
+  <button class="header__btn" (click)="deleteAll()">Delete all</button>
+</div>

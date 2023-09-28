@@ -22,6 +22,13 @@ import { RyodanReportRowComponent } from './ryodan-reports/components/report-row
 import { RyodanHeaderService } from './common/services/ryodan-header.service';
 import { RyodanLabelComponent } from './common/components/label/label.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { RyodanMetamasksComponent } from './ryodan-metamasks/metamasks.component';
+import RyodanMmHeaderComponent from './ryodan-metamasks/components/header/header.component';
+import { RyodanMmHeaderService } from './ryodan-metamasks/components/header/header.service';
+import { RyodanMetamasksFormComponent } from './ryodan-metamasks/components/metamasks-form/metamasks-form.component';
+import { RyodanMmUserRowComponent } from './ryodan-metamasks/components/mm-user-row/mm-user-row.component';
+import { RyodanMmUserComponent } from './ryodan-metamasks/components/mm-user/mm-user.component';
+import { RyodanWalletRowComponent } from './ryodan-metamasks/components/mm-user/wallet-row/wallet-row.component';
 
 const routes: Routes = [
   {
@@ -45,6 +52,14 @@ const routes: Routes = [
         },
       },
       {
+        path: 'metamasks',
+        component: RyodanMetamasksComponent,
+        data: {
+          pageName: 'Ryodan - Metamasks',
+          title: 'Metamasks - CactusManager',
+        },
+      },
+      {
         path: '**',
         redirectTo: 'reports',
       },
@@ -64,6 +79,12 @@ const routes: Routes = [
     RyodanReportComponent,
     RyodanReportRowComponent,
     RyodanLabelComponent,
+    RyodanMetamasksComponent,
+    RyodanMmHeaderComponent,
+    RyodanMetamasksFormComponent,
+    RyodanMmUserRowComponent,
+    RyodanMmUserComponent,
+    RyodanWalletRowComponent,
   ],
   imports: [
     CommonModule,
@@ -79,6 +100,7 @@ const routes: Routes = [
     RyodanHttpService,
     RyodanDataService,
     RyodanHeaderService,
+    RyodanMmHeaderService,
     HttpService,
     {
       provide: HTTP_INTERCEPTORS,

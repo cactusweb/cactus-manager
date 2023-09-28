@@ -33,4 +33,29 @@ export const RyodanRequests: Record<string, req> = {
     url: '/reports/:param',
     method: 'DELETE',
   },
+
+  postMetamasks: {
+    url: '/metamasks',
+    method: 'POST',
+  },
+  getMetamasks: {
+    url: '/metamasks',
+    method: 'GET',
+  },
+  getUserMetamasks: {
+    url: '/metamasks/user/:param',
+    method: 'GET',
+  },
+  getRemainingMetamasksCount: {
+    url: '/metamasks/remaining',
+    method: 'GET',
+  },
+  deleteMetamask: {
+    url: '/metamasks/:param',
+    method: 'DELETE',
+  },
+  deleteUserMetamasks: {
+    url: '/metamasks/user/:param',
+    method: 'DELETE',
+  },
 };

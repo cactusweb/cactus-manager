@@ -2,21 +2,22 @@
 
 .window {
   grid-template-columns: auto auto 1fr;
-  gap: 32px;
+  gap: 16px;
 }
 
 .btn-group {
-  width: 280px;
+  width: 350px;
   border-radius: 8px;
   border: 1px solid #a2acd2;
   padding: 4px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .btn {
   font-weight: 600;
   color: #a2acd2;
+  padding: 0px;
   &:hover,
   &_active {
     background: rgba(120, 175, 248, 0.1);

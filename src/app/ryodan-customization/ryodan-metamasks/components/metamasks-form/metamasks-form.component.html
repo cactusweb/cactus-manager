@@ -1,0 +1,6 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <textarea formControlName="wallets" class="form-control"></textarea>
+  <button class="btn--primary">
+    <btn-loader text="Post" [isSpinner]="!!(loading$ | async)"></btn-loader>
+  </button>
+</form>

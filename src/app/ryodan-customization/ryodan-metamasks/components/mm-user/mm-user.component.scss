@@ -1,0 +1,18 @@
+@import "/src/environments/environment.scss";
+
+.header {
+  justify-content: space-between;
+  * {
+    font-size: 14px;
+  }
+
+  &__title {
+    font-weight: 500;
+  }
+
+  &__btn {
+    color: $err-color;
+    text-decoration: underline;
+    font-weight: 400;
+  }
+}

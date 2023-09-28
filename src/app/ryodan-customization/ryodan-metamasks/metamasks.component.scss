@@ -1,0 +1,22 @@
+.users {
+  height: calc(100% - 56px);
+  grid-template-rows: auto auto 1fr;
+  row-gap: 8px;
+}
+
+tr {
+  grid-template-columns: 0.4fr 100px 56px;
+  // column-gap: 90px;
+  justify-content: space-between;
+
+  th:first-child {
+    padding-left: 21px;
+    min-width: 250px;
+    box-sizing: border-box;
+  }
+}
+
+ryodan-mm-header {
+  display: block;
+  margin-bottom: 8px;
+}

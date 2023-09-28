@@ -1,0 +1,47 @@
+@import "/src/environments/environment.scss";
+
+.report {
+  grid-template-columns: 0.4fr 100px 56px;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  height: 24px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba($color: $primary-color, $alpha: 0.07);
+  }
+
+  &__user {
+    min-width: 250px;
+    box-sizing: border-box;
+    padding-left: 21px;
+    position: relative;
+    cursor: pointer;
+    height: 100%;
+  }
+
+  &__state::first-letter {
+    text-transform: capitalize;
+  }
+
+  &__action {
+    column-gap: 8px;
+    justify-content: start;
+
+    button {
+      height: 22px;
+      width: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover:not(:disabled) svg path {
+        fill: $primary-color;
+      }
+
+      &:disabled {
+        opacity: 0.4;
+      }
+    }
+  }
+}

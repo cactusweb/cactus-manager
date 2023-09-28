@@ -41,3 +41,14 @@ export enum RyodanApplicationStates {
   REJECTED = 'REJECTED',
   CONFIRMED = 'CONFIRMED',
 }
+
+export interface RyodanMetamaskUser {
+  user: User;
+  walletsCount: number;
+}
+
+export interface RyodanMetamask {
+  id: string;
+  phrase: string;
+  updated_at: number; // date
+}

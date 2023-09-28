@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Optional } from '@angular/core';
 import {
   Observable,
   finalize,
+  map,
   of,
   switchMap,
   take,
@@ -13,10 +14,13 @@ import { HttpService } from 'src/app/tools/services/http.service';
 import { RyodanDataService } from './ryodan-data.service';
 import {
   RyodanApplication,
+  RyodanMetamask,
+  RyodanMetamaskUser,
   RyodanReport,
   RyodanShortReport,
 } from '../interfaces/ryodan-customization.interfaces';
 import { RyodanRequests } from '../constants/req.constants';
+import { RyodanMmHeaderService } from '../../ryodan-metamasks/components/header/header.service';
 
 @Injectable()
 export class RyodanHttpService {
@@ -124,25 +128,116 @@ export class RyodanHttpService {
     );
   }
 
+  postMetamaskWallets(phrases: string[]) {
+    return this.request<RyodanMetamask[]>(
+      undefined,
+      RyodanRequests['postMetamasks'],
+      phrases
+    );
+  }
+
+  getMetamaskUsers() {
+    this.request<RyodanMetamaskUser[]>(
+      'metamasks',
+      RyodanRequests['getMetamasks']
+    ).subscribe({
+      next: (d) => (this.dataService.metamaskUsers = d),
+      error: () => {},
+    });
+  }
+
+  getUserMetamasks(userId: string) {
+    return this.request<RyodanMetamask[]>(
+      undefined,
+      RyodanRequests['getUserMetamasks'],
+      undefined,
+      userId
+    );
+  }
+
+  deleteMetamaskWallet(mmId: string, userId: string) {
+    return this.request<void>(
+      undefined,
+      RyodanRequests['deleteMetamask'],
+      undefined,
+      mmId
+    ).pipe(
+      switchMap(() => this.dataService.metamaskUsers$),
+      take(1),
+      tap(
+        (mmUsers) =>
+          (this.dataService.metamaskUsers = mmUsers!.map((mmUser) => {
+            if (mmUser.user.id !== userId) return mmUser;
+            return {
+              ...mmUser,
+              walletsCount: mmUser.walletsCount - 1,
+            };
+          }))
+      ),
+      map(() => {})
+    );
+  }
+
+  deleteMetamasksForUser(userId: string) {
+    return this.request<void>(
+      undefined,
+      RyodanRequests['deleteUserMetamasks'],
+      undefined,
+      userId
+    ).pipe(
+      switchMap(() => this.dataService.metamaskUsers$),
+      take(1),
+      tap((mmUsers) => {
+        this.dataService.metamaskUsers = mmUsers!.map((mmUser) => {
+          if (mmUser.user.id !== userId) return mmUser;
+          return {
+            ...mmUser,
+            walletsCount: 0,
+          };
+        });
+      })
+    );
+  }
+
+  getRemainingMetamasksCount() {
+    return this.request<{ count: number }>(
+      undefined,
+      RyodanRequests['getRemainingMetamasksCount']
+    ).pipe(map((d) => d.count));
+  }
+
   private request<T>(
-    type: 'report' | 'application' | undefined,
+    type: 'report' | 'application' | 'metamasks' | undefined,
     reqParams: req,
     body: any = '',
     urlParam: string = '',
     urlQuery: string = ''
   ) {
-    if (type)
-      type === 'report'
-        ? (this.dataService.reportsPending = true)
-        : (this.dataService.applicationsPending = true);
+    this.changePendingState(type, true);
 
-    return this.http.request(reqParams, body, urlParam, urlQuery).pipe(
-      finalize(() => {
-        if (type)
-          type === 'report'
-            ? (this.dataService.reportsPending = false)
-            : (this.dataService.applicationsPending = false);
-      })
-    ) as Observable<T>;
+    return this.http
+      .request(reqParams, body, urlParam, urlQuery)
+      .pipe(
+        finalize(() => this.changePendingState(type, false))
+      ) as Observable<T>;
+  }
+
+  private changePendingState(
+    type: 'report' | 'application' | 'metamasks' | undefined,
+    state: boolean
+  ) {
+    if (!type) return;
+
+    switch (type) {
+      case 'report':
+        this.dataService.reportsPending = state;
+        break;
+      case 'application':
+        this.dataService.applicationsPending = state;
+        break;
+      case 'metamasks':
+        this.dataService.metamasksPending = state;
+        break;
+    }
   }
 }

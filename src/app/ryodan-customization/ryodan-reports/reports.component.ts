@@ -41,7 +41,7 @@ export class RyodanReportsComponent {
   };
 
   readonly pipeData: any = {
-    searchi: '',
+    search: '',
     sortUpdatedAt: null,
   };
 

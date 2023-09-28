@@ -103,7 +103,7 @@
 <ryodan-popup
   class="image-viewer"
   *ngIf="viewingImg$ | async as img"
-  title="Image viewing"
+  [title]="'Image viewing'"
   (close)="viewingImg$.next(null)"
 >
   <div class="image-viewer__wrapper">

@@ -43,7 +43,7 @@ export class RyodanApplicationsComponent implements OnInit, OnDestroy {
   };
 
   readonly pipeData: any = {
-    searchi: '',
+    search: '',
     sortUpdatedAt: null,
   };
 
