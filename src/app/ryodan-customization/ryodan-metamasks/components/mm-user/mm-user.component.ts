@@ -18,6 +18,8 @@ import {
 import { RyodanMetamask } from 'src/app/ryodan-customization/common/interfaces/ryodan-customization.interfaces';
 import { RyodanHttpService } from 'src/app/ryodan-customization/common/services/ryodan-http.service';
 import { ToolsService } from 'src/app/tools/services/tools.service';
+import { MM_USER_SPINNER_NAME } from './consts';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'ryodan-mm-user',
@@ -36,20 +38,27 @@ export class RyodanMmUserComponent implements OnInit, OnDestroy {
 
   readonly pending$ = new BehaviorSubject(false);
 
+  readonly MM_USER_SPINNER_NAME = MM_USER_SPINNER_NAME;
+
   private readonly destroyed$ = new Subject<void>();
 
   constructor(
     private http: RyodanHttpService,
     private cdr: ChangeDetectorRef,
-    private tools: ToolsService
+    private tools: ToolsService,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
+    this.spinner.show(MM_USER_SPINNER_NAME);
     this.http
       .getUserMetamasks(this.userId)
       .pipe(
         takeUntil(this.destroyed$),
-        finalize(() => this.cdr.markForCheck())
+        finalize(() => {
+          this.cdr.markForCheck();
+          this.spinner.hide(MM_USER_SPINNER_NAME);
+        })
       )
       .subscribe({
         next: (d) => (this.metamasks = d),
@@ -67,27 +76,30 @@ export class RyodanMmUserComponent implements OnInit, OnDestroy {
   }
 
   deleteAll() {
-    this.pending$.next(true);
-
+    this.spinner.show(MM_USER_SPINNER_NAME);
     this.http
       .deleteMetamasksForUser(this.userId)
-      .pipe(finalize(() => this.pending$.next(false)))
+      .pipe(
+        finalize(() => {
+          this.spinner.hide(MM_USER_SPINNER_NAME);
+        })
+      )
       .subscribe({
         next: () => {
           this.metamasks = [];
-          this.cdr.markForCheck();
           this.tools.generateNotification('Wallets deleted', 'success');
+          this.cdr.markForCheck();
         },
         error: () => {},
       });
   }
 
   deleteMm(mmId: string) {
-    this.pending$.next(true);
+    this.spinner.show(MM_USER_SPINNER_NAME);
 
     this.http
       .deleteMetamaskWallet(mmId, this.userId)
-      .pipe(finalize(() => this.pending$.next(false)))
+      .pipe(finalize(() => this.spinner.hide(MM_USER_SPINNER_NAME)))
       .subscribe({
         next: () => {
           this.metamasks = this.metamasks!.filter((mm) => mm.id !== mmId);

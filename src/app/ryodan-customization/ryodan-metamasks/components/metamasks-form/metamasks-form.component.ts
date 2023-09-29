@@ -1,8 +1,13 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RyodanHttpService } from 'src/app/ryodan-customization/common/services/ryodan-http.service';
 import { RyodanMmHeaderService } from '../header/header.service';
-import { BehaviorSubject, finalize, map } from 'rxjs';
+import { BehaviorSubject, finalize, map, tap } from 'rxjs';
 import { ToolsService } from 'src/app/tools/services/tools.service';
 
 @Component({
@@ -12,6 +17,9 @@ import { ToolsService } from 'src/app/tools/services/tools.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RyodanMetamasksFormComponent {
+  @Output()
+  close = new EventEmitter<void>();
+
   readonly form = new FormGroup({
     wallets: new FormControl('', Validators.required),
   });
@@ -33,12 +41,14 @@ export class RyodanMetamasksFormComponent {
     this.http
       .postMetamaskWallets(this.form.get('wallets')!.value.split('\n'))
       .pipe(
-        map((d) => this.header.changeRemainingWalletCount(d.length)),
+        tap((d) => this.header.changeRemainingWalletCount(d.length)),
         finalize(() => this.loading$.next(false))
       )
       .subscribe({
-        next: () =>
+        next: () => {
           this.tools.generateNotification('Successfull posted', 'success'),
+            this.close.emit();
+        },
         error: () => {},
       });
   }

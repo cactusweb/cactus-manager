@@ -1,5 +1,5 @@
-<div class="window row">
-  <span *ngIf="remainingCount$ | async as count" style="font-size: 14px">
+<div class="window row" *ngVar="remainingCount$ | async as count">
+  <span *ngIf="count !== null" style="font-size: 14px">
     Remaining: {{ count }}
   </span>
   <button class="btn btn--primary-outline" (click)="formOpened$.next(true)">
@@ -12,5 +12,5 @@
   [title]="'Upload wallets'"
   (close)="formOpened$.next(false)"
 >
-  <ryodan-mm-form></ryodan-mm-form>
+  <ryodan-mm-form (close)="formOpened$.next(false)"></ryodan-mm-form>
 </ryodan-popup>

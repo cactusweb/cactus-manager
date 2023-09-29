@@ -13,6 +13,7 @@ import { spinnerName } from 'src/app/account/consts';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { RyodanHeaderService } from '../common/services/ryodan-header.service';
 import { User } from 'src/app/licenses/interfaces/user';
+import { RyodanMmHeaderService } from './components/header/header.service';
 
 @Component({
   selector: 'ryodan-metamasks',
@@ -41,10 +42,12 @@ export class RyodanMetamasksComponent implements OnInit, OnDestroy {
     private dataService: RyodanDataService,
     private spinner: NgxSpinnerService,
     private headerService: RyodanHeaderService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private mmHeaderService: RyodanMmHeaderService
   ) {
     this.listenMmUsersLoading();
     this.listenSearchString();
+    this.listenUpdateData();
   }
 
   ngOnInit(): void {
@@ -78,6 +81,15 @@ export class RyodanMetamasksComponent implements OnInit, OnDestroy {
       .subscribe((res) => {
         this.pipeData.search = res;
         this.cdr.markForCheck();
+      });
+  }
+
+  private listenUpdateData() {
+    this.headerService.updateData$
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(() => {
+        this.http.getMetamaskUsers();
+        this.mmHeaderService.getRemainingWalletCount();
       });
   }
 }

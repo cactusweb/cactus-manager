@@ -25,7 +25,7 @@ export class RyodanMmHeaderService {
 
   changeRemainingWalletCount(delta: number) {
     this._remainingWalletCount$.next(
-      this._remainingWalletCount$.value! - delta
+      this._remainingWalletCount$.value! + delta
     );
   }
 }

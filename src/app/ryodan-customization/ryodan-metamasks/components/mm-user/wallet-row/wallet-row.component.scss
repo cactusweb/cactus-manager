@@ -1,0 +1,33 @@
+.wallet {
+  gap: 8px;
+  grid-template-columns: 30px 1fr 0.7fr auto;
+  justify-items: start;
+
+  * {
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  &__index {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(120, 175, 248, 0.1);
+    height: 20px;
+    width: 30px;
+    border-radius: 4px;
+  }
+
+  &__date {
+    padding: 4px 8px;
+    box-sizing: border-box;
+    background: rgba(120, 175, 248, 0.1);
+    border-radius: 4px;
+    height: 25px;
+  }
+
+  &__phrase {
+    gap: 4px;
+    cursor: pointer;
+  }
+}

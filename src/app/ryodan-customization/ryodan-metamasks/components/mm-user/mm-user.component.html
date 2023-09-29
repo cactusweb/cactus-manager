@@ -5,3 +5,21 @@
 
   <button class="header__btn" (click)="deleteAll()">Delete all</button>
 </div>
+
+<div class="form-control-wrapper">
+  <div class="form-control custom-scroll">
+    <ryodan-wallet-row
+      *ngFor="let mm of metamasks; let i = index; trackBy: trackByIndex"
+      [index]="i + 1"
+      [wallet]="mm"
+      (delete)="deleteMm(mm.id)"
+    ></ryodan-wallet-row>
+  </div>
+  <ngx-spinner
+    class="window-radius"
+    type="ball-clip-rotate"
+    size="medium"
+    [fullScreen]="false"
+    [name]="MM_USER_SPINNER_NAME"
+  ></ngx-spinner>
+</div>

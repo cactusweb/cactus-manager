@@ -16,3 +16,25 @@
     font-weight: 400;
   }
 }
+
+.form-control-wrapper {
+  position: relative;
+}
+.form-control {
+  padding: 12px;
+  padding-left: 8px;
+  min-height: 400px;
+  width: 100%;
+  margin-top: 8px;
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  overflow-y: auto;
+  border: none;
+  background: rgba(120, 175, 248, 0.1);
+  justify-content: stretch;
+}
+
+:host ::ng-deep ngx-spinner .la-ball-clip-rotate {
+  color: $primary-color !important;
+}
