@@ -19,7 +19,7 @@
     {{ application.wallet }}
   </ryodan-label>
 
-  <ryodan-label label="Description">
+  <ryodan-label *ngIf="application.description" label="Description">
     {{ application.description }}
   </ryodan-label>
 
