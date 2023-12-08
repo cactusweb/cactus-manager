@@ -9,8 +9,7 @@
           <span class="method__coin">{{ data.type.coin.name }}</span> -
           {{ data.type.network }}
         </ng-template>
-        <span *ngIf="data.tx && data.referredBy">-</span>
-        <p *ngIf="data.referredBy">
+        <p *ngIf="data.referredBy?.username">
           Referred by <strong>{{ data.referredBy.username }}</strong>
         </p>
       </span>
@@ -54,7 +53,7 @@
         </button>
       </div>
     </div>
-    <div class="inp-wrapper" *ngIf="data.referredBy">
+    <div class="inp-wrapper" *ngIf="data.referredBy?.key">
       <span class="inp-wrapper__label">License key</span>
       <div class="form-control row" (click)="tools.copy(data.referredBy.key)">
         <span class="form-control__value">{{ data.referredBy.key }}</span>

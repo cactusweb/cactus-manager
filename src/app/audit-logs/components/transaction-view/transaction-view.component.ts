@@ -1,32 +1,38 @@
-import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { ToolsService } from 'src/app/tools/services/tools.service';
-import { networkScanUrl } from './const';
 import { TxInfo } from './tx-info';
+import { NETWORKS_SCANS } from './transactions.enum';
 
 @Component({
   selector: 'app-transaction-view',
   templateUrl: './transaction-view.component.html',
-  styleUrls: ['./transaction-view.component.scss']
+  styleUrls: ['./transaction-view.component.scss'],
 })
 export class TransactionViewComponent implements OnInit {
-  @Input() data!: TxInfo
+  @Input() data!: TxInfo;
 
   txLink: string = '';
 
-  @Output() onClose = new EventEmitter()
+  @Output() onClose = new EventEmitter();
 
-  constructor(
-    public tools: ToolsService
-  ) { }
+  constructor(public tools: ToolsService) {}
 
   ngOnInit(): void {
-    this.txLink = networkScanUrl[this.data.type.network.toLowerCase()]+this.data.tx;
-  }
-  
-  
-  @HostListener('document:keydown.escape', ['$event'])
-  onEscape(e: KeyboardEvent){
-    this.onClose.emit();
+    this.txLink =
+      NETWORKS_SCANS[
+        this.data.type.network.toUpperCase() as keyof typeof NETWORKS_SCANS
+      ] + this.data.tx;
   }
 
+  @HostListener('document:keydown.escape', ['$event'])
+  onEscape(e: KeyboardEvent) {
+    this.onClose.emit();
+  }
 }
