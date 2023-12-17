@@ -13,7 +13,7 @@ export class AccountService {
   public owner = this.$owner.asObservable()
 
   private $roles = new BehaviorSubject<DsRole[]>([]);
-  public roles = this.$roles.asObservable().pipe(share());
+  public roles = this.$roles.asObservable();
 
   loading: boolean = false
 
