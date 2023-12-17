@@ -11,20 +11,27 @@ import { LicenseRowComponent } from './components/license-row/license-row.compon
 import { LicenseViewingModule } from './screens/license-viewing/license-viewing.module';
 import { LicenseFormModule } from './screens/license-form/license-form.module';
 import { FailedLoadModule } from '../failed-load/failed-load.module';
+import { FilterDsRolesPipe } from './pipes/ds-roles-filter.pipe';
 
 const routes: Routes = [
-  { path: '', component: LicensesComponent, data: {
-      pageName:"Licenses", title: 'Licenses manage - CactusManager',
-      descript: 'License manager - Cactus Manager. View, editing, deliting of license keys and their activations. Get started now!'
-    } 
-  }
-]
+  {
+    path: '',
+    component: LicensesComponent,
+    data: {
+      pageName: 'Licenses',
+      title: 'Licenses manage - CactusManager',
+      descript:
+        'License manager - Cactus Manager. View, editing, deliting of license keys and their activations. Get started now!',
+    },
+  },
+];
 
 @NgModule({
   declarations: [
     LicensesComponent,
     HeaderComponent,
-    LicenseRowComponent
+    LicenseRowComponent,
+    FilterDsRolesPipe,
   ],
   imports: [
     CommonModule,
@@ -35,6 +42,6 @@ const routes: Routes = [
     ToolsModule,
     LicenseViewingModule,
     LicenseFormModule,
-  ]
+  ],
 })
-export class LicensesModule { }
+export class LicensesModule {}

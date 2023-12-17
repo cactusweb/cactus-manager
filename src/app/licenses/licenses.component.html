@@ -1,6 +1,7 @@
 <app-header 
     (onSearch)="pipeData.search = $event"
-    (onFilter)="pipeData.filter = $event"
+    (filterLicTypes)="pipeData.licTypesFilter = $event"
+    (filterDsRoles)="pipeData.dsRolesFilter = $event"
     (onDataUpdate)="updLicenses()"
     (onOpenLicenseForm)="popupType = 'licenseForm'"
 ></app-header>
@@ -36,7 +37,8 @@
                 | search : pipeParams.search : pipeData.search
                 | sort : pipeParams.sortNickname : pipeData.sortNickname
                 | sort : pipeParams.sortRenewDate : pipeData.sortRenewDate
-                | filter : pipeParams.filter : pipeData.filter
+                | filter : pipeParams.filter : pipeData.licTypesFilter
+                | filterDsRoles : pipeData.dsRolesFilter
                 , let i = index, trackBy: trackByFn
             " 
             (onEdit)="popupType = 'licenseForm'; popupLicense = license"

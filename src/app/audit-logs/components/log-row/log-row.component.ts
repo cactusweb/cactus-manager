@@ -38,7 +38,6 @@ export class LogRowComponent implements OnChanges {
       let data = JSON.parse(this.log.details) as TxInfo;
       if (!data.tx && !data.referredBy) throw '';
       this.txInfo = data;
-      console.log(this.txInfo);
     } catch (e) {
       this.txInfo = undefined;
     }

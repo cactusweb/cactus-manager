@@ -15,6 +15,9 @@ import { SelectorValue } from '../../interfaces/selector-values';
 export class SelectorFilterComponent implements ControlValueAccessor {
   @ViewChild('showStatus') showInp!: ElementRef;
 
+  @Input()
+  label = 'Filter'
+
   value: any[] = []
   @Input('opt') options: SelectorValue[] = []
 

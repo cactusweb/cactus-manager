@@ -20,6 +20,9 @@ export class SelectorMultiplyComponent implements ControlValueAccessor {
   @Input('opt') options: SelectorValue[] = []
   @Input() placeholder: string = 'Click to add'
 
+  @Input()
+  showCustomIcon = false;
+
   @Input() search: boolean = false;
 
   constructor(
