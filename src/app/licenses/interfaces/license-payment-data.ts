@@ -4,5 +4,6 @@ export interface LicensePaymentData {
     last_4: string
     timeout: number
     email: string
-    exp_date: string
+    exp_date: string,
+    customer_id: string,
 }

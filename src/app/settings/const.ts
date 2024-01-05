@@ -12,7 +12,8 @@ export const paymentWays: SelectorValue[] = [
     { value: '', display: 'None' },
     { value: 'Crypto' },
     { value: 'Tinkoff' },
-    { value: 'Ameria' }
+    { value: 'Ameria' },
+    { value: 'Stripe' }
 ] 
 
 export const currencies: SelectorValue[] = [

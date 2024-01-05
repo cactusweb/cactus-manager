@@ -21,7 +21,8 @@ export const searchLicenseKeys: string[][] = [
     [ 'payment', 'email' ],
     [ 'payment', 'last_4' ],
     [ 'expires_in' ],
-    [ 'create_at' ]
+    [ 'create_at' ],
+    [ 'payment', 'customer_id' ]
   ]
 
 export const filterLicenseParams = [

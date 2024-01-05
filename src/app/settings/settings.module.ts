@@ -20,14 +20,21 @@ import { OnBeforeUnloadComponent } from './components/on-before-unload/on-before
 import { CryptoFieldsetModule } from './components/crypto-fieldset/crypto-fieldset.module';
 import { PaymentCallsFieldsetComponent } from './components/payment-calls-fieldset/payment-calls-fieldset.component';
 import { ActivationsFieldsetComponent } from './components/activations-fieldset/activations-fieldset.component';
+import { StripeFieldsetComponent } from './components/stripe-fieldset/stripe-fieldset.component';
 
 const routes: Routes = [
-  { path: '', component: SettingsComponent, canDeactivate: [PendingChangesGuard], data: {
-      pageName: 'Settings', title: 'Settings - CactusManager',
-      descript: 'Settings - Cactus Manager. Manage your account and dashboard data.'
-    }
-  }
-]
+  {
+    path: '',
+    component: SettingsComponent,
+    canDeactivate: [PendingChangesGuard],
+    data: {
+      pageName: 'Settings',
+      title: 'Settings - CactusManager',
+      descript:
+        'Settings - Cactus Manager. Manage your account and dashboard data.',
+    },
+  },
+];
 
 @NgModule({
   declarations: [
@@ -45,7 +52,8 @@ const routes: Routes = [
     PaymentDetailComponent,
     OnBeforeUnloadComponent,
     PaymentCallsFieldsetComponent,
-    ActivationsFieldsetComponent
+    ActivationsFieldsetComponent,
+    StripeFieldsetComponent,
   ],
   imports: [
     CommonModule,
@@ -53,7 +61,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     ToolsModule,
-    CryptoFieldsetModule
-  ]
+    CryptoFieldsetModule,
+  ],
 })
-export class SettingsModule { }
+export class SettingsModule {}

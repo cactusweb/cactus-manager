@@ -30,9 +30,14 @@
         </div>
 
         
-        <div class="inp-wrapper" [class.inp-wrapper--disabled]="form.controls['price'].disabled">
+        <div class="inp-wrapper" [class.inp-wrapper--disabled]="form.controls['price'].disabled" >
             <label for="price" class="inp-wrapper__label">Price</label>
             <input type="number" id="price" formControlName="price" class="form-control" placeholder="Initial price" autocomplete="off">
+        </div>
+
+        <div class="inp-wrapper" *ngIf="isStripePaymentWay">
+            <label for="stripe_price_id" class="inp-wrapper__label">Price ID</label>
+            <input type="number" id="stripe_price_id" formControlName="stripe_price_id" class="form-control" placeholder="Stripe PriceId" autocomplete="off">
         </div>
 
         

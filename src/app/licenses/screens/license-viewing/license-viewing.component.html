@@ -41,13 +41,17 @@
         </app-label>
 
 
-        <app-label label="Card info" style="grid-column: 3/5">
+        <app-label label="Card info" style="grid-column: 3/5" *ngIf="!license.payment.customer_id">
             <div class="card row" *ngIf="license.payment.last_4 && license.type != 'lifetime'">
                 <span class="card__number">**** {{license.payment.last_4}}</span>
                 <span class="card__exp">{{getExpDate()}}</span>
             </div>
 
             <ng-template [ngIf]="!license.payment.last_4 || license.type == 'lifetime'">-</ng-template>
+        </app-label>
+        
+        <app-label label="Stripe Customer ID" style="grid-column: 3/5" *ngIf="license.payment.customer_id">
+            {{ license.payment.customer_id }}
         </app-label>
 
 

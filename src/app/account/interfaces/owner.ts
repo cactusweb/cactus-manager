@@ -41,11 +41,12 @@ interface Discord{
 
 
 interface Payment{
-    way: '' | 'Tinkoff' | 'Ameria' | 'Crypto',
+    way: '' | 'Tinkoff' | 'Ameria' | 'Crypto' | 'Stripe',
     currency: string,
     tinkoff: Tinkoff,
     ameria: Ameria,
     crypto: Crypto[],
+    stripe: Stripe,
     details: PaymentDetails
     calls: PaymentCalls
 }
@@ -64,6 +65,11 @@ interface Ameria{
 interface Crypto{
     id: string,
     address: string
+}
+
+interface Stripe{
+    secretKey: string,
+    webhookSecretKey: string,
 }
 
 interface PaymentDetails{

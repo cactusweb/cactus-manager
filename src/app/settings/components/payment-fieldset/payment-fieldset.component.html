@@ -6,9 +6,10 @@
     <fieldset class="window__body">
         
         <div class="inp-wrapper">
-            <label for="payment_way" class="inp-wrapper__label">Way</label>
-            
-            <app-radio-control formControlName="way" name="payment_way"
+            <app-radio-control 
+                formControlName="way"
+                name="payment_way"
+                style="grid-column: 1/3;"
                 [options]="paymentOpts"
             ></app-radio-control>
         </div>
@@ -18,6 +19,8 @@
         <app-ameria-fieldset *ngIf="form.controls['way'].value == 'Ameria'" #PaymentWayData></app-ameria-fieldset>
 
         <app-crypto-fieldset *ngIf="form.controls['way'].value == 'Crypto'" #PaymentWayData></app-crypto-fieldset>
+
+        <app-stripe-fieldset *ngIf="form.controls['way'].value == 'Stripe'" #PaymentWayData></app-stripe-fieldset>
         
         <div class="inp-wrapper">
             <label for="currency" class="inp-wrapper__label">Currency</label>

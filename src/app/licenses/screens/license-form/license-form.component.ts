@@ -1,6 +1,6 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { finalize, Subscription, take, tap } from 'rxjs';
+import { filter, finalize, Subscription, take, tap } from 'rxjs';
 import { AccountService } from 'src/app/account/services/account.service';
 import { SelectorValue } from 'src/app/tools/interfaces/selector-values';
 import { ToolsService } from 'src/app/tools/services/tools.service';
@@ -26,6 +26,15 @@ export class LicenseFormComponent implements OnInit {
 
   @Output() onPost = new EventEmitter<License>()
 
+  
+  licenseTypeOpts: SelectorValue[] = [
+    { value: 'renewal' },
+    { value: 'lifetime' },
+    { value: 'trial' },
+    { value: 'trial-renewal' },
+  ];
+
+  isStripePaymentWay = false;
 
   constructor(
     private acc: AccountService,
@@ -37,6 +46,7 @@ export class LicenseFormComponent implements OnInit {
     this.generateForm();
     this.getDsRoles();
     this.licenseKey = this.license?.key || null;
+    this.getPaymentWay();
   }
 
   
@@ -121,5 +131,22 @@ export class LicenseFormComponent implements OnInit {
       })
       
   }
+  
+  private getPaymentWay() {
+    this.acc.owner
+      .pipe(
+        filter((res) => !!res),
+        take(1),
+        filter((res) => res!.payment.way === 'Stripe')
+      )
+      .subscribe(() => {
+        this.isStripePaymentWay = true;
 
+        this.licenseTypeOpts = this.licenseTypeOpts.filter(
+          (opt) => opt.value !== 'trial-renewal' && opt.value !== 'renewal'
+        );
+
+        this.form.get('price')!.disable();
+      });
+  }
 }

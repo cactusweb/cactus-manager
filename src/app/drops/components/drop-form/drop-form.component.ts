@@ -1,12 +1,13 @@
 import { Component, EventEmitter, HostListener, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { finalize, Subscription, take } from 'rxjs';
+import { filter, finalize, Subscription, take } from 'rxjs';
 import { Plan } from 'src/app/plans/interfaces/plan';
 import { PlansService } from 'src/app/plans/services/plans.service';
 import { SelectorValue } from 'src/app/tools/interfaces/selector-values';
 import { ToolsService } from 'src/app/tools/services/tools.service';
 import { Drop } from '../../interfaces/drop';
 import { DropsService } from '../../services/drops.service';
+import { AccountService } from 'src/app/account/services/account.service';
 
 @Component({
   selector: 'app-drop-form',
@@ -24,10 +25,13 @@ export class DropFormComponent implements OnInit, OnDestroy {
   planOptions: SelectorValue[] = [];
   plans: Plan[] = [];
 
+  isStripePaymentWay = false;
+
   constructor(
     private plansService: PlansService,
     private dropsService: DropsService,
-    private tools: ToolsService
+    private tools: ToolsService,
+    private acc: AccountService
   ) { }
 
   
@@ -39,6 +43,7 @@ export class DropFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.generateForm();
     this.getPlans();
+    this.getPaymentWay();
   }
 
   ngOnDestroy(): void {
@@ -49,6 +54,7 @@ export class DropFormComponent implements OnInit, OnDestroy {
     this.form = new FormGroup({
       quantity: new FormControl(null, Validators.required),
       price: new FormControl(null, Validators.required),
+      stripe_price_id: new FormControl({ value: null, disabled: true }, Validators.required),
       password: new FormControl(null, Validators.required),
       start_at: new FormControl( new Date().toISOString().slice(0, -8), Validators.required ),
       plan: new FormControl(null, Validators.required)
@@ -103,4 +109,17 @@ export class DropFormComponent implements OnInit, OnDestroy {
       })
   }
 
+  private getPaymentWay() {
+    this.acc.owner
+      .pipe(
+        filter((res) => !!res),
+        take(1),
+        filter((res) => res!.payment.way === 'Stripe')
+      )
+      .subscribe(() => {
+        this.isStripePaymentWay = true;
+
+        this.form.get('stripe_price_id')!.enable();
+      });
+  }
 }

@@ -23,7 +23,7 @@
 
         <div class="inp-wrapper">
             <span class="inp-wrapper__label">Type 1</span>
-            <app-radio-control formControlName="type" name="type" [options]="[ {  value: 'renewal' }, { value: 'lifetime' }, { value: 'trial' }, { value: 'trial-renewal' } ]"></app-radio-control>
+            <app-radio-control formControlName="type" name="type" [options]="typeOptions"></app-radio-control>
             <!-- ,  -->
         </div>
 
@@ -38,6 +38,11 @@
             <label for="price" class="inp-wrapper__label">Price</label>
             <input type="number" id="price" formControlName="price" class="form-control" placeholder="Amount" autocomplete="off">
         </div>        
+
+        <div class="inp-wrapper" *ngIf="paymentWayIsStripe">
+            <label for="stripe_price_id" class="inp-wrapper__label">Price ID</label>
+            <input type="number" id="stripe_price_id" formControlName="stripe_price_id" class="form-control" placeholder="Stripe PriceId" autocomplete="off">
+        </div>
 
         
         <div class="inp-wrapper" [class.inp-wrapper--disabled]="form.controls['trial_time'].disabled">

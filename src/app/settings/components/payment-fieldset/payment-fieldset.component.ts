@@ -71,6 +71,7 @@ export class PaymentFieldsetComponent implements OnInit, OnDestroy, SettingsFiel
         tinkoff: way !== 'Tinkoff' ? null : this.dataFieldset._form,
         ameria: way !== 'Ameria' ? null : this.dataFieldset._form,
         crypto: way !== 'Crypto' ? null : this.dataFieldset._form,
+        stripe: way !== 'Stripe' ? null : this.dataFieldset._form,
         details: this.dataDetails._form,
         calls: this.dataCalls._form
       }

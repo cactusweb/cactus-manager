@@ -1,0 +1,27 @@
+<fieldset class="window__body" [formGroup]="form">
+  <div class="inp-wrapper">
+    <label for="terminal-key" class="inp-wrapper__label">Secret key</label>
+    <input
+      type="text"
+      id="terminal-key"
+      formControlName="secret_key"
+      class="form-control"
+      placeholder="Input your key"
+      autocomplete="off"
+    />
+  </div>
+
+  <div class="inp-wrapper">
+    <label for="payment-password" class="inp-wrapper__label">
+      WH secret key
+    </label>
+    <input
+      type="text"
+      id="payment-password"
+      formControlName="webhook_secret_key"
+      class="form-control"
+      placeholder="Input your key"
+      autocomplete="off"
+    />
+  </div>
+</fieldset>
