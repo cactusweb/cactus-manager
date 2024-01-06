@@ -53,6 +53,9 @@
         <app-label label="Stripe Customer ID" style="grid-column: 3/5" *ngIf="license.payment.customer_id">
             {{ license.payment.customer_id }}
         </app-label>
+        <app-label label="Stripe Subscription ID" style="grid-column: 3/5" *ngIf="license.payment.stripe_sub_id">
+            {{ license.payment.stripe_sub_id }}
+        </app-label>
 
 
         <app-label label="Date of joining">{{license.created_at | date:'dd.MM.yy'}}</app-label>

@@ -35,6 +35,6 @@ export class StripeFieldsetComponent implements OnInit, SettingsFieldset {
   }
 
   set _form(val: Owner) {
-    this.form.patchValue(val.payment.tinkoff);
+    this.form.patchValue(val.payment.stripe);
   }
 }

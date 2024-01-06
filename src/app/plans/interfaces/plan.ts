@@ -7,7 +7,8 @@ export interface Plan {
     unbindable: boolean
     activations: number
     type: 'lifetime' | 'renewal' | 'trial' | 'trial-renewal'
-    price: number
+    price: number;
+    stripe_price_id: number;
     roles: DsRole[],
     trial_time: number
 }

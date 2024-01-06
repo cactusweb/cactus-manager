@@ -102,9 +102,15 @@ export class PlanFormComponent implements OnInit, OnDestroy {
       if (v.includes('trial')) this.form.controls['trial_time'].enable();
       else this.form.controls['trial_time'].disable();
 
-      if (v == 'lifetime' || v == 'trial')
+      if (v == 'lifetime' || v == 'trial') {
         this.form.controls['price'].disable();
-      else this.form.controls['price'].enable();
+        this.form.controls['stripe_price_id'].disable();
+      } else {
+        this.form.controls['price'].enable();
+        if (this.paymentWayIsStripe) {
+          this.form.controls['stripe_price_id'].enable();
+        }
+      }
     });
   }
 
