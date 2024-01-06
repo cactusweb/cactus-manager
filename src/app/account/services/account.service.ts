@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, map, share, take, tap } from 'rxjs';
+import { BehaviorSubject, catchError, take, tap } from 'rxjs';
 import { DsRole } from 'src/app/tools/interfaces/ds-role';
 import { HttpService } from 'src/app/tools/services/http.service';
 import { Requests } from '../consts';
@@ -45,10 +45,6 @@ export class AccountService {
           this.lastReqErr = true
           return err
         }),
-        map(d => {
-          (d as any).payment.way = 'Stripe';
-          return d;
-        })
       )
       .subscribe({
         next: undefined,
