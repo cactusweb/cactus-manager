@@ -65,10 +65,7 @@ export class LicenseFormComponent implements OnInit {
       type: new FormControl('renewal', [Validators.required]),
       unbindable: new FormControl(false),
       price: new FormControl(null, Validators.required),
-      stripe_price_id: new FormControl(
-        { value: null, disabled: true },
-        Validators.required
-      ),
+      stripe_price_id: new FormControl({ value: null, disabled: true }),
       expires_in: new FormControl(
         new Date().toISOString().split('T')[0],
         Validators.required
