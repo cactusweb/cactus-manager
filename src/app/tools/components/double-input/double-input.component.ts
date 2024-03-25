@@ -1,5 +1,5 @@
 import { Component, EventEmitter, forwardRef, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import { ControlValueAccessor, UntypedFormControl, UntypedFormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { map, Subscription } from 'rxjs';
 
 interface Structure{
@@ -19,7 +19,7 @@ interface Structure{
   }]
 })
 export class DoubleInputComponent implements OnInit, ControlValueAccessor, OnDestroy {
-  form!: FormGroup
+  form!: UntypedFormGroup
   sub!: Subscription
 
   @Input() struct!: { param1: Structure, param2: Structure }
@@ -30,9 +30,9 @@ export class DoubleInputComponent implements OnInit, ControlValueAccessor, OnDes
   constructor() { }
 
   ngOnInit(): void {
-    this.form = new FormGroup({
-      param1: new FormControl(null, Validators.required),
-      param2: new FormControl(null, Validators.required)
+    this.form = new UntypedFormGroup({
+      param1: new UntypedFormControl(null, Validators.required),
+      param2: new UntypedFormControl(null, Validators.required)
     })
 
     this.sub = this.form.valueChanges

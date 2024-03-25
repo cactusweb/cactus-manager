@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { filter, Subscription, take } from 'rxjs';
 import { Owner } from 'src/app/account/interfaces/owner';
 import { AccountService } from 'src/app/account/services/account.service';
@@ -19,7 +19,7 @@ const actionOpts: SelectorValue[] = [
 export class PaymentCallsFieldsetComponent implements OnInit {
   @Output() onClose = new EventEmitter()
 
-  form!: FormGroup
+  form!: UntypedFormGroup
   sub!: Subscription
 
   actionOpts = actionOpts;
@@ -41,11 +41,11 @@ export class PaymentCallsFieldsetComponent implements OnInit {
   }
 
   generateForm(){
-    this.form = new FormGroup({
-      max_attempts: new FormControl(3, Validators.required),
-      expires_role: new FormControl({ value: null, disabled: true }, Validators.required),
-      action: new FormControl('ticket', Validators.required),
-      wh_content: new FormControl({value: '', disabled: true})
+    this.form = new UntypedFormGroup({
+      max_attempts: new UntypedFormControl(3, Validators.required),
+      expires_role: new UntypedFormControl({ value: null, disabled: true }, Validators.required),
+      action: new UntypedFormControl('ticket', Validators.required),
+      wh_content: new UntypedFormControl({value: '', disabled: true})
     })
 
     this.sub = this.form.controls['action'].valueChanges

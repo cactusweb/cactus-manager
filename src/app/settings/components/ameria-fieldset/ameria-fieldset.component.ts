@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Owner } from 'src/app/account/interfaces/owner';
 import { SettingsFieldset } from '../../settings.component';
 
@@ -9,7 +9,7 @@ import { SettingsFieldset } from '../../settings.component';
   styleUrls: ['./ameria-fieldset.component.scss']
 })
 export class AmeriaFieldsetComponent implements OnInit, SettingsFieldset {
-  form!: FormGroup
+  form!: UntypedFormGroup
 
   constructor() { }
 
@@ -18,10 +18,10 @@ export class AmeriaFieldsetComponent implements OnInit, SettingsFieldset {
   }
 
   generateForm(){
-    this.form = new FormGroup({
-      merchant_id: new FormControl(null, Validators.required),
-      merchant_username: new FormControl(null, Validators.required),
-      merchant_password: new FormControl(null, Validators.required),
+    this.form = new UntypedFormGroup({
+      merchant_id: new UntypedFormControl(null, Validators.required),
+      merchant_username: new UntypedFormControl(null, Validators.required),
+      merchant_password: new UntypedFormControl(null, Validators.required),
     })
   }
 

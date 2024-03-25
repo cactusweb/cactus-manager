@@ -1,5 +1,5 @@
 import { Component, EventEmitter, forwardRef, OnDestroy, OnInit, Output } from '@angular/core';
-import { ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import { ControlValueAccessor, UntypedFormControl, UntypedFormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { SelectorValue } from 'src/app/tools/interfaces/selector-values';
 
@@ -19,7 +19,7 @@ export class PaymentDetailComponent implements ControlValueAccessor, OnDestroy {
   @Output() onTypeChange = new EventEmitter<string>();
   @Output() onDelete = new EventEmitter();
 
-  form!: FormGroup
+  form!: UntypedFormGroup
   placeholder: string = 'Data'
   
   typeOpts: SelectorValue[] = [
@@ -55,9 +55,9 @@ export class PaymentDetailComponent implements ControlValueAccessor, OnDestroy {
   registerOnTouched(fn: any): void {}
 
   generateForm(){
-    this.form = new FormGroup({
-      type: new FormControl('', Validators.required),
-      value: new FormControl('', Validators.required)
+    this.form = new UntypedFormGroup({
+      type: new UntypedFormControl('', Validators.required),
+      value: new UntypedFormControl('', Validators.required)
     })
 
     this.sub1 = this.form.valueChanges.subscribe(res => {

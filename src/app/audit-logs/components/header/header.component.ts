@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { logStatuses } from '../../const';
 
@@ -9,7 +9,7 @@ import { logStatuses } from '../../const';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  form!: FormGroup
+  form!: UntypedFormGroup
   @Output() onFIlterChange = new EventEmitter<{ filter: string[], search: string }>()
 
   sub!: Subscription
@@ -29,9 +29,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   generateForm(){
-    this.form = new FormGroup({
-      filter: new FormControl([]),
-      search: new FormControl('')
+    this.form = new UntypedFormGroup({
+      filter: new UntypedFormControl([]),
+      search: new UntypedFormControl('')
     })
   }
 

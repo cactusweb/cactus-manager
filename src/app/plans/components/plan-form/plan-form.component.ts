@@ -7,7 +7,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/account/services/account.service';
 import { SelectorValue } from 'src/app/tools/interfaces/selector-values';
 import { Plan } from '../../interfaces/plan';
@@ -21,7 +21,7 @@ import { PlansService } from '../../services/plans.service';
   styleUrls: ['./plan-form.component.scss'],
 })
 export class PlanFormComponent implements OnInit, OnDestroy {
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   @Output() onClose = new EventEmitter();
   @Output() onCreate = new EventEmitter<Plan>();
 
@@ -63,18 +63,18 @@ export class PlanFormComponent implements OnInit, OnDestroy {
   }
 
   generateForm() {
-    this.form = new FormGroup({
-      name: new FormControl(null, Validators.required),
-      activations: new FormControl(null, Validators.required),
-      unbindable: new FormControl(false),
-      type: new FormControl('renewal', Validators.required),
-      price: new FormControl(null, Validators.required),
-      stripe_price_id: new FormControl(
+    this.form = new UntypedFormGroup({
+      name: new UntypedFormControl(null, Validators.required),
+      activations: new UntypedFormControl(null, Validators.required),
+      unbindable: new UntypedFormControl(false),
+      type: new UntypedFormControl('renewal', Validators.required),
+      price: new UntypedFormControl(null, Validators.required),
+      stripe_price_id: new UntypedFormControl(
         { value: null, disabled: true },
         Validators.required
       ),
-      roles: new FormControl([]),
-      trial_time: new FormControl(
+      roles: new UntypedFormControl([]),
+      trial_time: new UntypedFormControl(
         { value: null, disabled: true },
         Validators.required
       ),

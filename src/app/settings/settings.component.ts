@@ -5,12 +5,12 @@ import { filter, finalize, first, Observable, Subject, Subscription, take, tap }
 import { FailedLoadService } from '../failed-load/services/failed-load.service';
 import { ComponentCanDeactivate } from './guards/pending-changes.guard';
 import { SettingsService } from './services/settings.service';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 
 export interface SettingsFieldset{
   validate: () => boolean,
   _form: Record<string, any>,
-  form?: FormGroup
+  form?: UntypedFormGroup
 }
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Owner } from 'src/app/account/interfaces/owner';
 import { SettingsFieldset } from '../../settings.component';
 
@@ -16,7 +16,7 @@ interface DetailValue{
 export class PaymentDetailsFieldsetComponent implements OnInit, SettingsFieldset {
   @Output() onClose = new EventEmitter();
 
-  form!: FormGroup
+  form!: UntypedFormGroup
   
   lastData!: { cards: string[], cryptowallets: string[] }
 
@@ -34,8 +34,8 @@ export class PaymentDetailsFieldsetComponent implements OnInit, SettingsFieldset
   }
 
   generateForm(){
-    this.form = new FormGroup({
-      details: new FormArray( [], Validators.required ),
+    this.form = new UntypedFormGroup({
+      details: new UntypedFormArray( [], Validators.required ),
     })
   }
 
@@ -64,19 +64,19 @@ export class PaymentDetailsFieldsetComponent implements OnInit, SettingsFieldset
     this.getFormControls('details').clear();
 
     value.forEach(v => 
-      this.getFormControls('details').push(new FormControl(v))
+      this.getFormControls('details').push(new UntypedFormControl(v))
     )
 
     if ( this.getFormControls('details').length == 0 )
-      this.getFormControls('details').push(new FormControl({ type: '', value: '' }))
+      this.getFormControls('details').push(new UntypedFormControl({ type: '', value: '' }))
   }
 
-  getFormControls(controlName: string): FormArray{
-    return this.form.controls[controlName] as FormArray
+  getFormControls(controlName: string): UntypedFormArray{
+    return this.form.controls[controlName] as UntypedFormArray
   }
 
   addControl(){
-    this.getFormControls('details').push(new FormControl())
+    this.getFormControls('details').push(new UntypedFormControl())
   }
 
   close( save: boolean ){

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Owner } from 'src/app/account/interfaces/owner';
 import { environment } from 'src/environments/environment';
 import { SettingsFieldset } from '../../settings.component';
@@ -10,7 +10,7 @@ import { SettingsFieldset } from '../../settings.component';
   styleUrls: ['./personalization-fieldset.component.scss']
 })
 export class PersonalizationFieldsetComponent implements OnInit, SettingsFieldset {
-  form!: FormGroup;
+  form!: UntypedFormGroup;
 
   constructor() { }
 
@@ -19,8 +19,8 @@ export class PersonalizationFieldsetComponent implements OnInit, SettingsFieldse
   }
 
   generateForm(){
-    this.form = new FormGroup({
-      primary_color: new FormControl(environment.primaryOwnerColor, Validators.required)
+    this.form = new UntypedFormGroup({
+      primary_color: new UntypedFormControl(environment.primaryOwnerColor, Validators.required)
     })
   }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { catchError, filter, finalize, map, Observable, Subscription, take, tap, throwError } from 'rxjs';
 import { spinnerName } from 'src/app/account/consts';
@@ -14,7 +14,7 @@ import { SettingsFieldset } from '../../settings.component';
   styleUrls: ['./referral-fieldset.component.scss']
 })
 export class ReferralFieldsetComponent implements OnInit, SettingsFieldset {
-  form!: FormGroup
+  form!: UntypedFormGroup
 
   sub!: Subscription
 
@@ -32,10 +32,10 @@ export class ReferralFieldsetComponent implements OnInit, SettingsFieldset {
   }
 
   generateForm(){
-    this.form = new FormGroup({
-      enabled: new FormControl(false, Validators.required),
-      price: new FormControl({ value: null, disabled: true }, Validators.required),
-      plan: new FormControl({ value: null, disabled: true }, Validators.required)
+    this.form = new UntypedFormGroup({
+      enabled: new UntypedFormControl(false, Validators.required),
+      price: new UntypedFormControl({ value: null, disabled: true }, Validators.required),
+      plan: new UntypedFormControl({ value: null, disabled: true }, Validators.required)
     })
 
     this.listenEnableStatus()

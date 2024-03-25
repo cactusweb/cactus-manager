@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { finalize, take, tap } from 'rxjs';
 import { License } from 'src/app/licenses/interfaces/license';
 import { LicensesService } from 'src/app/licenses/services/licenses.service';
@@ -14,7 +14,7 @@ export class PointsFormComponent implements OnInit {
   @Input() license!: License
   
   loading: boolean = false;
-  form!: FormGroup
+  form!: UntypedFormGroup
 
 
   constructor(
@@ -33,8 +33,8 @@ export class PointsFormComponent implements OnInit {
   }
 
   generateForm(){
-    this.form = new FormGroup({
-      score: new FormControl(this.license.referral?.score||0, Validators.required)
+    this.form = new UntypedFormGroup({
+      score: new UntypedFormControl(this.license.referral?.score||0, Validators.required)
     })
   }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, UntypedFormControl, FormGroup, Validators } from '@angular/forms';
 import { of, take } from 'rxjs';
 import { Owner } from 'src/app/account/interfaces/owner';
 import { AccountService } from 'src/app/account/services/account.service';
@@ -109,7 +109,7 @@ export class CryptoFieldsetComponent implements OnInit {
           let data: MethodData = { enabled: !!val, address: val?.address||'' } 
           return {
             ...m,
-            control: new FormControl( data, Validators.required )
+            control: new UntypedFormControl( data, Validators.required )
           }
         })
       })

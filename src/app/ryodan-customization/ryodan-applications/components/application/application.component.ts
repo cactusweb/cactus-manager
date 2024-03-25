@@ -11,7 +11,7 @@ import {
 import { BehaviorSubject, finalize } from 'rxjs';
 import { RyodanHttpService } from 'src/app/ryodan-customization/common/services/ryodan-http.service';
 import { ToolsService } from 'src/app/tools/services/tools.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { SelectorValue } from 'src/app/tools/interfaces/selector-values';
 
 const ApplicationStates = [
@@ -32,9 +32,9 @@ export class RyodanApplicationComponent implements OnInit {
 
   readonly loading$ = new BehaviorSubject(false);
 
-  readonly form = new FormGroup({
-    adminComment: new FormControl(''),
-    state: new FormControl('', Validators.required),
+  readonly form = new UntypedFormGroup({
+    adminComment: new UntypedFormControl(''),
+    state: new UntypedFormControl('', Validators.required),
   });
 
   readonly applicationStates: SelectorValue[] = ApplicationStates.map(

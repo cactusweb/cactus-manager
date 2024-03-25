@@ -1,5 +1,5 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import { ControlValueAccessor, UntypedFormControl, UntypedFormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { Owner } from 'src/app/account/interfaces/owner';
 import { SettingsFieldset } from '../../settings.component';
 
@@ -9,7 +9,7 @@ import { SettingsFieldset } from '../../settings.component';
   styleUrls: ['./project-fieldset.component.scss'],
 })
 export class ProjectFieldsetComponent implements SettingsFieldset {
-  form!: FormGroup
+  form!: UntypedFormGroup
 
   constructor() { }
 
@@ -19,9 +19,9 @@ export class ProjectFieldsetComponent implements SettingsFieldset {
 
 
   generateForm(){
-    this.form = new FormGroup({
-      discordId: new FormControl(null, Validators.required),
-      site_url: new FormControl(null)
+    this.form = new UntypedFormGroup({
+      discordId: new UntypedFormControl(null, Validators.required),
+      site_url: new UntypedFormControl(null)
     })
   }
   
