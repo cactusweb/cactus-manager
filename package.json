@@ -32,9 +32,9 @@
     "@angular/platform-browser-dynamic": "^16.2.12",
     "@angular/router": "^16.2.12",
     "echarts": "^5.5.0",
-    "ngx-echarts": "^15.0.3",
-    "ngx-mask": "^15.2.3",
-    "ngx-spinner": "^15.0.1",
+    "ngx-echarts": "^16.2.0",
+    "ngx-mask": "^16.4.2",
+    "ngx-spinner": "^16.0.2",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.3"
