@@ -33,7 +33,6 @@
     "@angular/router": "^16.2.12",
     "echarts": "^5.5.0",
     "ngx-echarts": "^16.2.0",
-    "ngx-mask": "^16.4.2",
     "ngx-spinner": "^16.0.2",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
