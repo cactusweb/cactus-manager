@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { finalize, take } from 'rxjs';
 import { HttpService } from 'src/app/tools/services/http.service';
 import { ToolsService } from 'src/app/tools/services/tools.service';
@@ -11,7 +11,7 @@ import { Requests } from '../../const';
   styleUrls: ['./password-form.component.scss']
 })
 export class PasswordFormComponent implements OnInit {
-  form!: FormGroup
+  form!: UntypedFormGroup
   loading: boolean = false;
 
   @Output() onClose = new EventEmitter();
@@ -32,9 +32,9 @@ export class PasswordFormComponent implements OnInit {
   }
 
   generateForm(){
-    this.form = new FormGroup({
-      current_password: new FormControl(null, Validators.required),
-      new_password: new FormControl(null, Validators.required)
+    this.form = new UntypedFormGroup({
+      current_password: new UntypedFormControl(null, Validators.required),
+      new_password: new UntypedFormControl(null, Validators.required)
     })
   }
 

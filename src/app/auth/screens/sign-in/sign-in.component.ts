@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { take, finalize, catchError } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 
@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
-  loginForm!: FormGroup;
+  loginForm!: UntypedFormGroup;
 
   loading: boolean = false;
 
@@ -23,9 +23,9 @@ export class SignInComponent implements OnInit {
   }
 
   generateForm(){
-    this.loginForm = new FormGroup({
-      email: new FormControl({ value: '', disabled: false }, [Validators.required, Validators.email]),
-      password: new FormControl({ value: '', disabled: false }, [Validators.required])
+    this.loginForm = new UntypedFormGroup({
+      email: new UntypedFormControl({ value: '', disabled: false }, [Validators.required, Validators.email]),
+      password: new UntypedFormControl({ value: '', disabled: false }, [Validators.required])
     })
   }
 

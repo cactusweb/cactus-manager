@@ -1,0 +1,80 @@
+<form [formGroup]="form" (ngSubmit)="onSave()">
+  <label class="window enbaled-switcher" for="enabled">
+    <span class="row tw-justify-between">
+      <span class="tw-font-medium"> Enabled: </span>
+      <app-checkbox-switcher formControlName="enabled" i-id="enabled" />
+    </span>
+  </label>
+
+  <div class="window" [class.window_disabled]="!form.get('enabled')!.value">
+    <h4>General info</h4>
+    <div class="inp-wrapper">
+      <label for="mint-addresses" class="inp-wrapper__label">
+        Mint Addresses
+      </label>
+      <textarea
+        id="mint-addresses"
+        class="form-control"
+        placeholder="Mint addresses of NFT collection separated by return"
+        formControlName="mintAddresses"
+      ></textarea>
+    </div>
+
+    <div class="inp-wrapper">
+      <label for="collection-symbol" class="inp-wrapper__label">
+        Collection symbol
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="collectionSymbol"
+        placeholder="Collection symbol on MagicEden"
+      />
+    </div>
+  </div>
+
+  <div
+    class="window"
+    [class.window_disabled]="!form.get('enabled')!.value"
+    formGroupName="attributesKeys"
+  >
+    <h4>Metadata properties setup</h4>
+    <div class="inp-wrapper">
+      <label for="collection-symbol" class="inp-wrapper__label">
+        License type
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="licenseTypeKey"
+        placeholder="Property name of license type"
+      />
+    </div>
+    <div class="inp-wrapper">
+      <label for="collection-symbol" class="inp-wrapper__label">
+        Renewal date
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="renewalDateKey"
+        placeholder="Property name of renewal date"
+      />
+    </div>
+    <div class="inp-wrapper">
+      <label for="collection-symbol" class="inp-wrapper__label">
+        Blocked state
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="blockedKey"
+        placeholder="Property name of blocked state"
+      />
+    </div>
+  </div>
+
+  <button class="btn btn--primary !tw-w-60 tw-justify-self-end tw-col-start-2">
+    Save
+  </button>
+</form>

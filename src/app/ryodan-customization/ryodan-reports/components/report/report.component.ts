@@ -4,7 +4,7 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject, Observable, finalize, of, tap } from 'rxjs';
 import {
@@ -39,9 +39,9 @@ export class RyodanReportComponent implements OnInit {
 
   readonly loading$ = new BehaviorSubject(false);
 
-  readonly form = new FormGroup({
-    adminComment: new FormControl(''),
-    state: new FormControl('', Validators.required),
+  readonly form = new UntypedFormGroup({
+    adminComment: new UntypedFormControl(''),
+    state: new UntypedFormControl('', Validators.required),
   });
 
   readonly reportStates: SelectorValue[] = ReportStates.map((state) => ({

@@ -4,7 +4,7 @@ import {
   EventEmitter,
   Output,
 } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { RyodanHttpService } from 'src/app/ryodan-customization/common/services/ryodan-http.service';
 import { RyodanMmHeaderService } from '../header/header.service';
 import { BehaviorSubject, finalize, map, tap } from 'rxjs';
@@ -20,8 +20,8 @@ export class RyodanMetamasksFormComponent {
   @Output()
   close = new EventEmitter<void>();
 
-  readonly form = new FormGroup({
-    wallets: new FormControl('', Validators.required),
+  readonly form = new UntypedFormGroup({
+    wallets: new UntypedFormControl('', Validators.required),
   });
 
   readonly loading$ = new BehaviorSubject(false);

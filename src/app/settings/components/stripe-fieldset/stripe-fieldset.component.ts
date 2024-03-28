@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { Owner } from 'src/app/account/interfaces/owner';
 import { SettingsFieldset } from '../../settings.component';
 
@@ -9,7 +9,7 @@ import { SettingsFieldset } from '../../settings.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StripeFieldsetComponent implements OnInit, SettingsFieldset {
-  form!: FormGroup;
+  form!: UntypedFormGroup;
 
   constructor() {}
 
@@ -18,9 +18,9 @@ export class StripeFieldsetComponent implements OnInit, SettingsFieldset {
   }
 
   generateForm() {
-    this.form = new FormGroup({
-      webhook_secret_key: new FormControl(null, Validators.required),
-      secret_key: new FormControl(null, Validators.required),
+    this.form = new UntypedFormGroup({
+      webhook_secret_key: new UntypedFormControl(null, Validators.required),
+      secret_key: new UntypedFormControl(null, Validators.required),
     });
   }
 

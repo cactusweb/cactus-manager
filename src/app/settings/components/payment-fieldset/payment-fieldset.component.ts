@@ -1,5 +1,5 @@
 import { AfterViewChecked, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Owner } from 'src/app/account/interfaces/owner';
 import { paymentWays, currencies } from '../../const';
@@ -19,7 +19,7 @@ export class PaymentFieldsetComponent implements OnInit, OnDestroy, SettingsFiel
   @ViewChild('PaymentWayData') dataFieldset!: TinkoffFieldsetComponent | AmeriaFieldsetComponent | CryptoFieldsetComponent
   @ViewChild('PaymentDetails') dataDetails!: PaymentDetailsFieldsetComponent
   @ViewChild('PaymentCalls') dataCalls!: PaymentCallsFieldsetComponent;
-  form!: FormGroup;
+  form!: UntypedFormGroup;
 
   paymentOpts = paymentWays
   currencyOpts = currencies
@@ -43,9 +43,9 @@ export class PaymentFieldsetComponent implements OnInit, OnDestroy, SettingsFiel
 
 
   generateForm(){
-    this.form = new FormGroup({
-      way: new FormControl(''),
-      currency: new FormControl('USD', Validators.required)
+    this.form = new UntypedFormGroup({
+      way: new UntypedFormControl(''),
+      currency: new UntypedFormControl('USD', Validators.required)
     })
 
     this.sub = this.form.controls['way'].valueChanges

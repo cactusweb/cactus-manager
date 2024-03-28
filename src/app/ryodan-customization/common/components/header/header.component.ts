@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import {
   Subject,
   combineLatest,
@@ -20,7 +20,7 @@ import { NavigationEnd, Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class RyodanHeaderComponent implements OnDestroy {
-  readonly searchControl = new FormControl('');
+  readonly searchControl = new UntypedFormControl('');
 
   readonly updateDisabled$ = combineLatest([
     this.dataService.reportsPending$,

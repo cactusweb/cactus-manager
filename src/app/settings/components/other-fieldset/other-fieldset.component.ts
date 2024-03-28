@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { map, Subscription } from 'rxjs';
 import { Owner } from 'src/app/account/interfaces/owner';
 import { environment } from 'src/environments/environment';
@@ -14,7 +14,7 @@ export class OtherFieldsetComponent implements OnInit, SettingsFieldset {
   botInviteUrl = environment.dsBotInvite;
   showPassForm: boolean = false;
 
-  form!: FormGroup
+  form!: UntypedFormGroup
   showPlansForm: boolean = false;
 
   @ViewChild('PlansFieldset') plansFieldset!: SettingsFieldset
@@ -22,8 +22,8 @@ export class OtherFieldsetComponent implements OnInit, SettingsFieldset {
   constructor() { }
 
   ngOnInit(): void {
-    this.form = new FormGroup({
-      enabled: new FormControl(false),
+    this.form = new UntypedFormGroup({
+      enabled: new UntypedFormControl(false),
     })
   }
 

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { AdditionalActivationPlan, Owner } from 'src/app/account/interfaces/owner';
 import { ToolsService } from 'src/app/tools/services/tools.service';
 import { SettingsFieldset } from '../../settings.component';
@@ -10,7 +10,7 @@ import { SettingsFieldset } from '../../settings.component';
   styleUrls: ['./activations-fieldset.component.scss']
 })
 export class ActivationsFieldsetComponent implements OnInit, SettingsFieldset {
-  form!: FormGroup
+  form!: UntypedFormGroup
 
   doubleInputStruct = {
     param1: { name: 'duration', placeholder: 'Duration', icon: 'days' },
@@ -24,11 +24,11 @@ export class ActivationsFieldsetComponent implements OnInit, SettingsFieldset {
   ) { }
 
   ngOnInit(): void {
-    this.form = new FormGroup({
-      plans: new FormArray([], Validators.required),
-      limits: new FormGroup({
-        lifetime: new FormControl(null, Validators.required),
-        temporary: new FormControl(null, Validators.required)
+    this.form = new UntypedFormGroup({
+      plans: new UntypedFormArray([], Validators.required),
+      limits: new UntypedFormGroup({
+        lifetime: new UntypedFormControl(null, Validators.required),
+        temporary: new UntypedFormControl(null, Validators.required)
       })
     })
 
@@ -79,12 +79,12 @@ export class ActivationsFieldsetComponent implements OnInit, SettingsFieldset {
     })
   }
 
-  getFormControlAsArr(name: string): FormArray{
-    return this.form.get(name) as FormArray
+  getFormControlAsArr(name: string): UntypedFormArray{
+    return this.form.get(name) as UntypedFormArray
   }
   
   addControl( value: AdditionalActivationPlan|null = null ){
-    (this.form.get('plans') as FormArray).push(new FormControl(value))
+    (this.form.get('plans') as UntypedFormArray).push(new UntypedFormControl(value))
   }
 
   isNullOrUndefined(number: any) {

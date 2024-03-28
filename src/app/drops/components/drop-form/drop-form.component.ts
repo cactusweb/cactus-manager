@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostListener, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { filter, finalize, Subscription, take } from 'rxjs';
 import { Plan } from 'src/app/plans/interfaces/plan';
 import { PlansService } from 'src/app/plans/services/plans.service';
@@ -15,7 +15,7 @@ import { AccountService } from 'src/app/account/services/account.service';
   styleUrls: ['./drop-form.component.scss']
 })
 export class DropFormComponent implements OnInit, OnDestroy {
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   loading: boolean = false;
   @Output() onClose = new EventEmitter();
   @Output() onCreate = new EventEmitter<Drop>();
@@ -51,13 +51,13 @@ export class DropFormComponent implements OnInit, OnDestroy {
   }
 
   generateForm(){
-    this.form = new FormGroup({
-      quantity: new FormControl(null, Validators.required),
-      price: new FormControl(null, Validators.required),
-      stripe_price_id: new FormControl({ value: null, disabled: true }, Validators.required),
-      password: new FormControl(null, Validators.required),
-      start_at: new FormControl( new Date().toISOString().slice(0, -8), Validators.required ),
-      plan: new FormControl(null, Validators.required)
+    this.form = new UntypedFormGroup({
+      quantity: new UntypedFormControl(null, Validators.required),
+      price: new UntypedFormControl(null, Validators.required),
+      stripe_price_id: new UntypedFormControl({ value: null, disabled: true }, Validators.required),
+      password: new UntypedFormControl(null, Validators.required),
+      start_at: new UntypedFormControl( new Date().toISOString().slice(0, -8), Validators.required ),
+      plan: new UntypedFormControl(null, Validators.required)
     })
     this.subOnPlanControl();
   }

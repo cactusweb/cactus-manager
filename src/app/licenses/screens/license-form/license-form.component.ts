@@ -6,7 +6,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { filter, finalize, Subscription, take, tap } from 'rxjs';
 import { AccountService } from 'src/app/account/services/account.service';
 import { SelectorValue } from 'src/app/tools/interfaces/selector-values';
@@ -25,7 +25,7 @@ export class LicenseFormComponent implements OnInit {
   @Input() license: License | null = null;
   licenseKey: string | null = null;
 
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   sub!: Subscription;
   loading: boolean = false;
 
@@ -61,18 +61,18 @@ export class LicenseFormComponent implements OnInit {
   }
 
   generateForm() {
-    this.form = new FormGroup({
-      type: new FormControl('renewal', [Validators.required]),
-      unbindable: new FormControl(false),
-      price: new FormControl(null, Validators.required),
-      stripe_price_id: new FormControl({ value: null, disabled: true }),
-      expires_in: new FormControl(
+    this.form = new UntypedFormGroup({
+      type: new UntypedFormControl('renewal', [Validators.required]),
+      unbindable: new UntypedFormControl(false),
+      price: new UntypedFormControl(null, Validators.required),
+      stripe_price_id: new UntypedFormControl({ value: null, disabled: true }),
+      expires_in: new UntypedFormControl(
         new Date().toISOString().split('T')[0],
         Validators.required
       ),
-      roles: new FormControl([]),
-      activations: new FormControl(null, [Validators.required]),
-      description: new FormControl(null),
+      roles: new UntypedFormControl([]),
+      activations: new UntypedFormControl(null, [Validators.required]),
+      description: new UntypedFormControl(null),
     });
     this.subOnLicenseType();
 

@@ -6,7 +6,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { Subject, take, takeUntil } from 'rxjs';
 import { AccountService } from 'src/app/account/services/account.service';
 import { SelectorValue } from 'src/app/tools/interfaces/selector-values';
@@ -31,8 +31,8 @@ export class HeaderComponent implements OnDestroy, OnInit {
 
   dsRoleOptions!: SelectorValue[];
 
-  readonly licTypesControl = new FormControl([]);
-  readonly rolesControl = new FormControl([]);
+  readonly licTypesControl = new UntypedFormControl([]);
+  readonly rolesControl = new UntypedFormControl([]);
 
   readonly destroyed$ = new Subject<void>();
 

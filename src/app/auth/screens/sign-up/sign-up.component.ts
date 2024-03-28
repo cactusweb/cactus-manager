@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { take, finalize, catchError } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 
@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit {
-  registrForm!: FormGroup;
+  registrForm!: UntypedFormGroup;
   error: string = '';
 
   loading: boolean = false;
@@ -23,11 +23,11 @@ export class SignUpComponent implements OnInit {
   }
 
   generateForm(){
-    this.registrForm = new FormGroup({
-      name: new FormControl({ value: '', disabled: false }, [ Validators.required ]),
-      email: new FormControl({ value: '', disabled: false }, [ Validators.required, Validators.email ]),
-      password: new FormControl({ value: '', disabled: false }, [ Validators.required, Validators.minLength(6) ]),
-      key: new FormControl({ value: '', disabled: false }, [ Validators.required ])
+    this.registrForm = new UntypedFormGroup({
+      name: new UntypedFormControl({ value: '', disabled: false }, [ Validators.required ]),
+      email: new UntypedFormControl({ value: '', disabled: false }, [ Validators.required, Validators.email ]),
+      password: new UntypedFormControl({ value: '', disabled: false }, [ Validators.required, Validators.minLength(6) ]),
+      key: new UntypedFormControl({ value: '', disabled: false }, [ Validators.required ])
     })
   }
 
