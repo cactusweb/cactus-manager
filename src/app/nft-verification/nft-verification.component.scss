@@ -1,0 +1,33 @@
+:host {
+  @apply tw-grid;
+}
+
+.window {
+  @apply tw-grid tw-gap-3;
+}
+
+h4 {
+  @apply tw-font-semibold;
+}
+
+.inp-wrapper {
+  grid-template-columns: 132px 1fr;
+  &__label {
+    @apply tw-whitespace-nowrap tw-max-w-none;
+  }
+}
+
+form {
+  @apply tw-grid tw-gap-6 tw-items-start;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto 1fr;
+}
+
+.enbaled-switcher {
+  @apply tw-absolute tw-top-7 tw-p-2 tw-left-40 tw-w-48;
+}
+
+.window_disabled {
+  @apply tw-pointer-events-none tw-opacity-40;
+  transition: 0.2s;
+}

@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [],
+  prefix: "tw-",
+  corePlugins: {
+    preflight: false,
+  },
+  content: ["./src/**/*.{html,ts}"],
   theme: {
     extend: {
       colors: {
