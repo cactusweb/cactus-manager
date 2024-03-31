@@ -6,30 +6,50 @@
     </span>
   </label>
 
-  <div class="window" [class.window_disabled]="!form.get('enabled')!.value">
-    <h4>General info</h4>
-    <div class="inp-wrapper">
-      <label for="mint-addresses" class="inp-wrapper__label">
-        Mint Addresses
-      </label>
-      <textarea
-        id="mint-addresses"
-        class="form-control"
-        placeholder="Mint addresses of NFT collection separated by return"
-        formControlName="mintAddresses"
-      ></textarea>
+  <div class="tw-grid tw-gap-6">
+    <div class="window" [class.window_disabled]="!form.get('enabled')!.value">
+      <h4>General info</h4>
+      <div class="inp-wrapper">
+        <label for="mint-addresses" class="inp-wrapper__label">
+          Mint Addresses
+        </label>
+        <textarea
+          id="mint-addresses"
+          class="form-control"
+          placeholder="Mint addresses of NFT collection separated by return"
+          formControlName="mintAddresses"
+        ></textarea>
+      </div>
+
+      <div class="inp-wrapper">
+        <label for="collection-symbol" class="inp-wrapper__label">
+          Collection symbol
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="collectionSymbol"
+          placeholder="Collection symbol on MagicEden"
+        />
+      </div>
     </div>
 
-    <div class="inp-wrapper">
-      <label for="collection-symbol" class="inp-wrapper__label">
-        Collection symbol
-      </label>
-      <input
-        type="text"
-        class="form-control"
-        formControlName="collectionSymbol"
-        placeholder="Collection symbol on MagicEden"
-      />
+    <div class="window" [class.window_disabled]="!form.get('enabled')!.value">
+      <h4>Licenses setup</h4>
+      <div class="inp-wrapper">
+        <span class="inp-wrapper__label">Renewal plan</span>
+        <app-select-primary
+          formControlName="rn_plan"
+          [opt]="(rnPlans$ | async)!"
+        />
+      </div>
+      <div class="inp-wrapper">
+        <span class="inp-wrapper__label">Lifetime plan</span>
+        <app-select-primary
+          formControlName="lt_plan"
+          [opt]="(ltPlans$ | async)!"
+        />
+      </div>
     </div>
   </div>
 

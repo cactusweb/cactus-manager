@@ -1,6 +1,6 @@
 import { req } from 'src/app/tools/interfaces/req-map';
 
-const apiUrl = '/nft-verification';
+const API_URL = '/nft-verification';
 
 const enum HttpRequestNames {
   PUT_DATA = 'PUT_DATA',
@@ -9,12 +9,12 @@ const enum HttpRequestNames {
 
 export const NftVerificationRequests: Record<HttpRequestNames, req> = {
   [HttpRequestNames.PUT_DATA]: {
-    url: apiUrl,
+    url: API_URL,
     method: 'PUT',
   },
 
   [HttpRequestNames.GET_DATA]: {
-    url: '/nft',
+    url: API_URL,
     method: 'GET',
   },
 };

@@ -3,6 +3,8 @@ export interface NftVerificationDTO {
   mintAddresses: string[];
   collectionSymbol: string | undefined;
   attributesKeys: NftVerificationAttributesKeysDTO;
+  lt_plan: string;
+  rn_plan: string;
 }
 
 export interface NftVerificationAttributesKeysDTO {

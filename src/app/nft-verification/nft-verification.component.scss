@@ -31,3 +31,7 @@ form {
   @apply tw-pointer-events-none tw-opacity-40;
   transition: 0.2s;
 }
+
+textarea.form-control {
+  @apply tw-py-2 #{!important};
+}

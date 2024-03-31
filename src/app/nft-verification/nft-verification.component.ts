@@ -3,15 +3,18 @@ import {
   ChangeDetectorRef,
   Component,
   OnInit,
+  inject,
 } from '@angular/core';
 import { HttpService } from '../tools/services/http.service';
 import { NftVerificationRequests } from './common/consts/nft-verification.consts';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { spinnerName } from '../account/consts';
-import { filter, finalize, map } from 'rxjs';
+import { filter, finalize, map, shareReplay } from 'rxjs';
 import { NftVerificationDTO } from './common/models/nft-verification.models';
 import { ToolsService } from '../tools/services/tools.service';
+import { PlansService } from '../plans/services/plans.service';
+import { SelectorValue } from '../tools/interfaces/selector-values';
 
 @Component({
   selector: 'cm-nft-verification',
@@ -23,6 +26,8 @@ export class NftVerificationComponent implements OnInit {
   readonly form = new FormGroup({
     enabled: new FormControl(false, Validators.required),
     mintAddresses: new FormControl('', Validators.required),
+    rn_plan: new FormControl('', Validators.required),
+    lt_plan: new FormControl(''),
     collectionSymbol: new FormControl<string | undefined>(
       undefined,
       Validators.required
@@ -33,6 +38,28 @@ export class NftVerificationComponent implements OnInit {
       blockedKey: new FormControl<undefined | string>(undefined),
     }),
   });
+
+  private readonly plans$ = inject(PlansService).getPlans();
+
+  readonly ltPlans$ = this.plans$.pipe(
+    map((plans) =>
+      plans
+        .filter((p) => p.type === 'lifetime')
+        .map(
+          (plan) => ({ display: plan.name, value: plan.id } as SelectorValue)
+        )
+    )
+  );
+
+  readonly rnPlans$ = this.plans$.pipe(
+    map((plans) =>
+      plans
+        .filter((p) => p.type === 'renewal')
+        .map(
+          (plan) => ({ display: plan.name, value: plan.id } as SelectorValue)
+        )
+    )
+  );
 
   constructor(
     private http: HttpService,

@@ -1,5 +1,5 @@
-import { EventEmitter, Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, filter, finalize, Observable, share, tap, throwError } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, catchError, filter, finalize, Observable, shareReplay, tap } from 'rxjs';
 import { HttpService } from 'src/app/tools/services/http.service';
 import { Requests } from '../const';
 import { Plan } from '../interfaces/plan';
@@ -46,7 +46,7 @@ export class PlansService {
     }
     
     // @ts-ignore
-    return this.$plans.asObservable().pipe(share())
+    return this.$plans.asObservable().pipe(shareReplay())
       .pipe(
         filter(d => !!d)
       );
