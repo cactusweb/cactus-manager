@@ -1,0 +1,16 @@
+.mdc-button {
+  @apply tw-text-base tw-font-medium;
+  @apply tw-rounded-lg tw-h-10 tw-py-0 tw-px-6 #{!important};
+
+  &[mat-flat-button] &__label {
+    color: white;
+  }
+
+  .mat-mdc-button-touch-target {
+    height: 50px !important;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+  }
+}

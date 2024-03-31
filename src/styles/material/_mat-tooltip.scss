@@ -1,0 +1,5 @@
+#root .mdc-tooltip {
+  &__surface {
+    @apply tw-p-2 tw-text-sm tw-leading-[18px] tw-bg-accent;
+  }
+}

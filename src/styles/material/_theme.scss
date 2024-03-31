@@ -1,0 +1,65 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+@import "@angular/material/theming";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+$primary-color: #78aff8;
+$accent-color: #5f8ca0;
+$error-color: #e24c4c;
+
+$primary-colors: (
+  500: $primary-color,
+  700: $primary-color,
+  900: $primary-color,
+  contrast: (),
+);
+
+$accent-colors: (
+  500: $accent-color,
+  700: $accent-color,
+  900: $accent-color,
+  contrast: (),
+);
+
+$warn-colors: (
+  100: $error-color,
+  500: $error-color,
+  700: $error-color,
+  contrast: (),
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$cactus-manager-v2-primary: mat.define-palette($primary-colors, 500, 900);
+
+$cactus-manager-v2-accent: mat.define-palette($accent-colors, 500, 700, 900);
+
+// The warn palette is optional (defaults to red).
+$cactus-manager-v2-warn: mat.define-palette($warn-colors, 500);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$cactus-manager-v2-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $cactus-manager-v2-primary,
+      accent: $cactus-manager-v2-accent,
+      warn: $cactus-manager-v2-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($cactus-manager-v2-theme);
+
+@import "./mat-button";
+@import "./mat-tooltip";

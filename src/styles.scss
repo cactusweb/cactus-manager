@@ -1,4 +1,5 @@
 @import '/src/environments/environment.scss';
+@import '/src/styles/material/theme';
 
 @tailwind base;
 @tailwind components;
@@ -680,3 +681,5 @@ textarea.form-control{
         background-color: #F0F0F7;
     }
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
