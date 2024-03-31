@@ -4,6 +4,9 @@ import { Route, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToolsModule } from '../tools/tools.module';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const route: Route = {
   path: '',
@@ -24,6 +27,9 @@ const route: Route = {
     FormsModule,
     ReactiveFormsModule,
     ToolsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTooltipModule,
   ],
 })
 export class NftVerificationModule {}

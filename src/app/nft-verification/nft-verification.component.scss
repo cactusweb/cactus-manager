@@ -4,6 +4,14 @@
 
 .window {
   @apply tw-grid tw-gap-3;
+  &_disabled {
+    @apply tw-pointer-events-none tw-opacity-40;
+    transition: 0.2s;
+  }
+
+  &__header {
+    @apply tw-grid tw-grid-flow-col tw-justify-start tw-gap-2 tw-items-center;
+  }
 }
 
 h4 {
@@ -27,11 +35,10 @@ form {
   @apply tw-absolute tw-top-7 tw-p-2 tw-left-40 tw-w-48;
 }
 
-.window_disabled {
-  @apply tw-pointer-events-none tw-opacity-40;
-  transition: 0.2s;
-}
-
 textarea.form-control {
   @apply tw-py-2 #{!important};
+}
+
+mat-icon {
+  @apply tw-text-lg tw-leading-5 tw-h-5 tw-cursor-pointer;
 }

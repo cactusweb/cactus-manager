@@ -35,7 +35,14 @@
     </div>
 
     <div class="window" [class.window_disabled]="!form.get('enabled')!.value">
-      <h4>Licenses setup</h4>
+      <div class="window__header">
+        <h4>Licenses setup</h4>
+        <mat-icon
+          matTooltip="Data of the licenses that will be issued after confirming ownership of the NFT"
+        >
+          help
+        </mat-icon>
+      </div>
       <div class="inp-wrapper">
         <span class="inp-wrapper__label">Renewal plan</span>
         <app-select-primary
@@ -58,7 +65,12 @@
     [class.window_disabled]="!form.get('enabled')!.value"
     formGroupName="attributesKeys"
   >
-    <h4>Metadata properties setup</h4>
+    <div class="window__header">
+      <h4>Metadata properties setup</h4>
+      <mat-icon matTooltip="Names of properties on NFT metadata">
+        help
+      </mat-icon>
+    </div>
     <div class="inp-wrapper">
       <label for="collection-symbol" class="inp-wrapper__label">
         License type
@@ -94,7 +106,11 @@
     </div>
   </div>
 
-  <button class="btn btn--primary !tw-w-60 tw-justify-self-end tw-col-start-2">
+  <button
+    mat-flat-button
+    color="primary"
+    class="!tw-w-60 tw-justify-self-end tw-col-start-2"
+  >
     Save
   </button>
 </form>
