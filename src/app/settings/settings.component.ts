@@ -6,6 +6,7 @@ import { FailedLoadService } from '../failed-load/services/failed-load.service';
 import { ComponentCanDeactivate } from './guards/pending-changes.guard';
 import { SettingsService } from './services/settings.service';
 import { UntypedFormGroup } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 export interface SettingsFieldset{
   validate: () => boolean,
@@ -21,6 +22,8 @@ export interface SettingsFieldset{
 })
 export class SettingsComponent implements OnInit, OnDestroy, ComponentCanDeactivate {
   @ViewChildren('fieldset') fieldsets!: QueryList<SettingsFieldset>
+
+  readonly guideUrl = environment.guideURL + '/getting-started';
 
   account!: Owner | null
   sub1: Subscription | undefined

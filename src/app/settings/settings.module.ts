@@ -21,6 +21,8 @@ import { CryptoFieldsetModule } from './components/crypto-fieldset/crypto-fields
 import { PaymentCallsFieldsetComponent } from './components/payment-calls-fieldset/payment-calls-fieldset.component';
 import { ActivationsFieldsetComponent } from './components/activations-fieldset/activations-fieldset.component';
 import { StripeFieldsetComponent } from './components/stripe-fieldset/stripe-fieldset.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 const routes: Routes = [
   {
@@ -62,6 +64,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     ToolsModule,
     CryptoFieldsetModule,
+    MatButtonModule,
+    MatIconModule,
   ],
 })
 export class SettingsModule {}
