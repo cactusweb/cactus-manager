@@ -1,10 +1,23 @@
 <form [formGroup]="form" (ngSubmit)="onSave()">
-  <label class="window enbaled-switcher" for="enabled">
-    <span class="row tw-justify-between">
-      <span class="tw-font-medium"> Enabled: </span>
-      <app-checkbox-switcher formControlName="enabled" i-id="enabled" />
-    </span>
-  </label>
+  <div class="general row">
+    <label class="window enbaled-switcher" for="enabled">
+      <span class="row tw-justify-between">
+        <span class="tw-font-medium"> Enabled: </span>
+        <app-checkbox-switcher formControlName="enabled" i-id="enabled" />
+      </span>
+    </label>
+
+    <button
+      mat-mini-fab
+      color="primary"
+      type="button"
+      matTooltip="Copy link to verification"
+      [disabled]="!form.get('enabled')!.value"
+      (click)="copyLink()"
+    >
+      <mat-icon>link</mat-icon>
+    </button>
+  </div>
 
   <div class="tw-grid tw-gap-6">
     <div class="window" [class.window_disabled]="!form.get('enabled')!.value">

@@ -10,11 +10,12 @@ import { NftVerificationRequests } from './common/consts/nft-verification.consts
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { spinnerName } from '../account/consts';
-import { filter, finalize, map, shareReplay } from 'rxjs';
+import { filter, finalize, map, shareReplay, take } from 'rxjs';
 import { NftVerificationDTO } from './common/models/nft-verification.models';
 import { ToolsService } from '../tools/services/tools.service';
 import { PlansService } from '../plans/services/plans.service';
 import { SelectorValue } from '../tools/interfaces/selector-values';
+import { AccountService } from '../account/services/account.service';
 
 @Component({
   selector: 'cm-nft-verification',
@@ -65,7 +66,8 @@ export class NftVerificationComponent implements OnInit {
     private http: HttpService,
     private spinner: NgxSpinnerService,
     private tools: ToolsService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private account: AccountService
   ) {}
 
   ngOnInit(): void {
@@ -85,6 +87,20 @@ export class NftVerificationComponent implements OnInit {
         this.form.patchValue(res);
         this.cdr.markForCheck();
       });
+  }
+
+  copyLink() {
+    this.account.owner
+      .pipe(
+        take(1),
+        filter(Boolean),
+        map((d) => d.general.name.replace(' ', '-').toLowerCase())
+      )
+      .subscribe((res) =>
+        this.tools.copy(
+          `https://dashboard.cactusweb.io/${res}/nft-verification`
+        )
+      );
   }
 
   onSave() {

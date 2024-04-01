@@ -32,7 +32,11 @@ form {
 }
 
 .enbaled-switcher {
-  @apply tw-absolute tw-top-7 tw-p-2 tw-left-40 tw-w-48;
+  @apply tw-p-2 tw-w-48;
+}
+
+.general {
+  @apply tw-absolute tw-top-7 tw-left-40 tw-gap-6;
 }
 
 textarea.form-control {
