@@ -16,6 +16,7 @@ import { ToolsService } from '../tools/services/tools.service';
 import { PlansService } from '../plans/services/plans.service';
 import { SelectorValue } from '../tools/interfaces/selector-values';
 import { AccountService } from '../account/services/account.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'cm-nft-verification',
@@ -41,6 +42,7 @@ export class NftVerificationComponent implements OnInit {
   });
 
   private readonly plans$ = inject(PlansService).getPlans();
+  readonly guideUrl = environment.guideURL + '/nft-verification';
 
   readonly ltPlans$ = this.plans$.pipe(
     map((plans) =>

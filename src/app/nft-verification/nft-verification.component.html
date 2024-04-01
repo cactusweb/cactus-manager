@@ -2,7 +2,7 @@
   <div class="general row">
     <label class="window enbaled-switcher" for="enabled">
       <span class="row tw-justify-between">
-        <span class="tw-font-medium"> Enabled: </span>
+        <span class="tw-font-medium"> Enabled </span>
         <app-checkbox-switcher formControlName="enabled" i-id="enabled" />
       </span>
     </label>
@@ -119,11 +119,18 @@
     </div>
   </div>
 
-  <button
+  <a
     mat-flat-button
-    color="primary"
-    class="!tw-w-60 tw-justify-self-end tw-col-start-2"
+    color="accent"
+    target="_blank"
+    [href]="guideUrl"
+    class="tw-justify-self-start"
   >
+    Setup Guide
+    <mat-icon iconPositionEnd>open_in_new</mat-icon>
+  </a>
+
+  <button mat-flat-button color="primary" class="!tw-w-60 tw-justify-self-end">
     Save
   </button>
 </form>
