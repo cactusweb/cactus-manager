@@ -23,6 +23,7 @@ import { ActivationsFieldsetComponent } from './components/activations-fieldset/
 import { StripeFieldsetComponent } from './components/stripe-fieldset/stripe-fieldset.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const routes: Routes = [
   {
@@ -66,6 +67,7 @@ const routes: Routes = [
     CryptoFieldsetModule,
     MatButtonModule,
     MatIconModule,
+    MatTooltipModule,
   ],
 })
 export class SettingsModule {}
