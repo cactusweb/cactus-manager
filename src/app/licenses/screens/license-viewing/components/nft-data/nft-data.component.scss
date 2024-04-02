@@ -1,0 +1,22 @@
+@import "/src/environments/environment.scss";
+
+.btn-icon {
+  &:hover svg path {
+    fill: $primary-color;
+  }
+}
+
+.copy-icon {
+  height: 16px;
+  width: 14px;
+  svg {
+    @apply tw-relative tw-top-0.5;
+  }
+}
+
+.property {
+  @apply tw-gap-1.5;
+  > * {
+    @apply tw-text-sm;
+  }
+}

@@ -1,0 +1,44 @@
+<app-label label="NFT Data" *ngIf="nftData">
+  <div class="row tw-justify-between tw-w-full">
+    <p class="property row tw-justify-start">
+      <span>Name:</span>
+      <button class="btn-icon" (click)="copy(nftData.name)">
+        {{ nftData.name }}
+        <ng-template *ngTemplateOutlet="copyIcon" />
+      </button>
+    </p>
+    <p class="property row tw-justify-start">
+      <span>Wallet:</span>
+      <button class="btn-icon" (click)="copy(nftData.wallet)">
+        ****{{ getLastFour(nftData.wallet) }}
+        <ng-template *ngTemplateOutlet="copyIcon" />
+      </button>
+    </p>
+    <p class="property row tw-justify-start">
+      <span>Mint:</span>
+      <button class="btn-icon" (click)="copy(nftData.mintAddress)">
+        ****{{ getLastFour(nftData.mintAddress) }}
+        <ng-template *ngTemplateOutlet="copyIcon" />
+      </button>
+    </p>
+  </div>
+</app-label>
+
+<ng-template #copyIcon>
+  <span class="copy-icon">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="14"
+      height="16"
+      viewBox="0 0 14 16"
+      fill="none"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M4.71597 0.743934C4.87417 0.587636 5.08874 0.499803 5.3125 0.499756H8.6875C9.35883 0.499756 10.0027 0.763161 10.4774 1.23202C10.9521 1.70089 11.2188 2.3368 11.2188 2.99988V10.5002C11.2187 11.1633 10.9521 11.7992 10.4774 12.2681C10.0027 12.737 9.35883 13.0004 8.6875 13.0004H2.78125C2.10992 13.0004 1.46609 12.737 0.991386 12.2681C0.516685 11.7992 0.25 11.1633 0.25 10.5002V5.5C0.250048 5.27899 0.338974 5.06706 0.497219 4.9108L4.71597 0.743934V0.743934ZM8.6875 2.1665H6.15625V5.5C6.15625 5.72102 6.06736 5.933 5.90912 6.08928C5.75089 6.24557 5.53628 6.33337 5.3125 6.33337H1.9375V10.5002C1.9375 10.7213 2.02639 10.9332 2.18463 11.0895C2.34286 11.2458 2.55747 11.3336 2.78125 11.3336H8.6875C8.91128 11.3336 9.12589 11.2458 9.28412 11.0895C9.44236 10.9332 9.53125 10.7213 9.53125 10.5002V2.99988C9.53125 2.77885 9.44236 2.56688 9.28412 2.41059C9.12589 2.25431 8.91128 2.1665 8.6875 2.1665ZM3.13056 4.66663H4.46875V3.34489L3.13056 4.66663ZM12.9062 2.1665C13.13 2.1665 13.3446 2.25431 13.5029 2.41059C13.6611 2.56688 13.75 2.77885 13.75 2.99988V13.0004C13.75 13.6634 13.4833 14.2994 13.0086 14.7682C12.5339 15.2371 11.8901 15.5005 11.2188 15.5005H2.78125C2.55747 15.5005 2.34286 15.4127 2.18463 15.2564C2.02639 15.1001 1.9375 14.8881 1.9375 14.6671C1.9375 14.4461 2.02639 14.2341 2.18463 14.0778C2.34286 13.9215 2.55747 13.8337 2.78125 13.8337H11.2188C11.4425 13.8337 11.6571 13.7459 11.8154 13.5896C11.9736 13.4334 12.0625 13.2214 12.0625 13.0004V2.99988C12.0625 2.77885 12.1514 2.56688 12.3096 2.41059C12.4679 2.25431 12.6825 2.1665 12.9062 2.1665V2.1665Z"
+        fill="#A2ACD2"
+      />
+    </svg>
+  </span>
+</ng-template>

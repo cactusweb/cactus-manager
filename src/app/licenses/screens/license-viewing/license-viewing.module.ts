@@ -4,6 +4,7 @@ import { LicenseViewingComponent } from './license-viewing.component';
 import { LabelComponent } from './components/label/label.component';
 import { UserDataComponent } from './components/user-data/user-data.component';
 import { ToolsModule } from 'src/app/tools/tools.module';
+import { NftDataComponent } from './components/nft-data/nft-data.component';
 
 
 
@@ -11,7 +12,8 @@ import { ToolsModule } from 'src/app/tools/tools.module';
   declarations: [
     LicenseViewingComponent,
     LabelComponent,
-    UserDataComponent
+    UserDataComponent,
+    NftDataComponent,
   ],
   imports: [
     CommonModule,
