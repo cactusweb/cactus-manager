@@ -30,10 +30,7 @@ export class NftVerificationComponent implements OnInit {
     mintAddresses: new FormControl('', Validators.required),
     rn_plan: new FormControl('', Validators.required),
     lt_plan: new FormControl(''),
-    collectionSymbol: new FormControl<string | undefined>(
-      undefined,
-      Validators.required
-    ),
+    collectionSymbol: new FormControl<string | undefined>(undefined),
     attributesKeys: new FormGroup({
       licenseTypeKey: new FormControl('', Validators.required),
       renewalDateKey: new FormControl('', Validators.required),
@@ -96,7 +93,7 @@ export class NftVerificationComponent implements OnInit {
       .pipe(
         take(1),
         filter(Boolean),
-        map((d) => d.general.name.replace(' ', '-').toLowerCase())
+        map((d) => d.general.name.replaceAll(' ', '-').toLowerCase())
       )
       .subscribe((res) =>
         this.tools.copy(

@@ -8,5 +8,24 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+declare global {
+  interface String {
+    replaceAll(searchValue: string, replaceValue: string): string;
+  }
+}
+
+String.prototype.replaceAll = function (
+  this: string,
+  searchValue: string,
+  replaceValue: string
+) {
+  let s = this;
+  while (s.includes(searchValue)) {
+    s = s.replace(searchValue, replaceValue);
+  }
+  return s;
+};
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch((err) => console.error(err));
