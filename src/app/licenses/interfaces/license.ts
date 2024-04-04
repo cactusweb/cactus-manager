@@ -20,7 +20,7 @@ export interface License {
   referral: Referral | null;
 
   /** Информация о НФТ, по которой была получена лицензия */
-  nftData?: LicenseNftDataDTO | null;
+  nft_data?: LicenseNftDataDTO | null;
 }
 
 export interface LicenseNftDataDTO {
