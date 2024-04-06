@@ -23,6 +23,7 @@
         'action--danger':
           log.action == 'deleted' ||
           log.action == 'expired' ||
+          log.action == 'nft-verify-failed' ||
           log.action == 'trial-expired',
         'action--warning':
           log.action == 'unbind' ||
