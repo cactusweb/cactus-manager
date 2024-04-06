@@ -15,7 +15,9 @@ export interface Owner {
 
     payment: Payment,
 
-    additional_activations: AdditionalActivations
+    additional_activations: AdditionalActivations,
+
+    webhook_url: string,
 }
 
 

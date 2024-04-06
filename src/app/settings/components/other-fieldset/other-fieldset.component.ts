@@ -37,7 +37,7 @@ export class OtherFieldsetComponent implements OnInit, SettingsFieldset {
       additional_activations: new UntypedFormGroup({
         enabled: new UntypedFormControl(false),
       }),
-      webhookUrl: new FormControl<string | undefined>(undefined),
+      webhook_url: new FormControl<string | undefined>(undefined),
     });
   }
 
@@ -60,7 +60,7 @@ export class OtherFieldsetComponent implements OnInit, SettingsFieldset {
         ...this.form.value.additional_activations,
         ...this.plansFieldset._form,
       },
-      webhookUrl: this.form.value.webhookUrl,
+      webhook_url: this.form.value.webhook_url,
     };
   }
 
