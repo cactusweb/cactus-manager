@@ -68,7 +68,7 @@ export class LicenseRowComponent implements OnInit {
   }
 
   paymentCardActive(): boolean{
-    return !!this.license.payment.last_4
+    return !!(this.license.payment.last_4 || this.license.payment.stripe_sub_id)
   }
 
   renewBeforeDays(daysBefore: number){
