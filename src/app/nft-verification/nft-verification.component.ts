@@ -136,7 +136,7 @@ export class NftVerificationComponent implements OnInit {
 
     const value = {
       ...this.form.value,
-      mintAddresses: this.form.value.mintAddresses!.split('\n'),
+      mintAddresses: this.modifyMintAddresses(this.form.value.mintAddresses!),
     };
 
     this.spinner.show(spinnerName);
@@ -162,5 +162,13 @@ export class NftVerificationComponent implements OnInit {
         frozenForm.get('key')![action]();
         frozenForm.get('role')![action]();
       });
+  }
+
+  private modifyMintAddresses(mintAddresses: string) {
+    try {
+      return JSON.parse(mintAddresses);
+    } catch {
+      return mintAddresses.split('\n').map((str) => str.trim());
+    }
   }
 }
