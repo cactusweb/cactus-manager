@@ -1,9 +1,9 @@
-#notifications-block{
-    position: absolute;
-    z-index: 100;
-    right: 64px;
-    top: 48px;
-    max-height: calc(100% - 48px);
-    overflow: hidden;
-    pointer-events: none;
+#notifications-block {
+  position: absolute;
+  z-index: 1000000;
+  right: 64px;
+  top: 48px;
+  max-height: calc(100% - 48px);
+  overflow: hidden;
+  pointer-events: none;
 }

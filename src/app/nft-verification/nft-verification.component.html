@@ -60,75 +60,131 @@
         <span class="inp-wrapper__label">Renewal plan</span>
         <app-select-primary
           formControlName="rn_plan"
-          [opt]="(rnPlans$ | async)!"
+          [opt]="(rnPlans$ | async) || []"
         />
       </div>
       <div class="inp-wrapper">
         <span class="inp-wrapper__label">Lifetime plan</span>
         <app-select-primary
           formControlName="lt_plan"
-          [opt]="(ltPlans$ | async)!"
+          [opt]="(ltPlans$ | async) || []"
         />
       </div>
     </div>
   </div>
 
-  <div
-    class="window"
-    [class.window_disabled]="!form.get('enabled')!.value"
-    formGroupName="attributesKeys"
-  >
-    <div class="window__header">
-      <h4>Metadata properties setup</h4>
-      <mat-icon matTooltip="Names of properties on NFT metadata">
-        help
-      </mat-icon>
+  <div class="tw-grid tw-gap-6">
+    <div
+      class="window"
+      [class.window_disabled]="!form.get('enabled')!.value"
+      formGroupName="attributesKeys"
+    >
+      <div class="window__header">
+        <h4>Metadata properties setup</h4>
+        <mat-icon matTooltip="Names of properties on NFT metadata">
+          help
+        </mat-icon>
+      </div>
+      <div class="inp-wrapper">
+        <label for="collection-symbol" class="inp-wrapper__label">
+          License type
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="licenseTypeKey"
+          placeholder="Property name of license type"
+        />
+      </div>
+      <div class="inp-wrapper">
+        <label for="collection-symbol" class="inp-wrapper__label">
+          Renewal date
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="renewalDateKey"
+          placeholder="Property name of renewal date"
+        />
+      </div>
+      <div class="inp-wrapper">
+        <label for="collection-symbol" class="inp-wrapper__label">
+          Blocked state
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="blockedKey"
+          placeholder="Property name of blocked state"
+        />
+      </div>
     </div>
-    <div class="inp-wrapper">
-      <label for="collection-symbol" class="inp-wrapper__label">
-        License type
+
+    <div
+      class="window"
+      [class.window_disabled]="!form.get('enabled')!.value"
+      formGroupName="frozenAction"
+    >
+      <div class="window__header">
+        <h4>Add to server frozen</h4>
+        <mat-icon matTooltip="Adding to server owners of frozen NFT">
+          help
+        </mat-icon>
+      </div>
+
+      <label class="window enbaled-switcher" for="action-enabled">
+        <span class="row tw-justify-between">
+          <span class="tw-font-medium"> Enabled </span>
+          <app-checkbox-switcher
+            formControlName="enabled"
+            i-id="action-enabled"
+          />
+        </span>
       </label>
-      <input
-        type="text"
-        class="form-control"
-        formControlName="licenseTypeKey"
-        placeholder="Property name of license type"
-      />
-    </div>
-    <div class="inp-wrapper">
-      <label for="collection-symbol" class="inp-wrapper__label">
-        Renewal date
-      </label>
-      <input
-        type="text"
-        class="form-control"
-        formControlName="renewalDateKey"
-        placeholder="Property name of renewal date"
-      />
-    </div>
-    <div class="inp-wrapper">
-      <label for="collection-symbol" class="inp-wrapper__label">
-        Blocked state
-      </label>
-      <input
-        type="text"
-        class="form-control"
-        formControlName="blockedKey"
-        placeholder="Property name of blocked state"
-      />
+
+      <div class="inp-wrapper">
+        <label for="collection-symbol" class="inp-wrapper__label">
+          Metadata key
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="key"
+          placeholder="Property name"
+        />
+      </div>
+
+      <div class="inp-wrapper">
+        <label for="collection-symbol" class="inp-wrapper__label"> Role </label>
+        <app-select-primary
+          formControlName="role"
+          [opt]="(roles$ | async) || []"
+        />
+      </div>
     </div>
   </div>
 
-  <a
-    mat-flat-button
-    color="accent"
-    target="_blank"
-    [href]="guideUrl"
-    class="tw-justify-self-start"
-  >
-    Setup Guide
-    <mat-icon iconPositionEnd>open_in_new</mat-icon>
-  </a>
+  <div class="row tw-justify-start tw-gap-4">
+    <a
+      mat-flat-button
+      color="accent"
+      target="_blank"
+      [href]="guideUrl"
+      class="tw-justify-self-start"
+    >
+      Setup Guide
+      <mat-icon iconPositionEnd>open_in_new</mat-icon>
+    </a>
+    <button
+      type="button"
+      mat-flat-button
+      color="accent"
+      matTooltip="Create verification webhook in your discord server"
+      (click)="openWhForm()"
+    >
+      Send webhook
+    </button>
+  </div>
 
   <button mat-flat-button color="primary" class="!tw-w-60 tw-justify-self-end">
     Save

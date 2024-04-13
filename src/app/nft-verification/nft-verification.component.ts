@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  DestroyRef,
   OnInit,
   inject,
 } from '@angular/core';
@@ -10,13 +11,16 @@ import { NftVerificationRequests } from './common/consts/nft-verification.consts
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { spinnerName } from '../account/consts';
-import { filter, finalize, map, shareReplay, take } from 'rxjs';
+import { filter, finalize, map, take } from 'rxjs';
 import { NftVerificationDTO } from './common/models/nft-verification.models';
 import { ToolsService } from '../tools/services/tools.service';
 import { PlansService } from '../plans/services/plans.service';
 import { SelectorValue } from '../tools/interfaces/selector-values';
 import { AccountService } from '../account/services/account.service';
 import { environment } from 'src/environments/environment';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatDialog } from '@angular/material/dialog';
+import { WebhookFormComponent } from './webhook-form/webhook-form.component';
 
 @Component({
   selector: 'cm-nft-verification',
@@ -35,6 +39,11 @@ export class NftVerificationComponent implements OnInit {
       licenseTypeKey: new FormControl('', Validators.required),
       renewalDateKey: new FormControl('', Validators.required),
       blockedKey: new FormControl<undefined | string>(undefined),
+    }),
+    frozenAction: new FormGroup({
+      enabled: new FormControl(false),
+      key: new FormControl({ value: '', disabled: true }, Validators.required),
+      role: new FormControl({ value: '', disabled: true }, Validators.required),
     }),
   });
 
@@ -61,16 +70,25 @@ export class NftVerificationComponent implements OnInit {
     )
   );
 
+  readonly roles$ = this.account.roles.pipe(
+    map((roles) => roles.map((r) => ({ display: r.name, value: r.id })))
+  );
+
+  readonly #destroyRef = inject(DestroyRef);
+
   constructor(
     private http: HttpService,
     private spinner: NgxSpinnerService,
     private tools: ToolsService,
     private cdr: ChangeDetectorRef,
-    private account: AccountService
+    private account: AccountService,
+    private matDialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.spinner.show(spinnerName);
+
+    this.listenFrozenForm();
 
     this.http
       .request<NftVerificationDTO | null>(NftVerificationRequests.GET_DATA)
@@ -86,6 +104,13 @@ export class NftVerificationComponent implements OnInit {
         this.form.patchValue(res);
         this.cdr.markForCheck();
       });
+  }
+
+  openWhForm() {
+    this.matDialog.open(WebhookFormComponent, {
+      width: '100%',
+      maxWidth: '450px',
+    });
   }
 
   copyLink() {
@@ -122,6 +147,20 @@ export class NftVerificationComponent implements OnInit {
       .subscribe({
         next: () => this.tools.generateNotification('Saved', 'success'),
         error: () => {},
+      });
+  }
+
+  private listenFrozenForm() {
+    const frozenForm = this.form.get('frozenAction')!;
+
+    frozenForm
+      .get('enabled')!
+      .valueChanges.pipe(takeUntilDestroyed(this.#destroyRef))
+      .subscribe((res) => {
+        const action = res ? 'enable' : 'disable';
+
+        frozenForm.get('key')![action]();
+        frozenForm.get('role')![action]();
       });
   }
 }

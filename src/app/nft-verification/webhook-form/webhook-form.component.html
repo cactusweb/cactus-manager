@@ -1,0 +1,19 @@
+<form class="window tw-gap-6" [formGroup]="form" (ngSubmit)="sendWh()">
+  <h3>Verification webhook sending</h3>
+
+  <div class="inp-wrapper">
+    <label for="collection-symbol" class="inp-wrapper__label">
+      Channel ID
+    </label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="channelId"
+      placeholder="Channel ID for webhook"
+    />
+  </div>
+
+  <button mat-flat-button color="primary" [disabled]="loading$ | async">
+    Send
+  </button>
+</form>

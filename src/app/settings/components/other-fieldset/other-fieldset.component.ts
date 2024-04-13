@@ -1,11 +1,9 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   FormControl,
   UntypedFormControl,
   UntypedFormGroup,
-  Validators,
 } from '@angular/forms';
-import { map, Subscription } from 'rxjs';
 import { Owner } from 'src/app/account/interfaces/owner';
 import { environment } from 'src/environments/environment';
 import { SettingsFieldset } from '../../settings.component';
@@ -23,8 +21,6 @@ export class OtherFieldsetComponent implements OnInit, SettingsFieldset {
   showPlansForm: boolean = false;
 
   @ViewChild('PlansFieldset') plansFieldset!: SettingsFieldset;
-
-  readonly whGuide = environment.guideURL + '/webhooks'
 
   constructor() {}
 
@@ -56,11 +52,11 @@ export class OtherFieldsetComponent implements OnInit, SettingsFieldset {
   // @ts-ignore
   get _form(): Record<string, any> {
     return {
-      additional_activations: {
-        ...this.form.value.additional_activations,
-        ...this.plansFieldset._form,
-      },
-      webhook_url: this.form.value.webhook_url,
+      // additional_activations: {
+      //   ...this.form.value.additional_activations,
+      //   ...this.plansFieldset._form,
+      // },
+      // webhook_url: this.form.value.webhook_url,
     };
   }
 

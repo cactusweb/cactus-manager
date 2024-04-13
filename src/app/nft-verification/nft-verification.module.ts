@@ -7,6 +7,7 @@ import { ToolsModule } from '../tools/tools.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const route: Route = {
   path: '',
@@ -30,6 +31,7 @@ const route: Route = {
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
+    MatDialogModule,
   ],
 })
 export class NftVerificationModule {}

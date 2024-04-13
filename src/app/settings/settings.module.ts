@@ -24,6 +24,7 @@ import { StripeFieldsetComponent } from './components/stripe-fieldset/stripe-fie
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { WebhooksFieldsetComponent } from './components/webhooks-fieldset/webhooks-fieldset.component';
 
 const routes: Routes = [
   {
@@ -57,6 +58,7 @@ const routes: Routes = [
     PaymentCallsFieldsetComponent,
     ActivationsFieldsetComponent,
     StripeFieldsetComponent,
+    WebhooksFieldsetComponent,
   ],
   imports: [
     CommonModule,

@@ -1,103 +1,102 @@
-import { DsRole } from "src/app/tools/interfaces/ds-role"
+import { DsRole } from 'src/app/tools/interfaces/ds-role';
 
 export interface Owner {
-    id: string
+  id: string;
 
-    uploads: {
-        avatar: string
-    }
+  uploads: {
+    avatar: string;
+  };
 
-    referral: Referral
+  referral: Referral;
 
-    general: GeneralInfo
+  general: GeneralInfo;
 
-    discord: Discord
+  discord: Discord;
 
-    payment: Payment,
+  payment: Payment;
 
-    additional_activations: AdditionalActivations,
+  additional_activations: AdditionalActivations;
 
-    webhook_url: string,
+  webhooks: {
+    api?: string;
+    discord?: string;
+  };
 }
 
-
-interface Referral{
-    enabled: boolean,
-    price: number,
-    plan: string
+interface Referral {
+  enabled: boolean;
+  price: number;
+  plan: string;
 }
 
-
-interface GeneralInfo{
-    site_url: string,
-    primary_color: string,
-    email: string,
-    name: string
+interface GeneralInfo {
+  site_url: string;
+  primary_color: string;
+  email: string;
+  name: string;
 }
 
-
-interface Discord{
-    id: string,
-    roles: DsRole[]
+interface Discord {
+  id: string;
+  roles: DsRole[];
 }
 
-
-interface Payment{
-    way: '' | 'Tinkoff' | 'Ameria' | 'Crypto' | 'Stripe',
-    currency: string,
-    tinkoff: Tinkoff,
-    ameria: Ameria,
-    crypto: Crypto[],
-    stripe: Stripe,
-    details: PaymentDetails
-    calls: PaymentCalls
+interface Payment {
+  way: '' | 'Tinkoff' | 'Ameria' | 'Crypto' | 'Stripe';
+  currency: string;
+  tinkoff: Tinkoff;
+  ameria: Ameria;
+  crypto: Crypto[];
+  stripe: Stripe;
+  details: PaymentDetails;
+  calls: PaymentCalls;
 }
 
-interface Tinkoff{
-    terminal_key: string,
-    password: string
+interface Tinkoff {
+  terminal_key: string;
+  password: string;
 }
 
-interface Ameria{
-    merchant_id: string,
-    merchant_username: string,
-    merchant_password: string
+interface Ameria {
+  merchant_id: string;
+  merchant_username: string;
+  merchant_password: string;
 }
 
-interface Crypto{
-    id: string,
-    address: string
+interface Crypto {
+  id: string;
+  address: string;
 }
 
-interface Stripe{
-    secretKey: string,
-    webhookSecretKey: string,
+interface Stripe {
+  secretKey: string;
+  webhookSecretKey: string;
 }
 
-interface PaymentDetails{
-    cards: string[],
-    cryptowallets: string[]
+interface PaymentDetails {
+  cards: string[];
+  cryptowallets: string[];
 }
 
-interface PaymentCalls{
-    max_attempts: number,
-    action: 'ticket'|'kick'|'roles',
-    expires_role: DsRole|undefined,
-    wh_content: string
+interface PaymentCalls {
+  max_attempts: number;
+  action: 'ticket' | 'kick' | 'roles';
+  expires_role: DsRole | undefined;
+  wh_content: string;
 }
 
-interface AdditionalActivations{
-    enabled: boolean;
-    plans:  AdditionalActivationPlan[],
-    limits: AdditionalActivationsLimits
+interface AdditionalActivations {
+  enabled: boolean;
+  plans: AdditionalActivationPlan[];
+  limits: AdditionalActivationsLimits;
 }
 
-export interface AdditionalActivationPlan{
-    price: number,
-    duration: number|null
+export interface AdditionalActivationPlan {
+  price: number;
+  duration: number | null;
 }
 
-export interface AdditionalActivationsLimits{
-    lifetime: number,
-    temporary: number
+export interface AdditionalActivationsLimits {
+  lifetime: number;
+  temporary: number;
 }
