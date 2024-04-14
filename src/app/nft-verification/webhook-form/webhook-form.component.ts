@@ -13,6 +13,7 @@ import { NftVerificationRequests } from '../common/consts/nft-verification.const
 import { DialogRef } from '@angular/cdk/dialog';
 import { AsyncPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { ToolsService } from 'src/app/tools/services/tools.service';
 
 @Component({
   selector: 'cm-webhook-form',
@@ -37,7 +38,8 @@ export class WebhookFormComponent {
 
   constructor(
     private http: HttpService,
-    private dialogRef: DialogRef<WebhookFormComponent>
+    private dialogRef: DialogRef<WebhookFormComponent>,
+    private tools: ToolsService
   ) {}
 
   sendWh() {
@@ -52,7 +54,10 @@ export class WebhookFormComponent {
       .request(NftVerificationRequests.SEND_WH, this.form.value)
       .pipe(finalize(() => this.loading$.next(false)))
       .subscribe({
-        next: () => this.dialogRef.close(),
+        next: () => {
+          this.dialogRef.close();
+          this.tools.generateNotification('Webhook sent.', 'success');
+        },
         error: () => {},
       });
   }

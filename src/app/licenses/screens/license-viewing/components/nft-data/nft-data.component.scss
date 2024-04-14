@@ -1,5 +1,9 @@
 @import "/src/environments/environment.scss";
 
+:host {
+  @apply tw-grid tw-grid-cols-[1fr_auto] tw-gap-3 tw-items-end;
+}
+
 .btn-icon {
   &:hover svg path {
     fill: $primary-color;

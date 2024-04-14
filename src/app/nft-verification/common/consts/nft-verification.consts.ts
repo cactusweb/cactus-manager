@@ -20,7 +20,7 @@ export const NftVerificationRequests: Record<HttpRequestNames, req> = {
   },
 
   [HttpRequestNames.SEND_WH]: {
-    url: API_URL + 'ds-webhook',
+    url: API_URL + '/ds-message',
     method: 'POST',
   },
 };

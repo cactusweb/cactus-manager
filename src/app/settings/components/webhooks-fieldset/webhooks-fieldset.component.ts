@@ -19,6 +19,7 @@ export class WebhooksFieldsetComponent implements SettingsFieldset {
   readonly whGuide = environment.guideURL + '/webhooks';
 
   validate(): boolean {
+    this.form.markAllAsTouched();
     return this.form.valid;
   }
 

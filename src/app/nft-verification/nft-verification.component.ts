@@ -101,6 +101,7 @@ export class NftVerificationComponent implements OnInit {
         }))
       )
       .subscribe((res) => {
+        console.log(res);
         this.form.patchValue(res);
         this.cdr.markForCheck();
       });

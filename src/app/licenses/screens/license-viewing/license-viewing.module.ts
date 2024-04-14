@@ -5,8 +5,9 @@ import { LabelComponent } from './components/label/label.component';
 import { UserDataComponent } from './components/user-data/user-data.component';
 import { ToolsModule } from 'src/app/tools/tools.module';
 import { NftDataComponent } from './components/nft-data/nft-data.component';
-
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -17,8 +18,11 @@ import { NftDataComponent } from './components/nft-data/nft-data.component';
   ],
   imports: [
     CommonModule,
-    ToolsModule
+    ToolsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTooltipModule,
   ],
-  exports: [LicenseViewingComponent]
+  exports: [LicenseViewingComponent],
 })
-export class LicenseViewingModule { }
+export class LicenseViewingModule {}

@@ -24,6 +24,17 @@
   </div>
 </app-label>
 
+<button
+  mat-icon-button
+  color="primary"
+  type="button"
+  matTooltip="Refresh metadata"
+  (click)="onRefreshMeta()"
+  [disabled]="loading$ | async"
+>
+  <mat-icon>refresh</mat-icon>
+</button>
+
 <ng-template #copyIcon>
   <span class="copy-icon">
     <svg
