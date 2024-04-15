@@ -143,10 +143,19 @@ export class NftVerificationComponent implements OnInit {
     this.spinner.show(spinnerName);
 
     this.http
-      .request(NftVerificationRequests.PUT_DATA, value)
-      .pipe(finalize(() => this.spinner.hide(spinnerName)))
+      .request<NftVerificationDTO>(NftVerificationRequests.PUT_DATA, value)
+      .pipe(
+        finalize(() => this.spinner.hide(spinnerName)),
+        map((data) => ({
+          ...data,
+          mintAddresses: data.mintAddresses.join('\n'),
+        }))
+      )
       .subscribe({
-        next: () => this.tools.generateNotification('Saved', 'success'),
+        next: (res) => {
+          this.tools.generateNotification('Saved', 'success');
+          this.form.patchValue(res);
+        },
         error: () => {},
       });
   }
