@@ -1,19 +1,21 @@
 <form class="window" [formGroup]="form">
-  <h4 class="window__title">Webhooks</h4>
+  <h4 class="window__title row tw-justify-start tw-gap-2">
+    Webhooks
+    <a
+      [href]="whGuide"
+      target="_blank"
+      class="tw-text-violet-500 tw-grid"
+      matTooltip="Open guide"
+    >
+      <mat-icon class="!tw-w-5 !tw-h-5 tw-text-base tw-leading-5">
+        open_in_new
+      </mat-icon>
+    </a>
+  </h4>
   <div class="window__body">
     <label class="inp-wrapper">
       <span class="inp-wrapper__label row tw-justify-start tw-gap-2">
         API url
-        <a
-          [href]="whGuide"
-          target="_blank"
-          class="tw-text-violet-500"
-          matTooltip="Open guide"
-        >
-          <mat-icon class="!tw-w-5 !tw-h-5 tw-text-base tw-leading-5">
-            open_in_new
-          </mat-icon>
-        </a>
       </span>
       <input
         type="text"
@@ -26,16 +28,6 @@
     <label class="inp-wrapper">
       <span class="inp-wrapper__label row tw-justify-start tw-gap-2">
         Discord URL
-        <a
-          [href]="whGuide"
-          target="_blank"
-          class="tw-text-violet-500"
-          matTooltip="Open guide"
-        >
-          <mat-icon class="!tw-w-5 !tw-h-5 tw-text-base tw-leading-5">
-            open_in_new
-          </mat-icon>
-        </a>
       </span>
       <input
         type="text"
