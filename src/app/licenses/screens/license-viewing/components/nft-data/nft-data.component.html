@@ -10,16 +10,23 @@
     <p class="property row tw-justify-start">
       <span>Wallet:</span>
       <button class="btn-icon" (click)="copy(nftData.wallet)">
-        ****{{ getLastFour(nftData.wallet) }}
+        **{{ getLastFour(nftData.wallet) }}
         <ng-template *ngTemplateOutlet="copyIcon" />
       </button>
     </p>
     <p class="property row tw-justify-start">
       <span>Mint:</span>
       <button class="btn-icon" (click)="copy(nftData.mint_address)">
-        ****{{ getLastFour(nftData.mint_address) }}
+        **{{ getLastFour(nftData.mint_address) }}
         <ng-template *ngTemplateOutlet="copyIcon" />
       </button>
+    </p>
+
+    <p class="property row tw-justify-start">
+      <span>Qty:</span>
+      <span>
+        {{ nftData.quantity }}
+      </span>
     </p>
   </div>
 </app-label>
