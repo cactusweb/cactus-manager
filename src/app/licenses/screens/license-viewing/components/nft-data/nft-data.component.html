@@ -42,6 +42,17 @@
   <mat-icon>refresh</mat-icon>
 </button>
 
+<button
+  mat-icon-button
+  color="primary"
+  type="button"
+  matTooltip="Edit metadata"
+  (click)="onEditMeta()"
+  [disabled]="loading$ | async"
+>
+  <mat-icon>edit</mat-icon>
+</button>
+
 <ng-template #copyIcon>
   <span class="copy-icon">
     <svg

@@ -8,6 +8,9 @@ import { NftDataComponent } from './components/nft-data/nft-data.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { NftDataEditComponent } from './components/nft-data-edit/nft-data-edit.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,6 +18,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     LabelComponent,
     UserDataComponent,
     NftDataComponent,
+    NftDataEditComponent,
   ],
   imports: [
     CommonModule,
@@ -22,6 +26,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [LicenseViewingComponent],
 })

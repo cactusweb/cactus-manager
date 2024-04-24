@@ -1,0 +1,69 @@
+<form
+  class="card tw-grid tw-gap-5 tw-pb-5"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
+  <div class="popup__head">
+    <h2 class="popup__title tw-pl-3">NFT Data</h2>
+    <button class="popup__icon" mat-dialog-close mat-icon-button>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="popup__body tw-grid tw-gap-2 tw-px-5">
+    <div class="inp-wrapper">
+      <span class="inp-wrapper__label">Name</span>
+      <input
+        type="string"
+        id="nft-name"
+        formControlName="name"
+        class="form-control"
+        placeholder="Name of NFT"
+        autocomplete="off"
+      />
+    </div>
+    
+    <div class="inp-wrapper">
+      <span class="inp-wrapper__label">Wallet</span>
+      <input
+        type="string"
+        id="wallet"
+        formControlName="wallet"
+        class="form-control"
+        placeholder="Wallet address"
+        autocomplete="off"
+      />
+    </div>
+
+    <div class="inp-wrapper">
+      <span class="inp-wrapper__label">Mint address</span>
+      <input
+        type="string"
+        id="mint_address"
+        formControlName="mint_address"
+        class="form-control"
+        placeholder="NFT mint address"
+        autocomplete="off"
+      />
+    </div>
+
+    <div class="inp-wrapper">
+      <span class="inp-wrapper__label">Quantity</span>
+      <input
+        type="number"
+        id="quantity"
+        formControlName="quantity"
+        class="form-control"
+        placeholder="Quantity of NFT on holder wallet"
+        autocomplete="off"
+      />
+    </div>
+  </div>
+
+  <button
+    class="btn--primary tw-max-w-[300px] tw-justify-self-center tw-w-full"
+    [disabled]="loading$ | async"
+  >
+    <btn-loader [isSpinner]="(loading$ | async)!" text="Save" />
+  </button>
+</form>

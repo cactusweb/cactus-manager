@@ -143,8 +143,7 @@
 
   <csm-nft-data
     *ngIf="license.nft_data"
-    [nftData]="license.nft_data"
-    [licenseId]="license.id"
+    [license]="license"
     (closeModal)="onClose.emit()"
   />
 </div>
