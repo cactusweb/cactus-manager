@@ -101,7 +101,10 @@ export class NftDataComponent {
         'License updated successfully.',
         'primary'
       );
-      this.licService.editLicense(data.license);
+      this.licService.editLicense({
+        ...data.license,
+        expires_in: data.license.expires_in * 1000,
+      });
       return;
     }
 

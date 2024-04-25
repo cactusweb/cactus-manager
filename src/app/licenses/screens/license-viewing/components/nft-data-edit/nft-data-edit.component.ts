@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { BehaviorSubject, finalize } from 'rxjs';
+import { BehaviorSubject, finalize, map } from 'rxjs';
 import {
   License,
   LicenseNftDataDTO,
@@ -62,7 +62,10 @@ export class NftDataEditComponent implements OnInit {
         this.form.value,
         this.license.id
       )
-      .pipe(finalize(() => this.loading$.next(false)))
+      .pipe(
+        finalize(() => this.loading$.next(false)),
+        map((d) => ({ ...d, expires_in: d.expires_in * 1000 }))
+      )
       .subscribe({
         next: (lic) => {
           this.licService.editLicense(lic);
