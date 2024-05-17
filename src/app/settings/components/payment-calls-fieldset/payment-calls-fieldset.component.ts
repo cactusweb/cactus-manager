@@ -1,12 +1,12 @@
-import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { Component, DestroyRef, EventEmitter, HostListener, OnInit, Output, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormControl, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { filter, Subscription, take } from 'rxjs';
 import { Owner } from 'src/app/account/interfaces/owner';
 import { AccountService } from 'src/app/account/services/account.service';
 import { SelectorValue } from 'src/app/tools/interfaces/selector-values';
 
 const actionOpts: SelectorValue[] = [
-  { value: 'ticket', display: "Open a ticket" },
   { value: 'kick', display: 'Kick from the server' },
   { value: 'roles', display: 'Give new role' }
 ] 
@@ -20,10 +20,11 @@ export class PaymentCallsFieldsetComponent implements OnInit {
   @Output() onClose = new EventEmitter()
 
   form!: UntypedFormGroup
-  sub!: Subscription
 
   actionOpts = actionOpts;
   dsRoleOpts: SelectorValue[] = [];
+
+  readonly #destroyRef = inject(DestroyRef);
 
   constructor(
     private acc: AccountService
@@ -44,15 +45,22 @@ export class PaymentCallsFieldsetComponent implements OnInit {
     this.form = new UntypedFormGroup({
       max_attempts: new UntypedFormControl(3, Validators.required),
       expires_role: new UntypedFormControl({ value: null, disabled: true }, Validators.required),
-      action: new UntypedFormControl('ticket', Validators.required),
-      wh_content: new UntypedFormControl({value: '', disabled: true})
+      action: new UntypedFormControl('kick', Validators.required),
+      wh_content: new UntypedFormControl({value: '', disabled: true}),
+      payment_ticket: new FormControl(true, Validators.required)
     })
 
-    this.sub = this.form.controls['action'].valueChanges
+    this.form.controls['action'].valueChanges
+      .pipe(takeUntilDestroyed(this.#destroyRef))
       .subscribe(res => {
         this.form.controls['expires_role'][res == 'roles' ? 'enable' : 'disable']() 
-        this.form.controls['wh_content'][res == 'ticket' ? 'disable' : 'enable']()
       })
+
+      this.form.controls['payment_ticket'].valueChanges
+      .pipe(takeUntilDestroyed(this.#destroyRef))
+      .subscribe((res) => {
+        this.form.controls['expires_role'][res ? 'disable' : 'enable']();
+      });
   }
 
   

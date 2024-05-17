@@ -80,7 +80,8 @@ interface PaymentDetails {
 
 interface PaymentCalls {
   max_attempts: number;
-  action: 'ticket' | 'kick' | 'roles';
+  action: 'kick' | 'roles';
+  payment_ticket: boolean;
   expires_role: DsRole | undefined;
   wh_content: string;
 }

@@ -102,7 +102,7 @@
   ></app-payment-details-fieldset>
 </div>
 
-<div class="overlay" [style.display]="showPaymentCalls ? 'grid' : 'none'">
+<div class="overlay !tw-fixed tw-top-0" [style.display]="showPaymentCalls ? 'grid' : 'none'">
   <div class="artboard" (click)="showPaymentCalls = false"></div>
   <app-payment-calls-fieldset
     style="width: 560px"
