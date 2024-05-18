@@ -47,7 +47,7 @@ export class PaymentCallsFieldsetComponent implements OnInit {
       expires_role: new UntypedFormControl({ value: null, disabled: true }, Validators.required),
       action: new UntypedFormControl('kick', Validators.required),
       wh_content: new UntypedFormControl({value: '', disabled: true}),
-      payment_ticket: new FormControl(true, Validators.required)
+      paymentTicket: new FormControl(true, Validators.required)
     })
 
     this.form.controls['action'].valueChanges
@@ -56,7 +56,7 @@ export class PaymentCallsFieldsetComponent implements OnInit {
         this.form.controls['expires_role'][res == 'roles' ? 'enable' : 'disable']() 
       })
 
-      this.form.controls['payment_ticket'].valueChanges
+      this.form.controls['paymentTicket'].valueChanges
       .pipe(takeUntilDestroyed(this.#destroyRef))
       .subscribe((res) => {
         this.form.controls['expires_role'][res ? 'disable' : 'enable']();
