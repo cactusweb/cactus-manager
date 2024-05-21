@@ -55,12 +55,6 @@ export class PaymentCallsFieldsetComponent implements OnInit {
       .subscribe(res => {
         this.form.controls['expires_role'][res == 'roles' ? 'enable' : 'disable']() 
       })
-
-      this.form.controls['paymentTicket'].valueChanges
-      .pipe(takeUntilDestroyed(this.#destroyRef))
-      .subscribe((res) => {
-        this.form.controls['expires_role'][res ? 'disable' : 'enable']();
-      });
   }
 
   

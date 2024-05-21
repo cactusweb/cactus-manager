@@ -100,7 +100,6 @@ export class SettingsComponent
     setTimeout(() => {
       this.initialData = {};
       this.fieldsets.toArray().forEach((f) => {
-        console.log(f._form);
         this.initialData = { ...this.initialData, ...f._form };
       });
     }, 10);
