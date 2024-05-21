@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://api.cactusweb.io/api/v2/owner',
+  apiUrl: 'https://test-api.cactusweb.io/api/v2/owner',
   siteDome: 'http://localhost:4200',
   currency: ['USD', 'RUB', 'EUR'],
   dsBotInvite:
