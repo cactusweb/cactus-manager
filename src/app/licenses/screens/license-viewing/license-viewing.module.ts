@@ -11,6 +11,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NftDataEditComponent } from './components/nft-data-edit/nft-data-edit.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CsdCurrencyPipe } from 'src/app/common/pipes/currency.pipe';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
+    CsdCurrencyPipe,
   ],
   exports: [LicenseViewingComponent],
 })

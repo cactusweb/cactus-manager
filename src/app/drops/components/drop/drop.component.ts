@@ -18,8 +18,10 @@ export class DropComponent implements OnInit {
   constructor(
     public tools: ToolsService,
     private dropsService: DropsService,
-    private spinner: NgxSpinnerService
-  ) { }
+    private spinner: NgxSpinnerService,
+  ) { 
+    new Intl.NumberFormat()
+  }
 
   ngOnInit(): void {
   }

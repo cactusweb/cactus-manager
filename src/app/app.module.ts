@@ -7,25 +7,25 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Interceptor } from './tools/services/interceptor';
 import { HttpService } from './tools/services/http.service';
+import { CurrencyPipe } from '@angular/common';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [
-    HttpService, 
+    HttpService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,
-      multi: true
-    }
+      multi: true,
+    },
+    CurrencyPipe,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

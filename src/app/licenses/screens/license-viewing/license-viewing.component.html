@@ -57,13 +57,12 @@
       <ng-template
         [ngIf]="license.type == 'renewal' || license.type == 'trial-renewal'"
       >
-        {{
-          license.payment.price
-            | currency
-              : license.payment.currency || "USD"
-              : "symbol-narrow"
-              : "1.0-1"
-        }}
+        <span
+          [innerHTML]="
+            license.payment.price
+              | csdCurrency : license.payment.currency || 'USD'
+          "
+        ></span>
       </ng-template>
     </app-label>
 

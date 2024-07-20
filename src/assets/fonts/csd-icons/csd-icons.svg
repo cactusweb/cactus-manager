@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2024 by original authors @ fontello.com</metadata>
+<defs>
+<font id="csd-icons" horiz-adv-x="1000" >
+<font-face font-family="csd-icons" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="sol" unicode="&#xe800;" d="M163 153c6 5 14 9 23 9h798c14 0 22-17 11-27l-157-151c-6-6-15-9-23-9h-799c-14 0-22 17-11 27l158 151z m0 563c6 6 14 9 23 9h798c14 0 22-17 11-27l-157-151c-6-5-15-9-23-9h-799c-14 0-22 17-11 27l158 151z m675-280c-6 6-15 9-23 9h-799c-14 0-22-17-11-27l158-150c6-6 14-10 23-10h798c14 0 22 17 11 27l-157 151z" horiz-adv-x="1000" />
+
+<glyph glyph-name="eth" unicode="&#xe801;" d="M500 850l-7-23v-661l7-7 307 182-307 509z m0 0l-307-509 307-182v321 370z m0-749l-4-4v-236l4-11 307 433-307-182z m0-251v251l-307 182 307-433z m0 309l307 182-307 139v-321z m-307 182l307-182v321l-307-139z" horiz-adv-x="1000" />
+</font>
+</defs>
+</svg>

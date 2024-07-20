@@ -9,14 +9,19 @@ import { MonthSwitcherComponent } from './components/month-switcher/month-switch
 import * as echarts from 'echarts';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { CsdCurrencyPipe } from '../common/pipes/currency.pipe';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent, data: {
+  {
+    path: '',
+    component: DashboardComponent,
+    data: {
       title: 'Dashboard - CactusManager',
-      descript: 'Dashboard - Cactus Manager. View statistics of your business in the current time and for the past months.' 
-    } 
-  }
-]
+      descript:
+        'Dashboard - Cactus Manager. View statistics of your business in the current time and for the past months.',
+    },
+  },
+];
 
 @NgModule({
   declarations: [
@@ -24,13 +29,14 @@ const routes: Routes = [
     LicenseStatComponent,
     MonthlyStatComponent,
     DashboardComponent,
-    MonthSwitcherComponent
+    MonthSwitcherComponent,
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    NgxEchartsModule.forRoot({echarts,}),
-    NgxSpinnerModule
-  ]
+    NgxEchartsModule.forRoot({ echarts }),
+    NgxSpinnerModule,
+    CsdCurrencyPipe,
+  ],
 })
-export class DashboardModule { }
+export class DashboardModule {}
