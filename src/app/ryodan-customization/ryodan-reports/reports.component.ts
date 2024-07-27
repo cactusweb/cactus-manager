@@ -12,7 +12,7 @@ import {
   map,
   take,
 } from 'rxjs';
-import { spinnerName } from 'src/app/account/consts';
+import { ACCOUNT_SPINNER_NAME } from 'src/app/account/consts';
 import { RyodanShortReport } from '../common/interfaces/ryodan-customization.interfaces';
 import { RyodanDataService } from '../common/services/ryodan-data.service';
 import { RyodanHttpService } from '../common/services/ryodan-http.service';
@@ -84,7 +84,7 @@ export class RyodanReportsComponent {
         map(([pending, reports]) => pending && !reports?.length)
       )
       .subscribe((showSpinner) =>
-        this.spinner[showSpinner ? 'show' : 'hide'](spinnerName)
+        this.spinner[showSpinner ? 'show' : 'hide'](ACCOUNT_SPINNER_NAME)
       );
   }
 

@@ -9,7 +9,7 @@ import { RyodanHttpService } from '../common/services/ryodan-http.service';
 import { RyodanDataService } from '../common/services/ryodan-data.service';
 import { RyodanMetamaskUser } from '../common/interfaces/ryodan-customization.interfaces';
 import { BehaviorSubject, Subject, map, takeUntil, withLatestFrom } from 'rxjs';
-import { spinnerName } from 'src/app/account/consts';
+import { ACCOUNT_SPINNER_NAME } from 'src/app/account/consts';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { RyodanHeaderService } from '../common/services/ryodan-header.service';
 import { User } from 'src/app/licenses/interfaces/user';
@@ -71,7 +71,7 @@ export class RyodanMetamasksComponent implements OnInit, OnDestroy {
         map(([pending, mmUsers]) => pending && !mmUsers?.length)
       )
       .subscribe((showSpinner) =>
-        this.spinner[showSpinner ? 'show' : 'hide'](spinnerName)
+        this.spinner[showSpinner ? 'show' : 'hide'](ACCOUNT_SPINNER_NAME)
       );
   }
 

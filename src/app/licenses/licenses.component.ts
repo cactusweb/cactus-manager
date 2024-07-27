@@ -10,7 +10,7 @@ import {
   tap,
   throwError,
 } from 'rxjs';
-import { spinnerName } from '../account/consts';
+import { ACCOUNT_SPINNER_NAME } from '../account/consts';
 import { FailedLoadService } from '../failed-load/services/failed-load.service';
 import { HttpService } from '../tools/services/http.service';
 import {
@@ -83,14 +83,14 @@ export class LicensesComponent implements OnInit, OnDestroy {
   }
 
   getLicenses() {
-    this.spinner.show(spinnerName);
+    this.spinner.show(ACCOUNT_SPINNER_NAME);
 
     this.licenses = this.lic.getLicenses(true).pipe(
       filter((d) => !!d),
       map((d) => (d ? d.map((l) => l) : [])),
-      tap(() => this.spinner.hide(spinnerName)),
+      tap(() => this.spinner.hide(ACCOUNT_SPINNER_NAME)),
       catchError((err) => {
-        this.spinner.hide(spinnerName);
+        this.spinner.hide(ACCOUNT_SPINNER_NAME);
         this.onFailedLoad();
         return throwError(err);
       })
@@ -98,11 +98,11 @@ export class LicensesComponent implements OnInit, OnDestroy {
   }
 
   updLicenses() {
-    this.spinner.show(spinnerName);
+    this.spinner.show(ACCOUNT_SPINNER_NAME);
 
     this.lic
       .updateLicenses()
-      .pipe(finalize(() => this.spinner.hide(spinnerName)))
+      .pipe(finalize(() => this.spinner.hide(ACCOUNT_SPINNER_NAME)))
       .subscribe({
         next: () => {},
         error: () => this.onFailedLoad(true),

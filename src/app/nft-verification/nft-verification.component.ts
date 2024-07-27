@@ -10,7 +10,7 @@ import { HttpService } from '../tools/services/http.service';
 import { NftVerificationRequests } from './common/consts/nft-verification.consts';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { spinnerName } from '../account/consts';
+import { ACCOUNT_SPINNER_NAME } from '../account/consts';
 import { filter, finalize, map, take } from 'rxjs';
 import { NftVerificationDTO } from './common/models/nft-verification.models';
 import { ToolsService } from '../tools/services/tools.service';
@@ -86,14 +86,14 @@ export class NftVerificationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.spinner.show(spinnerName);
+    this.spinner.show(ACCOUNT_SPINNER_NAME);
 
     this.listenFrozenForm();
 
     this.http
       .request<NftVerificationDTO | null>(NftVerificationRequests.GET_DATA)
       .pipe(
-        finalize(() => this.spinner.hide(spinnerName)),
+        finalize(() => this.spinner.hide(ACCOUNT_SPINNER_NAME)),
         filter(Boolean),
         map((data) => ({
           ...data,
@@ -139,12 +139,12 @@ export class NftVerificationComponent implements OnInit {
       mintAddresses: this.modifyMintAddresses(this.form.value.mintAddresses!),
     };
 
-    this.spinner.show(spinnerName);
+    this.spinner.show(ACCOUNT_SPINNER_NAME);
 
     this.http
       .request<NftVerificationDTO>(NftVerificationRequests.PUT_DATA, value)
       .pipe(
-        finalize(() => this.spinner.hide(spinnerName)),
+        finalize(() => this.spinner.hide(ACCOUNT_SPINNER_NAME)),
         map((data) => ({
           ...data,
           mintAddresses: data.mintAddresses.join('\n'),

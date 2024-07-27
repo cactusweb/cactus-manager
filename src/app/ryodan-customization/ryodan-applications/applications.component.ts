@@ -17,7 +17,7 @@ import {
 import { RyodanApplication } from '../common/interfaces/ryodan-customization.interfaces';
 import { RyodanHttpService } from '../common/services/ryodan-http.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { spinnerName } from 'src/app/account/consts';
+import { ACCOUNT_SPINNER_NAME } from 'src/app/account/consts';
 import { RyodanHeaderService } from '../common/services/ryodan-header.service';
 import {
   APPLICATIONS_SEARCH_PARAMS,
@@ -88,7 +88,7 @@ export class RyodanApplicationsComponent implements OnInit, OnDestroy {
         map(([pending, applications]) => pending && !applications?.length)
       )
       .subscribe((showSpinner) =>
-        this.spinner[showSpinner ? 'show' : 'hide'](spinnerName)
+        this.spinner[showSpinner ? 'show' : 'hide'](ACCOUNT_SPINNER_NAME)
       );
   }
 

@@ -1,32 +1,35 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map, mergeMap, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-  title: string = 'Licenses';
+  readonly title = signal('Licenses');
 
-  sub!: Subscription
+  sub!: Subscription;
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) {
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
     this.subOnPageNameChanges();
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
-    this.sub?.unsubscribe()
+    this.sub?.unsubscribe();
   }
 
-  subOnPageNameChanges(){
+  subOnPageNameChanges() {
     this.sub = this.router.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
@@ -39,9 +42,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
         mergeMap((route) => route.data)
       )
       .subscribe((e) => {
-        if ( e['pageName'] ) 
-          this.title = e['pageName']
-      }); 
+        if (e['pageName']) this.title.set(e['pageName']);
+      });
   }
-
 }

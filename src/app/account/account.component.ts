@@ -1,22 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { spinnerName } from './consts';
+import { ACCOUNT_SPINNER_NAME } from './consts';
 import { AccountService } from './services/account.service';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
-  styleUrls: ['./account.component.scss']
+  styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit {
-  spinnerName = spinnerName;
+  readonly ACCOUNT_SPINNER_NAME = ACCOUNT_SPINNER_NAME;
 
-  constructor(
-    private acc: AccountService
-  ) { 
+  constructor(private acc: AccountService) {
     this.acc.getOwnerData();
   }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

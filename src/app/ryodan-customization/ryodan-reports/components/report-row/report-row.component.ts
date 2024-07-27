@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs';
-import { spinnerName } from 'src/app/account/consts';
+import { ACCOUNT_SPINNER_NAME } from 'src/app/account/consts';
 import { RyodanShortReport } from 'src/app/ryodan-customization/common/interfaces/ryodan-customization.interfaces';
 import { RyodanHttpService } from 'src/app/ryodan-customization/common/services/ryodan-http.service';
 
@@ -32,11 +32,11 @@ export class RyodanReportRowComponent {
   delete(event: Event) {
     event.stopPropagation();
 
-    this.spinner.show(spinnerName);
+    this.spinner.show(ACCOUNT_SPINNER_NAME);
 
     this.http
       .deleteReport(this.report.id)
-      .pipe(finalize(() => this.spinner.hide(spinnerName)))
+      .pipe(finalize(() => this.spinner.hide(ACCOUNT_SPINNER_NAME)))
       .subscribe({
         error: () => {},
       });

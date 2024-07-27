@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ToolsService } from 'src/app/tools/services/tools.service';
@@ -9,7 +9,7 @@ import { ToolsService } from 'src/app/tools/services/tools.service';
   styleUrls: ['./router-loader.component.scss']
 })
 export class RouterLoaderComponent implements OnInit, OnDestroy {
-  show: boolean = false;
+ readonly show = signal(false);
 
   sub!: Subscription;
 
@@ -31,9 +31,9 @@ export class RouterLoaderComponent implements OnInit, OnDestroy {
   
   listenRouteLoading(){
     this.sub = this.router.events.subscribe(event => {
-      if ( event instanceof NavigationStart ) this.show = true; else
-      if ( this.show == false ) return; else
-      if ( event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationError ) this.show = false;
+      if ( event instanceof NavigationStart ) this.show.set(true); else
+      if ( !this.show() ) return; else
+      if ( event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationError ) this.show.set(false);
 
       if ( event instanceof NavigationError ){
         this.tools.generateNotification( 'Failed to load page' )

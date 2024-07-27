@@ -1,32 +1,35 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AccountService } from '../../services/account.service';
 
 @Component({
   selector: 'app-org-info',
   templateUrl: './org-info.component.html',
-  styleUrls: ['./org-info.component.scss']
+  styleUrls: ['./org-info.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrgInfoComponent implements OnInit, OnDestroy {
-  logo: string = '';
-  name: string = '';
+  readonly logo= signal('');
+  readonly name= signal('');
 
-  sub: Subscription
+  sub: Subscription;
 
-  constructor(
-    private acc: AccountService
-  ) {
-    this.sub = this.acc.owner.subscribe(res => {
-      this.logo = res?.uploads.avatar || '';
-      this.name = res?.general.name || '';
-    })
+  constructor(private acc: AccountService) {
+    this.sub = this.acc.owner.subscribe((res) => {
+      this.logo.set(res?.uploads.avatar || '');
+      this.name.set(res?.general.name || '');
+    });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
   }
-
 }
