@@ -28,7 +28,7 @@ export class HttpService {
       case 'GET':
         return this.getHttp<T>(reqUrl);
       case 'DELETE':
-        return this.deleteHttp<T>(reqUrl);
+        return this.deleteHttp<T>(reqUrl, body);
       case 'PUT':
         return this.putHttp<T>(reqUrl, body);
       default:
@@ -36,7 +36,7 @@ export class HttpService {
     }
   }
 
-  private postHttp<T>(url: string, data: Record<string, any>) {
+  private postHttp<T>(url: string, data: any) {
     return this.http.post<T>(url, data);
   }
 
@@ -49,6 +49,6 @@ export class HttpService {
   }
 
   private deleteHttp<T>(url: string, data?: Record<string, any>) {
-    return this.http.delete<T>(url);
+    return this.http.delete<T>(url, { body: data });
   }
 }

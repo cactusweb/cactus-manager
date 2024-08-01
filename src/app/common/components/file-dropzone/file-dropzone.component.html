@@ -1,0 +1,40 @@
+<ng-container *ngIf="currentValue() as imgSrc; else noImage">
+  <img [ngSrc]="imgSrc" fill loading="lazy" alt="" class="tw-object-cover" />
+
+  <button
+    mat-flat-button
+    (click)="reset.emit()"
+    color="warn"
+    class="tw-justify-self-center tw-self-end tw-mb-2"
+    type="button"
+  >
+    Delete <mat-icon>delete_outline</mat-icon>
+  </button>
+</ng-container>
+
+<ng-template #noImage>
+  <label>
+    <img
+      class="preview"
+      ngSrc="/assets/icons/image.svg"
+      width="33"
+      height="30"
+      loading="lazy"
+      alt=""
+      aria-hidden="false"
+    />
+
+    <div class="body">
+      <p class="title">Click to upload</p>
+      <p class="description">{{ description }} / {{ displayAcceptedTypes }}</p>
+    </div>
+
+    <input
+      type="file"
+      [accept]="acceptedTypes.join(', ')"
+      hidden
+      #fileInput
+      (change)="onSelectFile(fileInput)"
+    />
+  </label>
+</ng-template>

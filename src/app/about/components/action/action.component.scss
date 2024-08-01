@@ -1,0 +1,25 @@
+textarea.form-control {
+  @apply tw-h-auto tw-resize-y;
+}
+
+.btn-text {
+  @apply tw-text-center tw-text-white tw-pl-0 tw-border-none tw-text-base tw-font-medium;
+  background-color: var(--owner-color);
+
+  &::placeholder {
+    @apply tw-text-white/70 tw-font-normal;
+  }
+}
+
+.title {
+  @apply tw-font-medium tw-text-base tw-pl-2 tw-h-8;
+}
+
+.description {
+  @apply tw-font-normal tw-text-sm tw-text-black/80;
+}
+
+.link-input {
+  @apply tw-border-0 tw-border-b tw-border-solid tw-border-black/60 tw-w-full tw-mb-2 tw-mt-4;
+  @apply tw-text-sm tw-font-normal;
+}

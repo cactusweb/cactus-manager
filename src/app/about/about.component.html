@@ -1,0 +1,57 @@
+<form [formGroup]="form" (ngSubmit)="onSave()">
+  <div class="window">
+    <h2 class="title">About the project</h2>
+
+    <div class="control">
+      <h3 class="control__label">Banner</h3>
+      <csd-file-dropzone
+        [acceptedTypes]="acceptedFileTypes"
+        description="616x160 px"
+        formControlName="banner"
+        (selectFile)="onSelectFile($event)"
+        class="tw-rounded tw-h-36"
+        (reset)="deleteFile()"
+      />
+    </div>
+
+    <div class="control">
+      <h3 class="control__label">About</h3>
+
+      <textarea
+        formControlName="description"
+        class="form-control"
+        rows="5"
+      ></textarea>
+    </div>
+  </div>
+
+  <div class="window">
+    <h2 class="title">Actions</h2>
+
+    <div
+      class="tw-grid tw-gap-10 tw-pr-2 tw-max-h-[calc(100vh_-_325px)] custom-scroll tw-overflow-auto"
+      formArrayName="actions"
+    >
+      <csd-about-action
+        *ngFor="let control of actionsControl.controls; let i = index"
+        (remove)="onRemoveAction(i)"
+        [removeAvailable]="i !== 0"
+        [formControlName]="i"
+      />
+    </div>
+
+    <button
+      mat-flat-button
+      color="accent"
+      class="tw-mt-3"
+      (click)="onAddAction()"
+      type="button"
+    >
+      Add more +
+    </button>
+  </div>
+
+  <div class="tw-grid tw-col-span-2 tw-justify-end">
+    <button mat-flat-button color="primary" class="tw-w-44">Save</button>
+  </div>
+</form>

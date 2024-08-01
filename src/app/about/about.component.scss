@@ -1,0 +1,32 @@
+form {
+  @apply tw-grid lg:tw-grid-cols-[1fr_375px] tw-gap-4 tw-items-start;
+}
+
+.window {
+  @apply tw-grid tw-gap-6 tw-p-6;
+}
+
+.title {
+  @apply tw-text-lg tw-font-medium tw-leading-[22px];
+}
+
+.control {
+  @apply tw-grid tw-gap-2;
+
+  &__label {
+    @apply tw-text-sm tw-leading-4 tw-font-medium;
+  }
+}
+
+textarea.form-control {
+  @apply tw-h-auto tw-resize-y;
+}
+
+csd-about-action {
+  @apply tw-block tw-relative;
+
+  &:not(:last-child)::after {
+    @apply tw-block tw-absolute tw-w-full tw-h-px tw-rounded tw-bg-black/20 -tw-bottom-5 tw-translate-y-1/2;
+    content: "";
+  }
+}

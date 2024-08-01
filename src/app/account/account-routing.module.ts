@@ -76,6 +76,13 @@ const routes: Routes = [
         data: { pageName: 'Ryodan' },
       },
 
+      {
+        path: 'about',
+        loadChildren: () =>
+          import('../about/about.module').then((m) => m.AboutModule),
+        data: { pageName: 'About' },
+      },
+
       { path: '**', redirectTo: 'dashboard' },
     ],
   },

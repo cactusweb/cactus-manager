@@ -1,0 +1,27 @@
+:host {
+  @apply tw-grid;
+  @apply tw-border tw-border-dashed tw-border-primary;
+  @apply tw-relative tw-overflow-hidden;
+}
+
+label {
+  @apply tw-pt-[30px] tw-px-5 tw-pb-6;
+
+  @apply tw-grid tw-gap-4 tw-justify-items-center;
+
+  &.dragstarted {
+    @apply tw-border-solid tw-bg-[#F2F2F2];
+  }
+}
+
+.title {
+  @apply tw-text-sm tw-leading-4 tw-text-primary tw-font-medium;
+}
+
+.description {
+  @apply tw-text-secondary tw-font-normal tw-text-xs;
+}
+
+.body {
+  @apply tw-grid tw-gap-1.5 tw-justify-items-center tw-text-center;
+}

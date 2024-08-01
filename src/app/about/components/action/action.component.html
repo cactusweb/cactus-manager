@@ -1,0 +1,43 @@
+<fieldset [formGroup]="form">
+  <div class="tw-flex tw-items-center tw-gap-2 tw-mb-1">
+    <input
+      type="text"
+      class="form-control title"
+      placeholder="Title"
+      formControlName="title"
+    />
+
+    <button
+      mat-mini-fab
+      matTooltip="Remove action"
+      (click)="remove.emit()"
+      *ngIf="removeAvailable"
+      type="button"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <textarea
+    formControlName="description"
+    rows="3"
+    class="form-control description"
+    placeholder="Block description"
+  ></textarea>
+
+  <ng-container formGroupName="button">
+    <input
+      type="text"
+      class="link-input"
+      formControlName="link"
+      placeholder="Button link"
+    />
+
+    <input
+      type="text"
+      class="form-control btn-text"
+      formControlName="text"
+      placeholder="Button text"
+    />
+  </ng-container>
+</fieldset>
