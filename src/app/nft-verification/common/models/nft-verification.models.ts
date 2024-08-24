@@ -2,7 +2,7 @@ export interface NftVerificationDTO {
   enabled: boolean;
   mintAddresses: string[];
   collectionSymbol: string | undefined;
-  attributesKeys: NftVerificationAttributesKeysDTO;
+  attributesKeys: NftVerificationAttributesKeysDTO | null;
   lt_plan: string;
   rn_plan: string;
 }

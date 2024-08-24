@@ -11,7 +11,7 @@ import { NftVerificationRequests } from './common/consts/nft-verification.consts
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ACCOUNT_SPINNER_NAME } from '../account/consts';
-import { filter, finalize, map, take } from 'rxjs';
+import { filter, finalize, map, take, tap } from 'rxjs';
 import { NftVerificationDTO } from './common/models/nft-verification.models';
 import { ToolsService } from '../tools/services/tools.service';
 import { PlansService } from '../plans/services/plans.service';
@@ -46,6 +46,8 @@ export class NftVerificationComponent implements OnInit {
       role: new FormControl({ value: '', disabled: true }, Validators.required),
     }),
   });
+
+  readonly isLifetimeOnlyControl = new FormControl(false, Validators.required);
 
   private readonly plans$ = inject(PlansService).getPlans();
   readonly guideUrl = environment.guideURL + '/nft-verification';
@@ -83,7 +85,22 @@ export class NftVerificationComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private account: AccountService,
     private matDialog: MatDialog
-  ) {}
+  ) {
+    this.isLifetimeOnlyControl.valueChanges
+      .pipe(
+        tap((isLtOnly) =>
+          isLtOnly
+            ? this.form.controls.frozenAction.controls.enabled.setValue(false)
+            : null
+        ),
+        map((isLtOnly) => (isLtOnly ? 'disable' : 'enable')),
+        takeUntilDestroyed()
+      )
+      .subscribe((action) => {
+        this.form.controls.attributesKeys[action]();
+        this.form.controls.frozenAction[action]();
+      });
+  }
 
   ngOnInit(): void {
     this.spinner.show(ACCOUNT_SPINNER_NAME);
@@ -101,7 +118,13 @@ export class NftVerificationComponent implements OnInit {
         }))
       )
       .subscribe((res) => {
-        this.form.patchValue(res);
+        if (!res.attributesKeys) {
+          this.isLifetimeOnlyControl.setValue(true);
+        }
+        this.form.patchValue({
+          ...res,
+          attributesKeys: res.attributesKeys || undefined,
+        });
         this.cdr.markForCheck();
       });
   }
@@ -135,9 +158,14 @@ export class NftVerificationComponent implements OnInit {
     }
 
     const value = {
-      ...this.form.value,
+      ...this.form.getRawValue(),
       mintAddresses: this.modifyMintAddresses(this.form.value.mintAddresses!),
-    };
+      // attributesKeys: this.isLifetimeOnlyControl.value ? null : this.form
+    } as any as NftVerificationDTO;
+
+    if (this.isLifetimeOnlyControl.value) {
+      value.attributesKeys = null;
+    }
 
     this.spinner.show(ACCOUNT_SPINNER_NAME);
 
@@ -153,7 +181,10 @@ export class NftVerificationComponent implements OnInit {
       .subscribe({
         next: (res) => {
           this.tools.generateNotification('Saved', 'success');
-          this.form.patchValue(res);
+          this.form.patchValue({
+            ...res,
+            attributesKeys: res.attributesKeys || undefined,
+          });
         },
         error: () => {},
       });

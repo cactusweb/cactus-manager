@@ -85,6 +85,17 @@
           help
         </mat-icon>
       </div>
+
+      <label class="window enbaled-switcher" for="only-lt">
+        <span class="row tw-justify-between">
+          <span class="tw-font-medium"> Only lifetime </span>
+          <app-checkbox-switcher
+            [formControl]="isLifetimeOnlyControl"
+            i-id="only-lt"
+          />
+        </span>
+      </label>
+
       <div class="inp-wrapper">
         <label for="collection-symbol" class="inp-wrapper__label">
           License type
