@@ -72,22 +72,14 @@ export class AboutService {
     const formData = new FormData();
     this.showSpinner();
 
-    const fileExt = FileDropzoneAcceptedTypesNamesMap.get(
-      file.type as FileDropzoneAcceptedTypes
-    );
+    formData.append('image', file);
 
-    return this.accService.owner.pipe(
-      take(1),
-      map((res) =>
-        res ? `${res?.general.name}_${res?.id}-banner.${fileExt}` : file.type
-      ),
-      tap((fileName) => formData.append('image', file, fileName)),
-      switchMap(() =>
-        this.http.request<{ url: string }>(CommonRequests.POST_FILE, formData)
-      ),
-      tap(() => this.tools.generateNotification('Uploaded', 'success')),
-      finalize(() => this.hideSpinner())
-    );
+    return this.http
+      .request<{ url: string }>(CommonRequests.POST_FILE, formData)
+      .pipe(
+        tap(() => this.tools.generateNotification('Uploaded', 'success')),
+        finalize(() => this.hideSpinner())
+      );
   }
 
   deleteBanner(url: string) {
