@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   OnInit,
@@ -37,7 +38,8 @@ export class AboutComponent implements OnInit {
     private aboutService: AboutService,
     private accService: AccountService,
     private eRef: ElementRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private cdr: ChangeDetectorRef
   ) {}
 
   get actionsControl() {
@@ -56,6 +58,7 @@ export class AboutComponent implements OnInit {
       }
       this.onRemoveAction(0);
       res.actions.forEach((action) => this.onAddAction(action));
+      this.cdr.markForCheck();
     });
   }
 

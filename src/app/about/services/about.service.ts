@@ -33,7 +33,7 @@ export class AboutService {
     private spinnerService: NgxSpinnerService,
     private http: HttpService,
     private tools: ToolsService,
-    private accService: AccountService,
+    private accService: AccountService
   ) {
     this.about$ = this.#about$
       .asObservable()
