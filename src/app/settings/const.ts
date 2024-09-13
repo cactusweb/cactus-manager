@@ -18,7 +18,7 @@ export const paymentWays: SelectorValue[] = [
 export const currencies: SelectorValue[] = [
   { value: 'RUB' },
   { value: 'USD' },
-  //   { value: 'EUR' },
+  { value: 'EUR' },
   { value: 'GBP' },
   { value: 'SOL' },
   { value: 'ETH' },
