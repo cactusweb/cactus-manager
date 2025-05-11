@@ -1,8 +1,21 @@
 <form class="window row" [formGroup]="form">
-    <app-selector-filter formControlName="filter" [opt]="logStatuses"></app-selector-filter>
+  <app-selector-filter
+    formControlName="filter"
+    [opt]="logStatuses"
+  ></app-selector-filter>
 
-    
+  <div class="tw-grid tw-justify-end tw-gap-4 tw-grid-flow-col">
+    <button mat-flat-button color="primary" (click)="onOpenExportDialog()">
+      Export
+      <mat-icon class="tw-text-white">vertical_align_bottom</mat-icon>
+    </button>
     <div class="search-control-wrapper">
-        <input type="text" placeholder="Search" class="form-control no-validate" formControlName="search">
+      <input
+        type="text"
+        placeholder="Search"
+        class="form-control no-validate"
+        formControlName="search"
+      />
     </div>
+  </div>
 </form>

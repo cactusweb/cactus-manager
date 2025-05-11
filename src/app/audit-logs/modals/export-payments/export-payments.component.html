@@ -1,0 +1,30 @@
+<h3 mat-dialog-title>Export payments logs</h3>
+
+<form [formGroup]="form" (ngSubmit)="onExport()">
+  <mat-dialog-content>
+    <div class="inp-wrapper">
+      <label class="inp-wrapper__label" label="date_from">Дата от</label>
+      <input
+        type="date"
+        id="date_from"
+        formControlName="date_from"
+        class="form-control"
+        autocomplete="off"
+      />
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close type="button">Cancel</button>
+    <button
+      *ngVar="loading$ | async as loading"
+      mat-flat-button
+      type="submit"
+      color="primary"
+      [disabled]="loading"
+    >
+      <ng-container *ngIf="!loading; else loadTmpl"> Export </ng-container>
+      <ng-template #loadTmpl>...</ng-template>
+    </button>
+  </mat-dialog-actions>
+</form>
