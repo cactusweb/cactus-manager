@@ -38,7 +38,7 @@ export class ExportPaymentsComponent {
 
   onExport() {
     this.form.markAllAsTouched();
-    if (this.form.invalid) {
+    if (this.form.invalid || this.loading$.value) {
       return;
     }
 

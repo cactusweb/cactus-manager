@@ -21,7 +21,6 @@
       mat-flat-button
       type="submit"
       color="primary"
-      [disabled]="loading"
     >
       <ng-container *ngIf="!loading; else loadTmpl"> Export </ng-container>
       <ng-template #loadTmpl>...</ng-template>
