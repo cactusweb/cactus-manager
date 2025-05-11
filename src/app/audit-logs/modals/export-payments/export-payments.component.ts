@@ -14,7 +14,17 @@ const EXPORT_LOGS_REQ: req = {
 @Component({
   selector: 'csd-export-payment',
   templateUrl: './export-payments.component.html',
-  styleUrls: ['./export-payments.component.scss'],
+  styles: [
+    `
+      mat-dialog-actions {
+        @apply tw-grid tw-grid-cols-2;
+      }
+
+      mat-dialog-actions {
+        @apply tw-px-6 tw-pb-5;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExportPaymentsComponent {
