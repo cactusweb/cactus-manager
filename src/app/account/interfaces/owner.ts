@@ -34,6 +34,7 @@ interface GeneralInfo {
   primary_color: string;
   email: string;
   name: string;
+  support_link: string | null;
 }
 
 interface Discord {

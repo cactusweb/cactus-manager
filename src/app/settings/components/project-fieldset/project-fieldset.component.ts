@@ -1,5 +1,12 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
-import { ControlValueAccessor, UntypedFormControl, UntypedFormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import {
+  ControlValueAccessor,
+  UntypedFormControl,
+  UntypedFormGroup,
+  NG_VALUE_ACCESSOR,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { Owner } from 'src/app/account/interfaces/owner';
 import { SettingsFieldset } from '../../settings.component';
 
@@ -9,34 +16,33 @@ import { SettingsFieldset } from '../../settings.component';
   styleUrls: ['./project-fieldset.component.scss'],
 })
 export class ProjectFieldsetComponent implements SettingsFieldset {
-  form!: UntypedFormGroup
+  form!: UntypedFormGroup;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.generateForm();
   }
 
-
-  generateForm(){
+  generateForm() {
     this.form = new UntypedFormGroup({
       discordId: new UntypedFormControl(null, Validators.required),
-      site_url: new UntypedFormControl(null)
-    })
+      site_url: new UntypedFormControl(null),
+      support_link: new FormControl<string | null>(null),
+    });
   }
-  
-  validate(){
+
+  validate() {
     this.form.markAllAsTouched();
     return this.form.valid;
   }
 
   // @ts-ignore
-  get _form(): Record<string, any>{
+  get _form(): Record<string, any> {
     return this.form.value;
   }
 
-  set _form(val: Owner){
-    this.form.patchValue({ ...val.general, discordId: val.discord.id })
+  set _form(val: Owner) {
+    this.form.patchValue({ ...val.general, discordId: val.discord.id });
   }
-
 }
