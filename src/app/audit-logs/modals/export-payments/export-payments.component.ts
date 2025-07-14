@@ -4,7 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, finalize } from 'rxjs';
 import { req } from 'src/app/tools/interfaces/req-map';
 import { environment } from 'src/environments/environment';
-import { startOfDay } from 'date-fns'
+import { format } from 'date-fns'
 
 const EXPORT_LOGS_REQ: req = {
   url: '/log/export',
@@ -30,7 +30,7 @@ const EXPORT_LOGS_REQ: req = {
 export class ExportPaymentsComponent {
   readonly form = new FormGroup({
     actions: new FormControl(['renew', 'auto-renew', 'purchase']),
-    date_from: new FormControl(startOfDay(new Date()).toISOString(), Validators.required),
+    date_from: new FormControl(format(new Date(), 'yyyy-MM-dd'), Validators.required),
   });
   readonly loading$ = new BehaviorSubject(false);
 
