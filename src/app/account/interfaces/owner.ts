@@ -83,6 +83,7 @@ interface PaymentCalls {
   max_attempts: number;
   action: 'kick' | 'roles';
   paymentTicket: boolean;
+  renew_tickets_catalog: string | null;
   expires_role: DsRole | undefined;
   wh_content: string;
 }

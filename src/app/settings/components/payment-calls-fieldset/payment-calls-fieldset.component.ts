@@ -1,81 +1,119 @@
-import { Component, DestroyRef, EventEmitter, HostListener, OnInit, Output, inject } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  EventEmitter,
+  HostListener,
+  OnInit,
+  Output,
+  inject,
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormControl, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { filter, Subscription, take } from 'rxjs';
+import {
+  FormControl,
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
+import { filter, map, Subscription, take } from 'rxjs';
 import { Owner } from 'src/app/account/interfaces/owner';
 import { AccountService } from 'src/app/account/services/account.service';
+import { distinctUntilChangedJSON } from 'src/app/ryodan-customization/common/utils/pipelines.utils';
 import { SelectorValue } from 'src/app/tools/interfaces/selector-values';
 
 const actionOpts: SelectorValue[] = [
   { value: 'kick', display: 'Kick from the server' },
-  { value: 'roles', display: 'Give new role' }
-] 
+  { value: 'roles', display: 'Give new role' },
+];
 
 @Component({
   selector: 'app-payment-calls-fieldset',
   templateUrl: './payment-calls-fieldset.component.html',
-  styleUrls: ['./payment-calls-fieldset.component.scss']
+  styleUrls: ['./payment-calls-fieldset.component.scss'],
 })
 export class PaymentCallsFieldsetComponent implements OnInit {
-  @Output() onClose = new EventEmitter()
+  @Output() onClose = new EventEmitter();
 
-  form!: UntypedFormGroup
+  form!: UntypedFormGroup;
 
   actionOpts = actionOpts;
   dsRoleOpts: SelectorValue[] = [];
 
   readonly #destroyRef = inject(DestroyRef);
 
-  constructor(
-    private acc: AccountService
-  ) { }
+  constructor(private acc: AccountService) {}
 
-  
   @HostListener('document:keydown.escape', ['$event'])
-  onEscape(e: KeyboardEvent){
+  onEscape(e: KeyboardEvent) {
     this.onClose.emit();
   }
-  
+
   ngOnInit(): void {
     this.generateForm();
+    this.listenCatalogId();
     this.getDsRoles();
   }
 
-  generateForm(){
+  generateForm() {
     this.form = new UntypedFormGroup({
       max_attempts: new UntypedFormControl(3, Validators.required),
-      expires_role: new UntypedFormControl({ value: null, disabled: true }, Validators.required),
+      expires_role: new UntypedFormControl(
+        { value: null, disabled: true },
+        Validators.required
+      ),
       action: new UntypedFormControl('kick', Validators.required),
-      wh_content: new UntypedFormControl({value: '', disabled: true}),
-      paymentTicket: new FormControl(true, Validators.required)
-    })
+      wh_content: new UntypedFormControl({ value: '', disabled: true }),
+      paymentTicket: new FormControl(true, Validators.required),
+      renew_tickets_catalog: new FormControl(null),
+    });
 
     this.form.controls['action'].valueChanges
       .pipe(takeUntilDestroyed(this.#destroyRef))
-      .subscribe(res => {
-        this.form.controls['expires_role'][res == 'roles' ? 'enable' : 'disable']() 
-      })
+      .subscribe((res) => {
+        this.form.controls['expires_role'][
+          res == 'roles' ? 'enable' : 'disable'
+        ]();
+      });
   }
 
-  
-  getDsRoles(){
-    this.acc.roles.pipe(filter(r => r.length > 0), take(1)).subscribe(roles => 
-      this.dsRoleOpts = roles.map(r => {
-        return { display: r.name, value: r.id }
-      })
-    )
+  getDsRoles() {
+    this.acc.roles
+      .pipe(
+        filter((r) => r.length > 0),
+        take(1)
+      )
+      .subscribe(
+        (roles) =>
+          (this.dsRoleOpts = roles.map((r) => {
+            return { display: r.name, value: r.id };
+          }))
+      );
   }
 
   // @ts-ignore
-  get _form(): Record<any,any>{
+  get _form(): Record<any, any> {
     return this.form.value;
   }
 
-  set _form(owner: Owner){
+  set _form(owner: Owner) {
+    if (!owner.payment.calls.paymentTicket) {
+      this.form.controls['renew_tickets_catalog'].disable();
+    }
+
     this.form.patchValue({
       ...owner.payment.calls,
-      expires_role: owner.payment.calls.expires_role?.id||undefined
-    })
+      expires_role: owner.payment.calls.expires_role?.id || undefined,
+    });
   }
 
+  private listenCatalogId() {
+    this.form.controls['paymentTicket'].valueChanges
+      .pipe(
+        distinctUntilChangedJSON(),
+        map((res) => (res ? 'enable' : 'disable')),
+        takeUntilDestroyed(this.#destroyRef)
+      )
+      .subscribe((action) =>
+        this.form.controls['renew_tickets_catalog'][action]()
+      );
+  }
 }

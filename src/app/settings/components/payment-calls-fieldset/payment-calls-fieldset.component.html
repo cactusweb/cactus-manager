@@ -49,9 +49,24 @@
     </div>
 
     <div class="inp-wrapper">
-      <span for="action" class="inp-wrapper__label"
-        >Action on license deleting</span
-      >
+      <label for="catalog_id" class="inp-wrapper__label">
+        Tickets Catalog ID
+      </label>
+
+      <input
+        type="text"
+        id="catalog_id"
+        formControlName="renew_tickets_catalog"
+        class="form-control"
+        placeholder="Input catalog id"
+        autocomplete="OFF"
+      />
+    </div>
+
+    <div class="inp-wrapper">
+      <span for="action" class="inp-wrapper__label">
+        Action on license deleting
+      </span>
       <app-select-primary
         formControlName="action"
         [opt]="actionOpts"
