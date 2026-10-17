@@ -32,7 +32,7 @@ Relevant current structure:
 
 3. **Hint as `matTooltip` on an info icon** beside the label ("Buyers must provide email, first and last name, and country before purchase when this is on"). `MatTooltip` is already imported and used in this component (guide-link icon). *Alternative:* static subtext under the row — rejected as vertical noise in a dense window.
 
-4. **License fields as three `app-label`s appended after Activations**, reading `license.user?.first_name / last_name / country` with `|| "-"`. The existing Email label stays on `license.payment.email` (order-time record; the profile may diverge later).
+4. **License fields as a combined Name `app-label` plus a Country `app-label` appended after Activations**, sharing one grid row (`1/3` and `3/5`). Name joins `license.user?.first_name` and `last_name` via a component helper (`getUserFullName()`), skipping empty parts and falling back to `"-"`; Country reads `license.user?.country || "-"`. The existing Email label stays on `license.payment.email` (order-time record; the profile may diverge later).
 
 5. **New `User` members are optional** (`email?`, `first_name?`, `last_name?`, `country?`): the interface is shared with ryodan-customization views whose backend does not return these fields, so optional keeps those call sites type-accurate. `Payment.require_user_details` is non-optional (`boolean`) since the manager's own API always returns it.
 

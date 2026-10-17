@@ -138,6 +138,13 @@
         /></ng-template>
       </span>
     </app-label>
+
+    <app-label label="Name" style="grid-column: 1/3">
+      {{ getUserFullName() }}
+    </app-label>
+    <app-label label="Country" style="grid-column: 3/5">
+      {{ license.user?.country || "-" }}
+    </app-label>
   </div>
 
   <csm-nft-data

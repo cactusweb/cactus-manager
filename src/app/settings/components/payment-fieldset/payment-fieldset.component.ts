@@ -65,6 +65,7 @@ export class PaymentFieldsetComponent
     this.form = new UntypedFormGroup({
       way: new UntypedFormControl(''),
       currency: new UntypedFormControl('USD', Validators.required),
+      require_user_details: new UntypedFormControl(false),
     });
 
     this.sub = this.form.controls['way'].valueChanges.subscribe((res) => {
