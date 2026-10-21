@@ -90,6 +90,23 @@
         </svg>
       </button>
     </div>
+
+    <div class="switcher-wrapper">
+      <span class="switcher-wrapper__label row tw-gap-2">
+        Require user details
+        <mat-icon
+          class="!tw-text-base !tw-h-5"
+          matTooltip="Buyers must provide email, first and last name, and country before purchase when this is on"
+        >
+          help
+        </mat-icon>
+      </span>
+
+      <app-checkbox-switcher
+        formControlName="require_user_details"
+        i-id="require_user_details"
+      ></app-checkbox-switcher>
+    </div>
   </fieldset>
 </form>
 

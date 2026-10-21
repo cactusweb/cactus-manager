@@ -59,4 +59,12 @@ export class LicenseViewingComponent implements OnInit {
     const length = val.length;
     return val.substring(length - 4, length);
   }
+
+  getUserFullName(): string {
+    return (
+      [this.license.user?.first_name, this.license.user?.last_name]
+        .filter(Boolean)
+        .join(" ") || "-"
+    );
+  }
 }

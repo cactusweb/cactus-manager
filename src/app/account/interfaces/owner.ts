@@ -45,6 +45,7 @@ interface Discord {
 interface Payment {
   way: '' | 'Tinkoff' | 'Ameria' | 'Crypto' | 'Stripe';
   currency: string;
+  require_user_details: boolean;
   tinkoff: Tinkoff;
   ameria: Ameria;
   crypto: Crypto[];
